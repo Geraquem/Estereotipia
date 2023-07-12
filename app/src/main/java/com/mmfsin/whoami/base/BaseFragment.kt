@@ -1,4 +1,4 @@
-package com.mmfsin.musicmaster.base
+package com.mmfsin.whoami.base
 
 import android.os.Bundle
 import android.view.LayoutInflater

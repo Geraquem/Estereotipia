@@ -1,9 +1,9 @@
-package com.mmfsin.musicmaster.base.dialog
+package com.mmfsin.whoami.base.dialog
 
 import android.app.Dialog
 import android.view.LayoutInflater
-import com.mmfsin.musicmaster.base.BaseDialog
-import com.mmfsin.musicmaster.databinding.DialogErrorBinding
+import com.mmfsin.whoami.base.BaseDialog
+import com.mmfsin.whoami.databinding.DialogErrorBinding
 
 class ErrorDialog : BaseDialog<DialogErrorBinding>() {
 

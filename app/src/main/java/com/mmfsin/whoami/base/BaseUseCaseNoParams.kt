@@ -1,4 +1,4 @@
-package com.mmfsin.musicmaster.base
+package com.mmfsin.whoami.base
 
 abstract class BaseUseCaseNoParams<T> {
     abstract suspend fun execute(): T

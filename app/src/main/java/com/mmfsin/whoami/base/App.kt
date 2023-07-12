@@ -1,8 +1,7 @@
-package com.mmfsin.musicmaster.base
+package com.mmfsin.whoami.base
 
 import android.app.Application
 import android.util.Log
-import com.google.android.gms.ads.MobileAds
 import com.google.firebase.messaging.FirebaseMessaging
 import dagger.hilt.android.HiltAndroidApp
 import io.realm.Realm
@@ -13,9 +12,9 @@ class App : Application() {
     override fun onCreate() {
         super.onCreate()
         Realm.init(this)
-        MobileAds.initialize(this) {}
+//        MobileAds.initialize(this) {}
 
-        getFCMToken()
+//        getFCMToken()
     }
 
     private fun getFCMToken() {

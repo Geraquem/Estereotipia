@@ -1,4 +1,4 @@
-package com.mmfsin.musicmaster.base
+package com.mmfsin.whoami.base
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

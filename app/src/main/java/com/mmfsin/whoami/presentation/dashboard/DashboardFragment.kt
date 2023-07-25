@@ -31,6 +31,12 @@ class DashboardFragment : BaseFragment<FragmentDashboardBinding, DashboardViewMo
         }
     }
 
+    override fun setListeners() {
+        binding.apply {
+            image.setOnClickListener { error() }
+        }
+    }
+
     override fun observe() {
         viewModel.event.observe(this) { event ->
             when (event) {

@@ -22,6 +22,7 @@ object RealmDatabaseModule {
         return RealmDatabase(
             RealmConfiguration.Builder()
                 .deleteRealmIfMigrationNeeded()
+                .modules(CoreModule())
                 .build()
         )
     }

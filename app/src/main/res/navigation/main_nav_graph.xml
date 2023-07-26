@@ -3,7 +3,21 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main_nav_graph"
-    app:startDestination="@id/dashboardFragment">
+    app:startDestination="@id/decksFragment">
+
+    <fragment
+        android:id="@+id/decksFragment"
+        android:name="com.mmfsin.whoami.presentation.decks.DecksFragment"
+        android:label="decksFragment"
+        tools:layout="@layout/fragment_decks">
+        <action
+            android:id="@+id/action_deck_to_dashboard"
+            app:destination="@id/dashboardFragment">
+            <argument
+                android:name="deckId"
+                app:argType="string" />
+        </action>
+    </fragment>
 
     <fragment
         android:id="@+id/dashboardFragment"

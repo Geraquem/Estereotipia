@@ -1,6 +1,6 @@
 package com.mmfsin.whoami.data.database
 
-import com.mmfsin.musicmaster.domain.interfaces.IRealmDatabase
+import com.mmfsin.whoami.domain.interfaces.IRealmDatabase
 import io.realm.Realm
 import io.realm.RealmConfiguration
 import io.realm.RealmModel

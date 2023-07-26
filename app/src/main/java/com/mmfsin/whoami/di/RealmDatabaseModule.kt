@@ -1,7 +1,7 @@
 package com.mmfsin.whoami.di
 
-import com.mmfsin.musicmaster.domain.interfaces.IRealmDatabase
 import com.mmfsin.whoami.data.database.RealmDatabase
+import com.mmfsin.whoami.domain.interfaces.IRealmDatabase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -22,7 +22,6 @@ object RealmDatabaseModule {
         return RealmDatabase(
             RealmConfiguration.Builder()
                 .deleteRealmIfMigrationNeeded()
-                .modules(CoreModule())
                 .build()
         )
     }

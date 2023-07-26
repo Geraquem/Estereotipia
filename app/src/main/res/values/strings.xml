@@ -8,4 +8,9 @@
     <string name="error_description">Inténtalo de nuevo más tarde</string>
     <string name="error_btn">Aceptar</string>
 
+    <!-- EXIT -->
+    <string name="exit_title">¿Seguro que quieres salir?</string>
+    <string name="exit_yes">SALIR</string>
+    <string name="exit_no">QUEDARME</string>
+
 </resources>

@@ -1,4 +1,4 @@
-package com.mmfsin.musicmaster.domain.interfaces
+package com.mmfsin.whoami.domain.interfaces
 
 import io.realm.Realm
 import io.realm.RealmModel

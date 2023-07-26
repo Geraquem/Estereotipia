@@ -11,6 +11,6 @@ class GetCardsUseCase @Inject constructor(private val repository: IDashboardRepo
     override suspend fun execute(params: Params): List<Card> = repository.getCards()
 
     class Params(
-        val cardDeckId: String
+        val deckId: String
     )
 }

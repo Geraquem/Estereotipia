@@ -15,6 +15,7 @@ import com.mmfsin.whoami.presentation.MainActivity
 import com.mmfsin.whoami.presentation.dashboard.adapter.CardsAdapter
 import com.mmfsin.whoami.presentation.dashboard.dialog.CardInfoDialog
 import com.mmfsin.whoami.presentation.dashboard.interfaces.ICardListener
+import com.mmfsin.whoami.utils.DECK_ID
 import com.mmfsin.whoami.utils.showErrorDialog
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -25,34 +26,41 @@ class DashboardFragment : BaseFragment<FragmentDashboardBinding, DashboardViewMo
     override val viewModel: DashboardViewModel by viewModels()
     private lateinit var mContext: Context
 
+    private var deckId: String? = null
+
     override fun inflateView(
         inflater: LayoutInflater, container: ViewGroup?
     ) = FragmentDashboardBinding.inflate(inflater, container, false)
 
+    override fun getBundleArgs() {
+        arguments?.let {
+            deckId = it.getString(DECK_ID)
+        }
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel.getCards("cardDeckId")
+        deckId?.let { id -> viewModel.getActualDeck(id) } ?: run { error() }
     }
 
-    override fun setUI() {
-        binding.apply {
-            setToolbar()
-        }
-    }
+    override fun setUI() {}
+    override fun setListeners() {}
 
-    private fun setToolbar() {
+    private fun setToolbar(deckName: String) {
         (activity as MainActivity).apply {
             this.inDashboard = true
-            setUpToolbar(showBack = true, "Name of Deck")
+            setUpToolbar(showBack = true, deckName)
         }
     }
-
-    override fun setListeners() {}
 
     override fun observe() {
         viewModel.event.observe(this) { event ->
             when (event) {
-                is DashboardEvent.GetCards -> setUpCards(event.result)
+                is DashboardEvent.GetActualDeck -> {
+                    setToolbar(event.deck.name)
+                    viewModel.getCards(event.deck.id)
+                }
+                is DashboardEvent.GetCards -> setUpCards(event.cards)
                 is DashboardEvent.SomethingWentWrong -> error()
             }
         }

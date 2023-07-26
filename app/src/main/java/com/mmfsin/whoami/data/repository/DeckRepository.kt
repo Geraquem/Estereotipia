@@ -1,5 +1,6 @@
 package com.mmfsin.whoami.data.repository
 
+import com.mmfsin.whoami.data.mappers.toDeck
 import com.mmfsin.whoami.data.mappers.toDeckList
 import com.mmfsin.whoami.data.models.DeckDTO
 import com.mmfsin.whoami.domain.interfaces.IDeckRepository
@@ -50,4 +51,11 @@ class DeckRepository @Inject constructor(
     }
 
     private fun saveDeckInRealm(deck: DeckDTO) = realmDatabase.addObject { deck }
+
+    override suspend fun getDeckById(id: String): Deck? {
+        val decks = realmDatabase.getObjectsFromRealm {
+            where<DeckDTO>().equalTo("id", id).findAll()
+        }
+        return if (decks.isEmpty()) null else decks.first().toDeck()
+    }
 }

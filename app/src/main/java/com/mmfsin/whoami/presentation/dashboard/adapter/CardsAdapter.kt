@@ -33,7 +33,7 @@ class CardsAdapter(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bind(cards[position])
-        holder.itemView.setOnClickListener { listener.onCardClick(cards[position].name) }
+        holder.itemView.setOnClickListener { listener.onCardClick(cards[position].id) }
     }
 
     override fun getItemCount(): Int = cards.size

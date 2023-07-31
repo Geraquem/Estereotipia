@@ -4,4 +4,5 @@ import com.mmfsin.whoami.domain.models.Card
 
 interface IDashboardRepository {
     fun getCards(): List<Card>
+    fun getCardById(id: String): Card?
 }

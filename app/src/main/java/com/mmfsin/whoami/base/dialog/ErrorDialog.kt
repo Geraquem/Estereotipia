@@ -5,7 +5,7 @@ import android.view.LayoutInflater
 import com.mmfsin.whoami.base.BaseDialog
 import com.mmfsin.whoami.databinding.DialogErrorBinding
 
-class ErrorDialog : BaseDialog<DialogErrorBinding>() {
+class ErrorDialog(private val goBack: Boolean = true) : BaseDialog<DialogErrorBinding>() {
 
     override fun inflateView(inflater: LayoutInflater) = DialogErrorBinding.inflate(inflater)
 
@@ -13,7 +13,7 @@ class ErrorDialog : BaseDialog<DialogErrorBinding>() {
 
     override fun setListeners() {
         binding.btnAccept.setOnClickListener {
-            activity?.onBackPressed()
+            if (goBack) activity?.onBackPressed()
             dismiss()
         }
     }

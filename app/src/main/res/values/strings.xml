@@ -13,4 +13,7 @@
     <string name="exit_yes">SALIR</string>
     <string name="exit_no">QUEDARME</string>
 
+    <!-- CARD INFO -->
+    <string name="card_info_discard">Descartar</string>
+
 </resources>

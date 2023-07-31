@@ -13,7 +13,7 @@ import com.mmfsin.whoami.databinding.FragmentDashboardBinding
 import com.mmfsin.whoami.domain.models.Card
 import com.mmfsin.whoami.presentation.MainActivity
 import com.mmfsin.whoami.presentation.dashboard.adapter.CardsAdapter
-import com.mmfsin.whoami.presentation.dashboard.dialog.CardInfoDialog
+import com.mmfsin.whoami.presentation.cardinfo.CardInfoDialog
 import com.mmfsin.whoami.presentation.dashboard.interfaces.ICardListener
 import com.mmfsin.whoami.utils.DECK_ID
 import com.mmfsin.whoami.utils.showErrorDialog
@@ -66,9 +66,9 @@ class DashboardFragment : BaseFragment<FragmentDashboardBinding, DashboardViewMo
         }
     }
 
-    override fun onCardClick(id: String) {
+    override fun onCardClick(cardId: String) {
         activity?.let {
-            val dialogFragment = CardInfoDialog.newInstance()
+            val dialogFragment = CardInfoDialog.newInstance(cardId)
             dialogFragment.show(it.supportFragmentManager, "")
         }
     }

@@ -7,13 +7,20 @@ import com.mmfsin.whoami.domain.interfaces.IDashboardRepository
 import com.mmfsin.whoami.domain.interfaces.IRealmDatabase
 import com.mmfsin.whoami.domain.models.Card
 import io.realm.kotlin.where
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
 import javax.inject.Inject
 
 class DashboardRepository @Inject constructor(
     private val realmDatabase: IRealmDatabase
 ) : IDashboardRepository {
 
-//    private val reference = Firebase.database.reference.child(CARDS)
+    companion object {
+        private var flowValue = MutableStateFlow(false)
+    }
+
+    //    private val reference = Firebase.database.reference.child(CARDS)
 
     override fun getCards(): List<Card> {
         val list = listOf(
@@ -61,16 +68,30 @@ class DashboardRepository @Inject constructor(
 
     private fun saveCardInRealm(card: CardDTO) = realmDatabase.addObject { card }
 
-    override fun getCardById(id: String): Card? {
+    private fun getCardDTO(id: String): CardDTO? {
         val cards = realmDatabase.getObjectsFromRealm {
             where<CardDTO>().equalTo("id", id).findAll()
         }
-        return if (cards.isEmpty()) null else cards.first().toCard()
+        return if (cards.isEmpty()) null else cards.first()
     }
 
+    override fun getCardById(id: String): Card? {
+        val card = getCardDTO(id)
+        return card?.toCard()
+    }
 
+    override fun discardCard(id: String) {
+        val card = getCardDTO(id)
+        card?.let {
+            it.discarded = !it.discarded
+            realmDatabase.addObject { it }
+            flowValue.value = !flowValue.value
+        }
+    }
 
-
+    override fun observeFlow(): StateFlow<Boolean> {
+        return flowValue.asStateFlow()
+    }
 
 //    override fun getCategoriesByLanguage(language: String): List<Category> {
 //        return realmDatabase.getObjectsFromRealm {

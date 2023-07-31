@@ -12,8 +12,8 @@ import com.mmfsin.whoami.base.BaseFragment
 import com.mmfsin.whoami.databinding.FragmentDashboardBinding
 import com.mmfsin.whoami.domain.models.Card
 import com.mmfsin.whoami.presentation.MainActivity
-import com.mmfsin.whoami.presentation.dashboard.adapter.CardsAdapter
 import com.mmfsin.whoami.presentation.cardinfo.CardInfoDialog
+import com.mmfsin.whoami.presentation.dashboard.adapter.CardsAdapter
 import com.mmfsin.whoami.presentation.dashboard.interfaces.ICardListener
 import com.mmfsin.whoami.utils.DECK_ID
 import com.mmfsin.whoami.utils.showErrorDialog
@@ -27,6 +27,7 @@ class DashboardFragment : BaseFragment<FragmentDashboardBinding, DashboardViewMo
     private lateinit var mContext: Context
 
     private var deckId: String? = null
+    private var cardsAdapter: CardsAdapter? = null
 
     override fun inflateView(
         inflater: LayoutInflater, container: ViewGroup?
@@ -61,6 +62,12 @@ class DashboardFragment : BaseFragment<FragmentDashboardBinding, DashboardViewMo
                     viewModel.getCards(event.deck.id)
                 }
                 is DashboardEvent.GetCards -> setUpCards(event.cards)
+                is DashboardEvent.UpdateCards -> {
+                    val a = deckId
+                    deckId?.let {
+                        viewModel.getCards(it)
+                    }
+                }
                 is DashboardEvent.SomethingWentWrong -> error()
             }
         }
@@ -76,7 +83,8 @@ class DashboardFragment : BaseFragment<FragmentDashboardBinding, DashboardViewMo
     private fun setUpCards(cards: List<Card>) {
         binding.rvCards.apply {
             layoutManager = StaggeredGridLayoutManager(2, VERTICAL)
-            adapter = CardsAdapter(cards, this@DashboardFragment)
+            cardsAdapter = CardsAdapter(cards, this@DashboardFragment)
+            adapter = cardsAdapter
         }
     }
 

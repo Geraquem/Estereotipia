@@ -14,7 +14,6 @@ import com.mmfsin.whoami.base.BaseFragment
 import com.mmfsin.whoami.databinding.FragmentDecksBinding
 import com.mmfsin.whoami.domain.models.Deck
 import com.mmfsin.whoami.presentation.MainActivity
-import com.mmfsin.whoami.presentation.decks.DecksFragmentDirections.Companion.actionDeckToDashboard
 import com.mmfsin.whoami.presentation.decks.adapter.DeckAdapter
 import com.mmfsin.whoami.presentation.decks.interfaces.IDeckListener
 import com.mmfsin.whoami.utils.showErrorDialog
@@ -59,8 +58,14 @@ class DecksFragment : BaseFragment<FragmentDecksBinding, DecksViewModel>(), IDec
         }
     }
 
-    override fun onDeckClick(id: String) {
-        findNavController().navigate(actionDeckToDashboard(id))
+    override fun onDeckClick(deckId: String) {
+//        activity?.let {
+//            val dialog = SelectRolDialog(deckId)
+//            it.let { dialog.show(it.supportFragmentManager, "") }
+//        }
+
+        /** DELETE */
+        findNavController().navigate(DecksFragmentDirections.actionDeckToDashboard(deckId))
     }
 
     private fun setUpDecks(decks: List<Deck>) {

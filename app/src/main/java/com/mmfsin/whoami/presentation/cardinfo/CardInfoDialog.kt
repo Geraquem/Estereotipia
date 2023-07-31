@@ -13,6 +13,7 @@ import com.bumptech.glide.Glide
 import com.mmfsin.whoami.base.BaseDialog
 import com.mmfsin.whoami.databinding.DialogCardInfoBinding
 import com.mmfsin.whoami.domain.models.Card
+import com.mmfsin.whoami.presentation.dashboard.adapter.CardsAdapter
 import com.mmfsin.whoami.utils.showErrorDialog
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -20,6 +21,7 @@ import dagger.hilt.android.AndroidEntryPoint
 class CardInfoDialog(private val cardId: String) : BaseDialog<DialogCardInfoBinding>() {
 
     private val viewModel: CardInfoViewModel by viewModels()
+
     private var card: Card? = null
 
     override fun inflateView(inflater: LayoutInflater) = DialogCardInfoBinding.inflate(inflater)
@@ -49,7 +51,7 @@ class CardInfoDialog(private val cardId: String) : BaseDialog<DialogCardInfoBind
 
     override fun setListeners() {
         binding.apply {
-
+            btnDiscard.setOnClickListener { viewModel.discardCard(cardId) }
         }
     }
 
@@ -59,6 +61,9 @@ class CardInfoDialog(private val cardId: String) : BaseDialog<DialogCardInfoBind
                 is CardInfoEvent.GetCard -> {
                     this.card = event.card
                     setUI()
+                }
+                is CardInfoEvent.DiscardCard -> {
+
                 }
                 is CardInfoEvent.SomethingWentWrong -> error()
             }

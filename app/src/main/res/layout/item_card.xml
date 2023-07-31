@@ -16,6 +16,17 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <ImageView
+        android:id="@+id/iv_discard"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:layout_marginBottom="16dp"
+        android:contentDescription="@string/content_description"
+        android:src="@drawable/ic_discard"
+        app:layout_constraintBottom_toBottomOf="@id/expandedImageView"
+        app:layout_constraintLeft_toLeftOf="@id/expandedImageView"
+        app:layout_constraintRight_toRightOf="@id/expandedImageView" />
+
     <TextView
         android:id="@+id/tv_name"
         android:layout_width="wrap_content"

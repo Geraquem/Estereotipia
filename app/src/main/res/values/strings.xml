@@ -13,6 +13,10 @@
     <string name="exit_yes">SALIR</string>
     <string name="exit_no">QUEDARME</string>
 
+    <!-- SELECT ROL -->
+    <string name="select_rol_captain">Elijo persona</string>
+    <string name="select_rol_people">Adivino persona</string>
+
     <!-- CARD INFO -->
     <string name="card_info_discard">Descartar</string>
 

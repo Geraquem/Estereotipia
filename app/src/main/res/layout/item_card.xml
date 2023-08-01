@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/white"
@@ -11,31 +12,32 @@
         android:layout_width="164dp"
         android:layout_height="164dp"
         android:contentDescription="@string/content_description"
-        android:src="@drawable/ic_error"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:src="@color/purple_200" />
 
     <ImageView
         android:id="@+id/iv_discard"
-        android:layout_width="32dp"
-        android:layout_height="32dp"
-        android:layout_marginBottom="16dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:alpha="0.5"
         android:contentDescription="@string/content_description"
         android:src="@drawable/ic_discard"
         app:layout_constraintBottom_toBottomOf="@id/expandedImageView"
         app:layout_constraintLeft_toLeftOf="@id/expandedImageView"
-        app:layout_constraintRight_toRightOf="@id/expandedImageView" />
+        app:layout_constraintRight_toRightOf="@id/expandedImageView"
+        app:layout_constraintTop_toTopOf="@id/expandedImageView" />
 
     <TextView
         android:id="@+id/tv_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:text="Fulanito"
         android:textSize="25sp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/expandedImageView" />
+        app:layout_constraintTop_toBottomOf="@id/expandedImageView"
+        tools:text="Fulanito" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

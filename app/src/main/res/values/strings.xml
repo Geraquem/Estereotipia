@@ -19,5 +19,6 @@
 
     <!-- CARD INFO -->
     <string name="card_info_discard">Descartar</string>
+    <string name="card_info_dis_discard">Des-Descartar</string>
 
 </resources>

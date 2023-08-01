@@ -42,6 +42,11 @@ abstract class BaseDialog<VB : ViewBinding> : DialogFragment() {
         dialog.window?.setLayout(width.toInt(), WRAP_CONTENT)
     }
 
+    fun centerCustomViewDialog(dialog: Dialog) {
+        dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        dialog.window?.setLayout(WRAP_CONTENT, WRAP_CONTENT)
+    }
+
     fun bottomViewDialog(dialog: Dialog) {
         dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         dialog.window?.setLayout(MATCH_PARENT, WRAP_CONTENT)

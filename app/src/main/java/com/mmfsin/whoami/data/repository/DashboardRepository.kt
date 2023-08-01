@@ -24,7 +24,15 @@ class DashboardRepository @Inject constructor(
         val cards = realmDatabase.getObjectsFromRealm {
             where<CardDTO>().equalTo("deckId", deckId).findAll()
         }
-        return if (cards.isEmpty()) null else cards.toCardList()
+        return if (cards.isEmpty()) null else setNonDiscardedCards(cards).toCardList()
+    }
+
+    private fun setNonDiscardedCards(cards: List<CardDTO>): List<CardDTO> {
+        cards.forEach { card ->
+            card.discard = false
+            saveCardInRealm(card)
+        }
+        return cards
     }
 
     private fun getCardDTO(id: String): CardDTO? {
@@ -42,9 +50,13 @@ class DashboardRepository @Inject constructor(
     override fun discardCard(id: String) {
         val card = getCardDTO(id)
         card?.let {
+            card.discard = !card.discard
+            saveCardInRealm(card)
             flowValue.value = Pair(!flowValue.value.first, it.id)
         }
     }
+
+    private fun saveCardInRealm(card: CardDTO) = realmDatabase.addObject { card }
 
     override fun observeFlow(): StateFlow<Pair<Boolean, String>> {
         return flowValue.asStateFlow()

@@ -7,13 +7,13 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.animation.AccelerateDecelerateInterpolator
-import android.widget.Toast
+import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import com.bumptech.glide.Glide
+import com.mmfsin.whoami.R
 import com.mmfsin.whoami.base.BaseDialog
 import com.mmfsin.whoami.databinding.DialogCardInfoBinding
 import com.mmfsin.whoami.domain.models.Card
-import com.mmfsin.whoami.presentation.dashboard.adapter.CardsAdapter
 import com.mmfsin.whoami.utils.showErrorDialog
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -26,7 +26,7 @@ class CardInfoDialog(private val cardId: String) : BaseDialog<DialogCardInfoBind
 
     override fun inflateView(inflater: LayoutInflater) = DialogCardInfoBinding.inflate(inflater)
 
-    override fun setCustomViewDialog(dialog: Dialog) = centerViewDialog(dialog)
+    override fun setCustomViewDialog(dialog: Dialog) = centerCustomViewDialog(dialog)
 
     override fun onResume() {
         super.onResume()
@@ -43,8 +43,12 @@ class CardInfoDialog(private val cardId: String) : BaseDialog<DialogCardInfoBind
         isCancelable = true
         binding.apply {
             card?.let {
+                ivDiscard.isVisible = it.discarded
                 Glide.with(requireContext()).load(it.image).into(ivImage)
                 tvName.text = it.name
+                val btnText =
+                    if (it.discarded) getString(R.string.card_info_dis_discard) else getString(R.string.card_info_discard)
+                btnDiscard.text = btnText
             }
         }
     }

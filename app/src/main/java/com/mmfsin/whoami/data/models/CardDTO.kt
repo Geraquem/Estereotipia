@@ -8,5 +8,6 @@ open class CardDTO(
     var id: String = "",
     var deckId: String = "",
     var image: String = "",
-    var name: String = ""
+    var name: String = "",
+    var discard: Boolean = false
 ) : RealmObject()

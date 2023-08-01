@@ -12,25 +12,26 @@ import com.mmfsin.whoami.domain.models.Card
 import com.mmfsin.whoami.presentation.dashboard.interfaces.ICardListener
 
 class CardsAdapter(
-    private val cards: List<Card>,
-    private val listener: ICardListener
+    private val cards: List<Card>, private val listener: ICardListener
 ) : RecyclerView.Adapter<CardsAdapter.ViewHolder>() {
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         private val binding = ItemCardBinding.bind(view)
-        fun bind(card: Card) {
+        fun bind(card: Card, listener: ICardListener) {
             binding.apply {
                 ivDiscard.isVisible = card.discarded
                 Glide.with(binding.root.context).load(card.image).into(expandedImageView)
                 tvName.text = card.name
+                this.root.setOnClickListener { listener.onCardClick(card.id) }
+                btnDiscard.setOnClickListener { listener.onDiscardClick(card.id) }
             }
         }
     }
 
     fun updateDiscardedCards(id: String) {
-        var position : Int? = null
+        var position: Int? = null
         cards.forEachIndexed() { i, card ->
-            if(card.id == id) {
+            if (card.id == id) {
                 card.discarded = !card.discarded
                 position = i
             }
@@ -45,8 +46,7 @@ class CardsAdapter(
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bind(cards[position])
-        holder.itemView.setOnClickListener { listener.onCardClick(cards[position].id) }
+        holder.bind(cards[position], listener)
     }
 
     override fun getItemCount(): Int = cards.size

@@ -68,13 +68,6 @@ class DashboardFragment : BaseFragment<FragmentDashboardBinding, DashboardViewMo
         }
     }
 
-    override fun onCardClick(cardId: String) {
-        activity?.let {
-            val dialogFragment = CardInfoDialog.newInstance(cardId)
-            dialogFragment.show(it.supportFragmentManager, "")
-        }
-    }
-
     private fun setUpCards(cards: List<Card>) {
         binding.rvCards.apply {
             layoutManager = StaggeredGridLayoutManager(2, VERTICAL)
@@ -82,6 +75,15 @@ class DashboardFragment : BaseFragment<FragmentDashboardBinding, DashboardViewMo
             adapter = cardsAdapter
         }
     }
+
+    override fun onCardClick(cardId: String) {
+        activity?.let {
+            val dialogFragment = CardInfoDialog.newInstance(cardId)
+            dialogFragment.show(it.supportFragmentManager, "")
+        }
+    }
+
+    override fun onDiscardClick(cardId: String) = viewModel.discardCard(cardId)
 
     private fun error() = activity?.showErrorDialog()
 

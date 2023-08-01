@@ -62,12 +62,7 @@ class DashboardFragment : BaseFragment<FragmentDashboardBinding, DashboardViewMo
                     viewModel.getCards(event.deck.id)
                 }
                 is DashboardEvent.GetCards -> setUpCards(event.cards)
-                is DashboardEvent.UpdateCards -> {
-                    val a = deckId
-                    deckId?.let {
-                        viewModel.getCards(it)
-                    }
-                }
+                is DashboardEvent.UpdateCard -> cardsAdapter?.updateDiscardedCards(event.cardId)
                 is DashboardEvent.SomethingWentWrong -> error()
             }
         }

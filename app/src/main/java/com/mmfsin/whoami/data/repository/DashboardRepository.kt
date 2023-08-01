@@ -17,51 +17,59 @@ class DashboardRepository @Inject constructor(
 ) : IDashboardRepository {
 
     companion object {
-        private var flowValue = MutableStateFlow(false)
+        private var flowValue = MutableStateFlow(Pair(false, ""))
     }
 
     //    private val reference = Firebase.database.reference.child(CARDS)
 
-    override fun getCards(): List<Card> {
+
+    override suspend fun getCards(deckId: String): List<Card> {
+        val cards = realmDatabase.getObjectsFromRealm {
+            where<CardDTO>().equalTo("deckId", deckId).findAll()
+        }
+        return if (cards.isEmpty()) getCardsFromFirebase(deckId)
+        else cards.toCardList()
+    }
+
+    private fun getCardsFromFirebase(deckId: String): List<Card> {
         val list = listOf(
             CardDTO(
                 "1",
+                "deckId",
                 "https://static.wikia.nocookie.net/disney/images/d/d3/Spinelli.jpg/revision/latest?cb=20110716123543&path-prefix=es",
-                "Fulanito",
-                false,
+                "Fulanito"
             ),
             CardDTO(
                 "2",
+                "deckId",
                 "https://cdn.resfu.com/media/img_news/captura-de-claudio-spinelli-en-una-entrevista-con-espn--captura-espn.jpg?size=1000x&lossy=1",
-                "Menganito",
-                false,
+                "Menganito"
             ),
             CardDTO(
                 "3",
+                "deckId",
                 "https://m.media-amazon.com/images/I/610YY6E28CL._AC_UF894,1000_QL80_.jpg",
-                "Carlitos",
-                false,
+                "Carlitos"
             ),
             CardDTO(
                 "4",
+                "deckId",
                 "https://i.pinimg.com/1200x/9e/f3/f5/9ef3f58495b819a28b12415b7fa26022.jpg",
-                "Guatemala",
-                false,
+                "Guatemala"
             ),
             CardDTO(
                 "5",
+                "deckId",
                 "https://mymodernmet.com/wp/wp-content/uploads/2019/09/100k-ai-faces-5.jpg",
-                "Rosita",
-                false,
+                "Rosita"
             ),
             CardDTO(
                 "6",
+                "deckId",
                 "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSXXUctuAZo49Abv32wO8qAS7wXhmjlWigvfg&usqp=CAU",
-                "Chupipandi",
-                false,
+                "Chupipandi"
             ),
         )
-
         list.forEach { card -> saveCardInRealm(card) }
         return list.toCardList()
     }
@@ -83,39 +91,11 @@ class DashboardRepository @Inject constructor(
     override fun discardCard(id: String) {
         val card = getCardDTO(id)
         card?.let {
-            it.discarded = !it.discarded
-            realmDatabase.addObject { it }
-            flowValue.value = !flowValue.value
+            flowValue.value = Pair(!flowValue.value.first, it.id)
         }
     }
 
-    override fun observeFlow(): StateFlow<Boolean> {
+    override fun observeFlow(): StateFlow<Pair<Boolean, String>> {
         return flowValue.asStateFlow()
     }
-
-//    override fun getCategoriesByLanguage(language: String): List<Category> {
-//        return realmDatabase.getObjectsFromRealm {
-//            where<Category>().equalTo(LANGUAGE, language).findAll()
-//        }.sortedBy { it.order }
-//    }
-
-//    override suspend fun getCategoriesFromFirebase(): List<Category> {
-//        val latch = CountDownLatch(1)
-//        val categories = mutableListOf<Category>()
-//        reference.get().addOnSuccessListener {
-//            for (child in it.children) {
-//                child.getValue(Category::class.java)?.let { category ->
-//                    categories.add(category)
-//                    saveCategory(category)
-//                }
-//            }
-//            latch.countDown()
-//        }.addOnFailureListener { latch.countDown() }
-//
-//        withContext(Dispatchers.IO) {
-//            latch.await()
-//        }
-//        return categories
-//    }
-
 }

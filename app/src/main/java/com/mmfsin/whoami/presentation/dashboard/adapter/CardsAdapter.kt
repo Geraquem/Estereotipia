@@ -1,6 +1,5 @@
 package com.mmfsin.whoami.presentation.dashboard.adapter
 
-import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -28,9 +27,15 @@ class CardsAdapter(
         }
     }
 
-    @SuppressLint("NotifyDataSetChanged")
-    fun updateDiscardedCards() {
-        notifyDataSetChanged()
+    fun updateDiscardedCards(id: String) {
+        var position : Int? = null
+        cards.forEachIndexed() { i, card ->
+            if(card.id == id) {
+                card.discarded = !card.discarded
+                position = i
+            }
+        }
+        position?.let { pos -> notifyItemChanged(pos) }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {

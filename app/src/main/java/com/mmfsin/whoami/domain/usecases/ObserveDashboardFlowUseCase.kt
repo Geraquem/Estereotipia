@@ -6,7 +6,7 @@ import kotlinx.coroutines.flow.StateFlow
 import javax.inject.Inject
 
 class ObserveDashboardFlowUseCase @Inject constructor(private val repository: IDashboardRepository) :
-    BaseUseCaseNoParams<StateFlow<Boolean>>() {
+    BaseUseCaseNoParams<StateFlow<Pair<Boolean, String>>>() {
 
-    override suspend fun execute(): StateFlow<Boolean> = repository.observeFlow()
+    override suspend fun execute(): StateFlow<Pair<Boolean, String>> = repository.observeFlow()
 }

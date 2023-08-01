@@ -62,9 +62,7 @@ class CardInfoDialog(private val cardId: String) : BaseDialog<DialogCardInfoBind
                     this.card = event.card
                     setUI()
                 }
-                is CardInfoEvent.DiscardCard -> {
-
-                }
+                is CardInfoEvent.DiscardCard -> dismiss()
                 is CardInfoEvent.SomethingWentWrong -> error()
             }
         }

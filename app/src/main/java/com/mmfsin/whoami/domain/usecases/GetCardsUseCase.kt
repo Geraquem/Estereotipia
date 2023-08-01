@@ -8,7 +8,7 @@ import javax.inject.Inject
 class GetCardsUseCase @Inject constructor(private val repository: IDashboardRepository) :
     BaseUseCase<GetCardsUseCase.Params, List<Card>>() {
 
-    override suspend fun execute(params: Params): List<Card> = repository.getCards()
+    override suspend fun execute(params: Params): List<Card> = repository.getCards(params.deckId)
 
     class Params(
         val deckId: String

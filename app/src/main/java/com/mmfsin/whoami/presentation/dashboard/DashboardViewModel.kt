@@ -25,7 +25,7 @@ class DashboardViewModel @Inject constructor(
 
     private fun observeFlow() = viewModelScope.launch(qrJob) {
         observeDashboardFlowUseCase.execute().collect() {
-            _event.value = DashboardEvent.UpdateCards
+            _event.value = DashboardEvent.UpdateCard(it.second)
         }
     }
 

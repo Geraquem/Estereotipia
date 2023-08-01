@@ -11,4 +11,4 @@ fun DeckDTO.toDeck() = Deck(id, image, name)
 
 fun List<CardDTO>.toCardList() = this.map { it.toCard() }
 
-fun CardDTO.toCard() = Card(id, image, name, discarded)
+fun CardDTO.toCard() = Card(id, deckId, image, name, false)

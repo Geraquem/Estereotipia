@@ -7,5 +7,5 @@ open class DeckDTO(
     @PrimaryKey
     var id: String = "",
     var image: String = "",
-    var name: String = ""
+    var name: String = "",
 ) : RealmObject()

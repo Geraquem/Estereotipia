@@ -46,8 +46,8 @@ class DashboardViewModel @Inject constructor(
         executeUseCase(
             { getCardsUseCase.execute(GetCardsUseCase.Params(deckId)) },
             { result ->
-                _event.value = if (result.isEmpty()) DashboardEvent.SomethingWentWrong
-                else DashboardEvent.GetCards(result)
+                _event.value = result?.let { DashboardEvent.GetCards(it) }
+                    ?: run { DashboardEvent.SomethingWentWrong }
             },
             { _event.value = DashboardEvent.SomethingWentWrong }
         )

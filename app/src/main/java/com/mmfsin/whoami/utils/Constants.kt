@@ -1,7 +1,8 @@
 package com.mmfsin.whoami.utils
 
 //FIREBASE
-const val CARDS = "cards"
+const val DECKS = "decks"
+const val DECK_CARDS = "cards"
 
 //NAVIGATION
 const val DECK_ID = "deckId"

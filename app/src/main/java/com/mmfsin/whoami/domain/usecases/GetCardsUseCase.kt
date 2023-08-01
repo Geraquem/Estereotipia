@@ -6,9 +6,9 @@ import com.mmfsin.whoami.domain.models.Card
 import javax.inject.Inject
 
 class GetCardsUseCase @Inject constructor(private val repository: IDashboardRepository) :
-    BaseUseCase<GetCardsUseCase.Params, List<Card>>() {
+    BaseUseCase<GetCardsUseCase.Params, List<Card>?>() {
 
-    override suspend fun execute(params: Params): List<Card> = repository.getCards(params.deckId)
+    override suspend fun execute(params: Params): List<Card>? = repository.getCards(params.deckId)
 
     class Params(
         val deckId: String

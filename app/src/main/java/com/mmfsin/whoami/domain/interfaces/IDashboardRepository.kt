@@ -4,7 +4,7 @@ import com.mmfsin.whoami.domain.models.Card
 import kotlinx.coroutines.flow.StateFlow
 
 interface IDashboardRepository {
-    suspend fun getCards(deckId: String): List<Card>
+    fun getCards(deckId: String): List<Card>?
     fun getCardById(id: String): Card?
     fun discardCard(id: String)
     fun observeFlow(): StateFlow<Pair<Boolean, String>>

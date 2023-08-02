@@ -1,5 +1,6 @@
 package com.mmfsin.whoami.presentation.dashboard.adapter
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -18,16 +19,25 @@ class CardsAdapter(
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val binding = ItemCardBinding.bind(view)
         fun bind(card: Card, listener: ICardListener) {
+            val c = binding.root.context
             binding.apply {
                 ivDiscard.isVisible = card.discarded
                 Glide.with(binding.root.context).load(card.image).into(expandedImageView)
                 tvName.text = card.name
+                updateBtnDiscardText(c, card)
                 btnDiscard.setOnClickListener {
                     card.discarded = !card.discarded
                     ivDiscard.isVisible = card.discarded
+                    updateBtnDiscardText(c, card)
                     listener.onDiscardClick(card.id)
                 }
             }
+        }
+
+        private fun updateBtnDiscardText(c: Context, card: Card) {
+            val btnText = if (card.discarded) c.getString(R.string.card_info_dis_discard)
+            else c.getString(R.string.card_info_discard)
+            binding.btnDiscard.text = btnText
         }
     }
 

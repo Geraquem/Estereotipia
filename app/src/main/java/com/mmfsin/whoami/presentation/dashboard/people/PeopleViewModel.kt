@@ -5,7 +5,7 @@ import com.mmfsin.whoami.base.BaseViewModel
 import com.mmfsin.whoami.domain.usecases.DiscardCardUseCase
 import com.mmfsin.whoami.domain.usecases.GetCardsUseCase
 import com.mmfsin.whoami.domain.usecases.GetDeckByIdUseCase
-import com.mmfsin.whoami.domain.usecases.ObserveDashboardFlowUseCase
+import com.mmfsin.whoami.domain.usecases.ObserveFlowUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
@@ -16,7 +16,7 @@ class PeopleViewModel @Inject constructor(
     private val getDeckByIdUseCase: GetDeckByIdUseCase,
     private val getCardsUseCase: GetCardsUseCase,
     private val discardCardUseCase: DiscardCardUseCase,
-    private val observeDashboardFlowUseCase: ObserveDashboardFlowUseCase
+    private val observeFlowUseCase: ObserveFlowUseCase
 ) : BaseViewModel<PeopleEvent>() {
 
     private val qrJob = Job()
@@ -26,7 +26,7 @@ class PeopleViewModel @Inject constructor(
     }
 
     private fun observeFlow() = viewModelScope.launch(qrJob) {
-        observeDashboardFlowUseCase.execute().collect() {
+        observeFlowUseCase.execute().collect() {
             _event.value = PeopleEvent.UpdateCard(it.second)
         }
     }

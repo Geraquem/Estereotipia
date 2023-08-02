@@ -56,6 +56,13 @@ class DashboardRepository @Inject constructor(
         }
     }
 
+    override fun selectCard(id: String) {
+        val card = getCardDTO(id)
+        card?.let {
+            flowValue.value = Pair(!flowValue.value.first, it.id)
+        }
+    }
+
     private fun saveCardInRealm(card: CardDTO) = realmDatabase.addObject { card }
 
     override fun observeFlow(): StateFlow<Pair<Boolean, String>> {

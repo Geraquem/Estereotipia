@@ -7,5 +7,6 @@ interface IDashboardRepository {
     fun getCards(deckId: String): List<Card>?
     fun getCardById(id: String): Card?
     fun discardCard(id: String, updateFlow: Boolean = true)
+    fun selectCard(id: String)
     fun observeFlow(): StateFlow<Pair<Boolean, String>>
 }

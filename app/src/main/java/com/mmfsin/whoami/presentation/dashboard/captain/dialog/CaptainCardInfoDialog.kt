@@ -3,6 +3,7 @@ package com.mmfsin.whoami.presentation.dashboard.captain.dialog
 import android.app.Dialog
 import android.os.Bundle
 import android.view.LayoutInflater
+import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import com.bumptech.glide.Glide
 import com.mmfsin.whoami.base.BaseDialog
@@ -13,13 +14,15 @@ import com.mmfsin.whoami.utils.showErrorDialog
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class CaptainCardInfoDialog(private val cardId: String) : BaseDialog<DialogCardCaptainInfoBinding>() {
+class CaptainCardInfoDialog(private val cardId: String, private val gameReady: Boolean) :
+    BaseDialog<DialogCardCaptainInfoBinding>() {
 
     private val viewModel: CaptainCardInfoViewModel by viewModels()
 
     private var card: Card? = null
 
-    override fun inflateView(inflater: LayoutInflater) = DialogCardCaptainInfoBinding.inflate(inflater)
+    override fun inflateView(inflater: LayoutInflater) =
+        DialogCardCaptainInfoBinding.inflate(inflater)
 
     override fun setCustomViewDialog(dialog: Dialog) = centerCustomViewDialog(dialog)
 
@@ -41,11 +44,17 @@ class CaptainCardInfoDialog(private val cardId: String) : BaseDialog<DialogCardC
                 Glide.with(requireContext()).load(it.image).into(ivImage)
                 tvName.text = it.name
             }
+            btnSelect.isVisible = !gameReady
         }
     }
 
     override fun setListeners() {
-        binding.apply {}
+        binding.apply {
+            btnSelect.setOnClickListener {
+                viewModel.selectCard(cardId)
+                dismiss()
+            }
+        }
     }
 
     private fun observe() {
@@ -63,8 +72,8 @@ class CaptainCardInfoDialog(private val cardId: String) : BaseDialog<DialogCardC
     private fun error() = activity?.showErrorDialog(goBack = false)
 
     companion object {
-        fun newInstance(cardId: String): CaptainCardInfoDialog {
-            return CaptainCardInfoDialog(cardId)
+        fun newInstance(cardId: String, gameReady: Boolean): CaptainCardInfoDialog {
+            return CaptainCardInfoDialog(cardId, gameReady)
         }
     }
 }

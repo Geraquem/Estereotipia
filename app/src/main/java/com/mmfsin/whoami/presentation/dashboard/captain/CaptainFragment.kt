@@ -12,7 +12,6 @@ import com.mmfsin.whoami.base.BaseFragment
 import com.mmfsin.whoami.databinding.FragmentDashboardCaptainBinding
 import com.mmfsin.whoami.domain.models.Card
 import com.mmfsin.whoami.presentation.MainActivity
-import com.mmfsin.whoami.presentation.dashboard.people.dialog.PeopleCardInfoDialog
 import com.mmfsin.whoami.presentation.dashboard.captain.adapter.CaptainCardsAdapter
 import com.mmfsin.whoami.presentation.dashboard.captain.dialog.CaptainCardInfoDialog
 import com.mmfsin.whoami.presentation.dashboard.captain.interfaces.ICaptainCardListener
@@ -27,7 +26,9 @@ class CaptainFragment : BaseFragment<FragmentDashboardCaptainBinding, CaptainVie
     override val viewModel: CaptainViewModel by viewModels()
     private lateinit var mContext: Context
 
+    private var gameReady: Boolean = false
     private var deckId: String? = null
+    private var cardsAdapter: CaptainCardsAdapter? = null
 
     override fun inflateView(
         inflater: LayoutInflater, container: ViewGroup?
@@ -60,6 +61,10 @@ class CaptainFragment : BaseFragment<FragmentDashboardCaptainBinding, CaptainVie
                     viewModel.getCards(event.deck.id)
                 }
                 is CaptainEvent.GetCards -> setUpCards(event.cards)
+                is CaptainEvent.UpdateCard -> {
+                    gameReady = true
+                    cardsAdapter?.updateSelectedCard(event.cardId)
+                }
                 is CaptainEvent.SomethingWentWrong -> error()
             }
         }
@@ -68,13 +73,14 @@ class CaptainFragment : BaseFragment<FragmentDashboardCaptainBinding, CaptainVie
     private fun setUpCards(cards: List<Card>) {
         binding.rvCards.apply {
             layoutManager = StaggeredGridLayoutManager(2, VERTICAL)
-            adapter = CaptainCardsAdapter(cards, this@CaptainFragment)
+            cardsAdapter = CaptainCardsAdapter(cards, this@CaptainFragment)
+            adapter = cardsAdapter
         }
     }
 
     override fun onCardClick(cardId: String) {
         activity?.let {
-            val dialogFragment = CaptainCardInfoDialog.newInstance(cardId)
+            val dialogFragment = CaptainCardInfoDialog.newInstance(cardId, gameReady)
             dialogFragment.show(it.supportFragmentManager, "")
         }
     }

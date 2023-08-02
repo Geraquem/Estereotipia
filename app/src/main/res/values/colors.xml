@@ -9,4 +9,6 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="background">#EDEDED</color>
+
+    <color name="card_selected">#0A8834</color>
 </resources>

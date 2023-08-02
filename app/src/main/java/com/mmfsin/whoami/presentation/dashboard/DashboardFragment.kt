@@ -83,7 +83,7 @@ class DashboardFragment : BaseFragment<FragmentDashboardBinding, DashboardViewMo
         }
     }
 
-    override fun onDiscardClick(cardId: String) = viewModel.discardCard(cardId)
+    override fun onDiscardClick(cardId: String) = viewModel.discardCard(cardId, updateFlow = false)
 
     private fun error() = activity?.showErrorDialog()
 

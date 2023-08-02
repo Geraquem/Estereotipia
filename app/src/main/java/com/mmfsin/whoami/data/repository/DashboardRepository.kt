@@ -47,12 +47,12 @@ class DashboardRepository @Inject constructor(
         return card?.toCard()
     }
 
-    override fun discardCard(id: String) {
+    override fun discardCard(id: String, updateFlow: Boolean) {
         val card = getCardDTO(id)
         card?.let {
             card.discard = !card.discard
             saveCardInRealm(card)
-            flowValue.value = Pair(!flowValue.value.first, it.id)
+            if (updateFlow) flowValue.value = Pair(!flowValue.value.first, it.id)
         }
     }
 

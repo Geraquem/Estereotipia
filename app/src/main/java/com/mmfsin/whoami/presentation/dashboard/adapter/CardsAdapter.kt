@@ -16,14 +16,17 @@ class CardsAdapter(
 ) : RecyclerView.Adapter<CardsAdapter.ViewHolder>() {
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        private val binding = ItemCardBinding.bind(view)
+        val binding = ItemCardBinding.bind(view)
         fun bind(card: Card, listener: ICardListener) {
             binding.apply {
                 ivDiscard.isVisible = card.discarded
                 Glide.with(binding.root.context).load(card.image).into(expandedImageView)
                 tvName.text = card.name
-                this.root.setOnClickListener { listener.onCardClick(card.id) }
-                btnDiscard.setOnClickListener { listener.onDiscardClick(card.id) }
+                btnDiscard.setOnClickListener {
+                    card.discarded = !card.discarded
+                    ivDiscard.isVisible = card.discarded
+                    listener.onDiscardClick(card.id)
+                }
             }
         }
     }
@@ -47,6 +50,7 @@ class CardsAdapter(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bind(cards[position], listener)
+        holder.itemView.setOnClickListener { listener.onCardClick(cards[position].id) }
     }
 
     override fun getItemCount(): Int = cards.size

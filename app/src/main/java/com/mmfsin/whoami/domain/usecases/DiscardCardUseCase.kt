@@ -7,9 +7,11 @@ import javax.inject.Inject
 class DiscardCardUseCase @Inject constructor(private val repository: IDashboardRepository) :
     BaseUseCase<DiscardCardUseCase.Params, Unit>() {
 
-    override suspend fun execute(params: Params): Unit = repository.discardCard(params.cardId)
+    override suspend fun execute(params: Params): Unit =
+        repository.discardCard(params.cardId, params.updateFlow)
 
     class Params(
-        val cardId: String
+        val cardId: String,
+        val updateFlow: Boolean = true
     )
 }

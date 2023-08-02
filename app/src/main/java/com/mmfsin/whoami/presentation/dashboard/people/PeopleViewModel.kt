@@ -1,4 +1,4 @@
-package com.mmfsin.whoami.presentation.dashboard
+package com.mmfsin.whoami.presentation.dashboard.people
 
 import androidx.lifecycle.viewModelScope
 import com.mmfsin.whoami.base.BaseViewModel
@@ -6,19 +6,18 @@ import com.mmfsin.whoami.domain.usecases.DiscardCardUseCase
 import com.mmfsin.whoami.domain.usecases.GetCardsUseCase
 import com.mmfsin.whoami.domain.usecases.GetDeckByIdUseCase
 import com.mmfsin.whoami.domain.usecases.ObserveDashboardFlowUseCase
-import com.mmfsin.whoami.presentation.cardinfo.CardInfoEvent
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class DashboardViewModel @Inject constructor(
+class PeopleViewModel @Inject constructor(
     private val getDeckByIdUseCase: GetDeckByIdUseCase,
     private val getCardsUseCase: GetCardsUseCase,
     private val discardCardUseCase: DiscardCardUseCase,
     private val observeDashboardFlowUseCase: ObserveDashboardFlowUseCase
-) : BaseViewModel<DashboardEvent>() {
+) : BaseViewModel<PeopleEvent>() {
 
     private val qrJob = Job()
 
@@ -28,7 +27,7 @@ class DashboardViewModel @Inject constructor(
 
     private fun observeFlow() = viewModelScope.launch(qrJob) {
         observeDashboardFlowUseCase.execute().collect() {
-            _event.value = DashboardEvent.UpdateCard(it.second)
+            _event.value = PeopleEvent.UpdateCard(it.second)
         }
     }
 
@@ -38,10 +37,10 @@ class DashboardViewModel @Inject constructor(
         executeUseCase(
             { getDeckByIdUseCase.execute(GetDeckByIdUseCase.Params(deckId)) },
             { result ->
-                _event.value = result?.let { DashboardEvent.GetActualDeck(it) }
-                    ?: run { DashboardEvent.SomethingWentWrong }
+                _event.value = result?.let { PeopleEvent.GetActualDeck(it) }
+                    ?: run { PeopleEvent.SomethingWentWrong }
             },
-            { _event.value = DashboardEvent.SomethingWentWrong }
+            { _event.value = PeopleEvent.SomethingWentWrong }
         )
     }
 
@@ -49,10 +48,10 @@ class DashboardViewModel @Inject constructor(
         executeUseCase(
             { getCardsUseCase.execute(GetCardsUseCase.Params(deckId)) },
             { result ->
-                _event.value = result?.let { DashboardEvent.GetCards(it) }
-                    ?: run { DashboardEvent.SomethingWentWrong }
+                _event.value = result?.let { PeopleEvent.GetCards(it) }
+                    ?: run { PeopleEvent.SomethingWentWrong }
             },
-            { _event.value = DashboardEvent.SomethingWentWrong }
+            { _event.value = PeopleEvent.SomethingWentWrong }
         )
     }
 
@@ -60,7 +59,7 @@ class DashboardViewModel @Inject constructor(
         executeUseCase(
             { discardCardUseCase.execute(DiscardCardUseCase.Params(cardId, updateFlow)) },
             { /** No need for response */ },
-            { _event.value = DashboardEvent.SomethingWentWrong }
+            { _event.value = PeopleEvent.SomethingWentWrong }
         )
     }
 }

@@ -1,4 +1,4 @@
-package com.mmfsin.whoami.presentation.dashboard
+package com.mmfsin.whoami.presentation.dashboard.people
 
 import android.content.Context
 import android.os.Bundle
@@ -9,29 +9,29 @@ import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import androidx.recyclerview.widget.StaggeredGridLayoutManager.VERTICAL
 import com.mmfsin.whoami.base.BaseFragment
-import com.mmfsin.whoami.databinding.FragmentDashboardBinding
+import com.mmfsin.whoami.databinding.FragmentDashboardPeopleBinding
 import com.mmfsin.whoami.domain.models.Card
 import com.mmfsin.whoami.presentation.MainActivity
 import com.mmfsin.whoami.presentation.cardinfo.CardInfoDialog
-import com.mmfsin.whoami.presentation.dashboard.adapter.CardsAdapter
-import com.mmfsin.whoami.presentation.dashboard.interfaces.ICardListener
+import com.mmfsin.whoami.presentation.dashboard.people.adapter.PeopleCardsAdapter
+import com.mmfsin.whoami.presentation.dashboard.people.interfaces.IPeopleCardListener
 import com.mmfsin.whoami.utils.DECK_ID
 import com.mmfsin.whoami.utils.showErrorDialog
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class DashboardFragment : BaseFragment<FragmentDashboardBinding, DashboardViewModel>(),
-    ICardListener {
+class PeopleFragment : BaseFragment<FragmentDashboardPeopleBinding, PeopleViewModel>(),
+    IPeopleCardListener {
 
-    override val viewModel: DashboardViewModel by viewModels()
+    override val viewModel: PeopleViewModel by viewModels()
     private lateinit var mContext: Context
 
     private var deckId: String? = null
-    private var cardsAdapter: CardsAdapter? = null
+    private var cardsAdapter: PeopleCardsAdapter? = null
 
     override fun inflateView(
         inflater: LayoutInflater, container: ViewGroup?
-    ) = FragmentDashboardBinding.inflate(inflater, container, false)
+    ) = FragmentDashboardPeopleBinding.inflate(inflater, container, false)
 
     override fun getBundleArgs() {
         arguments?.let {
@@ -57,13 +57,13 @@ class DashboardFragment : BaseFragment<FragmentDashboardBinding, DashboardViewMo
     override fun observe() {
         viewModel.event.observe(this) { event ->
             when (event) {
-                is DashboardEvent.GetActualDeck -> {
+                is PeopleEvent.GetActualDeck -> {
                     setToolbar(event.deck.name)
                     viewModel.getCards(event.deck.id)
                 }
-                is DashboardEvent.GetCards -> setUpCards(event.cards)
-                is DashboardEvent.UpdateCard -> cardsAdapter?.updateDiscardedCards(event.cardId)
-                is DashboardEvent.SomethingWentWrong -> error()
+                is PeopleEvent.GetCards -> setUpCards(event.cards)
+                is PeopleEvent.UpdateCard -> cardsAdapter?.updateDiscardedCards(event.cardId)
+                is PeopleEvent.SomethingWentWrong -> error()
             }
         }
     }
@@ -71,7 +71,7 @@ class DashboardFragment : BaseFragment<FragmentDashboardBinding, DashboardViewMo
     private fun setUpCards(cards: List<Card>) {
         binding.rvCards.apply {
             layoutManager = StaggeredGridLayoutManager(2, VERTICAL)
-            cardsAdapter = CardsAdapter(cards, this@DashboardFragment)
+            cardsAdapter = PeopleCardsAdapter(cards, this@PeopleFragment)
             adapter = cardsAdapter
         }
     }

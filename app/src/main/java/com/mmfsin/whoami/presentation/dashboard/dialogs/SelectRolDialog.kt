@@ -1,4 +1,4 @@
-package com.mmfsin.whoami.presentation.dashboard.dialog
+package com.mmfsin.whoami.presentation.dashboard.dialogs
 
 import android.app.Dialog
 import android.view.LayoutInflater

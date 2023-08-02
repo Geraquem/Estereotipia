@@ -1,4 +1,4 @@
-package com.mmfsin.whoami.presentation.dashboard.adapter
+package com.mmfsin.whoami.presentation.dashboard.people.adapter
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -8,17 +8,17 @@ import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.mmfsin.whoami.R
-import com.mmfsin.whoami.databinding.ItemCardBinding
+import com.mmfsin.whoami.databinding.ItemCardPeopleBinding
 import com.mmfsin.whoami.domain.models.Card
-import com.mmfsin.whoami.presentation.dashboard.interfaces.ICardListener
+import com.mmfsin.whoami.presentation.dashboard.people.interfaces.IPeopleCardListener
 
-class CardsAdapter(
-    private val cards: List<Card>, private val listener: ICardListener
-) : RecyclerView.Adapter<CardsAdapter.ViewHolder>() {
+class PeopleCardsAdapter(
+    private val cards: List<Card>, private val listener: IPeopleCardListener
+) : RecyclerView.Adapter<PeopleCardsAdapter.ViewHolder>() {
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val binding = ItemCardBinding.bind(view)
-        fun bind(card: Card, listener: ICardListener) {
+        val binding = ItemCardPeopleBinding.bind(view)
+        fun bind(card: Card, listener: IPeopleCardListener) {
             val c = binding.root.context
             binding.apply {
                 ivDiscard.isVisible = card.discarded
@@ -54,7 +54,7 @@ class CardsAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(
-            LayoutInflater.from(parent.context).inflate(R.layout.item_card, parent, false)
+            LayoutInflater.from(parent.context).inflate(R.layout.item_card_people, parent, false)
         )
     }
 

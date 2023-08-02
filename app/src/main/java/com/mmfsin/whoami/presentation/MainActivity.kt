@@ -4,7 +4,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import com.mmfsin.whoami.databinding.ActivityMainBinding
-import com.mmfsin.whoami.presentation.dashboard.dialog.ExitDialog
+import com.mmfsin.whoami.presentation.dashboard.dialogs.ExitDialog
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

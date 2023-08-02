@@ -6,7 +6,6 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.mmfsin.whoami.R
-import com.mmfsin.whoami.databinding.ItemCardBinding
 import com.mmfsin.whoami.databinding.ItemDeckBinding
 import com.mmfsin.whoami.domain.models.Deck
 import com.mmfsin.whoami.presentation.decks.interfaces.IDeckListener

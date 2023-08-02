@@ -12,7 +12,7 @@
         tools:layout="@layout/fragment_decks">
         <action
             android:id="@+id/action_deck_to_dashboard"
-            app:destination="@id/dashboardFragment">
+            app:destination="@id/peopleFragment">
             <argument
                 android:name="deckId"
                 app:argType="string" />
@@ -20,9 +20,9 @@
     </fragment>
 
     <fragment
-        android:id="@+id/dashboardFragment"
-        android:name="com.mmfsin.whoami.presentation.dashboard.DashboardFragment"
-        android:label="dashboardFragment"
-        tools:layout="@layout/fragment_dashboard" />
+        android:id="@+id/peopleFragment"
+        android:name="com.mmfsin.whoami.presentation.dashboard.people.PeopleFragment"
+        android:label="peopleFragment"
+        tools:layout="@layout/fragment_dashboard_people" />
 
 </navigation>

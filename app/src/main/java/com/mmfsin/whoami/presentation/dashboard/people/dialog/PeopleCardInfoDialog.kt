@@ -1,4 +1,4 @@
-package com.mmfsin.whoami.presentation.cardinfo
+package com.mmfsin.whoami.presentation.dashboard.people.dialog
 
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
@@ -12,25 +12,27 @@ import androidx.fragment.app.viewModels
 import com.bumptech.glide.Glide
 import com.mmfsin.whoami.R
 import com.mmfsin.whoami.base.BaseDialog
-import com.mmfsin.whoami.databinding.DialogCardInfoBinding
+import com.mmfsin.whoami.databinding.DialogCardPeopleInfoBinding
 import com.mmfsin.whoami.domain.models.Card
+import com.mmfsin.whoami.utils.animateDialog
 import com.mmfsin.whoami.utils.showErrorDialog
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class CardInfoDialog(private val cardId: String) : BaseDialog<DialogCardInfoBinding>() {
+class PeopleCardInfoDialog(private val cardId: String) : BaseDialog<DialogCardPeopleInfoBinding>() {
 
-    private val viewModel: CardInfoViewModel by viewModels()
+    private val viewModel: PeopleCardInfoViewModel by viewModels()
 
     private var card: Card? = null
 
-    override fun inflateView(inflater: LayoutInflater) = DialogCardInfoBinding.inflate(inflater)
+    override fun inflateView(inflater: LayoutInflater) =
+        DialogCardPeopleInfoBinding.inflate(inflater)
 
     override fun setCustomViewDialog(dialog: Dialog) = centerCustomViewDialog(dialog)
 
     override fun onResume() {
         super.onResume()
-        animateDialog()
+        requireDialog().animateDialog()
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -46,8 +48,8 @@ class CardInfoDialog(private val cardId: String) : BaseDialog<DialogCardInfoBind
                 ivDiscard.isVisible = it.discarded
                 Glide.with(requireContext()).load(it.image).into(ivImage)
                 tvName.text = it.name
-                val btnText =
-                    if (it.discarded) getString(R.string.card_info_dis_discard) else getString(R.string.card_info_discard)
+                val btnText = if (it.discarded) getString(R.string.card_people_info_dis_discard)
+                    else getString(R.string.card_people_info_discard)
                 btnDiscard.text = btnText
             }
         }
@@ -62,37 +64,21 @@ class CardInfoDialog(private val cardId: String) : BaseDialog<DialogCardInfoBind
     private fun observe() {
         viewModel.event.observe(this) { event ->
             when (event) {
-                is CardInfoEvent.GetCard -> {
+                is PeopleCardInfoEvent.GetPeopleCard -> {
                     this.card = event.card
                     setUI()
                 }
-                is CardInfoEvent.DiscardCard -> dismiss()
-                is CardInfoEvent.SomethingWentWrong -> error()
+                is PeopleCardInfoEvent.DiscardPeopleCard -> dismiss()
+                is PeopleCardInfoEvent.SomethingWentWrong -> error()
             }
         }
     }
 
     private fun error() = activity?.showErrorDialog(goBack = false)
 
-    private fun animateDialog() {
-        val dialogView = requireDialog().window?.decorView
-        dialogView?.let {
-            it.scaleX = 0f
-            it.scaleY = 0f
-            val scaleXAnimator = ObjectAnimator.ofFloat(it, View.SCALE_X, 1f)
-            val scaleYAnimator = ObjectAnimator.ofFloat(it, View.SCALE_Y, 1f)
-            AnimatorSet().apply {
-                playTogether(scaleXAnimator, scaleYAnimator)
-                duration = 400
-                interpolator = AccelerateDecelerateInterpolator()
-                start()
-            }
-        }
-    }
-
     companion object {
-        fun newInstance(cardId: String): CardInfoDialog {
-            return CardInfoDialog(cardId)
+        fun newInstance(cardId: String): PeopleCardInfoDialog {
+            return PeopleCardInfoDialog(cardId)
         }
     }
 }

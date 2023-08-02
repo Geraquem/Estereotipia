@@ -2,10 +2,12 @@ package com.mmfsin.whoami.presentation.dashboard.dialogs
 
 import android.app.Dialog
 import android.view.LayoutInflater
+import androidx.navigation.NavDirections
 import androidx.navigation.fragment.findNavController
 import com.mmfsin.whoami.base.BaseDialog
 import com.mmfsin.whoami.databinding.DialogSelectRolBinding
-import com.mmfsin.whoami.presentation.decks.DecksFragmentDirections.Companion.actionDeckToDashboard
+import com.mmfsin.whoami.presentation.decks.DecksFragmentDirections.Companion.actionDeckToDashboardCaptain
+import com.mmfsin.whoami.presentation.decks.DecksFragmentDirections.Companion.actionDeckToDashboardPeople
 
 class SelectRolDialog(val deckId: String) : BaseDialog<DialogSelectRolBinding>() {
 
@@ -19,11 +21,13 @@ class SelectRolDialog(val deckId: String) : BaseDialog<DialogSelectRolBinding>()
 
     override fun setListeners() {
         binding.apply {
-            tvCaptain.setOnClickListener { dismiss() }
-            tvPeople.setOnClickListener {
-                findNavController().navigate(actionDeckToDashboard(deckId))
-                dismiss()
-            }
+            tvCaptain.setOnClickListener { navigate(actionDeckToDashboardCaptain(deckId)) }
+            tvPeople.setOnClickListener { navigate(actionDeckToDashboardPeople(deckId)) }
         }
+    }
+
+    private fun navigate(directions: NavDirections) {
+        findNavController().navigate(directions)
+        dismiss()
     }
 }

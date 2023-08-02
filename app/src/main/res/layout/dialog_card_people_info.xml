@@ -2,19 +2,18 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
+    android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:elevation="6dp"
-    android:background="@drawable/bg_card"
+    android:background="@drawable/bg_card_info"
     android:clipChildren="false"
-    android:layout_margin="8dp"
     android:clipToPadding="false"
-    android:paddingVertical="16dp">
+    android:paddingHorizontal="38dp"
+    android:paddingVertical="32dp">
 
     <ImageView
-        android:id="@+id/expandedImageView"
-        android:layout_width="164dp"
-        android:layout_height="164dp"
+        android:id="@+id/iv_image"
+        android:layout_width="250dp"
+        android:layout_height="250dp"
         android:contentDescription="@string/content_description"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -28,10 +27,10 @@
         android:alpha="0.5"
         android:contentDescription="@string/content_description"
         android:src="@drawable/ic_diagonal"
-        app:layout_constraintBottom_toBottomOf="@id/expandedImageView"
-        app:layout_constraintLeft_toLeftOf="@id/expandedImageView"
-        app:layout_constraintRight_toRightOf="@id/expandedImageView"
-        app:layout_constraintTop_toTopOf="@id/expandedImageView" />
+        app:layout_constraintBottom_toBottomOf="@id/iv_image"
+        app:layout_constraintLeft_toLeftOf="@id/iv_image"
+        app:layout_constraintRight_toRightOf="@id/iv_image"
+        app:layout_constraintTop_toTopOf="@id/iv_image" />
 
     <TextView
         android:id="@+id/tv_name"
@@ -41,14 +40,13 @@
         android:textSize="25sp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/expandedImageView"
+        app:layout_constraintTop_toBottomOf="@id/iv_image"
         tools:text="Fulanito" />
 
     <TextView
         android:id="@+id/btn_discard"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="24dp"
         android:layout_marginTop="16dp"
         android:background="@drawable/bg_select_rol"
         android:elevation="6dp"

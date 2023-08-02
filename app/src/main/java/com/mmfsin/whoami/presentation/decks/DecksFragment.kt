@@ -65,7 +65,8 @@ class DecksFragment : BaseFragment<FragmentDecksBinding, DecksViewModel>(), IDec
 //        }
 
         /** DELETE */
-        findNavController().navigate(DecksFragmentDirections.actionDeckToDashboard(deckId))
+        findNavController().navigate(DecksFragmentDirections.actionDeckToDashboardCaptain(deckId))
+//        findNavController().navigate(DecksFragmentDirections.actionDeckToDashboardPeople(deckId))
     }
 
     private fun setUpDecks(decks: List<Deck>) {

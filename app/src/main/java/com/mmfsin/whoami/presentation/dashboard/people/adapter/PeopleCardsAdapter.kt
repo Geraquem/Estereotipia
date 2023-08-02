@@ -35,8 +35,8 @@ class PeopleCardsAdapter(
         }
 
         private fun updateBtnDiscardText(c: Context, card: Card) {
-            val btnText = if (card.discarded) c.getString(R.string.card_info_dis_discard)
-            else c.getString(R.string.card_info_discard)
+            val btnText = if (card.discarded) c.getString(R.string.card_people_info_dis_discard)
+            else c.getString(R.string.card_people_info_discard)
             binding.btnDiscard.text = btnText
         }
     }

@@ -2,7 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
+    android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:elevation="6dp"
     android:background="@drawable/bg_card"
@@ -21,18 +21,6 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:src="@color/purple_200" />
 
-    <ImageView
-        android:id="@+id/iv_discard"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:alpha="0.5"
-        android:contentDescription="@string/content_description"
-        android:src="@drawable/ic_diagonal"
-        app:layout_constraintBottom_toBottomOf="@id/expandedImageView"
-        app:layout_constraintLeft_toLeftOf="@id/expandedImageView"
-        app:layout_constraintRight_toRightOf="@id/expandedImageView"
-        app:layout_constraintTop_toTopOf="@id/expandedImageView" />
-
     <TextView
         android:id="@+id/tv_name"
         android:layout_width="wrap_content"
@@ -43,22 +31,5 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/expandedImageView"
         tools:text="Fulanito" />
-
-    <TextView
-        android:id="@+id/btn_discard"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="24dp"
-        android:layout_marginTop="16dp"
-        android:background="@drawable/bg_select_rol"
-        android:elevation="6dp"
-        android:gravity="center"
-        android:paddingHorizontal="16dp"
-        android:paddingVertical="12dp"
-        android:text="@string/card_people_info_discard"
-        android:textAllCaps="true"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_name" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

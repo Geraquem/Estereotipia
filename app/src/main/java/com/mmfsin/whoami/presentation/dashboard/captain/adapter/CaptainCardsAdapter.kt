@@ -1,0 +1,42 @@
+package com.mmfsin.whoami.presentation.dashboard.captain.adapter
+
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import androidx.core.view.isVisible
+import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.mmfsin.whoami.R
+import com.mmfsin.whoami.databinding.ItemCardCaptainBinding
+import com.mmfsin.whoami.domain.models.Card
+import com.mmfsin.whoami.presentation.dashboard.captain.interfaces.ICaptainCardListener
+
+class CaptainCardsAdapter(
+    private val cards: List<Card>,
+    private val listener: ICaptainCardListener
+) : RecyclerView.Adapter<CaptainCardsAdapter.ViewHolder>() {
+
+    class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+        val binding = ItemCardCaptainBinding.bind(view)
+        fun bind(card: Card) {
+            val c = binding.root.context
+            binding.apply {
+                Glide.with(binding.root.context).load(card.image).into(expandedImageView)
+                tvName.text = card.name
+            }
+        }
+    }
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+        return ViewHolder(
+            LayoutInflater.from(parent.context).inflate(R.layout.item_card_captain, parent, false)
+        )
+    }
+
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        holder.bind(cards[position])
+        holder.itemView.setOnClickListener { listener.onCardClick(cards[position].id) }
+    }
+
+    override fun getItemCount(): Int = cards.size
+}

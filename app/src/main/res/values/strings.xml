@@ -17,8 +17,11 @@
     <string name="select_rol_captain">Elijo persona</string>
     <string name="select_rol_people">Adivino persona</string>
 
-    <!-- CARD INFO -->
-    <string name="card_info_discard">Descartar</string>
-    <string name="card_info_dis_discard">Des-Descartar</string>
+    <!-- CARD PEOPLE INFO -->
+    <string name="card_people_info_discard">Descartar</string>
+    <string name="card_people_info_dis_discard">Des-Descartar</string>
+
+    <!-- CARD CAPTAIN INFO -->
+    <string name="card_captain_info_select">Seleccionar</string>
 
 </resources>

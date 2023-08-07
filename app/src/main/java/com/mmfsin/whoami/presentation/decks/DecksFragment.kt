@@ -25,13 +25,15 @@ class DecksFragment : BaseFragment<FragmentDecksBinding, DecksViewModel>(), IDec
     override val viewModel: DecksViewModel by viewModels()
     private lateinit var mContext: Context
 
+    private var tpmOn: Boolean = false
+
     override fun inflateView(
         inflater: LayoutInflater, container: ViewGroup?
     ) = FragmentDecksBinding.inflate(inflater, container, false)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel.getDecks()
+        viewModel.getTwoPlayerMode()
     }
 
     override fun setUI() {
@@ -47,11 +49,23 @@ class DecksFragment : BaseFragment<FragmentDecksBinding, DecksViewModel>(), IDec
         }
     }
 
-    override fun setListeners() {}
+    override fun setListeners() {
+        binding.apply {
+            swTpm.setOnCheckedChangeListener { _, _ ->
+                tpmOn = swTpm.isChecked
+                viewModel.saveTwoPlayerMode(swTpm.isChecked)
+            }
+        }
+    }
 
     override fun observe() {
         viewModel.event.observe(this) { event ->
             when (event) {
+                is DecksEvent.TwoPlayerMode -> {
+                    tpmOn = event.activated
+                    binding.swTpm.isChecked = event.activated
+                    viewModel.getDecks()
+                }
                 is DecksEvent.GetDecks -> setUpDecks(event.result)
                 is DecksEvent.SomethingWentWrong -> error()
             }

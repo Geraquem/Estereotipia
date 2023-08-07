@@ -1,10 +1,10 @@
 package com.mmfsin.whoami.domain.usecases
 
 import com.mmfsin.whoami.base.BaseUseCase
-import com.mmfsin.whoami.domain.interfaces.IDashboardRepository
+import com.mmfsin.whoami.domain.interfaces.ICardsRepository
 import javax.inject.Inject
 
-class DiscardCardUseCase @Inject constructor(private val repository: IDashboardRepository) :
+class DiscardCardUseCase @Inject constructor(private val repository: ICardsRepository) :
     BaseUseCase<DiscardCardUseCase.Params, Unit>() {
 
     override suspend fun execute(params: Params): Unit =

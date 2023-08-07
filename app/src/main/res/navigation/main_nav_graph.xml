@@ -3,7 +3,17 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main_nav_graph"
-    app:startDestination="@id/decksFragment">
+    app:startDestination="@id/loadingFragment">
+
+    <fragment
+        android:id="@+id/loadingFragment"
+        android:name="com.mmfsin.whoami.presentation.init.LoadingFragment"
+        android:label="loadingFragment"
+        tools:layout="@layout/fragment_loading">
+        <action
+            android:id="@+id/action_loading_to_decks"
+            app:destination="@id/decksFragment"/>
+    </fragment>
 
     <fragment
         android:id="@+id/decksFragment"

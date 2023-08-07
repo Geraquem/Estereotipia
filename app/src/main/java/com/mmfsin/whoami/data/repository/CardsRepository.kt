@@ -3,7 +3,7 @@ package com.mmfsin.whoami.data.repository
 import com.mmfsin.whoami.data.mappers.toCard
 import com.mmfsin.whoami.data.mappers.toCardList
 import com.mmfsin.whoami.data.models.CardDTO
-import com.mmfsin.whoami.domain.interfaces.IDashboardRepository
+import com.mmfsin.whoami.domain.interfaces.ICardsRepository
 import com.mmfsin.whoami.domain.interfaces.IRealmDatabase
 import com.mmfsin.whoami.domain.models.Card
 import io.realm.kotlin.where
@@ -12,9 +12,9 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import javax.inject.Inject
 
-class DashboardRepository @Inject constructor(
+class CardsRepository @Inject constructor(
     private val realmDatabase: IRealmDatabase
-) : IDashboardRepository {
+) : ICardsRepository {
 
     companion object {
         private var flowValue = MutableStateFlow(Pair(false, ""))

@@ -6,7 +6,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import androidx.recyclerview.widget.StaggeredGridLayoutManager.VERTICAL
 import com.mmfsin.whoami.R
@@ -14,6 +13,7 @@ import com.mmfsin.whoami.base.BaseFragment
 import com.mmfsin.whoami.databinding.FragmentDecksBinding
 import com.mmfsin.whoami.domain.models.Deck
 import com.mmfsin.whoami.presentation.MainActivity
+import com.mmfsin.whoami.presentation.dashboard.dialogs.SelectRolDialog
 import com.mmfsin.whoami.presentation.decks.adapter.DeckAdapter
 import com.mmfsin.whoami.presentation.decks.interfaces.IDeckListener
 import com.mmfsin.whoami.utils.showErrorDialog
@@ -59,14 +59,10 @@ class DecksFragment : BaseFragment<FragmentDecksBinding, DecksViewModel>(), IDec
     }
 
     override fun onDeckClick(deckId: String) {
-//        activity?.let {
-//            val dialog = SelectRolDialog(deckId)
-//            it.let { dialog.show(it.supportFragmentManager, "") }
-//        }
-
-        /** DELETE */
-        findNavController().navigate(DecksFragmentDirections.actionDeckToDashboardCaptain(deckId))
-//        findNavController().navigate(DecksFragmentDirections.actionDeckToDashboardPeople(deckId))
+        activity?.let {
+            val dialog = SelectRolDialog(deckId)
+            it.let { dialog.show(it.supportFragmentManager, "") }
+        }
     }
 
     private fun setUpDecks(decks: List<Deck>) {

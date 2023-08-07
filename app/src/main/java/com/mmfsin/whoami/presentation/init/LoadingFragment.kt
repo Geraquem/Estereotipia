@@ -1,4 +1,4 @@
-package com.mmfsin.whoami.presentation.decks
+package com.mmfsin.whoami.presentation.init
 
 import android.content.Context
 import android.os.Bundle
@@ -6,32 +6,26 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
-import androidx.recyclerview.widget.StaggeredGridLayoutManager
-import androidx.recyclerview.widget.StaggeredGridLayoutManager.VERTICAL
 import com.mmfsin.whoami.R
 import com.mmfsin.whoami.base.BaseFragment
-import com.mmfsin.whoami.databinding.FragmentDecksBinding
-import com.mmfsin.whoami.domain.models.Deck
+import com.mmfsin.whoami.databinding.FragmentLoadingBinding
 import com.mmfsin.whoami.presentation.MainActivity
-import com.mmfsin.whoami.presentation.dashboard.dialogs.SelectRolDialog
-import com.mmfsin.whoami.presentation.decks.adapter.DeckAdapter
-import com.mmfsin.whoami.presentation.decks.interfaces.IDeckListener
 import com.mmfsin.whoami.utils.showErrorDialog
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class DecksFragment : BaseFragment<FragmentDecksBinding, DecksViewModel>(), IDeckListener {
+class LoadingFragment : BaseFragment<FragmentLoadingBinding, LoadingViewModel>() {
 
-    override val viewModel: DecksViewModel by viewModels()
+    override val viewModel: LoadingViewModel by viewModels()
     private lateinit var mContext: Context
 
     override fun inflateView(
         inflater: LayoutInflater, container: ViewGroup?
-    ) = FragmentDecksBinding.inflate(inflater, container, false)
+    ) = FragmentLoadingBinding.inflate(inflater, container, false)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel.getDecks()
+        viewModel.getQuestions()
     }
 
     override fun setUI() {
@@ -52,23 +46,11 @@ class DecksFragment : BaseFragment<FragmentDecksBinding, DecksViewModel>(), IDec
     override fun observe() {
         viewModel.event.observe(this) { event ->
             when (event) {
-                is DecksEvent.GetDecks -> setUpDecks(event.result)
-                is DecksEvent.SomethingWentWrong -> error()
+                is LoadingEvent.GetVersion -> {}
+                is LoadingEvent.GetDecks -> {}
+                is LoadingEvent.GetQuestions -> {}
+                is LoadingEvent.SomethingWentWrong -> error()
             }
-        }
-    }
-
-    override fun onDeckClick(deckId: String) {
-        activity?.let {
-            val dialog = SelectRolDialog(deckId)
-            it.let { dialog.show(it.supportFragmentManager, "") }
-        }
-    }
-
-    private fun setUpDecks(decks: List<Deck>) {
-        binding.rvDecks.apply {
-            layoutManager = StaggeredGridLayoutManager(2, VERTICAL)
-            adapter = DeckAdapter(decks, this@DecksFragment)
         }
     }
 

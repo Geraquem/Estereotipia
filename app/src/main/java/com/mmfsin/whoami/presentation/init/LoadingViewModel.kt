@@ -1,23 +1,25 @@
-package com.mmfsin.whoami.presentation.decks
+package com.mmfsin.whoami.presentation.init
 
 import com.mmfsin.whoami.base.BaseViewModel
 import com.mmfsin.whoami.domain.usecases.GetDecksUseCase
+import com.mmfsin.whoami.domain.usecases.GetQuestionsUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
 @HiltViewModel
-class DecksViewModel @Inject constructor(
-    private val getDecksUseCase: GetDecksUseCase
-) : BaseViewModel<DecksEvent>() {
+class LoadingViewModel @Inject constructor(
+    private val getDecksUseCase: GetDecksUseCase,
+    private val getQuestionsUseCase: GetQuestionsUseCase
+) : BaseViewModel<LoadingEvent>() {
 
-    fun getDecks() {
+    fun getQuestions() {
         executeUseCase(
-            { getDecksUseCase.execute() },
+            { getQuestionsUseCase.execute() },
             { result ->
-                _event.value = if (result.isEmpty()) DecksEvent.SomethingWentWrong
-                else DecksEvent.GetDecks(result)
+                _event.value = result?.let { LoadingEvent.GetQuestions(it) }
+                    ?: run { LoadingEvent.SomethingWentWrong }
             },
-            { _event.value = DecksEvent.SomethingWentWrong }
+            { _event.value = LoadingEvent.SomethingWentWrong }
         )
     }
 }

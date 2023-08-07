@@ -6,10 +6,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.mmfsin.whoami.R
 import com.mmfsin.whoami.base.BaseFragment
 import com.mmfsin.whoami.databinding.FragmentLoadingBinding
 import com.mmfsin.whoami.presentation.MainActivity
+import com.mmfsin.whoami.presentation.init.LoadingFragmentDirections.Companion.actionLoadingToDecks
 import com.mmfsin.whoami.utils.showErrorDialog
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -48,7 +50,9 @@ class LoadingFragment : BaseFragment<FragmentLoadingBinding, LoadingViewModel>()
             when (event) {
                 is LoadingEvent.GetVersion -> {}
                 is LoadingEvent.GetDecks -> {}
-                is LoadingEvent.GetQuestions -> {}
+                is LoadingEvent.GetQuestions -> {
+                    findNavController().navigate(actionLoadingToDecks())
+                }
                 is LoadingEvent.SomethingWentWrong -> error()
             }
         }

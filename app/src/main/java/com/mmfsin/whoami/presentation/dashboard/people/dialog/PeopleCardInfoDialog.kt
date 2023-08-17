@@ -1,12 +1,8 @@
 package com.mmfsin.whoami.presentation.dashboard.people.dialog
 
-import android.animation.AnimatorSet
-import android.animation.ObjectAnimator
 import android.app.Dialog
 import android.os.Bundle
 import android.view.LayoutInflater
-import android.view.View
-import android.view.animation.AccelerateDecelerateInterpolator
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import com.bumptech.glide.Glide
@@ -49,7 +45,7 @@ class PeopleCardInfoDialog(private val cardId: String) : BaseDialog<DialogCardPe
                 Glide.with(requireContext()).load(it.image).into(ivImage)
                 tvName.text = it.name
                 val btnText = if (it.discarded) getString(R.string.card_people_info_dis_discard)
-                    else getString(R.string.card_people_info_discard)
+                else getString(R.string.card_people_info_discard)
                 btnDiscard.text = btnText
             }
         }

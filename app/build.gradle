@@ -72,7 +72,7 @@ dependencies {
     implementation platform('com.google.firebase:firebase-bom:31.2.0')
     implementation 'com.google.firebase:firebase-analytics-ktx'
     implementation 'com.google.firebase:firebase-database-ktx'
-    implementation 'com.google.firebase:firebase-messaging-ktx:23.2.0'
+    implementation 'com.google.firebase:firebase-messaging-ktx:23.2.1'
 
     //Hilt
     implementation "com.google.dagger:hilt-android:$hiltVersion"
@@ -80,6 +80,10 @@ dependencies {
 
     //Google services
 //    implementation 'com.google.android.gms:play-services-ads:22.2.0'
+
+    //ImageView Zoom
+//    implementation 'io.github.imablanco:zoomy:1.0.0'
+    implementation "com.github.MikeOrtiz:TouchImageView:1.0.0"
 
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'

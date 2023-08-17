@@ -42,6 +42,16 @@
         <item name="cornerSize">50%</item>
     </style>
 
+    <style name="ZoomableImageView">
+        <item name="zoomage_animateOnReset">true</item>
+        <item name="zoomage_autoResetMode">ALWAYS</item>
+        <item name="zoomage_maxScale">10</item>
+        <item name="zoomage_minScale">1</item>
+        <item name="zoomage_restrictBounds">false</item>
+        <item name="zoomage_translatable">true</item>
+        <item name="zoomage_zoomable">true</item>
+    </style>
+
     <style name="Button">
         <item name="android:textColor">@color/white</item>
         <item name="android:fontFamily">sans-serif-condensed</item>

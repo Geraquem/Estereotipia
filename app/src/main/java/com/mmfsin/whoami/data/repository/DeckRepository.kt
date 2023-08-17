@@ -11,10 +11,7 @@ import com.mmfsin.whoami.data.models.DeckDTO
 import com.mmfsin.whoami.domain.interfaces.IDeckRepository
 import com.mmfsin.whoami.domain.interfaces.IRealmDatabase
 import com.mmfsin.whoami.domain.models.Deck
-import com.mmfsin.whoami.utils.DECKS
-import com.mmfsin.whoami.utils.DECK_CARDS
-import com.mmfsin.whoami.utils.TWO_PLAYER
-import com.mmfsin.whoami.utils.TWO_PLAYER_MODE
+import com.mmfsin.whoami.utils.*
 import dagger.hilt.android.qualifiers.ApplicationContext
 import io.realm.kotlin.where
 import kotlinx.coroutines.Dispatchers
@@ -43,6 +40,15 @@ class DeckRepository @Inject constructor(
     }
 
     override suspend fun getDecks(): List<Deck> {
+        val updateDecks = context.getSharedPreferences(CALL_FIREBASE, MODE_PRIVATE)
+        if (updateDecks.getBoolean(CALL_DECKS, false)) {
+            updateDecks.edit().apply {
+                putBoolean(CALL_DECKS, false)
+                apply()
+            }
+            return getDecksFromFirebase().toDeckList()
+        }
+
         val decks = realmDatabase.getObjectsFromRealm { where<DeckDTO>().findAll() }
         return if (decks.isEmpty()) getDecksFromFirebase().toDeckList()
         else decks.toDeckList()

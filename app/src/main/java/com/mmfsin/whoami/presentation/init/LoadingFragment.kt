@@ -27,7 +27,7 @@ class LoadingFragment : BaseFragment<FragmentLoadingBinding, LoadingViewModel>()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel.getQuestions()
+        viewModel.checkVersion()
     }
 
     override fun setUI() {
@@ -48,17 +48,11 @@ class LoadingFragment : BaseFragment<FragmentLoadingBinding, LoadingViewModel>()
     override fun observe() {
         viewModel.event.observe(this) { event ->
             when (event) {
-                is LoadingEvent.GetVersion -> {}
-                is LoadingEvent.GetDecks -> {}
-                is LoadingEvent.GetQuestions -> {
-                    findNavController().navigate(actionLoadingToDecks())
-                }
-                is LoadingEvent.SomethingWentWrong -> error()
+                is LoadingEvent.Completed -> findNavController().navigate(actionLoadingToDecks())
+                is LoadingEvent.SomethingWentWrong -> activity?.showErrorDialog()
             }
         }
     }
-
-    private fun error() = activity?.showErrorDialog()
 
     override fun onAttach(context: Context) {
         super.onAttach(context)

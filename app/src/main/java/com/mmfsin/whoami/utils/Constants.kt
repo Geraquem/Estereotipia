@@ -5,7 +5,9 @@ const val DECKS = "decks"
 const val DECK_CARDS = "cards"
 const val QUESTIONS = "questions"
 
-const val TWO_PLAYER_MODE = "tpm"
+//SHARED PREFS
+const val TWO_PLAYER = "tpm"
+const val TWO_PLAYER_MODE = "tpm_mode"
 
 //NAVIGATION
 const val DECK_ID = "deckId"

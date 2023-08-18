@@ -3,6 +3,7 @@ package com.mmfsin.whoami.presentation.dashboard.people.dialog
 import android.app.Dialog
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.View
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import com.bumptech.glide.Glide
@@ -74,8 +75,23 @@ class PeopleCardInfoDialog(private val cardId: String) : BaseDialog<DialogCardPe
                     this.card = event.card
                     setUI()
                 }
-                is PeopleCardInfoEvent.DiscardPeopleCard -> dismiss()
+                is PeopleCardInfoEvent.DiscardPeopleCard -> {
+                    event.discarded?.let {
+                        if (it) dismiss()
+                        else aaaa()
+                    } ?: run { error() }
+                }
                 is PeopleCardInfoEvent.SomethingWentWrong -> error()
+            }
+        }
+    }
+
+    private fun aaaa() {
+        binding.apply {
+            ivDiscard.visibility = View.GONE
+            buttons.apply {
+                tvDiscard.text = getString(R.string.card_people_info_discard)
+                ivDiscard.setImageResource(R.drawable.ic_discard)
             }
         }
     }

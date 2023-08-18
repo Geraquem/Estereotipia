@@ -26,7 +26,7 @@ class PeopleCardInfoViewModel @Inject constructor(
     fun discardCard(cardId: String) {
         executeUseCase(
             { discardCardUseCase.execute(DiscardCardUseCase.Params(cardId)) },
-            { _event.value = PeopleCardInfoEvent.DiscardPeopleCard },
+            { result -> _event.value = PeopleCardInfoEvent.DiscardPeopleCard(result) },
             { _event.value = PeopleCardInfoEvent.SomethingWentWrong }
         )
     }

@@ -20,7 +20,6 @@ class MainRepository @Inject constructor(
         val savedVersion = realmDatabase.getObjectsFromRealm { where<VersionDTO>().findAll() }
         val actualVersion = if (savedVersion.isEmpty()) -1 else savedVersion.first().version
         val firebaseVersion = getVersionFromFirebase()
-        val a = 2
         return actualVersion == firebaseVersion
     }
 

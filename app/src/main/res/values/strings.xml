@@ -21,8 +21,9 @@
     <string name="select_rol_people">Adivino persona</string>
 
     <!-- CARD PEOPLE INFO -->
-    <string name="card_people_info_discard">Descartar</string>
-    <string name="card_people_info_dis_discard">Des-Descartar</string>
+    <string name="card_people_info_discard">No es</string>
+    <string name="card_people_info_dis_discard">Deshacer</string>
+    <string name="card_people_info_could_be">Podría ser</string>
 
     <!-- CARD CAPTAIN INFO -->
     <string name="card_captain_info_select">Seleccionar</string>

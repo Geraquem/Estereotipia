@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/gl_center"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.5" />
+
+    <LinearLayout
+        android:id="@+id/btn_discard"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:elevation="6dp"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="@id/gl_center"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="UseCompoundDrawables">
+
+        <ImageView
+            android:id="@+id/iv_discard"
+            android:layout_width="88dp"
+            android:layout_height="88dp"
+            android:layout_marginBottom="8dp"
+            android:background="@drawable/bg_select_rol"
+            android:contentDescription="@string/content_description"
+            android:elevation="6dp"
+            android:padding="4dp"
+            android:src="@drawable/ic_discard" />
+
+        <TextView
+            android:id="@+id/tv_discard"
+            style="@style/MediumTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/card_people_info_discard"
+            android:textAllCaps="true"
+            android:textSize="20sp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/btn_could_be"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:elevation="6dp"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="@id/gl_center"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="UseCompoundDrawables">
+
+        <ImageView
+            android:id="@+id/iv_could_be"
+            android:layout_width="88dp"
+            android:layout_height="88dp"
+            android:layout_marginBottom="8dp"
+            android:background="@drawable/bg_select_rol"
+            android:contentDescription="@string/content_description"
+            android:elevation="6dp"
+            android:padding="4dp"
+            android:src="@drawable/ic_question" />
+
+        <TextView
+            android:id="@+id/tv_could_be"
+            style="@style/MediumTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/card_people_info_could_be"
+            android:textAllCaps="true"
+            android:textSize="20sp" />
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

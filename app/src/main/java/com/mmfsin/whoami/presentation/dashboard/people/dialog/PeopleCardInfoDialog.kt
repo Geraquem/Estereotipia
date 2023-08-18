@@ -44,16 +44,26 @@ class PeopleCardInfoDialog(private val cardId: String) : BaseDialog<DialogCardPe
                 ivDiscard.isVisible = it.discarded
                 Glide.with(requireContext()).load(it.image).into(ivImage)
                 tvName.text = it.name
-                val btnText = if (it.discarded) getString(R.string.card_people_info_dis_discard)
-                else getString(R.string.card_people_info_discard)
-                btnDiscard.text = btnText
+
+                val discardText: String
+                val discardSrc: Int
+                if (it.discarded) {
+                    discardText = getString(R.string.card_people_info_dis_discard)
+                    discardSrc = R.drawable.ic_redo
+                } else {
+                    discardText = getString(R.string.card_people_info_discard)
+                    discardSrc = R.drawable.ic_discard
+                }
+                buttons.tvDiscard.text = discardText
+                buttons.ivDiscard.setImageResource(discardSrc)
+
             }
         }
     }
 
     override fun setListeners() {
         binding.apply {
-            btnDiscard.setOnClickListener { viewModel.discardCard(cardId) }
+            buttons.btnDiscard.setOnClickListener { viewModel.discardCard(cardId) }
         }
     }
 

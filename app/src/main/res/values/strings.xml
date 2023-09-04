@@ -13,6 +13,10 @@
     <string name="exit_yes">SALIR</string>
     <string name="exit_no">QUEDARME</string>
 
+    <!-- INSTRUCTIONS -->
+    <string name="instructions_close">Cerrar</string>
+    <string name="instructions_how_to_play">¿Cómo se juega?</string>
+
     <!-- DECKS -->
     <string name="decks_two_player_mode">Modo para 2 jugadores</string>
 

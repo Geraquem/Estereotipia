@@ -35,6 +35,7 @@ class MainActivity : AppCompatActivity() {
             }
 
             ivInstructions.setOnClickListener {
+                ivInstructions.isEnabled = false
                 supportFragmentManager.beginTransaction().addToBackStack(INSTRUCTIONS)
                     .setCustomAnimations(R.anim.fragment_up, 0, 0, R.anim.fragment_down)
                     .add(R.id.fc_instructions, InstructionsFragment()).commit()
@@ -47,6 +48,7 @@ class MainActivity : AppCompatActivity() {
         var popBack = false
         fragments.forEach { if (it is InstructionsFragment) popBack = true }
         if (popBack) {
+            binding.toolbar.ivInstructions.isEnabled = true
             supportFragmentManager.popBackStack(INSTRUCTIONS, POP_BACK_STACK_INCLUSIVE)
         } else {
             if (inDashboard) {

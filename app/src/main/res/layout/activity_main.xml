@@ -6,8 +6,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    android:clipChildren="false"
-    android:clipToPadding="false"
     tools:context=".presentation.MainActivity">
 
     <include
@@ -35,5 +33,15 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:navGraph="@navigation/main_nav_graph" />
+
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/fc_instructions"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        ads:layout_constraintTop_toTopOf="parent"
+        android:elevation="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -45,7 +45,6 @@ class PeopleCardInfoDialog(private val cardId: String) : BaseDialog<DialogCardPe
         isCancelable = true
         binding.apply {
             card?.let {
-                ivDiscard.isVisible = it.discarded
                 Glide.with(requireContext()).load(it.image).into(ivImage)
                 tvName.text = it.name
 
@@ -93,7 +92,6 @@ class PeopleCardInfoDialog(private val cardId: String) : BaseDialog<DialogCardPe
     private fun setNotDiscardedCard() {
         setState(NONE)
         binding.apply {
-            ivDiscard.visibility = View.GONE
             buttons.apply {
                 tvDiscard.text = getString(R.string.card_people_info_discard)
                 ivDiscard.setImageResource(R.drawable.ic_discard_cross)

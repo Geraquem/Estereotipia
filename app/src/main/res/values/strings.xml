@@ -21,9 +21,9 @@
     <string name="select_rol_people">Adivino persona</string>
 
     <!-- CARD PEOPLE INFO -->
-    <string name="card_people_info_discard">No es</string>
-    <string name="card_people_info_dis_discard">Deshacer</string>
+    <string name="card_people_info_discard">Descartar</string>
     <string name="card_people_info_could_be">Podría ser</string>
+    <string name="card_people_info_dis_discard">Deshacer</string>
     <string name="card_people_info_state">Estado</string>
     <string name="card_people_info_state_none">Ninguno</string>
     <string name="card_people_info_state_discard">Descartado</string>

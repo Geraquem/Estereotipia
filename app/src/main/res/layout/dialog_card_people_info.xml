@@ -29,7 +29,7 @@
         style="@style/ZoomableImageView"
         android:layout_width="320dp"
         android:layout_height="320dp"
-        android:src="@drawable/default_face_2"
+        android:src="@drawable/default_face"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tv_name" />

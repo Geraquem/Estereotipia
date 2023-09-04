@@ -24,6 +24,10 @@
     <string name="card_people_info_discard">No es</string>
     <string name="card_people_info_dis_discard">Deshacer</string>
     <string name="card_people_info_could_be">Podría ser</string>
+    <string name="card_people_info_state">Estado</string>
+    <string name="card_people_info_state_none">Ninguno</string>
+    <string name="card_people_info_state_discard">Descartado</string>
+    <string name="card_people_info_state_could_be">Candidato</string>
 
     <!-- CARD CAPTAIN INFO -->
     <string name="card_captain_info_select">Seleccionar</string>

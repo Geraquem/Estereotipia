@@ -2,64 +2,87 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:elevation="6dp"
+    android:layout_marginHorizontal="4dp"
+    android:layout_marginVertical="8dp"
     android:background="@drawable/bg_card"
     android:clipChildren="false"
-    android:layout_margin="8dp"
     android:clipToPadding="false"
-    android:paddingVertical="16dp">
-
-    <ImageView
-        android:id="@+id/expandedImageView"
-        android:layout_width="164dp"
-        android:layout_height="164dp"
-        android:contentDescription="@string/content_description"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:src="@color/purple_200" />
-
-    <ImageView
-        android:id="@+id/iv_discard"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:alpha="0.3"
-        android:contentDescription="@string/content_description"
-        android:src="@drawable/ic_discardd"
-        android:padding="16dp"
-        app:layout_constraintBottom_toBottomOf="@id/expandedImageView"
-        app:layout_constraintLeft_toLeftOf="@id/expandedImageView"
-        app:layout_constraintRight_toRightOf="@id/expandedImageView"
-        app:layout_constraintTop_toTopOf="@id/expandedImageView" />
+    android:elevation="6dp">
 
     <TextView
         android:id="@+id/tv_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:textSize="25sp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/expandedImageView"
-        tools:text="Fulanito" />
-
-    <TextView
-        android:id="@+id/btn_discard"
+        style="@style/MediumTextView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="24dp"
-        android:layout_marginTop="16dp"
-        android:background="@drawable/bg_select_rol"
-        android:elevation="6dp"
         android:gravity="center"
-        android:paddingHorizontal="16dp"
-        android:paddingVertical="12dp"
-        android:text="@string/card_people_info_discard"
+        android:padding="8dp"
         android:textAllCaps="true"
+        android:textSize="20sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Fulanito" />
+
+    <ImageView
+        android:id="@+id/iv_image"
+        android:layout_width="164dp"
+        android:layout_height="164dp"
+        android:layout_marginTop="6dp"
+        android:contentDescription="@string/content_description"
+        android:src="@drawable/default_face_2"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tv_name" />
+
+    <ImageView
+        android:id="@+id/iv_discard"
+        android:layout_width="42dp"
+        android:layout_height="42dp"
+        android:alpha="0.8"
+        android:contentDescription="@string/content_description"
+        android:src="@drawable/ic_discarded"
+        app:layout_constraintBottom_toBottomOf="@id/iv_image"
+        app:layout_constraintRight_toRightOf="@id/iv_image" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="8dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginBottom="12dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/iv_image">
+
+        <ImageView
+            android:id="@+id/btn_discard"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:background="@drawable/bg_select_rol"
+            android:contentDescription="@string/content_description"
+            android:elevation="6dp"
+            android:padding="4dp"
+            android:src="@drawable/ic_discard_cross" />
+
+        <Space
+            android:layout_width="12dp"
+            android:layout_height="wrap_content" />
+
+        <ImageView
+            android:id="@+id/btn_could_be"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:background="@drawable/bg_select_rol"
+            android:contentDescription="@string/content_description"
+            android:elevation="6dp"
+            android:padding="4dp"
+            android:src="@drawable/ic_question" />
+
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -19,7 +19,7 @@ class DeckAdapter(
         private val binding = ItemDeckBinding.bind(view)
         fun bind(deck: Deck) {
             binding.apply {
-                Glide.with(binding.root.context).load(deck.image).into(expandedImageView)
+                Glide.with(binding.root.context).load(deck.image).into(ivImage)
                 tvName.text = deck.name
             }
         }

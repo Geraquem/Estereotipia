@@ -22,7 +22,7 @@ class PeopleCardsAdapter(
             val c = binding.root.context
             binding.apply {
                 ivDiscard.isVisible = card.discarded
-                Glide.with(binding.root.context).load(card.image).into(expandedImageView)
+                Glide.with(binding.root.context).load(card.image).into(ivImage)
                 tvName.text = card.name
                 updateBtnDiscardText(c, card)
                 btnDiscard.setOnClickListener {
@@ -35,9 +35,9 @@ class PeopleCardsAdapter(
         }
 
         private fun updateBtnDiscardText(c: Context, card: Card) {
-            val btnText = if (card.discarded) c.getString(R.string.card_people_info_dis_discard)
-            else c.getString(R.string.card_people_info_discard)
-            binding.btnDiscard.text = btnText
+            val imgDiscarded = if (card.discarded) R.drawable.ic_redo
+            else R.drawable.ic_discard_cross
+            binding.btnDiscard.setImageResource(imgDiscarded)
         }
     }
 

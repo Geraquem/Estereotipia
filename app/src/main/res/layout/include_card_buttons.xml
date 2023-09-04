@@ -3,7 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:clipChildren="false"
+    android:clipToPadding="false">
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/gl_center"
@@ -16,6 +18,8 @@
         android:id="@+id/btn_discard"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:clipChildren="false"
+        android:clipToPadding="false"
         android:elevation="6dp"
         android:gravity="center"
         android:orientation="vertical"
@@ -34,7 +38,7 @@
             android:contentDescription="@string/content_description"
             android:elevation="6dp"
             android:padding="4dp"
-            android:src="@drawable/ic_discard" />
+            android:src="@drawable/ic_discard_cross" />
 
         <TextView
             android:id="@+id/tv_discard"

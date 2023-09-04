@@ -23,7 +23,7 @@ class CaptainCardsAdapter(
             binding.apply {
                 val color = if (card.discarded) R.color.card_selected else R.color.white
                 background.background.setTint(ContextCompat.getColor(c, color))
-                Glide.with(binding.root.context).load(card.image).into(expandedImageView)
+                Glide.with(binding.root.context).load(card.image).into(ivImage)
                 tvName.text = card.name
             }
         }

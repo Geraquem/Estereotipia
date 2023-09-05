@@ -26,11 +26,11 @@
         <TextView
             android:id="@+id/tv_close"
             style="@style/MediumTextView"
-            android:fontFamily="sans-serif-black"
-            android:textColor="@color/blue"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-black"
             android:text="@string/instructions_close"
+            android:textColor="@color/blue"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintRight_toRightOf="@id/gl_inst_right"
             app:layout_constraintTop_toTopOf="parent" />
@@ -79,16 +79,36 @@
                 app:layout_constraintRight_toRightOf="@id/gl_right"
                 app:layout_constraintTop_toTopOf="parent">
 
-                <TextView
-                    style="@style/MediumTextView"
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cv_how_to_play"
+                    style="@style/CardView_instructions"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/bg_instructions_title"
-                    android:elevation="6dp"
-                    android:fontFamily="sans-serif-black"
-                    android:paddingHorizontal="12dp"
-                    android:paddingVertical="12dp"
-                    android:text="@string/instructions_how_to_play" />
+                    android:layout_height="wrap_content">
+
+                    <LinearLayout
+                        android:id="@+id/ll_htp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:animateLayoutChanges="true"
+                        android:orientation="vertical">
+
+                        <TextView
+                            style="@style/MediumTextView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/instructions_how_to_play" />
+
+                        <TextView
+                            android:id="@+id/htp_details"
+                            style="@style/MediumTextView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+                            android:visibility="gone" />
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
 
             </LinearLayout>
 

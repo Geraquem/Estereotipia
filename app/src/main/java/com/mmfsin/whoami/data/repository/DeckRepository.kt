@@ -50,8 +50,8 @@ class DeckRepository @Inject constructor(
         }
 
         val decks = realmDatabase.getObjectsFromRealm { where<DeckDTO>().findAll() }
-        return if (decks.isEmpty()) getDecksFromFirebase().toDeckList()
-        else decks.toDeckList()
+        return if (decks.isEmpty()) getDecksFromFirebase().sortedBy { it.order }.toDeckList()
+        else decks.sortedBy { it.order }.toDeckList()
     }
 
     private suspend fun getDecksFromFirebase(): List<DeckDTO> {

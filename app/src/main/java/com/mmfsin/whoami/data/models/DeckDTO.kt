@@ -8,4 +8,5 @@ open class DeckDTO(
     var id: String = "",
     var image: String = "",
     var name: String = "",
+    var order: Long = 0
 ) : RealmObject()

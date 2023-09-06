@@ -30,7 +30,8 @@ class InstructionsFragment : BaseFragmentNoVM<FragmentInstructionsBinding>() {
         binding.apply {
             tvClose.setOnClickListener { (activity as MainActivity).onBackPressed() }
 
-            cvHowToPlay.setOnClickListener { setExpandableView(htpDetails, llHtp) }
+            cv1.setOnClickListener { setExpandableView(details1, ll1) }
+            cv2.setOnClickListener { setExpandableView(details2, ll2) }
         }
     }
 

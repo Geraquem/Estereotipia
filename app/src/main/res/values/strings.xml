@@ -15,6 +15,8 @@
 
     <!-- INSTRUCTIONS -->
     <string name="instructions_close">Cerrar</string>
+    <string name="instructions_whats_about">¿De qué trata el juego?</string>
+    <string name="instructions_whats_about_detail">El juego es muy sencillo: una persona <b>elige una carta</b> y el resto trata de adivinar cuál es.</string>
     <string name="instructions_how_to_play">¿Cómo se juega?</string>
 
     <!-- DECKS -->

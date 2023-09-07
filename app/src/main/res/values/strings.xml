@@ -28,7 +28,7 @@
 
     <!-- CARD PEOPLE INFO -->
     <string name="card_people_info_discard">Descartar</string>
-    <string name="card_people_info_could_be">Podría ser</string>
+    <string name="card_people_info_final_answer">Respuesta final</string>
     <string name="card_people_info_dis_discard">Deshacer</string>
     <string name="card_people_info_state">Estado</string>
     <string name="card_people_info_state_none">Ninguno</string>
@@ -37,5 +37,13 @@
 
     <!-- CARD CAPTAIN INFO -->
     <string name="card_captain_info_select">Seleccionar</string>
+
+    <!-- TPM -->
+    <string name="tpm">Dos jugadores</string>
+    <string name="tpm_dialog_select_title">Selecciona tu personaje</string>
+    <string name="tpm_dialog_select_tct_one">Escoge una carta y pulsa el botón <b>SELECCIONAR</b> para elegir tu personaje.</string>
+    <string name="tpm_dialog_select_tct_two">Tu carta quedará identificada con un borde resaltado para el resto de la partida.</string>
+    <string name="tpm_dialog_select_warning">Una vez seleccionado, tu personaje no podrá ser cambiado.</string>
+    <string name="tpm_dialog_select_continue">Continuar</string>
 
 </resources>

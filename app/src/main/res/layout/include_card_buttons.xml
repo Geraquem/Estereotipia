@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:clipChildren="false"
@@ -12,80 +11,62 @@
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.5" />
+        app:layout_constraintGuide_percent="0.7" />
 
-    <LinearLayout
-        android:id="@+id/btn_discard"
+    <ImageView
+        android:id="@+id/iv_discard"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:clipChildren="false"
-        android:clipToPadding="false"
+        android:layout_height="88dp"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/bg_white_box"
+        android:contentDescription="@string/content_description"
         android:elevation="6dp"
-        android:gravity="center"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:padding="4dp"
+        android:src="@drawable/ic_discard_cross"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="@id/gl_center"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="UseCompoundDrawables">
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <ImageView
-            android:id="@+id/iv_discard"
-            android:layout_width="88dp"
-            android:layout_height="88dp"
-            android:layout_marginBottom="8dp"
-            android:background="@drawable/bg_select_rol"
-            android:contentDescription="@string/content_description"
-            android:elevation="6dp"
-            android:padding="4dp"
-            android:src="@drawable/ic_discard_cross" />
-
-        <TextView
-            android:id="@+id/tv_discard"
-            style="@style/MediumTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="@string/card_people_info_discard"
-            android:textAllCaps="true"
-            android:textSize="20sp" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/btn_could_be"
-        android:layout_width="0dp"
+    <TextView
+        android:id="@+id/tv_discard"
+        style="@style/MediumTextView"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:elevation="6dp"
+        android:layout_marginTop="8dp"
         android:gravity="center"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:text="@string/card_people_info_discard"
+        android:textAllCaps="true"
+        android:textSize="20sp"
+        app:layout_constraintLeft_toLeftOf="@id/iv_discard"
+        app:layout_constraintRight_toRightOf="@id/iv_discard"
+        app:layout_constraintTop_toBottomOf="@id/iv_discard" />
+
+    <ImageView
+        android:id="@+id/iv_final_answer"
+        android:layout_width="88dp"
+        android:layout_height="88dp"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/bg_white_box"
+        android:contentDescription="@string/content_description"
+        android:elevation="6dp"
+        android:padding="4dp"
+        android:src="@drawable/ic_question"
         app:layout_constraintLeft_toLeftOf="@id/gl_center"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="UseCompoundDrawables">
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <ImageView
-            android:id="@+id/iv_could_be"
-            android:layout_width="88dp"
-            android:layout_height="88dp"
-            android:layout_marginBottom="8dp"
-            android:background="@drawable/bg_select_rol"
-            android:contentDescription="@string/content_description"
-            android:elevation="6dp"
-            android:padding="4dp"
-            android:src="@drawable/ic_question" />
-
-        <TextView
-            android:id="@+id/tv_could_be"
-            style="@style/MediumTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="@string/card_people_info_could_be"
-            android:textAllCaps="true"
-            android:textSize="20sp" />
-
-    </LinearLayout>
+    <TextView
+        android:id="@+id/tv_could_be"
+        style="@style/MediumTextView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="@string/card_people_info_final_answer"
+        android:textAllCaps="true"
+        android:textSize="20sp"
+        app:layout_constraintLeft_toLeftOf="@id/iv_final_answer"
+        app:layout_constraintRight_toRightOf="@id/iv_final_answer"
+        app:layout_constraintTop_toBottomOf="@id/iv_final_answer" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

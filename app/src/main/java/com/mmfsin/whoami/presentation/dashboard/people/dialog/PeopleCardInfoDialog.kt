@@ -67,7 +67,7 @@ class PeopleCardInfoDialog(private val cardId: String) : BaseDialog<DialogCardPe
 
     override fun setListeners() {
         binding.apply {
-            buttons.btnDiscard.setOnClickListener { viewModel.discardCard(cardId) }
+            buttons.ivDiscard.setOnClickListener { viewModel.discardCard(cardId) }
         }
     }
 

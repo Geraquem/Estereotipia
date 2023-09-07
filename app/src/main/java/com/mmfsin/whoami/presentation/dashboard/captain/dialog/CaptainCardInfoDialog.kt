@@ -72,7 +72,7 @@ class CaptainCardInfoDialog(private val cardId: String, private val gameReady: B
     private fun error() = activity?.showErrorDialog(goBack = false)
 
     companion object {
-        fun newInstance(cardId: String, gameReady: Boolean): CaptainCardInfoDialog {
+        fun newInstance(cardId: String, gameReady: Boolean = false): CaptainCardInfoDialog {
             return CaptainCardInfoDialog(cardId, gameReady)
         }
     }

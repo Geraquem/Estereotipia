@@ -26,19 +26,6 @@ class DeckRepository @Inject constructor(
 
     private val reference = Firebase.database.reference.child(DECKS)
 
-    override fun getTwoPlayerMode(): Boolean {
-        val tpm = context.getSharedPreferences(TWO_PLAYER, MODE_PRIVATE)
-        return tpm.getBoolean(TWO_PLAYER_MODE, false)
-    }
-
-    override fun saveTwoPlayerMode(activated: Boolean) {
-        val tpm = context.getSharedPreferences(TWO_PLAYER, MODE_PRIVATE)
-        tpm.edit().apply() {
-            putBoolean(TWO_PLAYER_MODE, activated)
-            apply()
-        }
-    }
-
     override suspend fun getDecks(): List<Deck> {
         val updateDecks = context.getSharedPreferences(CALL_FIREBASE, MODE_PRIVATE)
         if (updateDecks.getBoolean(CALL_DECKS, false)) {

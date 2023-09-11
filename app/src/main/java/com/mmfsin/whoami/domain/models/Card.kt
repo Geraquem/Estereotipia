@@ -5,5 +5,6 @@ open class Card(
     val deckId: String,
     val image: String,
     val name: String,
+    var selected: Boolean,
     var discarded: Boolean
 )

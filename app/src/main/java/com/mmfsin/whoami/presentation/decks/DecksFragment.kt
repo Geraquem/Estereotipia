@@ -14,8 +14,6 @@ import com.mmfsin.whoami.base.BaseFragment
 import com.mmfsin.whoami.databinding.FragmentDecksBinding
 import com.mmfsin.whoami.domain.models.Deck
 import com.mmfsin.whoami.presentation.MainActivity
-import com.mmfsin.whoami.presentation.dashboard.dialogs.SelectRolDialog
-import com.mmfsin.whoami.presentation.decks.DecksFragmentDirections.Companion.actionDeckToDashboardTpm
 import com.mmfsin.whoami.presentation.decks.adapter.DeckAdapter
 import com.mmfsin.whoami.presentation.decks.interfaces.IDeckListener
 import com.mmfsin.whoami.utils.showErrorDialog
@@ -27,15 +25,13 @@ class DecksFragment : BaseFragment<FragmentDecksBinding, DecksViewModel>(), IDec
     override val viewModel: DecksViewModel by viewModels()
     private lateinit var mContext: Context
 
-    private var tpmOn: Boolean = false
-
     override fun inflateView(
         inflater: LayoutInflater, container: ViewGroup?
     ) = FragmentDecksBinding.inflate(inflater, container, false)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel.getTwoPlayerMode()
+        viewModel.getDecks()
     }
 
     override fun setUI() {
@@ -52,22 +48,12 @@ class DecksFragment : BaseFragment<FragmentDecksBinding, DecksViewModel>(), IDec
     }
 
     override fun setListeners() {
-        binding.apply {
-            swTpm.setOnCheckedChangeListener { _, _ ->
-                tpmOn = swTpm.isChecked
-                viewModel.saveTwoPlayerMode(swTpm.isChecked)
-            }
-        }
+        binding.apply { }
     }
 
     override fun observe() {
         viewModel.event.observe(this) { event ->
             when (event) {
-                is DecksEvent.TwoPlayerMode -> {
-                    tpmOn = event.activated
-                    binding.swTpm.isChecked = event.activated
-                    viewModel.getDecks()
-                }
                 is DecksEvent.GetDecks -> setUpDecks(event.result)
                 is DecksEvent.SomethingWentWrong -> error()
             }
@@ -75,13 +61,7 @@ class DecksFragment : BaseFragment<FragmentDecksBinding, DecksViewModel>(), IDec
     }
 
     override fun onDeckClick(deckId: String) {
-        if (tpmOn) findNavController().navigate(actionDeckToDashboardTpm(deckId))
-        else {
-            activity?.let {
-                val dialog = SelectRolDialog(deckId)
-                it.let { dialog.show(it.supportFragmentManager, "") }
-            }
-        }
+        findNavController().navigate(DecksFragmentDirections.actionDeckToDashboard(deckId))
     }
 
     private fun setUpDecks(decks: List<Deck>) {

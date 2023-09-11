@@ -21,22 +21,8 @@
         android:label="decksFragment"
         tools:layout="@layout/fragment_decks">
         <action
-            android:id="@+id/action_deck_to_dashboard_people"
-            app:destination="@id/peopleFragment">
-            <argument
-                android:name="deckId"
-                app:argType="string" />
-        </action>
-        <action
-            android:id="@+id/action_deck_to_dashboard_captain"
-            app:destination="@id/captainFragment">
-            <argument
-                android:name="deckId"
-                app:argType="string" />
-        </action>
-        <action
-            android:id="@+id/action_deck_to_dashboard_tpm"
-            app:destination="@id/tpmFragment">
+            android:id="@+id/action_deck_to_dashboard"
+            app:destination="@id/dashboardFragment">
             <argument
                 android:name="deckId"
                 app:argType="string" />
@@ -44,21 +30,9 @@
     </fragment>
 
     <fragment
-        android:id="@+id/peopleFragment"
-        android:name="com.mmfsin.whoami.presentation.dashboard.people.PeopleFragment"
-        android:label="peopleFragment"
-        tools:layout="@layout/fragment_dashboard_people" />
-
-    <fragment
-        android:id="@+id/captainFragment"
-        android:name="com.mmfsin.whoami.presentation.dashboard.captain.CaptainFragment"
-        android:label="captainFragment"
-        tools:layout="@layout/fragment_dashboard_captain" />
-
-    <fragment
-        android:id="@+id/tpmFragment"
-        android:name="com.mmfsin.whoami.presentation.dashboard.tpm.TpmFragment"
-        android:label="tpmFragment"
-        tools:layout="@layout/fragment_dashboard_tpm" />
+        android:id="@+id/dashboardFragment"
+        android:name="com.mmfsin.whoami.presentation.dashboard.DashboardFragment"
+        android:label="dashboardFragment"
+        tools:layout="@layout/fragment_dashboard" />
 
 </navigation>

@@ -6,7 +6,7 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.FragmentManager.POP_BACK_STACK_INCLUSIVE
 import com.mmfsin.whoami.R
 import com.mmfsin.whoami.databinding.ActivityMainBinding
-import com.mmfsin.whoami.presentation.dashboard.dialogs.ExitDialog
+import com.mmfsin.whoami.presentation.dialogs.ExitDialog
 import com.mmfsin.whoami.presentation.instructions.InstructionsFragment
 import com.mmfsin.whoami.utils.INSTRUCTIONS
 import dagger.hilt.android.AndroidEntryPoint

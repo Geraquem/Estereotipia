@@ -19,9 +19,6 @@
     <string name="instructions_whats_about_detail">El juego es muy sencillo: una persona <b>elige una carta</b> y el resto trata de adivinar cuál es.</string>
     <string name="instructions_how_to_play">¿Cómo se juega?</string>
 
-    <!-- DECKS -->
-    <string name="decks_two_player_mode">Modo para 2 jugadores</string>
-
     <!-- SELECT ROL -->
     <string name="select_rol_captain">Elijo persona</string>
     <string name="select_rol_people">Adivino persona</string>
@@ -41,9 +38,16 @@
     <!-- TPM -->
     <string name="tpm">Dos jugadores</string>
     <string name="tpm_dialog_select_title">Selecciona tu personaje</string>
-    <string name="tpm_dialog_select_tct_one">Escoge una carta y pulsa el botón <b>SELECCIONAR</b> para elegir tu personaje.</string>
-    <string name="tpm_dialog_select_tct_two">Tu carta quedará identificada con un borde resaltado para el resto de la partida.</string>
+    <string name="tpm_dialog_select_txt_one">Escoge una carta y pulsa el botón <b>SELECCIONAR</b> para elegir tu personaje.</string>
+    <string name="tpm_dialog_select_txt_two">Tu carta quedará identificada con un borde resaltado para el resto de la partida.</string>
     <string name="tpm_dialog_select_warning">Una vez seleccionado, tu personaje no podrá ser cambiado.</string>
+
+    <string name="tpm_dialog_questions_title">Hora de las preguntas</string>
+    <string name="tpm_dialog_questions_txt_one">Ahora tienes que adivinar la carta que ha elegido la otra persona.</string>
+    <string name="tpm_dialog_questions_txt_two">Para ello, pulsa el botón para obtener preguntas.</string>
+    <string name="tpm_dialog_questions_txt_three">En función de las respuestas de la otra persona imagina quién crees que es su personaje.</string>
+    <string name="tpm_dialog_questions_warning">Recuerda que solo tienes <b>una oportunidad</b>, ¡no puedes fallar!</string>
+
     <string name="tpm_dialog_select_continue">Continuar</string>
 
 </resources>

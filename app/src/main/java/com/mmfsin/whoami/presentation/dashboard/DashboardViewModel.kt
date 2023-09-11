@@ -55,10 +55,10 @@ class DashboardViewModel @Inject constructor(
         )
     }
 
-    fun discardCard(cardId: String, updateFlow: Boolean) {
+    fun discardCard(cardId: String) {
         executeUseCase(
-            { discardCardUseCase.execute(DiscardCardUseCase.Params(cardId, updateFlow)) },
-            { /** No need for response */ },
+            { discardCardUseCase.execute(DiscardCardUseCase.Params(cardId)) },
+            { /** Flow do the rest */ },
             { _event.value = DashboardEvent.SomethingWentWrong }
         )
     }

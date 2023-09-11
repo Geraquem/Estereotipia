@@ -13,5 +13,4 @@ const val CALL_FIREBASE = "call_firebase"
 const val CALL_DECKS = "update_decks"
 const val CALL_QUESTIONS = "update_questions"
 
-//NAVIGATION
 const val DECK_ID = "deckId"

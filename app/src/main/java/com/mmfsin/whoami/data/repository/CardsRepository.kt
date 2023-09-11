@@ -6,6 +6,7 @@ import com.mmfsin.whoami.data.models.CardDTO
 import com.mmfsin.whoami.domain.interfaces.ICardsRepository
 import com.mmfsin.whoami.domain.interfaces.IRealmDatabase
 import com.mmfsin.whoami.domain.models.Card
+import com.mmfsin.whoami.utils.DECK_ID
 import io.realm.kotlin.where
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -22,13 +23,14 @@ class CardsRepository @Inject constructor(
 
     override fun getCards(deckId: String): List<Card>? {
         val cards = realmDatabase.getObjectsFromRealm {
-            where<CardDTO>().equalTo("deckId", deckId).findAll()
+            where<CardDTO>().equalTo(DECK_ID, deckId).findAll()
         }
         return if (cards.isEmpty()) null else setNonDiscardedCards(cards).toCardList()
     }
 
     private fun setNonDiscardedCards(cards: List<CardDTO>): List<CardDTO> {
         cards.forEach { card ->
+            card.selected = false
             card.discard = false
             saveCardInRealm(card)
         }
@@ -47,12 +49,12 @@ class CardsRepository @Inject constructor(
         return card?.toCard()
     }
 
-    override fun discardCard(id: String, updateFlow: Boolean): Boolean? {
+    override fun discardCard(id: String): Boolean? {
         val card = getCardDTO(id)
         card?.let {
             card.discard = !card.discard
             saveCardInRealm(card)
-            if (updateFlow) flowValue.value = Pair(!flowValue.value.first, it.id)
+            flowValue.value = Pair(!flowValue.value.first, it.id)
             return card.discard
         } ?: run { return null }
     }

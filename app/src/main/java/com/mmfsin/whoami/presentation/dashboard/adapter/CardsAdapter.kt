@@ -25,9 +25,7 @@ class CardsAdapter(
             binding.apply {
                 ivDiscard.isVisible = card.discarded
                 val color = if (card.selected) R.color.card_selected else R.color.white
-                if (card.selected) {
-                    background.background.setTint(ContextCompat.getColor(c, color))
-                }
+                background.background.setTint(ContextCompat.getColor(c, color))
                 Glide.with(binding.root.context).load(card.image).into(ivImage)
                 tvName.text = card.name
             }

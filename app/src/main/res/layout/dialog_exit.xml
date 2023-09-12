@@ -64,7 +64,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_weight="0.47"
-            android:background="@drawable/bg_error_btn"
+            android:background="@drawable/bg_soft_red"
             android:elevation="6dp"
             android:gravity="center"
             android:padding="12dp"

@@ -15,15 +15,15 @@ import com.mmfsin.whoami.presentation.MainActivity
 import com.mmfsin.whoami.presentation.dashboard.adapter.CardsAdapter
 import com.mmfsin.whoami.presentation.dashboard.interfaces.ICardsListener
 import com.mmfsin.whoami.presentation.dialogs.discard.DiscardDialog
-import com.mmfsin.whoami.presentation.dialogs.instructions.InstQuestionsDialog
-import com.mmfsin.whoami.presentation.dialogs.instructions.InstSelectDialog
-import com.mmfsin.whoami.presentation.dialogs.select.SelectCardDialog
+import com.mmfsin.whoami.presentation.dialogs.instructions.WaitSelectDialog
+import com.mmfsin.whoami.presentation.dialogs.select.SelectedCardDialog
 import com.mmfsin.whoami.utils.DECK_ID
 import com.mmfsin.whoami.utils.showErrorDialog
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class DashboardFragment : BaseFragment<FragmentDashboardBinding, DashboardViewModel>(), ICardsListener {
+class DashboardFragment : BaseFragment<FragmentDashboardBinding, DashboardViewModel>(),
+    ICardsListener {
 
     override val viewModel: DashboardViewModel by viewModels()
     private lateinit var mContext: Context
@@ -38,9 +38,7 @@ class DashboardFragment : BaseFragment<FragmentDashboardBinding, DashboardViewMo
     ) = FragmentDashboardBinding.inflate(inflater, container, false)
 
     override fun getBundleArgs() {
-        arguments?.let {
-            deckId = it.getString(DECK_ID)
-        }
+        arguments?.let { deckId = it.getString(DECK_ID) }
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -66,6 +64,7 @@ class DashboardFragment : BaseFragment<FragmentDashboardBinding, DashboardViewMo
                     viewModel.getCards(event.deck.id)
                 }
                 is DashboardEvent.GetCards -> setUpCardsToSelect(event.cards)
+                is DashboardEvent.RandomSelectedCard -> actionOnCard(event.cardId)
                 is DashboardEvent.UpdateCard -> actionOnCard(event.cardId)
                 is DashboardEvent.SomethingWentWrong -> error()
             }
@@ -74,7 +73,10 @@ class DashboardFragment : BaseFragment<FragmentDashboardBinding, DashboardViewMo
 
     private fun setUpCardsToSelect(cards: List<Card>) {
         activity?.let {
-            it.let { InstSelectDialog().show(it.supportFragmentManager, "") }
+            it.let {
+                val dialog = WaitSelectDialog { viewModel.getRandomSelectedCard(cards) }
+                dialog.show(it.supportFragmentManager, "")
+            }
         }
         binding.rvCards.apply {
             layoutManager = StaggeredGridLayoutManager(2, VERTICAL)
@@ -86,7 +88,7 @@ class DashboardFragment : BaseFragment<FragmentDashboardBinding, DashboardViewMo
     override fun onCardClick(cardId: String) {
         if (!selectedReady) {
             activity?.let {
-                val dialogFragment = SelectCardDialog.newInstance(cardId)
+                val dialogFragment = SelectedCardDialog.newInstance(cardId)
                 dialogFragment.show(it.supportFragmentManager, "")
             }
         } else {
@@ -101,7 +103,7 @@ class DashboardFragment : BaseFragment<FragmentDashboardBinding, DashboardViewMo
         if (!selectedReady) {
             selectedReady = true
             activity?.let {
-                val dialogFragment = InstQuestionsDialog.newInstance()
+                val dialogFragment = SelectedCardDialog.newInstance(cardId)
                 dialogFragment.show(it.supportFragmentManager, "")
             }
             cardsAdapter?.updateSelectedCard(cardId)

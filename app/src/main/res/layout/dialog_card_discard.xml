@@ -34,36 +34,30 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tv_name" />
 
-    <LinearLayout
-        android:id="@+id/ll_state"
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cv_state"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:orientation="vertical"
+        android:layout_marginTop="8dp"
+        app:cardCornerRadius="8dp"
+        app:cardElevation="6dp"
         app:layout_constraintLeft_toLeftOf="parent"
+        android:backgroundTint="@color/state_discarded"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/iv_image">
-
-        <TextView
-            style="@style/MediumTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="@string/card_people_info_state"
-            android:textAllCaps="true"
-            android:textSize="18sp" />
 
         <TextView
             android:id="@+id/tv_state"
             style="@style/MediumTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
+            android:paddingHorizontal="16dp"
+            android:paddingVertical="6dp"
             android:textAllCaps="true"
-            android:textSize="28sp"
-            tools:text="@string/card_people_info_state_none" />
+            android:textSize="26sp"
+            tools:text="@string/card_people_info_state_discard" />
 
-    </LinearLayout>
+    </androidx.cardview.widget.CardView>
 
     <include
         android:id="@+id/buttons"
@@ -76,6 +70,6 @@
         android:clipToPadding="false"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/ll_state" />
+        app:layout_constraintTop_toBottomOf="@id/cv_state" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -6,6 +6,7 @@ import com.mmfsin.whoami.domain.models.Deck
 sealed class DashboardEvent {
     class GetActualDeck(val deck: Deck) : DashboardEvent()
     class GetCards(val cards: List<Card>) : DashboardEvent()
+    class RandomSelectedCard(val cardId: String): DashboardEvent()
     class UpdateCard(val cardId: String) : DashboardEvent()
     object SomethingWentWrong : DashboardEvent()
 }

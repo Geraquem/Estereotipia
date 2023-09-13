@@ -1,4 +1,4 @@
-package com.mmfsin.whoami.presentation.dashboard.adapter
+package com.mmfsin.whoami.presentation.dashboard.cards.adapter
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -11,7 +11,7 @@ import com.bumptech.glide.Glide
 import com.mmfsin.whoami.R
 import com.mmfsin.whoami.databinding.ItemCardBinding
 import com.mmfsin.whoami.domain.models.Card
-import com.mmfsin.whoami.presentation.dashboard.interfaces.ICardsListener
+import com.mmfsin.whoami.presentation.dashboard.cards.interfaces.ICardsListener
 
 class CardsAdapter(
     private val cards: List<Card>,

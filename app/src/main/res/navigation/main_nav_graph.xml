@@ -31,8 +31,8 @@
 
     <fragment
         android:id="@+id/dashboardFragment"
-        android:name="com.mmfsin.whoami.presentation.dashboard.DashboardFragment"
+        android:name="com.mmfsin.whoami.presentation.dashboard.viepager.ViewPagerFragment"
         android:label="dashboardFragment"
-        tools:layout="@layout/fragment_dashboard" />
+        tools:layout="@layout/fragment_view_pager" />
 
 </navigation>

@@ -19,22 +19,25 @@
     <string name="instructions_whats_about_detail">El juego es muy sencillo: una persona <b>elige una carta</b> y el resto trata de adivinar cuál es.</string>
     <string name="instructions_how_to_play">¿Cómo se juega?</string>
 
-    <!-- SELECT ROL -->
-    <string name="select_rol_captain">Elijo persona</string>
-    <string name="select_rol_people">Adivino persona</string>
-
-    <!-- CARD PEOPLE INFO -->
+    <!-- DISCARD DIALOG -->
     <string name="card_people_info_discard">Descartar</string>
     <string name="card_people_info_final_answer">Respuesta final</string>
     <string name="card_people_info_dis_discard">Deshacer</string>
     <string name="card_people_info_state_discard">Descartado</string>
 
-    <!-- CARD CAPTAIN INFO -->
+    <!-- SELECTED DIALOG -->
     <string name="selected_card_info">¡Esta es tu carta!</string>
     <string name="selected_card_continue">Continuar</string>
 
     <!-- SELECT CARD LOADING -->
     <string name="select_card_loading_title">Selección de personaje en</string>
+
+    <!-- QUESTIONS DIALOG -->
+    <string name="questions_do_question">Hacer nueva pregunta</string>
+    <string name="questions_list_of">Preguntas antiguas</string>
+    <string name="questions_mini_help">Una ayudita</string>
+    <string name="questions_my_card">¿Cuál era mi carta?</string>
+    <string name="questions_what_now">¿Qué tengo que hacer?</string>
 
     <!-- INST -->
     <!--///////////////////////////////////////////////////////-->

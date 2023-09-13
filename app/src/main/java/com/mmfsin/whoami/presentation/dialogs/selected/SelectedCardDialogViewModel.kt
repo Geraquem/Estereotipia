@@ -1,8 +1,7 @@
-package com.mmfsin.whoami.presentation.dialogs.select
+package com.mmfsin.whoami.presentation.dialogs.selected
 
 import com.mmfsin.whoami.base.BaseViewModel
 import com.mmfsin.whoami.domain.usecases.GetCardByIdUseCase
-import com.mmfsin.whoami.domain.usecases.SelectCardUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 

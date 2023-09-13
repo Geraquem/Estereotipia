@@ -1,4 +1,4 @@
-package com.mmfsin.whoami.presentation.dashboard
+package com.mmfsin.whoami.presentation.dashboard.cards
 
 import androidx.lifecycle.viewModelScope
 import com.mmfsin.whoami.base.BaseViewModel
@@ -10,13 +10,13 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class DashboardViewModel @Inject constructor(
+class CardsViewModel @Inject constructor(
     private val getDeckByIdUseCase: GetDeckByIdUseCase,
     private val getCardsUseCase: GetCardsUseCase,
     private val getRandomSelectedCardUseCase: GetRandomSelectedCardUseCase,
     private val discardCardUseCase: DiscardCardUseCase,
     private val observeFlowUseCase: ObserveFlowUseCase
-) : BaseViewModel<DashboardEvent>() {
+) : BaseViewModel<CardsEvent>() {
 
     private val qrJob = Job()
 
@@ -26,7 +26,7 @@ class DashboardViewModel @Inject constructor(
 
     private fun observeFlow() = viewModelScope.launch(qrJob) {
         observeFlowUseCase.execute().collect() {
-            _event.value = DashboardEvent.UpdateCard(it.second)
+            _event.value = CardsEvent.UpdateCard(it.second)
         }
     }
 
@@ -36,10 +36,10 @@ class DashboardViewModel @Inject constructor(
         executeUseCase(
             { getDeckByIdUseCase.execute(GetDeckByIdUseCase.Params(deckId)) },
             { result ->
-                _event.value = result?.let { DashboardEvent.GetActualDeck(it) }
-                    ?: run { DashboardEvent.SomethingWentWrong }
+                _event.value = result?.let { CardsEvent.GetActualDeck(it) }
+                    ?: run { CardsEvent.SomethingWentWrong }
             },
-            { _event.value = DashboardEvent.SomethingWentWrong }
+            { _event.value = CardsEvent.SomethingWentWrong }
         )
     }
 
@@ -47,18 +47,18 @@ class DashboardViewModel @Inject constructor(
         executeUseCase(
             { getCardsUseCase.execute(GetCardsUseCase.Params(deckId)) },
             { result ->
-                _event.value = result?.let { DashboardEvent.GetCards(it) }
-                    ?: run { DashboardEvent.SomethingWentWrong }
+                _event.value = result?.let { CardsEvent.GetCards(it) }
+                    ?: run { CardsEvent.SomethingWentWrong }
             },
-            { _event.value = DashboardEvent.SomethingWentWrong }
+            { _event.value = CardsEvent.SomethingWentWrong }
         )
     }
 
     fun getRandomSelectedCard(cards: List<Card>) {
         executeUseCase(
             { getRandomSelectedCardUseCase.execute(GetRandomSelectedCardUseCase.Params(cards)) },
-            { result -> _event.value = DashboardEvent.RandomSelectedCard(result) },
-            { _event.value = DashboardEvent.SomethingWentWrong }
+            { result -> _event.value = CardsEvent.RandomSelectedCard(result) },
+            { _event.value = CardsEvent.SomethingWentWrong }
         )
     }
 
@@ -66,7 +66,7 @@ class DashboardViewModel @Inject constructor(
         executeUseCase(
             { discardCardUseCase.execute(DiscardCardUseCase.Params(cardId)) },
             { /** Flow do the rest */ },
-            { _event.value = DashboardEvent.SomethingWentWrong }
+            { _event.value = CardsEvent.SomethingWentWrong }
         )
     }
 }

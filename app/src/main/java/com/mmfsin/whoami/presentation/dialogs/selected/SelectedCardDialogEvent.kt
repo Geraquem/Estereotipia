@@ -1,4 +1,4 @@
-package com.mmfsin.whoami.presentation.dialogs.select
+package com.mmfsin.whoami.presentation.dialogs.selected
 
 import com.mmfsin.whoami.domain.models.Card
 

@@ -1,13 +1,19 @@
 package com.mmfsin.whoami.utils
 
 import android.animation.AnimatorSet
+import android.animation.LayoutTransition
 import android.animation.ObjectAnimator
 import android.app.Activity
 import android.app.Dialog
 import android.content.Context
+import android.transition.AutoTransition
+import android.transition.TransitionManager
 import android.view.View
 import android.view.animation.AccelerateDecelerateInterpolator
 import android.view.inputmethod.InputMethodManager
+import android.widget.LinearLayout
+import androidx.core.view.isVisible
+import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.FragmentActivity
 import com.mmfsin.whoami.base.dialog.ErrorDialog
 
@@ -23,6 +29,9 @@ fun Activity.closeKeyboard() {
     }
 }
 
+fun FragmentActivity?.showFragmentDialog(dialog: DialogFragment) =
+    this?.let { dialog.show(it.supportFragmentManager, "") }
+
 fun Dialog.animateDialog() {
     val dialogView = this.window?.decorView
     dialogView?.let {
@@ -37,6 +46,13 @@ fun Dialog.animateDialog() {
             start()
         }
     }
+}
+
+fun setExpandableView(expandable: View, linear: LinearLayout) {
+    val v = if (expandable.isVisible) View.GONE else View.VISIBLE
+    TransitionManager.beginDelayedTransition(linear, AutoTransition())
+    expandable.visibility = v
+    linear.layoutTransition.enableTransitionType(LayoutTransition.CHANGING)
 }
 
 //fun FragmentActivity.shouldShowInterstitial(position: Int) =

@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import androidx.recyclerview.widget.StaggeredGridLayoutManager.VERTICAL
@@ -19,6 +18,7 @@ import com.mmfsin.whoami.presentation.dialogs.discard.DiscardDialog
 import com.mmfsin.whoami.presentation.dialogs.instructions.WaitSelectDialog
 import com.mmfsin.whoami.presentation.dialogs.selected.SelectedCardDialog
 import com.mmfsin.whoami.utils.showErrorDialog
+import com.mmfsin.whoami.utils.showFragmentDialog
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -70,7 +70,7 @@ class CardsFragment(val deckId: String) : BaseFragment<FragmentCardsBinding, Car
     }
 
     private fun setUpCardsToSelect(cards: List<Card>) {
-        showDialog(WaitSelectDialog { viewModel.getRandomSelectedCard(cards) })
+        activity?.showFragmentDialog(WaitSelectDialog { viewModel.getRandomSelectedCard(cards) })
         binding.rvCards.apply {
             layoutManager = StaggeredGridLayoutManager(2, VERTICAL)
             cardsAdapter = CardsAdapter(cards, this@CardsFragment)
@@ -79,23 +79,20 @@ class CardsFragment(val deckId: String) : BaseFragment<FragmentCardsBinding, Car
     }
 
     override fun onCardClick(cardId: String) {
-        if (!selectedReady) showDialog(SelectedCardDialog.newInstance(cardId))
-        else showDialog(DiscardDialog.newInstance(cardId))
+        if (!selectedReady) activity?.showFragmentDialog(SelectedCardDialog.newInstance(cardId))
+        else activity?.showFragmentDialog(DiscardDialog.newInstance(cardId))
     }
 
     private fun actionOnCard(cardId: String) {
         if (!selectedReady) {
             selectedReady = true
-            showDialog(SelectedCardDialog.newInstance(cardId))
+            activity?.showFragmentDialog(SelectedCardDialog.newInstance(cardId))
             cardsAdapter?.updateSelectedCard(cardId)
         } else cardsAdapter?.updateDiscardedCards(cardId)
     }
 
 //    override fun onDiscardClick(cardId: String) = viewModel.discardCard(cardId, updateFlow = false)
 
-    private fun showDialog(dialog: DialogFragment) {
-        activity?.let { dialog.show(it.supportFragmentManager, "") }
-    }
 
     private fun error() = activity?.showErrorDialog()
 

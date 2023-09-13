@@ -1,18 +1,13 @@
 package com.mmfsin.whoami.presentation.instructions
 
 
-import android.animation.LayoutTransition.CHANGING
 import android.content.Context
-import android.transition.AutoTransition
-import android.transition.TransitionManager
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.LinearLayout
-import androidx.core.view.isVisible
 import com.mmfsin.whoami.base.BaseFragmentNoVM
 import com.mmfsin.whoami.databinding.FragmentInstructionsBinding
 import com.mmfsin.whoami.presentation.MainActivity
+import com.mmfsin.whoami.utils.setExpandableView
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -33,13 +28,6 @@ class InstructionsFragment : BaseFragmentNoVM<FragmentInstructionsBinding>() {
             cv1.setOnClickListener { setExpandableView(details1, ll1) }
             cv2.setOnClickListener { setExpandableView(details2, ll2) }
         }
-    }
-
-    private fun setExpandableView(expandable: View, linear: LinearLayout) {
-        val v = if (expandable.isVisible) View.GONE else View.VISIBLE
-        TransitionManager.beginDelayedTransition(linear, AutoTransition())
-        expandable.visibility = v
-        linear.layoutTransition.enableTransitionType(CHANGING)
     }
 
     override fun onAttach(context: Context) {

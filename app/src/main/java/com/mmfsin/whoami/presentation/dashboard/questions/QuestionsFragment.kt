@@ -8,7 +8,10 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import com.mmfsin.whoami.base.BaseFragment
 import com.mmfsin.whoami.databinding.FragmentQuestionsBinding
+import com.mmfsin.whoami.presentation.dialogs.selected.SelectedCardDialog
+import com.mmfsin.whoami.utils.setExpandableView
 import com.mmfsin.whoami.utils.showErrorDialog
+import com.mmfsin.whoami.utils.showFragmentDialog
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -29,7 +32,17 @@ class QuestionsFragment : BaseFragment<FragmentQuestionsBinding, QuestionsViewMo
     override fun setUI() {}
 
     override fun setListeners() {
-        binding.apply { }
+        binding.apply {
+            tvNewQuestion.setOnClickListener { }
+
+            tvAllQuestions.setOnClickListener { }
+
+            tvMyCard.setOnClickListener {
+                activity?.showFragmentDialog(SelectedCardDialog.newInstance("cardId"))
+            }
+
+            cvWhatNow.setOnClickListener { setExpandableView(detailsWhatNow, llWhatNow) }
+        }
     }
 
     override fun observe() {

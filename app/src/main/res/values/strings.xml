@@ -35,9 +35,11 @@
     <!-- QUESTIONS DIALOG -->
     <string name="questions_do_question">Hacer nueva pregunta</string>
     <string name="questions_list_of">Preguntas antiguas</string>
-    <string name="questions_mini_help">Una ayudita</string>
     <string name="questions_my_card">¿Cuál era mi carta?</string>
+    <string name="questions_mini_help">Una ayudita</string>
+
     <string name="questions_what_now">¿Qué tengo que hacer?</string>
+    <string name="questions_what_now_description">Honesta y sincera explicación de lo que hay que haceeeerrrrrrrrrrrrr</string>
 
     <!-- INST -->
     <!--///////////////////////////////////////////////////////-->

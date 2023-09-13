@@ -14,6 +14,7 @@
         android:layout_marginHorizontal="4dp"
         android:clipChildren="false"
         android:clipToPadding="false"
+        android:paddingTop="74dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:itemCount="2"

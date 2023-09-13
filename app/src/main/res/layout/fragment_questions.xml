@@ -4,22 +4,12 @@
     android:id="@+id/cl_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg_questions_dialog"
-    android:backgroundTint="@color/soft_background"
+    android:background="@color/background"
     android:clipChildren="false"
     android:clipToPadding="false"
     android:paddingHorizontal="24dp"
-    android:paddingTop="16dp"
+    android:paddingTop="82dp"
     android:paddingBottom="32dp">
-
-    <FrameLayout
-        android:id="@+id/fl_top"
-        android:layout_width="64dp"
-        android:layout_height="2.5dp"
-        android:background="@drawable/bg_frame_layout_top"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
     <LinearLayout
         android:id="@+id/ll_main"
@@ -29,10 +19,8 @@
         android:clipChildren="false"
         android:clipToPadding="false"
         android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/fl_top">
+        app:layout_constraintRight_toRightOf="parent">
 
         <TextView
             android:id="@+id/tv_new_question"

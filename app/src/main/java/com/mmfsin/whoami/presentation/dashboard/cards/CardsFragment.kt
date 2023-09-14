@@ -15,15 +15,15 @@ import com.mmfsin.whoami.presentation.MainActivity
 import com.mmfsin.whoami.presentation.dashboard.cards.adapter.CardsAdapter
 import com.mmfsin.whoami.presentation.dashboard.cards.interfaces.ICardsListener
 import com.mmfsin.whoami.presentation.dialogs.discard.DiscardDialog
-import com.mmfsin.whoami.presentation.dialogs.instructions.WaitSelectDialog
+import com.mmfsin.whoami.presentation.dialogs.selected.WaitSelectDialog
 import com.mmfsin.whoami.presentation.dialogs.selected.SelectedCardDialog
 import com.mmfsin.whoami.utils.showErrorDialog
 import com.mmfsin.whoami.utils.showFragmentDialog
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class CardsFragment(val deckId: String) : BaseFragment<FragmentCardsBinding, CardsViewModel>(),
-    ICardsListener {
+class CardsFragment(val deckId: String, private val selectedCardId: String) :
+    BaseFragment<FragmentCardsBinding, CardsViewModel>(), ICardsListener {
 
     override val viewModel: CardsViewModel by viewModels()
     private lateinit var mContext: Context
@@ -38,31 +38,17 @@ class CardsFragment(val deckId: String) : BaseFragment<FragmentCardsBinding, Car
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel.getActualDeck(deckId)
+        viewModel.getCards(deckId)
     }
 
     override fun setUI() {}
 
-    override fun setListeners() {
-        binding.apply {}
-    }
-
-    private fun setToolbar(deckName: String) {
-        (activity as MainActivity).apply {
-            this.inDashboard = true
-            setUpToolbar(showBack = true, deckName)
-        }
-    }
+    override fun setListeners() {}
 
     override fun observe() {
         viewModel.event.observe(this) { event ->
             when (event) {
-                is CardsEvent.GetActualDeck -> {
-                    setToolbar(event.deck.name)
-                    viewModel.getCards(event.deck.id)
-                }
                 is CardsEvent.GetCards -> setUpCardsToSelect(event.cards)
-                is CardsEvent.RandomSelectedCard -> actionOnCard(event.cardId)
                 is CardsEvent.UpdateCard -> actionOnCard(event.cardId)
                 is CardsEvent.SomethingWentWrong -> error()
             }
@@ -70,12 +56,12 @@ class CardsFragment(val deckId: String) : BaseFragment<FragmentCardsBinding, Car
     }
 
     private fun setUpCardsToSelect(cards: List<Card>) {
-        activity?.showFragmentDialog(WaitSelectDialog {/* viewModel.getRandomSelectedCard(cards)*/ })
         binding.rvCards.apply {
             layoutManager = StaggeredGridLayoutManager(2, VERTICAL)
             cardsAdapter = CardsAdapter(cards, this@CardsFragment)
             adapter = cardsAdapter
         }
+        activity?.showFragmentDialog(WaitSelectDialog { actionOnCard(selectedCardId) })
     }
 
     override fun onCardClick(cardId: String) {
@@ -93,11 +79,8 @@ class CardsFragment(val deckId: String) : BaseFragment<FragmentCardsBinding, Car
 
 //    override fun onDiscardClick(cardId: String) = viewModel.discardCard(cardId, updateFlow = false)
 
-
     private fun error() {
-        (activity as MainActivity).apply {
-            this.inDashboard = false
-        }
+        (activity as MainActivity).inDashboard = false
         activity?.showErrorDialog()
     }
 

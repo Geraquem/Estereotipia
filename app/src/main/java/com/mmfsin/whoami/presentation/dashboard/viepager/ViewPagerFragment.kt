@@ -32,44 +32,53 @@ class ViewPagerFragment : BaseFragment<FragmentViewPagerBinding, ViewPagerViewMo
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        deckId?.let { id -> viewModel.getRandomSelectedCard(id) } ?: run { error() }
+        deckId?.let { id -> viewModel.getDeckById(id) } ?: run { error() }
     }
 
     override fun setUI() {
-        setUpViewPager()
+        binding.loading.root.visibility = View.VISIBLE
     }
 
     override fun observe() {
         viewModel.event.observe(this) { event ->
             when (event) {
-                is ViewPagerEvent.SelectedCard -> {
-                    val a = 2
+                is ViewPagerEvent.ActualDeck -> {
+                    setUpToolbar(event.deck.name)
+                    deckId?.let { id -> viewModel.getRandomSelectedCard(id) } ?: run { error() }
                 }
+                is ViewPagerEvent.SelectedCard -> setUpViewPager(event.selectedCardId)
                 is ViewPagerEvent.SomethingWentWrong -> error()
+
             }
         }
     }
 
-    private fun setUpViewPager() {
+    private fun setUpToolbar(deckName: String) {
+        (activity as MainActivity).apply {
+            this.inDashboard = true
+            setUpToolbar(showBack = true, deckName)
+        }
+    }
+
+    private fun setUpViewPager(selectedCardId: String) {
         deckId?.let { deckId ->
             binding.apply {
                 activity?.let {
-                    viewPager.adapter = ViewPagerAdapter(it, deckId)
+                    viewPager.adapter = ViewPagerAdapter(it, deckId, selectedCardId)
                     TabLayoutMediator(tabLayout, viewPager) { tab, position ->
                         when (position) {
-                            0 -> tab.setText("cartas")
-                            1 -> tab.setText("preguntas")
+                            0 -> tab.text = getString(R.string.vp_tab_cards)
+                            1 -> tab.text = getString(R.string.vp_tab_questions)
                         }
                     }.attach()
                 }
+                loading.root.visibility = View.GONE
             }
         } ?: run { error() }
     }
 
     private fun error() {
-        (activity as MainActivity).apply {
-            this.inDashboard = false
-        }
+        (activity as MainActivity).inDashboard = false
         activity?.showErrorDialog()
     }
 }

@@ -6,15 +6,19 @@ import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.mmfsin.whoami.presentation.dashboard.cards.CardsFragment
 import com.mmfsin.whoami.presentation.dashboard.questions.QuestionsFragment
 
-class ViewPagerAdapter(fragmentActivity: FragmentActivity, val deckId: String) :
+class ViewPagerAdapter(
+    fragmentActivity: FragmentActivity,
+    val deckId: String,
+    val selectedCardId: String
+) :
     FragmentStateAdapter(fragmentActivity) {
 
     override fun getItemCount(): Int = 2
 
     override fun createFragment(position: Int): Fragment {
         return when (position) {
-            0 -> CardsFragment(deckId)
-            else -> QuestionsFragment()
+            0 -> CardsFragment(deckId, selectedCardId)
+            else -> QuestionsFragment(selectedCardId)
         }
     }
 

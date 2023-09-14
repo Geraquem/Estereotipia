@@ -9,22 +9,20 @@ class GetRandomSelectedCardUseCase @Inject constructor(val repository: ICardsRep
 
     override suspend fun execute(params: Params): String? {
         val cards = repository.getCards(params.deckId)
-        try {
+        return try {
             cards?.let {
                 val date = System.currentTimeMillis().toString()
                 val number = date.substring(date.length - 1, date.length)
                 var intNumber = number.toInt()
-
                 if (intNumber >= cards.size) intNumber = 0
                 cards[intNumber].id
-            } ?: run { "" }
-            return null
+            } ?: run { null }
 
         } catch (e: Exception) {
             cards?.let {
                 val rand = (cards.indices).random()
-                return cards[rand].id
-            } ?: run { return "" }
+                cards[rand].id
+            } ?: run { null }
         }
     }
 

@@ -2,8 +2,10 @@ package com.mmfsin.whoami.presentation.dashboard.cards
 
 import androidx.lifecycle.viewModelScope
 import com.mmfsin.whoami.base.BaseViewModel
-import com.mmfsin.whoami.domain.models.Card
-import com.mmfsin.whoami.domain.usecases.*
+import com.mmfsin.whoami.domain.usecases.DiscardCardUseCase
+import com.mmfsin.whoami.domain.usecases.GetCardsUseCase
+import com.mmfsin.whoami.domain.usecases.GetDeckByIdUseCase
+import com.mmfsin.whoami.domain.usecases.ObserveFlowUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
@@ -11,7 +13,6 @@ import javax.inject.Inject
 
 @HiltViewModel
 class CardsViewModel @Inject constructor(
-    private val getDeckByIdUseCase: GetDeckByIdUseCase,
     private val getCardsUseCase: GetCardsUseCase,
     private val discardCardUseCase: DiscardCardUseCase,
     private val observeFlowUseCase: ObserveFlowUseCase
@@ -25,22 +26,11 @@ class CardsViewModel @Inject constructor(
 
     private fun observeFlow() = viewModelScope.launch(qrJob) {
         observeFlowUseCase.execute().collect() {
-            _event.value = CardsEvent.UpdateCard(it.second)
+            if (it.second.isNotEmpty()) _event.value = CardsEvent.UpdateCard(it.second)
         }
     }
 
     override fun onCleared() = qrJob.cancel()
-
-    fun getActualDeck(deckId: String) {
-        executeUseCase(
-            { getDeckByIdUseCase.execute(GetDeckByIdUseCase.Params(deckId)) },
-            { result ->
-                _event.value = result?.let { CardsEvent.GetActualDeck(it) }
-                    ?: run { CardsEvent.SomethingWentWrong }
-            },
-            { _event.value = CardsEvent.SomethingWentWrong }
-        )
-    }
 
     fun getCards(deckId: String) {
         executeUseCase(

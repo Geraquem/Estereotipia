@@ -15,7 +15,8 @@ import com.mmfsin.whoami.utils.showFragmentDialog
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class QuestionsFragment : BaseFragment<FragmentQuestionsBinding, QuestionsViewModel>() {
+class QuestionsFragment(val selectedCardId: String) :
+    BaseFragment<FragmentQuestionsBinding, QuestionsViewModel>() {
 
     override val viewModel: QuestionsViewModel by viewModels()
 
@@ -38,7 +39,7 @@ class QuestionsFragment : BaseFragment<FragmentQuestionsBinding, QuestionsViewMo
             tvAllQuestions.setOnClickListener { }
 
             tvMyCard.setOnClickListener {
-                activity?.showFragmentDialog(SelectedCardDialog.newInstance("cardId"))
+                activity?.showFragmentDialog(SelectedCardDialog.newInstance(selectedCardId))
             }
 
             cvWhatNow.setOnClickListener { setExpandableView(detailsWhatNow, llWhatNow) }

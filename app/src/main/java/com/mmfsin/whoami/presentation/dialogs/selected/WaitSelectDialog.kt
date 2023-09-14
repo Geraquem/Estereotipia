@@ -1,4 +1,4 @@
-package com.mmfsin.whoami.presentation.dialogs.instructions
+package com.mmfsin.whoami.presentation.dialogs.selected
 
 import android.app.Dialog
 import android.os.CountDownTimer

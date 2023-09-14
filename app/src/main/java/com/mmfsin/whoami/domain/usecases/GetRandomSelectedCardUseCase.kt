@@ -1,31 +1,34 @@
 package com.mmfsin.whoami.domain.usecases
 
 import com.mmfsin.whoami.base.BaseUseCase
-import com.mmfsin.whoami.domain.models.Card
-import java.util.*
-import java.util.concurrent.ThreadLocalRandom
+import com.mmfsin.whoami.domain.interfaces.ICardsRepository
 import javax.inject.Inject
 
-class GetRandomSelectedCardUseCase @Inject constructor() :
-    BaseUseCase<GetRandomSelectedCardUseCase.Params, String>() {
+class GetRandomSelectedCardUseCase @Inject constructor(val repository: ICardsRepository) :
+    BaseUseCase<GetRandomSelectedCardUseCase.Params, String?>() {
 
-    override suspend fun execute(params: Params): String {
+    override suspend fun execute(params: Params): String? {
+        val cards = repository.getCards(params.deckId)
+        try {
+            cards?.let {
+                val date = System.currentTimeMillis().toString()
+                val number = date.substring(date.length - 1, date.length)
+                var intNumber = number.toInt()
 
-        return try {
-            val date = System.currentTimeMillis().toString()
-            val number = date.substring(date.length - 1, date.length)
-            var intNumber = number.toInt()
+                if (intNumber >= cards.size) intNumber = 0
+                cards[intNumber].id
+            } ?: run { "" }
+            return null
 
-            if(intNumber >= params.cards.size) intNumber = 0
-            params.cards[intNumber].id
-
-        }catch (e: Exception){
-            val rand = (0 until params.cards.size).random()
-            return params.cards[rand].id
+        } catch (e: Exception) {
+            cards?.let {
+                val rand = (cards.indices).random()
+                return cards[rand].id
+            } ?: run { return "" }
         }
     }
 
     class Params(
-        val cards: List<Card>,
+        val deckId: String,
     )
 }

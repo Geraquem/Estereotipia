@@ -13,7 +13,6 @@ import javax.inject.Inject
 class CardsViewModel @Inject constructor(
     private val getDeckByIdUseCase: GetDeckByIdUseCase,
     private val getCardsUseCase: GetCardsUseCase,
-    private val getRandomSelectedCardUseCase: GetRandomSelectedCardUseCase,
     private val discardCardUseCase: DiscardCardUseCase,
     private val observeFlowUseCase: ObserveFlowUseCase
 ) : BaseViewModel<CardsEvent>() {
@@ -50,14 +49,6 @@ class CardsViewModel @Inject constructor(
                 _event.value = result?.let { CardsEvent.GetCards(it) }
                     ?: run { CardsEvent.SomethingWentWrong }
             },
-            { _event.value = CardsEvent.SomethingWentWrong }
-        )
-    }
-
-    fun getRandomSelectedCard(cards: List<Card>) {
-        executeUseCase(
-            { getRandomSelectedCardUseCase.execute(GetRandomSelectedCardUseCase.Params(cards)) },
-            { result -> _event.value = CardsEvent.RandomSelectedCard(result) },
             { _event.value = CardsEvent.SomethingWentWrong }
         )
     }

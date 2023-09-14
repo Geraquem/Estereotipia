@@ -70,7 +70,7 @@ class CardsFragment(val deckId: String) : BaseFragment<FragmentCardsBinding, Car
     }
 
     private fun setUpCardsToSelect(cards: List<Card>) {
-        activity?.showFragmentDialog(WaitSelectDialog { viewModel.getRandomSelectedCard(cards) })
+        activity?.showFragmentDialog(WaitSelectDialog {/* viewModel.getRandomSelectedCard(cards)*/ })
         binding.rvCards.apply {
             layoutManager = StaggeredGridLayoutManager(2, VERTICAL)
             cardsAdapter = CardsAdapter(cards, this@CardsFragment)
@@ -94,7 +94,12 @@ class CardsFragment(val deckId: String) : BaseFragment<FragmentCardsBinding, Car
 //    override fun onDiscardClick(cardId: String) = viewModel.discardCard(cardId, updateFlow = false)
 
 
-    private fun error() = activity?.showErrorDialog()
+    private fun error() {
+        (activity as MainActivity).apply {
+            this.inDashboard = false
+        }
+        activity?.showErrorDialog()
+    }
 
     override fun onAttach(context: Context) {
         super.onAttach(context)

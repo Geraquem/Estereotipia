@@ -73,7 +73,6 @@ class CardsFragment(val deckId: String, private val selectedCardId: String) :
         if (!selectedReady) {
             selectedReady = true
             activity?.showFragmentDialog(SelectedCardDialog.newInstance(cardId))
-            cardsAdapter?.updateSelectedCard(cardId)
         } else cardsAdapter?.updateDiscardedCards(cardId)
     }
 

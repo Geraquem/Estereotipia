@@ -21,11 +21,8 @@ class CardsAdapter(
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val binding = ItemCardBinding.bind(view)
         fun bind(card: Card) {
-            val c = binding.root.context
             binding.apply {
                 ivDiscard.isVisible = card.discarded
-                val color = if (card.selected) R.color.card_selected else R.color.white
-                background.background.setTint(ContextCompat.getColor(c, color))
                 Glide.with(binding.root.context).load(card.image).into(ivImage)
                 tvName.text = card.name
             }
@@ -36,17 +33,6 @@ class CardsAdapter(
             else R.drawable.ic_discard_cross
 //            binding.btnDiscard.setImageResource(imgDiscarded)
         }
-    }
-
-    fun updateSelectedCard(id: String) {
-        var position: Int? = null
-        cards.forEachIndexed() { i, card ->
-            if (card.id == id) {
-                card.selected = true
-                position = i
-            }
-        }
-        position?.let { pos -> notifyItemChanged(pos) }
     }
 
     fun updateDiscardedCards(id: String) {

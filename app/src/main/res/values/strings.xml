@@ -13,12 +13,6 @@
     <string name="exit_yes">SALIR</string>
     <string name="exit_no">QUEDARME</string>
 
-    <!-- INSTRUCTIONS -->
-    <string name="instructions_close">Cerrar</string>
-    <string name="instructions_whats_about">¿De qué trata el juego?</string>
-    <string name="instructions_whats_about_detail">El juego es muy sencillo: una persona <b>elige una carta</b> y el resto trata de adivinar cuál es.</string>
-    <string name="instructions_how_to_play">¿Cómo se juega?</string>
-
     <!-- VIEW PAGER -->
     <string name="vp_tab_cards">Cartas</string>
     <string name="vp_tab_questions">Preguntas</string>
@@ -45,19 +39,55 @@
     <string name="questions_what_now">¿Qué tengo que hacer?</string>
     <string name="questions_what_now_description">Honesta y sincera explicación de lo que hay que haceeeerrrrrrrrrrrrr</string>
 
-    <!-- INST -->
-    <!--///////////////////////////////////////////////////////-->
-    <string name="tpm_dialog_select_title">Selecciona tu personaje</string>
-    <string name="tpm_dialog_select_txt_one">Escoge una carta y pulsa el botón <b>SELECCIONAR</b> para elegir tu personaje.</string>
-    <string name="tpm_dialog_select_txt_two">Tu carta quedará identificada con un borde resaltado para el resto de la partida.</string>
-    <string name="tpm_dialog_select_warning">Una vez seleccionado, tu personaje no podrá ser cambiado.</string>
+    <!-- INSTRUCTIONS -->
+    <string name="instructions_close">Cerrar</string>
+    <string name="instructions_1">1.</string>
+    <string name="instructions_2">2.</string>
+    <string name="instructions_3">3.</string>
+    <string name="instructions_4">4.</string>
+    <string name="instructions_5">5.</string>
+    <string name="instructions_6">6.</string>
+    <string name="instructions_7">7.</string>
+    <string name="instructions_8">8.</string>
+    <string name="instructions_9">9.</string>
 
-    <string name="tpm_dialog_questions_title">Hora de las preguntas</string>
-    <string name="tpm_dialog_questions_txt_one">Ahora tienes que adivinar la carta que ha elegido la otra persona.</string>
-    <string name="tpm_dialog_questions_txt_two">Para ello, pulsa el botón para obtener preguntas.</string>
-    <string name="tpm_dialog_questions_txt_three">En función de las respuestas de la otra persona imagina quién crees que es su personaje.</string>
-    <string name="tpm_dialog_questions_warning">Recuerda que solo tienes <b>una oportunidad</b>, ¡no puedes fallar!</string>
+    <string name="instructions_whats_about">¿De qué trata el juego?</string>
+    <string name="instructions_whats_about_detail">El juego es muy fácil, consiste en <b>adivinar</b> qué personaje le ha tocado a tu rival antes de que tu rival adivine qué personaje te ha tocado a ti.</string>
 
-    <string name="tpm_dialog_select_continue">Continuar</string>
+    <string name="instructions_how_many_players">¿Cuántas personas pueden jugar?</string>
+    <string name="instructions_how_many_players_detail_1">Tienen que existir <b>dos equipos</b> y por lo tanto tiene que haber <b>dos móviles</b> en juego.</string>
+    <string name="instructions_how_many_players_detail_2"><b>¿Cuántas personas puede haber por equipo?</b></string>
+    <string name="instructions_how_many_players_detail_3">Las que se quiera siempre y cuando existan 2 equipos. Puede ser <i>1vs1</i>, <i>2vs1</i>, <i>3vs2</i>…</string>
+
+    <string name="instructions_decks">¿Qué son los mazos?</string>
+    <string name="instructions_decks_detail_1">Los mazos son agrupaciones de cartas de personajes para jugar.</string>
+    <string name="instructions_decks_detail_2">Cuando vayas a jugar <b>asegúrate de escoger el mismo mazo que tu rival</b>, si no el juego no tendrá sentido y estarás intentando adivinar una carta que para ti no existe.</string>
+
+    <string name="instructions_how_to_play">¿Cómo se juega?</string>
+    <string name="instructions_how_to_play_details">*************************************************</string>
+
+    <string name="instructions_my_card">¿Cómo sé qué personaje me ha tocado?</string>
+    <string name="instructions_my_card_details_1">Tu personaje se elegirá automáticamente al inicio de cada partida.</string>
+    <string name="instructions_my_card_details_2">Lamentablemente no se puede cambiar.</string>
+    <string name="instructions_my_card_details_3">Si quieres <b>recordar</b> cuál era tu personaje solo tienes que ir a la pestaña <u>Preguntas</u> y pulsar sobre el botón <u>¿Cuál era mi personaje?</u></string>
+
+    <string name="instructions_how_many_questions">¿Cuántas preguntas se pueden hacer?</string>
+    <string name="instructions_how_many_questions_details_1">Por partida puedes hacer hasta <b>10 preguntas diferentes.</b></string>
+    <string name="instructions_how_many_questions_details_2">Todas las preguntas son de carácter subjetivo, nunca irán referidas al físico de los personajes de las cartas.</string>
+
+    <string name="instructions_how_many_opportunities">¿Cuántas oportunidades para acertar tengo?</string>
+    <string name="instructions_how_many_opportunities_details_1">Tienes <b>dos oportunidades</b> para adivinar el personaje de tu rival.</string>
+    <string name="instructions_how_many_opportunities_details_2">Para hacer tu apuesta selecciona la carta que creas que es la de tu rival y pulsa el botón con el siguiente icono:</string>
+    <string name="instructions_how_many_opportunities_details_3">Si aciertas y has sido el primer equipo en acertar, has ganado.</string>
+    <string name="instructions_how_many_opportunities_details_4">Si fallas tendrás una <b>segunda oportunidad</b> para repetir el proceso.</string>
+    <string name="instructions_how_many_opportunities_details_5">Si fallas por segunda vez seguirás en juego pero sin poder hacer preguntas, solo respondiendo y rezando para que tu rival no adivine tu personaje.</string>
+    <string name="instructions_how_many_opportunities_details_6">El juego termina cuando uno de los dos equipos adivina la carta del equipo rival o cuando ambos equipos fallan las dos oportunidades que tienen.</string>
+
+    <string name="instructions_failing">¿Qué pasa si fallo al tomar mi decisión?</string>
+    <string name="instructions_failing_details_1">**********************************************************</string>
+
+    <string name="instructions_when_ends">¿Cuándo termina el juego?</string>
+    <string name="instructions_when_ends_details_1">El juego termina cuando uno de los dos equipos adivina la carta del equipo rival o cuando ambos equipos fallan las dos oportunidades que tienen.</string>
+    <string name="instructions_when_ends_details_2">Si uno de los equipos falla las dos oportunidades que tiene para acertar, <b>sigue en juego</b> respondiendo hasta que el otro equipo gane o falle las dos oportunidades que tiene de acertar.</string>
 
 </resources>

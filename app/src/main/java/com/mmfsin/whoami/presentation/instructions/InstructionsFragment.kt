@@ -25,8 +25,15 @@ class InstructionsFragment : BaseFragmentNoVM<FragmentInstructionsBinding>() {
         binding.apply {
             tvClose.setOnClickListener { (activity as MainActivity).onBackPressed() }
 
-            cv1.setOnClickListener { setExpandableView(details1, ll1) }
-            cv2.setOnClickListener { setExpandableView(details2, ll2) }
+            cv1.setOnClickListener { setExpandableView(details1.linear, ll1) }
+            cv2.setOnClickListener { setExpandableView(details2.linear, ll2) }
+            cv3.setOnClickListener { setExpandableView(details3.linear, ll3) }
+            cv4.setOnClickListener { setExpandableView(details4.linear, ll4) }
+            cv5.setOnClickListener { setExpandableView(details5.linear, ll6) }
+            cv6.setOnClickListener { setExpandableView(details6.linear, ll6) }
+            cv7.setOnClickListener { setExpandableView(details7.linear, ll7) }
+            cv8.setOnClickListener { setExpandableView(details8.linear, ll8) }
+            cv9.setOnClickListener { setExpandableView(details9.linear, ll9) }
         }
     }
 

@@ -66,10 +66,10 @@
     <string name="instructions_how_to_play">¿Cómo se juega?</string>
     <string name="instructions_how_to_play_details">*************************************************</string>
 
-    <string name="instructions_my_card">¿Cómo sé qué personaje me ha tocado?</string>
-    <string name="instructions_my_card_details_1">Tu personaje se elegirá automáticamente al inicio de cada partida.</string>
+    <string name="instructions_my_card">¿Cuál es mi carta?</string>
+    <string name="instructions_my_card_details_1">Tu carta de personaje se elegirá automáticamente al inicio de cada partida.</string>
     <string name="instructions_my_card_details_2">Lamentablemente no se puede cambiar.</string>
-    <string name="instructions_my_card_details_3">Si quieres <b>recordar</b> cuál era tu personaje solo tienes que ir a la pestaña <u>Preguntas</u> y pulsar sobre el botón <u>¿Cuál era mi personaje?</u></string>
+    <string name="instructions_my_card_details_3">Si quieres <b>recordar</b> cuál era tu personaje solo tienes que ir a la pestaña <i>Preguntas</i> y pulsar sobre el botón <i>¿Cuál era mi personaje?</i></string>
 
     <string name="instructions_how_many_questions">¿Cuántas preguntas se pueden hacer?</string>
     <string name="instructions_how_many_questions_details_1">Por partida puedes hacer hasta <b>10 preguntas diferentes.</b></string>

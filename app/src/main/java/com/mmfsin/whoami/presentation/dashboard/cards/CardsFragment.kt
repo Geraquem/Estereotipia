@@ -48,14 +48,14 @@ class CardsFragment(val deckId: String, private val selectedCardId: String) :
     override fun observe() {
         viewModel.event.observe(this) { event ->
             when (event) {
-                is CardsEvent.GetCards -> setUpCardsToSelect(event.cards)
+                is CardsEvent.GetCards -> setUpCards(event.cards)
                 is CardsEvent.UpdateCard -> actionOnCard(event.cardId)
                 is CardsEvent.SomethingWentWrong -> error()
             }
         }
     }
 
-    private fun setUpCardsToSelect(cards: List<Card>) {
+    private fun setUpCards(cards: List<Card>) {
         binding.rvCards.apply {
             layoutManager = StaggeredGridLayoutManager(2, VERTICAL)
             cardsAdapter = CardsAdapter(cards, this@CardsFragment)

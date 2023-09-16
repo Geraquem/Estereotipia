@@ -52,7 +52,7 @@ fun setExpandableView(expandable: View, linear: LinearLayout) {
     val v = if (expandable.isVisible) View.GONE else View.VISIBLE
     TransitionManager.beginDelayedTransition(linear, AutoTransition())
     expandable.visibility = v
-    linear.layoutTransition.enableTransitionType(LayoutTransition.CHANGING)
+//    linear.layoutTransition.enableTransitionType(LayoutTransition.CHANGING)
 }
 
 //fun FragmentActivity.shouldShowInterstitial(position: Int) =

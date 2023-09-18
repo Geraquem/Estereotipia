@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import com.mmfsin.whoami.base.BaseFragment
 import com.mmfsin.whoami.databinding.FragmentQuestionsBinding
+import com.mmfsin.whoami.domain.models.Question
 import com.mmfsin.whoami.presentation.dialogs.selected.SelectedCardDialog
 import com.mmfsin.whoami.utils.setExpandableView
 import com.mmfsin.whoami.utils.showErrorDialog
@@ -20,6 +21,8 @@ class QuestionsFragment(private val selectedCardId: String) :
 
     override val viewModel: QuestionsViewModel by viewModels()
 
+    private lateinit var questions: List<Question>
+
     private lateinit var mContext: Context
 
     override fun inflateView(
@@ -28,9 +31,14 @@ class QuestionsFragment(private val selectedCardId: String) :
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        viewModel.getQuestions()
     }
 
-    override fun setUI() {}
+    override fun setUI() {
+        binding.apply {
+            loading.root.visibility = View.VISIBLE
+        }
+    }
 
     override fun setListeners() {
         binding.apply {
@@ -49,6 +57,10 @@ class QuestionsFragment(private val selectedCardId: String) :
     override fun observe() {
         viewModel.event.observe(this) { event ->
             when (event) {
+                is QuestionsEvent.GetQuestions -> {
+                    questions = event.questions
+                    binding.loading.root.visibility = View.GONE
+                }
                 is QuestionsEvent.SomethingWentWrong -> error()
             }
         }

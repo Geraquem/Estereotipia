@@ -15,3 +15,6 @@ const val CALL_DECKS = "update_decks"
 const val CALL_QUESTIONS = "update_questions"
 
 const val DECK_ID = "deckId"
+
+//Constants
+const val NUM_OF_QUESTIONS = 5

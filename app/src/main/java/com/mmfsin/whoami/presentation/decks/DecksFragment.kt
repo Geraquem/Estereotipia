@@ -69,8 +69,6 @@ class DecksFragment : BaseFragment<FragmentDecksBinding, DecksViewModel>(), IDec
             layoutManager = StaggeredGridLayoutManager(2, VERTICAL)
             adapter = DeckAdapter(decks, this@DecksFragment)
         }
-
-        (activity as MainActivity).openInstructions()
     }
 
     private fun error() = activity?.showErrorDialog()

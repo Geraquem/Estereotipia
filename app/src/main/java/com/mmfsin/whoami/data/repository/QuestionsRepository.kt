@@ -25,7 +25,7 @@ class QuestionsRepository @Inject constructor(
 
     private val reference = Firebase.database.reference.child(QUESTIONS)
 
-    override suspend fun getQuestions(): List<Question>? {
+    override suspend fun getQuestions(): List<Question> {
         val updateDecks = context.getSharedPreferences(CALL_FIREBASE, Context.MODE_PRIVATE)
         if (updateDecks.getBoolean(CALL_QUESTIONS, false)) {
             updateDecks.edit().apply {

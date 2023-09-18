@@ -24,4 +24,6 @@
     <color name="state_none">#FF000000</color>
     <color name="state_discarded">#FF9E9E</color>
 
+    <color name="inst_color">#ACD7FF</color>
+
 </resources>

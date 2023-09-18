@@ -12,25 +12,37 @@ class GetInstructionsUseCase @Inject constructor(@ApplicationContext val context
 
     override suspend fun execute(): List<Instruction> {
         val instructions = listOf(
-            Instruction(1, getString(R.string.instructions_whats_about), R.layout.inst_whats_about),
             Instruction(
-                2, getString(R.string.instructions_how_many_players), R.layout.inst_how_many_players
+                1, getString(R.string.instructions_whats_about), layout = R.layout.inst_whats_about
             ),
-            Instruction(3, getString(R.string.instructions_decks), R.layout.inst_decks),
-            Instruction(4, getString(R.string.instructions_how_to_play), R.layout.inst_how_to_play),
-            Instruction(5, getString(R.string.instructions_my_card), R.layout.inst_my_card),
+            Instruction(
+                2,
+                getString(R.string.instructions_how_many_players),
+                layout = R.layout.inst_how_many_players
+            ),
+            Instruction(3, getString(R.string.instructions_decks), layout = R.layout.inst_decks),
+            Instruction(
+                4, getString(R.string.instructions_how_to_play), layout = R.layout.inst_how_to_play
+            ),
+            Instruction(
+                5, getString(R.string.instructions_my_card), layout = R.layout.inst_my_card
+            ),
             Instruction(
                 6,
                 getString(R.string.instructions_how_many_questions),
-                R.layout.inst_how_many_questions
+                layout = R.layout.inst_how_many_questions
             ),
             Instruction(
                 7,
                 getString(R.string.instructions_how_many_opportunities),
-                R.layout.inst_how_many_opportunities
+                layout = R.layout.inst_how_many_opportunities
             ),
-            Instruction(8, getString(R.string.instructions_failing), R.layout.inst_failing),
-            Instruction(9, getString(R.string.instructions_when_ends), R.layout.inst_when_ends)
+            Instruction(
+                8, getString(R.string.instructions_failing), layout = R.layout.inst_failing
+            ),
+            Instruction(
+                9, getString(R.string.instructions_when_ends), layout = R.layout.inst_when_ends
+            )
         )
 
         return instructions.sortedBy { it.order }

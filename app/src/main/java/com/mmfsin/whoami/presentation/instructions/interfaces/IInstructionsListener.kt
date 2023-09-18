@@ -1,8 +1,7 @@
 package com.mmfsin.whoami.presentation.instructions.interfaces
 
-import android.view.View
-import android.widget.LinearLayout
+import com.mmfsin.whoami.domain.models.Instruction
 
 interface IInstructionsListener {
-    fun onInstructionClick(ll1: LinearLayout, details: View)
+    fun onInstructionClick(instruction: Instruction)
 }

@@ -15,7 +15,7 @@ import com.mmfsin.whoami.utils.showFragmentDialog
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class QuestionsFragment(val selectedCardId: String) :
+class QuestionsFragment(private val selectedCardId: String) :
     BaseFragment<FragmentQuestionsBinding, QuestionsViewModel>() {
 
     override val viewModel: QuestionsViewModel by viewModels()

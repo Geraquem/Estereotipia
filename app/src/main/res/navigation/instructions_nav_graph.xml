@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/instructions_nav_graph"
+    app:startDestination="@id/instructionsFragment">
+
+    <fragment
+        android:id="@+id/instructionsFragment"
+        android:name="com.mmfsin.whoami.presentation.instructions.InstructionsFragment"
+        android:label="instructionsFragment"
+        tools:layout="@layout/fragment_instructions">
+        <action
+            android:id="@+id/action_loading_to_decks"
+            app:destination="@id/decksFragment" />
+    </fragment>
+
+</navigation>

@@ -1,6 +1,7 @@
 package com.mmfsin.whoami.utils
 
 const val INSTRUCTIONS = "instructions"
+const val INSTRUCTIONS_DETAIL = "instructions_detail"
 
 //FIREBASE
 const val VERSION = "version"

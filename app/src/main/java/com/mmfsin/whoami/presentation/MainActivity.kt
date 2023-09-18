@@ -9,6 +9,7 @@ import com.mmfsin.whoami.databinding.ActivityMainBinding
 import com.mmfsin.whoami.presentation.dialogs.ExitDialog
 import com.mmfsin.whoami.presentation.instructions.InstructionsFragment
 import com.mmfsin.whoami.utils.INSTRUCTIONS
+import com.mmfsin.whoami.utils.INSTRUCTIONS_DETAIL
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -29,32 +30,39 @@ class MainActivity : AppCompatActivity() {
             ivBack.isVisible = showBack
             tvTitle.text = title
 
-            ivBack.setOnClickListener {
-                inDashboard = false
-                onBackPressed()
-            }
+            ivBack.setOnClickListener { onBackPressed() }
 
-            ivInstructions.setOnClickListener {
-                ivInstructions.isEnabled = false
-                supportFragmentManager.beginTransaction().addToBackStack(INSTRUCTIONS)
-                    .setCustomAnimations(R.anim.fragment_up, 0, 0, R.anim.fragment_down)
-                    .add(R.id.fc_instructions, InstructionsFragment()).commit()
-            }
+            ivInstructions.setOnClickListener { openInstructions() }
         }
     }
 
+    fun openInstructions() {
+        supportFragmentManager.beginTransaction().addToBackStack(INSTRUCTIONS)
+            .setCustomAnimations(R.anim.fragment_up, 0, 0, R.anim.fragment_down)
+            .add(R.id.fc_instructions, InstructionsFragment()).commit()
+    }
+
+    private fun removeFragment(fragmentName: String) {
+        supportFragmentManager.popBackStack(fragmentName, POP_BACK_STACK_INCLUSIVE)
+    }
+
     override fun onBackPressed() {
-        val fragments = supportFragmentManager.fragments
-        var popBack = false
-        fragments.forEach { if (it is InstructionsFragment) popBack = true }
-        if (popBack) {
-            binding.toolbar.ivInstructions.isEnabled = true
-            supportFragmentManager.popBackStack(INSTRUCTIONS, POP_BACK_STACK_INCLUSIVE)
+        val count = supportFragmentManager.backStackEntryCount
+        if (count == 0) {
+            try {
+                if (inDashboard) {
+                    val dialog = ExitDialog() { super.onBackPressed() }
+                    dialog.show(supportFragmentManager, "")
+                } else super.onBackPressed()
+            } catch (e: Exception) {
+                val a = 2
+            }
+
         } else {
-            if (inDashboard) {
-                val dialog = ExitDialog() { super.onBackPressed() }
-                dialog.show(supportFragmentManager, "")
-            } else super.onBackPressed()
+            when (supportFragmentManager.getBackStackEntryAt(count - 1).name) {
+                INSTRUCTIONS_DETAIL -> removeFragment(INSTRUCTIONS_DETAIL)
+                INSTRUCTIONS -> removeFragment(INSTRUCTIONS)
+            }
         }
     }
 }

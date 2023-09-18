@@ -5,22 +5,23 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.LinearLayout
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.mmfsin.whoami.R
 import com.mmfsin.whoami.base.BaseFragment
-import com.mmfsin.whoami.databinding.FragmentInstructionsAaaaBinding
+import com.mmfsin.whoami.databinding.FragmentInstructionsBinding
 import com.mmfsin.whoami.domain.models.Instruction
 import com.mmfsin.whoami.presentation.MainActivity
 import com.mmfsin.whoami.presentation.instructions.adapter.InstructionsAdapter
+import com.mmfsin.whoami.presentation.instructions.detail.DetailInstFragment
 import com.mmfsin.whoami.presentation.instructions.interfaces.IInstructionsListener
-import com.mmfsin.whoami.utils.setExpandableView
+import com.mmfsin.whoami.utils.INSTRUCTIONS_DETAIL
 import com.mmfsin.whoami.utils.showErrorDialog
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class InstructionsFragment :
-    BaseFragment<FragmentInstructionsAaaaBinding, InstructionsViewModel>(), IInstructionsListener {
+class InstructionsFragment : BaseFragment<FragmentInstructionsBinding, InstructionsViewModel>(),
+    IInstructionsListener {
 
     override val viewModel: InstructionsViewModel by viewModels()
 
@@ -28,7 +29,7 @@ class InstructionsFragment :
 
     override fun inflateView(
         inflater: LayoutInflater, container: ViewGroup?
-    ) = FragmentInstructionsAaaaBinding.inflate(inflater, container, false)
+    ) = FragmentInstructionsBinding.inflate(inflater, container, false)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -40,16 +41,6 @@ class InstructionsFragment :
     override fun setListeners() {
         binding.apply {
             tvClose.setOnClickListener { (activity as MainActivity).onBackPressed() }
-
-//            cv1.setOnClickListener { setExpandableView(details1.linear, ll1) }
-//            cv2.setOnClickListener { setExpandableView(details2.linear, ll2) }
-//            cv3.setOnClickListener { setExpandableView(details3.linear, ll3) }
-//            cv4.setOnClickListener { setExpandableView(details4.linear, ll4) }
-//            cv5.setOnClickListener { setExpandableView(details5.linear, ll6) }
-//            cv6.setOnClickListener { setExpandableView(details6.linear, ll6) }
-//            cv7.setOnClickListener { setExpandableView(details7.linear, ll7) }
-//            cv8.setOnClickListener { setExpandableView(details8.linear, ll8) }
-//            cv9.setOnClickListener { setExpandableView(details9.linear, ll9) }
         }
     }
 
@@ -70,8 +61,11 @@ class InstructionsFragment :
         }
     }
 
-    override fun onInstructionClick(ll1: LinearLayout, details: View) {
-        setExpandableView(details, ll1)
+    override fun onInstructionClick(instruction: Instruction) {
+        (activity as MainActivity).supportFragmentManager.beginTransaction()
+            .addToBackStack(INSTRUCTIONS_DETAIL)
+            .setCustomAnimations(R.anim.slide_from_left, 0, 0, R.anim.slide_to_right)
+            .add(R.id.fc_instructions, DetailInstFragment(instruction)).commit()
     }
 
     override fun onAttach(context: Context) {

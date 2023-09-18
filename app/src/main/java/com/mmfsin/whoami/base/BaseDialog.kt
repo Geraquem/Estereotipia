@@ -49,6 +49,14 @@ abstract class BaseDialog<VB : ViewBinding> : DialogFragment() {
 
     fun bottomViewDialog(dialog: Dialog) {
         dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        val height = resources.displayMetrics.heightPixels * 0.8
+        dialog.window?.setLayout(MATCH_PARENT, height.toInt())
+        dialog.window?.attributes?.gravity = Gravity.BOTTOM
+        dialog.window?.attributes?.windowAnimations = R.style.slide_up_down_dialog
+    }
+
+    fun bottomCustomViewDialog(dialog: Dialog) {
+        dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         dialog.window?.setLayout(MATCH_PARENT, WRAP_CONTENT)
         dialog.window?.attributes?.gravity = Gravity.BOTTOM
         dialog.window?.attributes?.windowAnimations = R.style.slide_up_down_dialog

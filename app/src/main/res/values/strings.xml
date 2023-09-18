@@ -39,6 +39,9 @@
     <string name="questions_what_now">¿Qué tengo que hacer?</string>
     <string name="questions_what_now_description">Honesta y sincera explicación de lo que hay que haceeeerrrrrrrrrrrrr</string>
 
+    <!-- QUESTIONS LIST DIALOG -->
+    <string name="questions_list_empty">Todavía no se ha hecho ninguna pregunta.</string>
+
     <!-- INSTRUCTIONS -->
     <string name="instructions_close">Cerrar</string>
     <string name="instructions_1">1.</string>

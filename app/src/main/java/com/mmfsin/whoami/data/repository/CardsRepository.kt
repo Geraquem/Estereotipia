@@ -30,7 +30,6 @@ class CardsRepository @Inject constructor(
 
     private fun setNonDiscardedCards(cards: List<CardDTO>): List<CardDTO> {
         cards.forEach { card ->
-            card.selected = false
             card.discard = false
             saveCardInRealm(card)
         }

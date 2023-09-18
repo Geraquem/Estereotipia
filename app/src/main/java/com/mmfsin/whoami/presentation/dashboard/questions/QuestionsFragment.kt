@@ -5,10 +5,13 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.viewModels
 import com.mmfsin.whoami.base.BaseFragment
 import com.mmfsin.whoami.databinding.FragmentQuestionsBinding
 import com.mmfsin.whoami.domain.models.Question
+import com.mmfsin.whoami.presentation.dialogs.questions.NewQuestionDialog
+import com.mmfsin.whoami.presentation.dialogs.questions.QuestionsListDialog
 import com.mmfsin.whoami.presentation.dialogs.selected.SelectedCardDialog
 import com.mmfsin.whoami.utils.setExpandableView
 import com.mmfsin.whoami.utils.showErrorDialog
@@ -22,6 +25,8 @@ class QuestionsFragment(private val selectedCardId: String) :
     override val viewModel: QuestionsViewModel by viewModels()
 
     private lateinit var questions: List<Question>
+    private val questionsDone = ArrayList<Question>()
+    private var cont = 0
 
     private lateinit var mContext: Context
 
@@ -42,9 +47,20 @@ class QuestionsFragment(private val selectedCardId: String) :
 
     override fun setListeners() {
         binding.apply {
-            tvNewQuestion.setOnClickListener { }
+            tvNewQuestion.setOnClickListener {
+                if (cont >= questions.size) {
+                    Toast.makeText(mContext, "sin preguntas", Toast.LENGTH_SHORT).show()
+                } else {
+                    val question = questions[cont]
+                    questionsDone.add(question)
+                    activity?.showFragmentDialog(NewQuestionDialog.newInstance(question))
+                }
+                cont++
+            }
 
-            tvAllQuestions.setOnClickListener { }
+            tvAllQuestions.setOnClickListener {
+                activity?.showFragmentDialog(QuestionsListDialog(questionsDone.toList()))
+            }
 
             tvMyCard.setOnClickListener {
                 activity?.showFragmentDialog(SelectedCardDialog.newInstance(selectedCardId))

@@ -20,6 +20,14 @@
         android:orientation="vertical"
         app:layout_constraintGuide_percent="0.05" />
 
+<!--    INSTRUCCIONES-->
+
+<!--    JUGAR -ABRE FRAG DE MAZOS DEL SISTEMA- -->
+
+<!--    TODAS LAS CARTAS-->
+<!--    MIS BARAJAS (¿poder subir fotos?)-->
+<!--    CREAR NUEVA BARAJA-->
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_decks"
         style="@style/scroll_no_effects"

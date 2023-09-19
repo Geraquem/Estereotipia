@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.viewModels
 import com.mmfsin.whoami.base.BaseFragment
 import com.mmfsin.whoami.databinding.FragmentQuestionsBinding
@@ -24,7 +23,7 @@ class QuestionsFragment(private val selectedCardId: String) :
 
     override val viewModel: QuestionsViewModel by viewModels()
 
-    private lateinit var questions: List<Question>
+    private var questions: List<Question>? = null
     private val questionsDone = ArrayList<Question>()
     private var cont = 0
 
@@ -48,14 +47,14 @@ class QuestionsFragment(private val selectedCardId: String) :
     override fun setListeners() {
         binding.apply {
             tvNewQuestion.setOnClickListener {
-                if (cont >= questions.size) {
-                    Toast.makeText(mContext, "sin preguntas", Toast.LENGTH_SHORT).show()
-                } else {
-                    val question = questions[cont]
-                    questionsDone.add(question)
-                    activity?.showFragmentDialog(NewQuestionDialog.newInstance(question))
+                questions?.let { list ->
+                    if (cont < list.size) {
+                        val question = list[cont]
+                        questionsDone.add(question)
+                        activity?.showFragmentDialog(NewQuestionDialog.newInstance(question))
+                        cont++
+                    } else activity?.showFragmentDialog(NewQuestionDialog.newInstance())
                 }
-                cont++
             }
 
             tvAllQuestions.setOnClickListener {

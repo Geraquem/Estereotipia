@@ -2,6 +2,7 @@ package com.mmfsin.whoami.presentation.dialogs.questions
 
 import android.app.Dialog
 import android.view.LayoutInflater
+import com.mmfsin.whoami.R
 import com.mmfsin.whoami.base.BaseDialog
 import com.mmfsin.whoami.databinding.DialogNewQuestionBinding
 import com.mmfsin.whoami.domain.models.Question
@@ -9,7 +10,7 @@ import com.mmfsin.whoami.utils.animateDialog
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class NewQuestionDialog(private val question: Question) :
+class NewQuestionDialog(private val question: Question? = null) :
     BaseDialog<DialogNewQuestionBinding>() {
 
     override fun inflateView(inflater: LayoutInflater) = DialogNewQuestionBinding.inflate(inflater)
@@ -24,7 +25,8 @@ class NewQuestionDialog(private val question: Question) :
     override fun setUI() {
         isCancelable = true
         binding.apply {
-            tvQuestion.text = question.question
+            val text = question?.question ?: getString(R.string.new_question_empty)
+            tvQuestion.text = text
         }
     }
 
@@ -35,7 +37,7 @@ class NewQuestionDialog(private val question: Question) :
     }
 
     companion object {
-        fun newInstance(question: Question): NewQuestionDialog {
+        fun newInstance(question: Question? = null): NewQuestionDialog {
             return NewQuestionDialog(question)
         }
     }

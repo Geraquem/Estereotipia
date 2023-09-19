@@ -21,7 +21,14 @@ class CardsRepository @Inject constructor(
         private var flowValue = MutableStateFlow(Pair(false, ""))
     }
 
-    override fun getCards(deckId: String): List<Card>? {
+    override fun getAllCards(): List<Card>? {
+        val cards = realmDatabase.getObjectsFromRealm {
+            where<CardDTO>().findAll()
+        }
+        return if (cards.isEmpty()) null else setNonDiscardedCards(cards).toCardList()
+    }
+
+    override fun getCardsByDeckId(deckId: String): List<Card>? {
         val cards = realmDatabase.getObjectsFromRealm {
             where<CardDTO>().equalTo(DECK_ID, deckId).findAll()
         }

@@ -3,30 +3,25 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main_nav_graph"
-    app:startDestination="@id/loadingFragment">
+    app:startDestination="@id/menuFragment">
 
     <fragment
-        android:id="@+id/loadingFragment"
-        android:name="com.mmfsin.whoami.presentation.init.LoadingFragment"
-        android:label="loadingFragment"
-        tools:layout="@layout/fragment_loading">
+        android:id="@+id/menuFragment"
+        android:name="com.mmfsin.whoami.presentation.menu.MenuFragment"
+        android:label="menuFragment"
+        tools:layout="@layout/fragment_menu">
         <action
-            android:id="@+id/action_loading_to_decks"
-            app:destination="@id/decksFragment" />
-    </fragment>
-
-    <fragment
-        android:id="@+id/decksFragment"
-        android:name="com.mmfsin.whoami.presentation.decks.DecksFragment"
-        android:label="decksFragment"
-        tools:layout="@layout/fragment_decks">
-        <action
-            android:id="@+id/action_deck_to_dashboard"
+            android:id="@+id/action_menu_to_dashboard"
             app:destination="@id/dashboardFragment">
             <argument
                 android:name="deckId"
                 app:argType="string" />
         </action>
+        <action
+            android:id="@+id/action_menu_to_allCards"
+            app:destination="@id/allCardsFragment"
+            app:enterAnim="@anim/slide_from_left"
+            app:exitAnim="@anim/slide_to_right" />
     </fragment>
 
     <fragment
@@ -34,5 +29,11 @@
         android:name="com.mmfsin.whoami.presentation.dashboard.viepager.ViewPagerFragment"
         android:label="dashboardFragment"
         tools:layout="@layout/fragment_view_pager" />
+
+    <fragment
+        android:id="@+id/allCardsFragment"
+        android:name="com.mmfsin.whoami.presentation.allcards.AllCardsFragment"
+        android:label="allCardsFragment"
+        tools:layout="@layout/fragment_all_cards" />
 
 </navigation>

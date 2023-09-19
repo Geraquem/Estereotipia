@@ -8,7 +8,7 @@ class GetRandomSelectedCardUseCase @Inject constructor(val repository: ICardsRep
     BaseUseCase<GetRandomSelectedCardUseCase.Params, String?>() {
 
     override suspend fun execute(params: Params): String? {
-        val cards = repository.getCards(params.deckId)
+        val cards = repository.getCardsByDeckId(params.deckId)
         return try {
             cards?.let {
                 val date = System.currentTimeMillis().toString()

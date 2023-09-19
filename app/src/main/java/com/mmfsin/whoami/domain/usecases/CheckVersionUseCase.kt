@@ -16,14 +16,15 @@ class CheckVersionUseCase @Inject constructor(
 ) : BaseUseCaseNoParams<Boolean>() {
 
     override suspend fun execute(): Boolean {
-        val result = repository.checkVersion()
-        val sharedPrefs = context.getSharedPreferences(CALL_FIREBASE, MODE_PRIVATE)
-        sharedPrefs.edit().apply {
-            val update = !result
-            putBoolean(CALL_DECKS, update)
-            putBoolean(CALL_QUESTIONS, update)
-            apply()
-        }
-        return result
+//        val result = repository.checkVersion()
+//        val sharedPrefs = context.getSharedPreferences(CALL_FIREBASE, MODE_PRIVATE)
+//        sharedPrefs.edit().apply {
+//            val update = !result
+//            putBoolean(CALL_DECKS, update)
+//            putBoolean(CALL_QUESTIONS, update)
+//            apply()
+//        }
+//        return result
+        return false
     }
 }

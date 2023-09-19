@@ -21,7 +21,7 @@
 
     <TextView
         android:id="@+id/tv_title"
-        style="@style/BigTextView_Bold"
+        style="@style/BigTextView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:paddingHorizontal="16dp"

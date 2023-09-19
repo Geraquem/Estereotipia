@@ -3,8 +3,7 @@ package com.mmfsin.whoami.presentation.dashboard.cards
 import androidx.lifecycle.viewModelScope
 import com.mmfsin.whoami.base.BaseViewModel
 import com.mmfsin.whoami.domain.usecases.DiscardCardUseCase
-import com.mmfsin.whoami.domain.usecases.GetCardsUseCase
-import com.mmfsin.whoami.domain.usecases.GetDeckByIdUseCase
+import com.mmfsin.whoami.domain.usecases.GetCardsByDeckIdUseCase
 import com.mmfsin.whoami.domain.usecases.ObserveFlowUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Job
@@ -13,7 +12,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class CardsViewModel @Inject constructor(
-    private val getCardsUseCase: GetCardsUseCase,
+    private val getCardsByDeckIdUseCase: GetCardsByDeckIdUseCase,
     private val discardCardUseCase: DiscardCardUseCase,
     private val observeFlowUseCase: ObserveFlowUseCase
 ) : BaseViewModel<CardsEvent>() {
@@ -34,7 +33,7 @@ class CardsViewModel @Inject constructor(
 
     fun getCards(deckId: String) {
         executeUseCase(
-            { getCardsUseCase.execute(GetCardsUseCase.Params(deckId)) },
+            { getCardsByDeckIdUseCase.execute(GetCardsByDeckIdUseCase.Params(deckId)) },
             { result ->
                 _event.value = result?.let { CardsEvent.GetCards(it) }
                     ?: run { CardsEvent.SomethingWentWrong }

@@ -17,6 +17,12 @@
     <string name="vp_tab_cards">Cartas</string>
     <string name="vp_tab_questions">Preguntas</string>
 
+    <!-- MENU -->
+    <string name="menu_instructions">Instrucciones</string>
+    <string name="menu_play">Jugar</string>
+    <string name="menu_my_decks">Mis barajas</string>
+    <string name="menu_all_cards">Todas las cartas</string>
+
     <!-- DISCARD DIALOG -->
     <string name="card_people_info_discard">Descartar</string>
     <string name="card_people_info_final_answer">Respuesta final</string>
@@ -38,15 +44,15 @@
 
     <string name="questions_what_now">¿Qué tengo que hacer?</string>
     <string name="questions_what_now_description">Honesta y sincera explicación de lo que hay que haceeeerrrrrrrrrrrrr</string>
-<!--    UNA AYUDITA -->
-<!--    Tienes que adivinar la carta de tu rival antes de que tu rival adivine la tuya primero.-->
-<!--    Para saber cuál es la carta de tu rival tienes que hacerle preguntas.-->
-<!--    ¿De dónde saco las preguntas?-->
-<!--    Del botón "Hacer nueva pregunta".-->
-<!--    Alternádote con tu rival tendréis que ir preguntandoos e ir descartando personajes hasta adivinar qué personaje le ha tocado a la otra persona.-->
-<!--    Podrás hacer hasta 10 preguntas por partida.-->
-<!--    Para marcar tu decision final sobre qué personaje es el de tu rival, selecciona la carta correspondiente y pulsa el botón (icono).-->
-<!--    ¿Más ayuda? Abre (icono) para ver más información de cómo jugar.-->
+    <!--    UNA AYUDITA -->
+    <!--    Tienes que adivinar la carta de tu rival antes de que tu rival adivine la tuya primero.-->
+    <!--    Para saber cuál es la carta de tu rival tienes que hacerle preguntas.-->
+    <!--    ¿De dónde saco las preguntas?-->
+    <!--    Del botón "Hacer nueva pregunta".-->
+    <!--    Alternádote con tu rival tendréis que ir preguntandoos e ir descartando personajes hasta adivinar qué personaje le ha tocado a la otra persona.-->
+    <!--    Podrás hacer hasta 10 preguntas por partida.-->
+    <!--    Para marcar tu decision final sobre qué personaje es el de tu rival, selecciona la carta correspondiente y pulsa el botón (icono).-->
+    <!--    ¿Más ayuda? Abre (icono) para ver más información de cómo jugar.-->
 
     <!-- NEW QUESTION DIALOG -->
     <string name="new_question_empty">Se acabaron las preguntas</string>

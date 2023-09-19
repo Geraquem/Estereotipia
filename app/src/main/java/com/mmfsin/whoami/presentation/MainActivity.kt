@@ -6,7 +6,7 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.FragmentManager.POP_BACK_STACK_INCLUSIVE
 import com.mmfsin.whoami.R
 import com.mmfsin.whoami.databinding.ActivityMainBinding
-import com.mmfsin.whoami.presentation.dialogs.ExitDialog
+import com.mmfsin.whoami.presentation.exit.ExitDialog
 import com.mmfsin.whoami.presentation.instructions.InstructionsFragment
 import com.mmfsin.whoami.utils.INSTRUCTIONS
 import com.mmfsin.whoami.utils.INSTRUCTIONS_DETAIL
@@ -49,15 +49,10 @@ class MainActivity : AppCompatActivity() {
     override fun onBackPressed() {
         val count = supportFragmentManager.backStackEntryCount
         if (count == 0) {
-            try {
-                if (inDashboard) {
-                    val dialog = ExitDialog() { super.onBackPressed() }
-                    dialog.show(supportFragmentManager, "")
-                } else super.onBackPressed()
-            } catch (e: Exception) {
-                val a = 2
-            }
-
+            if (inDashboard) {
+                val dialog = ExitDialog() { super.onBackPressed() }
+                dialog.show(supportFragmentManager, "")
+            } else super.onBackPressed()
         } else {
             when (supportFragmentManager.getBackStackEntryAt(count - 1).name) {
                 INSTRUCTIONS_DETAIL -> removeFragment(INSTRUCTIONS_DETAIL)

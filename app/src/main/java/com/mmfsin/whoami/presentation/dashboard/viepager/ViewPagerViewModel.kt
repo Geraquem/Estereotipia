@@ -1,7 +1,7 @@
 package com.mmfsin.whoami.presentation.dashboard.viepager
 
 import com.mmfsin.whoami.base.BaseViewModel
-import com.mmfsin.whoami.domain.usecases.GetCardsUseCase
+import com.mmfsin.whoami.domain.usecases.GetCardsByDeckIdUseCase
 import com.mmfsin.whoami.domain.usecases.GetDeckByIdUseCase
 import com.mmfsin.whoami.domain.usecases.GetRandomSelectedCardUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -10,7 +10,7 @@ import javax.inject.Inject
 @HiltViewModel
 class ViewPagerViewModel @Inject constructor(
     private val getDeckByIdUseCase: GetDeckByIdUseCase,
-    private val getCardsUseCase: GetCardsUseCase,
+    private val getCardsByDeckIdUseCase: GetCardsByDeckIdUseCase,
     private val getRandomSelectedCardUseCase: GetRandomSelectedCardUseCase,
 ) : BaseViewModel<ViewPagerEvent>() {
 

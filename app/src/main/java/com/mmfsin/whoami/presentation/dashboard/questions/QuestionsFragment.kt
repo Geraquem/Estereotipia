@@ -10,10 +10,10 @@ import com.mmfsin.whoami.base.BaseFragment
 import com.mmfsin.whoami.databinding.FragmentQuestionsBinding
 import com.mmfsin.whoami.domain.models.Question
 import com.mmfsin.whoami.presentation.dashboard.viepager.interfaces.IViewPagerListener
-import com.mmfsin.whoami.presentation.dialogs.questions.NewQuestionDialog
-import com.mmfsin.whoami.presentation.dialogs.questions.QuestionsListDialog
-import com.mmfsin.whoami.presentation.dialogs.questions.interfaces.INewQuestionListener
-import com.mmfsin.whoami.presentation.dialogs.selected.SelectedCardDialog
+import com.mmfsin.whoami.presentation.dashboard.questions.dialogs.NewQuestionDialog
+import com.mmfsin.whoami.presentation.dashboard.questions.dialogs.QuestionsListDialog
+import com.mmfsin.whoami.presentation.dashboard.questions.dialogs.interfaces.INewQuestionListener
+import com.mmfsin.whoami.presentation.dashboard.cards.dialogs.selected.SelectedCardDialog
 import com.mmfsin.whoami.utils.setExpandableView
 import com.mmfsin.whoami.utils.showErrorDialog
 import com.mmfsin.whoami.utils.showFragmentDialog

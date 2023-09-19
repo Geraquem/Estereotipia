@@ -38,24 +38,26 @@
 
     <string name="questions_what_now">¿Qué tengo que hacer?</string>
     <string name="questions_what_now_description">Honesta y sincera explicación de lo que hay que haceeeerrrrrrrrrrrrr</string>
+<!--    UNA AYUDITA -->
+<!--    Tienes que adivinar la carta de tu rival antes de que tu rival adivine la tuya primero.-->
+<!--    Para saber cuál es la carta de tu rival tienes que hacerle preguntas.-->
+<!--    ¿De dónde saco las preguntas?-->
+<!--    Del botón "Hacer nueva pregunta".-->
+<!--    Alternádote con tu rival tendréis que ir preguntandoos e ir descartando personajes hasta adivinar qué personaje le ha tocado a la otra persona.-->
+<!--    Podrás hacer hasta 10 preguntas por partida.-->
+<!--    Para marcar tu decision final sobre qué personaje es el de tu rival, selecciona la carta correspondiente y pulsa el botón (icono).-->
+<!--    ¿Más ayuda? Abre (icono) para ver más información de cómo jugar.-->
 
     <!-- NEW QUESTION DIALOG -->
     <string name="new_question_empty">Se acabaron las preguntas</string>
+    <string name="new_question_cards">Ver cartas</string>
+    <string name="new_question_all_questions">Todas las preguntas</string>
 
     <!-- QUESTIONS LIST DIALOG -->
     <string name="questions_list_empty">Todavía no se ha hecho ninguna pregunta.</string>
 
     <!-- INSTRUCTIONS -->
     <string name="instructions_close">Cerrar</string>
-    <string name="instructions_1">1.</string>
-    <string name="instructions_2">2.</string>
-    <string name="instructions_3">3.</string>
-    <string name="instructions_4">4.</string>
-    <string name="instructions_5">5.</string>
-    <string name="instructions_6">6.</string>
-    <string name="instructions_7">7.</string>
-    <string name="instructions_8">8.</string>
-    <string name="instructions_9">9.</string>
 
     <string name="instructions_whats_about">¿De qué trata el juego?</string>
     <string name="instructions_whats_about_detail">El juego es muy fácil, consiste en <b>adivinar</b> qué personaje le ha tocado a tu rival antes de que tu rival adivine qué personaje te ha tocado a ti.</string>

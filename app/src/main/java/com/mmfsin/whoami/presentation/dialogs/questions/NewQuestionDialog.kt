@@ -6,12 +6,15 @@ import com.mmfsin.whoami.R
 import com.mmfsin.whoami.base.BaseDialog
 import com.mmfsin.whoami.databinding.DialogNewQuestionBinding
 import com.mmfsin.whoami.domain.models.Question
+import com.mmfsin.whoami.presentation.dialogs.questions.interfaces.INewQuestionListener
 import com.mmfsin.whoami.utils.animateDialog
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class NewQuestionDialog(private val question: Question? = null) :
-    BaseDialog<DialogNewQuestionBinding>() {
+class NewQuestionDialog(
+    private val listener: INewQuestionListener,
+    private val question: Question? = null
+) : BaseDialog<DialogNewQuestionBinding>() {
 
     override fun inflateView(inflater: LayoutInflater) = DialogNewQuestionBinding.inflate(inflater)
 
@@ -33,12 +36,23 @@ class NewQuestionDialog(private val question: Question? = null) :
 
     override fun setListeners() {
         binding.apply {
+            tvAllQuestions.setOnClickListener {
+                listener.goToAllQuestions()
+                dismiss()
+            }
+            tvCards.setOnClickListener {
+                listener.viewCards()
+                dismiss()
+            }
         }
     }
 
     companion object {
-        fun newInstance(question: Question? = null): NewQuestionDialog {
-            return NewQuestionDialog(question)
+        fun newInstance(
+            listener: INewQuestionListener,
+            question: Question? = null
+        ): NewQuestionDialog {
+            return NewQuestionDialog(listener, question)
         }
     }
 }

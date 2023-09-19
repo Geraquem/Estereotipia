@@ -9,8 +9,10 @@ import androidx.fragment.app.viewModels
 import com.mmfsin.whoami.base.BaseFragment
 import com.mmfsin.whoami.databinding.FragmentQuestionsBinding
 import com.mmfsin.whoami.domain.models.Question
+import com.mmfsin.whoami.presentation.dashboard.viepager.interfaces.IViewPagerListener
 import com.mmfsin.whoami.presentation.dialogs.questions.NewQuestionDialog
 import com.mmfsin.whoami.presentation.dialogs.questions.QuestionsListDialog
+import com.mmfsin.whoami.presentation.dialogs.questions.interfaces.INewQuestionListener
 import com.mmfsin.whoami.presentation.dialogs.selected.SelectedCardDialog
 import com.mmfsin.whoami.utils.setExpandableView
 import com.mmfsin.whoami.utils.showErrorDialog
@@ -18,8 +20,10 @@ import com.mmfsin.whoami.utils.showFragmentDialog
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class QuestionsFragment(private val selectedCardId: String) :
-    BaseFragment<FragmentQuestionsBinding, QuestionsViewModel>() {
+class QuestionsFragment(
+    private val selectedCardId: String,
+    private val listener: IViewPagerListener
+) : BaseFragment<FragmentQuestionsBinding, QuestionsViewModel>(), INewQuestionListener {
 
     override val viewModel: QuestionsViewModel by viewModels()
 
@@ -51,15 +55,15 @@ class QuestionsFragment(private val selectedCardId: String) :
                     if (cont < list.size) {
                         val question = list[cont]
                         questionsDone.add(question)
-                        activity?.showFragmentDialog(NewQuestionDialog.newInstance(question))
+                        activity?.showFragmentDialog(
+                            NewQuestionDialog.newInstance(this@QuestionsFragment, question)
+                        )
                         cont++
-                    } else activity?.showFragmentDialog(NewQuestionDialog.newInstance())
+                    } else activity?.showFragmentDialog(NewQuestionDialog.newInstance(this@QuestionsFragment))
                 }
             }
 
-            tvAllQuestions.setOnClickListener {
-                activity?.showFragmentDialog(QuestionsListDialog(questionsDone.toList()))
-            }
+            tvAllQuestions.setOnClickListener { showAllQuestions() }
 
             tvMyCard.setOnClickListener {
                 activity?.showFragmentDialog(SelectedCardDialog.newInstance(selectedCardId))
@@ -79,6 +83,17 @@ class QuestionsFragment(private val selectedCardId: String) :
                 is QuestionsEvent.SomethingWentWrong -> error()
             }
         }
+    }
+
+    private fun showAllQuestions() =
+        activity?.showFragmentDialog(QuestionsListDialog(questionsDone.toList()))
+
+    override fun goToAllQuestions() {
+        showAllQuestions()
+    }
+
+    override fun viewCards() {
+        listener.openCardsView()
     }
 
     private fun error() = activity?.showErrorDialog()

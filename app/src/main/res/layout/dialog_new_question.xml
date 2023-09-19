@@ -4,22 +4,79 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/bg_card"
     android:clipChildren="false"
     android:clipToPadding="false">
 
-    <TextView
-        android:id="@+id/tv_question"
-        style="@style/MediumTextView"
-        android:layout_width="0dp"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cl_question"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center"
-        android:padding="80dp"
-        android:textAllCaps="true"
-        android:textSize="32sp"
+        android:background="@drawable/bg_card"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:text="Fulanito" />
+        tools:backgroundTint="@color/soft_red">
+
+        <TextView
+            android:id="@+id/tv_question"
+            style="@style/MediumTextView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="80dp"
+            android:textAllCaps="true"
+            android:textSize="32sp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Question text" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_buttons"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:orientation="horizontal"
+        android:weightSum="1"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/cl_question">
+
+        <TextView
+            android:id="@+id/tv_all_questions"
+            style="@style/MediumTextView"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.47"
+            android:background="@drawable/bg_card"
+            android:gravity="center"
+            android:paddingHorizontal="12dp"
+            android:paddingVertical="24dp"
+            android:text="@string/new_question_all_questions"
+            android:textAllCaps="true"
+            tools:backgroundTint="@color/soft_red" />
+
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.06" />
+
+        <TextView
+            android:id="@+id/tv_cards"
+            style="@style/MediumTextView"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.47"
+            android:background="@drawable/bg_card"
+            android:gravity="center"
+            android:paddingHorizontal="12dp"
+            android:paddingVertical="24dp"
+            android:text="@string/new_question_cards"
+            android:textAllCaps="true"
+            tools:backgroundTint="@color/soft_red" />
+
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

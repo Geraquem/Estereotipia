@@ -11,12 +11,15 @@ import com.mmfsin.whoami.base.BaseFragment
 import com.mmfsin.whoami.databinding.FragmentViewPagerBinding
 import com.mmfsin.whoami.presentation.MainActivity
 import com.mmfsin.whoami.presentation.dashboard.viepager.adapter.ViewPagerAdapter
+import com.mmfsin.whoami.presentation.dashboard.viepager.interfaces.IViewPagerListener
 import com.mmfsin.whoami.utils.DECK_ID
 import com.mmfsin.whoami.utils.showErrorDialog
 import dagger.hilt.android.AndroidEntryPoint
 
+
 @AndroidEntryPoint
-class ViewPagerFragment : BaseFragment<FragmentViewPagerBinding, ViewPagerViewModel>() {
+class ViewPagerFragment : BaseFragment<FragmentViewPagerBinding, ViewPagerViewModel>(),
+    IViewPagerListener {
 
     override val viewModel: ViewPagerViewModel by viewModels()
 
@@ -64,7 +67,8 @@ class ViewPagerFragment : BaseFragment<FragmentViewPagerBinding, ViewPagerViewMo
         deckId?.let { deckId ->
             binding.apply {
                 activity?.let {
-                    viewPager.adapter = ViewPagerAdapter(it, deckId, selectedCardId)
+                    viewPager.adapter =
+                        ViewPagerAdapter(it, deckId, selectedCardId, this@ViewPagerFragment)
                     TabLayoutMediator(tabLayout, viewPager) { tab, position ->
                         when (position) {
                             0 -> tab.text = getString(R.string.vp_tab_cards)
@@ -75,6 +79,11 @@ class ViewPagerFragment : BaseFragment<FragmentViewPagerBinding, ViewPagerViewMo
                 loading.root.visibility = View.GONE
             }
         } ?: run { error() }
+    }
+
+    override fun openCardsView() {
+        val tab = binding.tabLayout.getTabAt(0)
+        tab?.select()
     }
 
     private fun error() {

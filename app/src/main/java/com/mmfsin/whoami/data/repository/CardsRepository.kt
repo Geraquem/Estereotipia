@@ -38,12 +38,12 @@ class CardsRepository @Inject constructor(
     }
 
     private fun getCardsByListId(ids: List<String>): List<Card> {
-        val cards = mutableListOf<Card>()
+        val cards = mutableListOf<CardDTO>()
         for (id in ids) {
-            val card = getCardById(id)
+            val card = getCardDTO(id)
             card?.let { cards.add(it) }
         }
-        return cards
+        return setNonDiscardedCards(cards).toCardList()
     }
 
     private fun setNonDiscardedCards(cards: List<CardDTO>): List<CardDTO> {

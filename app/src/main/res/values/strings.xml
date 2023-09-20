@@ -10,6 +10,7 @@
 
     <!-- EXIT -->
     <string name="exit_title">¿Seguro que quieres salir?</string>
+    <string name="exit_description">Perderás todo el progreso del juego</string>
     <string name="exit_yes">SALIR</string>
     <string name="exit_no">QUEDARME</string>
 
@@ -20,8 +21,8 @@
     <!-- MENU -->
     <string name="menu_instructions">Instrucciones</string>
     <string name="menu_play">Jugar</string>
-    <string name="menu_my_decks">Mis barajas</string>
-    <string name="menu_all_cards">Todas las cartas</string>
+    <string name="menu_my_decks">Barajas</string>
+    <string name="menu_all_cards">Las cartas</string>
 
     <!-- DISCARD DIALOG -->
     <string name="card_people_info_discard">Descartar</string>

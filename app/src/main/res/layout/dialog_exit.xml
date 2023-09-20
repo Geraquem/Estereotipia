@@ -15,15 +15,24 @@
         android:layout_height="84dp"
         android:layout_marginBottom="16dp"
         android:contentDescription="@string/content_description"
-        android:src="@drawable/ic_error" />
+        android:src="@color/black" />
 
     <TextView
         android:id="@+id/tv_title"
         style="@style/MediumTextView_Bold"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
+        android:layout_marginBottom="6dp"
         android:text="@string/exit_title"
+        android:textAllCaps="true" />
+
+    <TextView
+        android:id="@+id/tv_description"
+        style="@style/SmallTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="32dp"
+        android:text="@string/exit_description"
         android:textAllCaps="true" />
 
     <androidx.constraintlayout.widget.ConstraintLayout

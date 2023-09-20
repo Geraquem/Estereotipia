@@ -21,7 +21,7 @@ class DecksDialog(val navigate: (deckId: String) -> Unit) : BaseDialog<DialogDec
 
     override fun inflateView(inflater: LayoutInflater) = DialogDecksBinding.inflate(inflater)
 
-    override fun setCustomViewDialog(dialog: Dialog) = bottomViewDialog(dialog)
+    override fun setCustomViewDialog(dialog: Dialog) = bottomCustomViewDialog(dialog, 0.9)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,7 +34,11 @@ class DecksDialog(val navigate: (deckId: String) -> Unit) : BaseDialog<DialogDec
         binding.apply { }
     }
 
-    override fun setListeners() {}
+    override fun setListeners() {
+        binding.apply {
+            ivClose.setOnClickListener { dismiss() }
+        }
+    }
 
     private fun observe() {
         viewModel.event.observe(this) { event ->

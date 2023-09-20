@@ -16,7 +16,7 @@ class QuestionsListDialog(private val questions: List<Question>) :
 
     override fun inflateView(inflater: LayoutInflater) = DialogQuestionListBinding.inflate(inflater)
 
-    override fun setCustomViewDialog(dialog: Dialog) = bottomViewDialog(dialog)
+    override fun setCustomViewDialog(dialog: Dialog) = bottomCustomViewDialog(dialog, 0.75)
 
     override fun setUI() {
         isCancelable = true
@@ -38,6 +38,7 @@ class QuestionsListDialog(private val questions: List<Question>) :
 
     override fun setListeners() {
         binding.apply {
+            ivClose.setOnClickListener { dismiss() }
         }
     }
 }

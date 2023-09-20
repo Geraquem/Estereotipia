@@ -4,6 +4,7 @@ import android.app.Dialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
+import androidx.core.content.ContextCompat.getColor
 import androidx.fragment.app.viewModels
 import com.bumptech.glide.Glide
 import com.mmfsin.whoami.R
@@ -24,8 +25,7 @@ class DiscardDialog(private val cardId: String) : BaseDialog<DialogCardDiscardBi
 
     private var card: Card? = null
 
-    override fun inflateView(inflater: LayoutInflater) =
-        DialogCardDiscardBinding.inflate(inflater)
+    override fun inflateView(inflater: LayoutInflater) = DialogCardDiscardBinding.inflate(inflater)
 
     override fun setCustomViewDialog(dialog: Dialog) = centerCustomViewDialog(dialog)
 
@@ -46,20 +46,7 @@ class DiscardDialog(private val cardId: String) : BaseDialog<DialogCardDiscardBi
             card?.let {
                 Glide.with(requireContext()).load(it.image).into(ivImage)
                 tvName.text = it.name
-
-                val discardText: String
-                val discardSrc: Int
-                if (it.discarded) {
-                    discardText = getString(R.string.card_people_info_dis_discard)
-                    discardSrc = R.drawable.ic_redo
-                    setState(DISCARDED)
-                } else {
-                    discardText = getString(R.string.card_people_info_discard)
-                    discardSrc = R.drawable.ic_discard_cross
-                    setState(NONE)
-                }
-                buttons.tvDiscard.text = discardText
-                buttons.ivDiscard.setImageResource(discardSrc)
+                if (it.discarded) setDiscardedCard() else setNotDiscardedCard()
             }
         }
     }
@@ -88,12 +75,27 @@ class DiscardDialog(private val cardId: String) : BaseDialog<DialogCardDiscardBi
         }
     }
 
+    private fun setDiscardedCard() {
+        setState(DISCARDED)
+        binding.apply {
+            buttons.apply {
+                ivDiscard.setImageResource(R.drawable.ic_redo)
+                var color: Int? = null
+                activity?.let { a -> color = getColor(a.applicationContext, R.color.black) }
+                color?.let { c -> buttons.ivDiscard.setColorFilter(c) }
+            }
+        }
+    }
+
     private fun setNotDiscardedCard() {
         setState(NONE)
         binding.apply {
             buttons.apply {
-                tvDiscard.text = getString(R.string.card_people_info_discard)
                 ivDiscard.setImageResource(R.drawable.ic_discard_cross)
+
+                var color: Int? = null
+                activity?.let { a -> color = getColor(a.applicationContext, R.color.red) }
+                color?.let { c -> buttons.ivDiscard.setColorFilter(c) }
             }
         }
     }

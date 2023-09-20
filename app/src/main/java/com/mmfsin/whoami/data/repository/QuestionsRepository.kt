@@ -8,8 +8,6 @@ import com.mmfsin.whoami.data.models.QuestionDTO
 import com.mmfsin.whoami.domain.interfaces.IQuestionsRepository
 import com.mmfsin.whoami.domain.interfaces.IRealmDatabase
 import com.mmfsin.whoami.domain.models.Question
-import com.mmfsin.whoami.utils.CALL_FIREBASE
-import com.mmfsin.whoami.utils.CALL_QUESTIONS
 import com.mmfsin.whoami.utils.QUESTIONS
 import dagger.hilt.android.qualifiers.ApplicationContext
 import io.realm.kotlin.where
@@ -23,45 +21,8 @@ class QuestionsRepository @Inject constructor(
     private val realmDatabase: IRealmDatabase
 ) : IQuestionsRepository {
 
-    private val reference = Firebase.database.reference.child(QUESTIONS)
-
-    override suspend fun getQuestions(): List<Question> {
-        val updateDecks = context.getSharedPreferences(CALL_FIREBASE, Context.MODE_PRIVATE)
-        if (updateDecks.getBoolean(CALL_QUESTIONS, false)) {
-            updateDecks.edit().apply {
-                putBoolean(CALL_QUESTIONS, false)
-                apply()
-            }
-            return getQuestionsFromFirebase().toQuestionList()
-        }
-
+    override suspend fun getQuestions(): List<Question>? {
         val questions = realmDatabase.getObjectsFromRealm { where<QuestionDTO>().findAll() }
-        return if (questions.isEmpty()) getQuestionsFromFirebase().toQuestionList() else questions.toQuestionList()
+        return if (questions.isEmpty()) null else questions.toQuestionList()
     }
-
-    private suspend fun getQuestionsFromFirebase(): List<QuestionDTO> {
-        val latch = CountDownLatch(1)
-        val questions = mutableListOf<QuestionDTO>()
-        reference.get().addOnSuccessListener {
-            for (child in it.children) {
-                val question = QuestionDTO(
-                    id = child.key.toString(),
-                    question = child.value.toString()
-                )
-                questions.add(question)
-                saveQuestionInRealm(question)
-            }
-            latch.countDown()
-
-        }.addOnFailureListener {
-            latch.countDown()
-        }
-
-        withContext(Dispatchers.IO) {
-            latch.await()
-        }
-        return questions
-    }
-
-    private fun saveQuestionInRealm(card: QuestionDTO) = realmDatabase.addObject { card }
 }

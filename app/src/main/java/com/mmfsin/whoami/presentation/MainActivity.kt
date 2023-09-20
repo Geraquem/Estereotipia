@@ -17,6 +17,7 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
 
+    var checkVersion = true
     var inDashboard = false
 
     override fun onCreate(savedInstanceState: Bundle?) {

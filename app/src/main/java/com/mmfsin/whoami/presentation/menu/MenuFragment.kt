@@ -30,14 +30,16 @@ class MenuFragment : BaseFragment<FragmentMenuBinding, MenuViewModel>() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel.checkVersion()
-
-//        viewModel.getDecks()
+        val checkVersion = (activity as MainActivity).checkVersion
+        if (checkVersion) {
+            (activity as MainActivity).checkVersion = false
+            viewModel.checkVersion()
+        }
+        else binding.loading.root.visibility = View.GONE
     }
 
     override fun setUI() {
         binding.apply {
-            loading.root.visibility = View.VISIBLE
             setToolbar()
         }
     }

@@ -9,11 +9,11 @@ import com.mmfsin.whoami.domain.models.Question
 
 fun List<DeckDTO>.toDeckList() = this.map { it.toDeck() }
 
-fun DeckDTO.toDeck() = Deck(id, image, name)
+fun DeckDTO.toDeck() = Deck(id, image, name, cards)
 
 fun List<CardDTO>.toCardList() = this.map { it.toCard() }
 
-fun CardDTO.toCard() = Card(id, deckId, image, name, discard)
+fun CardDTO.toCard() = Card(id, image, name, discard)
 
 fun List<QuestionDTO>.toQuestionList() = this.map { it.toQuestion() }
 

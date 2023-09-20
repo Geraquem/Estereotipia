@@ -3,10 +3,10 @@ package com.mmfsin.whoami.data.repository
 import com.mmfsin.whoami.data.mappers.toCard
 import com.mmfsin.whoami.data.mappers.toCardList
 import com.mmfsin.whoami.data.models.CardDTO
+import com.mmfsin.whoami.data.models.DeckDTO
 import com.mmfsin.whoami.domain.interfaces.ICardsRepository
 import com.mmfsin.whoami.domain.interfaces.IRealmDatabase
 import com.mmfsin.whoami.domain.models.Card
-import com.mmfsin.whoami.utils.DECK_ID
 import io.realm.kotlin.where
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -29,10 +29,21 @@ class CardsRepository @Inject constructor(
     }
 
     override fun getCardsByDeckId(deckId: String): List<Card>? {
-        val cards = realmDatabase.getObjectsFromRealm {
-            where<CardDTO>().equalTo(DECK_ID, deckId).findAll()
+        val deck = realmDatabase.getObjectsFromRealm {
+            where<DeckDTO>().equalTo("id", deckId).findAll()
         }
-        return if (cards.isEmpty()) null else setNonDiscardedCards(cards).toCardList()
+        val deckCards =
+            if (deck.isEmpty()) null else deck.first().cards.filter { !it.isWhitespace() }
+        return deckCards?.let { cards -> getCardsByListId(cards.split(",")) } ?: run { null }
+    }
+
+    private fun getCardsByListId(ids: List<String>): List<Card> {
+        val cards = mutableListOf<Card>()
+        for (id in ids) {
+            val card = getCardById(id)
+            card?.let { cards.add(it) }
+        }
+        return cards
     }
 
     private fun setNonDiscardedCards(cards: List<CardDTO>): List<CardDTO> {

@@ -8,8 +8,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class MenuViewModel @Inject constructor(
-    private val checkVersionUseCase: CheckVersionUseCase,
-    private val getDecksUseCase: GetDecksUseCase
+    private val checkVersionUseCase: CheckVersionUseCase
 ) : BaseViewModel<MenuEvent>() {
 
     fun checkVersion() {
@@ -19,15 +18,4 @@ class MenuViewModel @Inject constructor(
             { _event.value = MenuEvent.SomethingWentWrong }
         )
     }
-
-//    fun getDecks() {
-//        executeUseCase(
-//            { getDecksUseCase.execute() },
-//            { result ->
-//                _event.value = if (result.isEmpty()) MenuEvent.SomethingWentWrong
-//                else MenuEvent.Ge(result)
-//            },
-//            { _event.value = MenuEvent.SomethingWentWrong }
-//        )
-//    }
 }

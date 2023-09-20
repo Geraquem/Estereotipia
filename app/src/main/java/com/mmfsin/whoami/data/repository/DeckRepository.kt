@@ -8,6 +8,7 @@ import com.mmfsin.whoami.data.mappers.toDeck
 import com.mmfsin.whoami.data.mappers.toDeckList
 import com.mmfsin.whoami.data.models.CardDTO
 import com.mmfsin.whoami.data.models.DeckDTO
+import com.mmfsin.whoami.data.models.QuestionDTO
 import com.mmfsin.whoami.domain.interfaces.IDeckRepository
 import com.mmfsin.whoami.domain.interfaces.IRealmDatabase
 import com.mmfsin.whoami.domain.models.Deck
@@ -24,54 +25,11 @@ class DeckRepository @Inject constructor(
     private val realmDatabase: IRealmDatabase
 ) : IDeckRepository {
 
-    private val reference = Firebase.database.reference.child(DECKS)
-
-    override suspend fun getDecks(): List<Deck> {
-        val updateDecks = context.getSharedPreferences(CALL_FIREBASE, MODE_PRIVATE)
-        if (updateDecks.getBoolean(CALL_DECKS, false)) {
-            updateDecks.edit().apply {
-                putBoolean(CALL_DECKS, false)
-                apply()
-            }
-            return getDecksFromFirebase().toDeckList()
-        }
-
+    override suspend fun getDecks(): List<Deck>? {
         val decks = realmDatabase.getObjectsFromRealm { where<DeckDTO>().findAll() }
-        return if (decks.isEmpty()) getDecksFromFirebase().sortedBy { it.order }.toDeckList()
+        return if (decks.isEmpty()) null
         else decks.sortedBy { it.order }.toDeckList()
     }
-
-    private suspend fun getDecksFromFirebase(): List<DeckDTO> {
-        val latch = CountDownLatch(1)
-        val decks = mutableListOf<DeckDTO>()
-        reference.get().addOnSuccessListener {
-            for (child in it.children) {
-                child.getValue(DeckDTO::class.java)?.let { deck ->
-                    decks.add(deck)
-                    for (card in child.child(DECK_CARDS).children) {
-                        card.getValue(CardDTO::class.java)?.let { c ->
-                            c.deckId = deck.id
-                            saveCardInRealm(c)
-                        }
-                    }
-                    saveDeckInRealm(deck)
-                }
-            }
-            latch.countDown()
-
-        }.addOnFailureListener {
-            latch.countDown()
-        }
-
-        withContext(Dispatchers.IO) {
-            latch.await()
-        }
-        return decks
-    }
-
-    private fun saveDeckInRealm(deck: DeckDTO) = realmDatabase.addObject { deck }
-
-    private fun saveCardInRealm(card: CardDTO) = realmDatabase.addObject { card }
 
     override suspend fun getDeckById(id: String): Deck? {
         val decks = realmDatabase.getObjectsFromRealm {

@@ -9,11 +9,11 @@ import androidx.fragment.app.viewModels
 import com.mmfsin.whoami.base.BaseFragment
 import com.mmfsin.whoami.databinding.FragmentQuestionsBinding
 import com.mmfsin.whoami.domain.models.Question
-import com.mmfsin.whoami.presentation.dashboard.viepager.interfaces.IViewPagerListener
+import com.mmfsin.whoami.presentation.dashboard.cards.dialogs.selected.SelectedCardDialog
 import com.mmfsin.whoami.presentation.dashboard.questions.dialogs.NewQuestionDialog
 import com.mmfsin.whoami.presentation.dashboard.questions.dialogs.QuestionsListDialog
 import com.mmfsin.whoami.presentation.dashboard.questions.dialogs.interfaces.INewQuestionListener
-import com.mmfsin.whoami.presentation.dashboard.cards.dialogs.selected.SelectedCardDialog
+import com.mmfsin.whoami.presentation.dashboard.viepager.interfaces.IViewPagerListener
 import com.mmfsin.whoami.utils.setExpandableView
 import com.mmfsin.whoami.utils.showErrorDialog
 import com.mmfsin.whoami.utils.showFragmentDialog
@@ -69,7 +69,7 @@ class QuestionsFragment(
                 activity?.showFragmentDialog(SelectedCardDialog.newInstance(selectedCardId))
             }
 
-            cvWhatNow.setOnClickListener { setExpandableView(detailsWhatNow, llWhatNow) }
+            cvWhatNow.setOnClickListener { setExpandableView(detailsWhatNow.linear, llWhatNow) }
         }
     }
 

@@ -41,19 +41,18 @@
     <string name="questions_do_question">Hacer nueva pregunta</string>
     <string name="questions_list_of">Preguntas antiguas</string>
     <string name="questions_my_card">¿Cuál era mi carta?</string>
+    
     <string name="questions_mini_help">Una ayudita</string>
-
     <string name="questions_what_now">¿Qué tengo que hacer?</string>
-    <string name="questions_what_now_description">Honesta y sincera explicación de lo que hay que haceeeerrrrrrrrrrrrr</string>
-    <!--    UNA AYUDITA -->
-    <!--    Tienes que adivinar la carta de tu rival antes de que tu rival adivine la tuya primero.-->
-    <!--    Para saber cuál es la carta de tu rival tienes que hacerle preguntas.-->
-    <!--    ¿De dónde saco las preguntas?-->
-    <!--    Del botón "Hacer nueva pregunta".-->
-    <!--    Alternádote con tu rival tendréis que ir preguntandoos e ir descartando personajes hasta adivinar qué personaje le ha tocado a la otra persona.-->
-    <!--    Podrás hacer hasta 10 preguntas por partida.-->
-    <!--    Para marcar tu decision final sobre qué personaje es el de tu rival, selecciona la carta correspondiente y pulsa el botón (icono).-->
-    <!--    ¿Más ayuda? Abre (icono) para ver más información de cómo jugar.-->
+    <string name="questions_what_now_1">Tienes que adivinar la carta de tu rival antes de que tu rival adivine la tuya primero.</string>
+    <string name="questions_what_now_2">Para saber cuál es la carta de tu rival tienes que hacerle preguntas.</string>
+    <string name="questions_what_now_3">¿De dónde saco las preguntas?</string>
+    <string name="questions_what_now_4">Del botón "Hacer nueva pregunta".</string>
+    <string name="questions_what_now_5">Alternádote con tu rival tendréis que ir preguntandoos e ir descartando personajes hasta adivinar qué personaje le ha tocado a la otra persona.</string>
+    <string name="questions_what_now_6">Podrás hacer hasta 10 preguntas por partida.</string>
+    <string name="questions_what_now_7">Para marcar tu decision final sobre qué personaje es el de tu rival, selecciona la carta correspondiente y pulsa el botón (icono).</string>
+    <string name="questions_what_now_8">¿Necesitas más ayuda? Pulsa (icono)</string>
+    <string name="questions_what_now_9">para ver más información de cómo jugar.</string>
 
     <!-- NEW QUESTION DIALOG -->
     <string name="new_question_empty">Se acabaron las preguntas</string>

@@ -25,10 +25,12 @@
     <string name="menu_all_cards">Las cartas</string>
 
     <!-- DISCARD DIALOG -->
-    <string name="card_people_info_discard">Descartar</string>
-    <string name="card_people_info_final_answer">Respuesta final</string>
-    <string name="card_people_info_dis_discard">Deshacer</string>
-    <string name="card_people_info_state_discard">Descartado</string>
+    <string name="discard_card_info_state_discard">Descartado</string>
+    <string name="discard_card_choice_title">¿Crees que esta es la carta de tu rival?</string>
+    <string name="discard_card_choice_two_try">2</string>
+    <string name="discard_card_choice_one_try">1</string>
+    <string name="discard_card_choice_no">No</string>
+    <string name="discard_card_choice_yes">Lo creo</string>
 
     <!-- SELECTED DIALOG -->
     <string name="selected_card_info">¡Esta es tu carta!</string>
@@ -41,18 +43,17 @@
     <string name="questions_do_question">Hacer nueva pregunta</string>
     <string name="questions_list_of">Preguntas antiguas</string>
     <string name="questions_my_card">¿Cuál era mi carta?</string>
-    
+
     <string name="questions_mini_help">Una ayudita</string>
     <string name="questions_what_now">¿Qué tengo que hacer?</string>
-    <string name="questions_what_now_1">Tienes que adivinar la carta de tu rival antes de que tu rival adivine la tuya primero.</string>
-    <string name="questions_what_now_2">Para saber cuál es la carta de tu rival tienes que hacerle preguntas.</string>
-    <string name="questions_what_now_3">¿De dónde saco las preguntas?</string>
-    <string name="questions_what_now_4">Del botón "Hacer nueva pregunta".</string>
-    <string name="questions_what_now_5">Alternádote con tu rival tendréis que ir preguntandoos e ir descartando personajes hasta adivinar qué personaje le ha tocado a la otra persona.</string>
-    <string name="questions_what_now_6">Podrás hacer hasta 10 preguntas por partida.</string>
-    <string name="questions_what_now_7">Para marcar tu decision final sobre qué personaje es el de tu rival, selecciona la carta correspondiente y pulsa el botón (icono).</string>
-    <string name="questions_what_now_8">¿Necesitas más ayuda? Pulsa (icono)</string>
-    <string name="questions_what_now_9">para ver más información de cómo jugar.</string>
+    <string name="questions_what_now_1">Tienes que <b>adivinar</b> la carta de tu rival antes de que tu rival adivine la tuya primero.</string>
+    <string name="questions_what_now_2">Para saber cuál es la carta de tu rival tienes que hacerle <b>preguntas</b>.</string>
+    <string name="questions_what_now_3"><b>¿De dónde saco las preguntas?</b></string>
+    <string name="questions_what_now_4">Del botón <i>"Hacer nueva pregunta"</i>.</string>
+    <string name="questions_what_now_5">Alternádote con tu rival tendréis que ir haciéndoos preguntas e ir descartando cartas hasta adivinar qué personaje le ha tocado a tu rival.</string>
+    <string name="questions_what_now_6">Podrás hacer hasta <b>10 preguntas</b> por partida y tendrás <b>2 oportunidades</b> para acertar la carta de tu rival</string>
+    <string name="questions_what_now_7">Para marcar tu decision sobre qué personaje es el de tu rival, selecciona la carta correspondiente y pulsa el icono</string>
+    <string name="questions_what_now_8"><b>¿Necesitas más ayuda?</b> Pulsa</string>
 
     <!-- NEW QUESTION DIALOG -->
     <string name="new_question_empty">Se acabaron las preguntas</string>
@@ -73,8 +74,8 @@
     <string name="instructions_how_many_players_detail_2"><b>¿Cuántas personas puede haber por equipo?</b></string>
     <string name="instructions_how_many_players_detail_3">Las que se quiera siempre y cuando existan 2 equipos. Puede ser <i>1vs1</i>, <i>2vs1</i>, <i>3vs2</i>…</string>
 
-    <string name="instructions_decks">¿Qué son los mazos?</string>
-    <string name="instructions_decks_detail_1">Los mazos son agrupaciones de cartas de personajes para jugar.</string>
+    <string name="instructions_decks">¿Qué son las barajas?</string>
+    <string name="instructions_decks_detail_1">Las barajas son agrupaciones de cartas de personajes para jugar.</string>
     <string name="instructions_decks_detail_2">Cuando vayas a jugar <b>asegúrate de escoger el mismo mazo que tu rival</b>, si no el juego no tendrá sentido y estarás intentando adivinar una carta que para ti no existe.</string>
 
     <string name="instructions_how_to_play">¿Cómo se juega?</string>

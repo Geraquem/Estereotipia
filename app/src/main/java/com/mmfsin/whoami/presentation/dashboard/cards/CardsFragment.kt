@@ -66,7 +66,7 @@ class CardsFragment(val deckId: String, private val selectedCardId: String) :
 
     override fun onCardClick(cardId: String) {
         if (!selectedReady) activity?.showFragmentDialog(SelectedCardDialog.newInstance(cardId))
-        else activity?.showFragmentDialog(DiscardDialog.newInstance(cardId))
+        else activity?.showFragmentDialog(DiscardDialog.newInstance(cardId, 5))
     }
 
     private fun actionOnCard(cardId: String) {

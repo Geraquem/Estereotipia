@@ -19,7 +19,8 @@ import com.mmfsin.whoami.utils.showErrorDialog
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class DiscardDialog(private val cardId: String) : BaseDialog<DialogCardDiscardBinding>() {
+class DiscardDialog(private val cardId: String, private val opportunities: Int) :
+    BaseDialog<DialogCardDiscardBinding>() {
 
     private val viewModel: DiscardDialogViewModel by viewModels()
 
@@ -43,17 +44,31 @@ class DiscardDialog(private val cardId: String) : BaseDialog<DialogCardDiscardBi
     override fun setUI() {
         isCancelable = true
         binding.apply {
-            card?.let {
-                Glide.with(requireContext()).load(it.image).into(ivImage)
-                tvName.text = it.name
-                if (it.discarded) setDiscardedCard() else setNotDiscardedCard()
+            if (opportunities == 0) {
+                buttons.root.visibility = View.GONE
+            } else {
+                val choices = when (opportunities) {
+                    1 -> getString(R.string.discard_card_choice_one_try)
+                    else -> getString(R.string.discard_card_choice_two_try)
+                }
+                buttons.tvOpportunities.text = choices
             }
+            choice.root.visibility = View.GONE
         }
     }
 
     override fun setListeners() {
         binding.apply {
             buttons.ivDiscard.setOnClickListener { viewModel.discardCard(cardId) }
+            buttons.ivFinalAnswer.setOnClickListener {
+                buttons.root.visibility = View.GONE
+                choice.root.visibility = View.VISIBLE
+            }
+            choice.btnNo.setOnClickListener {
+                choice.root.visibility = View.GONE
+                buttons.root.visibility = View.VISIBLE
+            }
+            choice.btnYes.setOnClickListener { dismiss() }
         }
     }
 
@@ -62,7 +77,7 @@ class DiscardDialog(private val cardId: String) : BaseDialog<DialogCardDiscardBi
             when (event) {
                 is DiscardDialogEvent.GetPeopleCard -> {
                     this.card = event.card
-                    setUI()
+                    setCardInfo()
                 }
                 is DiscardDialogEvent.DiscardPeopleCard -> {
                     event.discarded?.let {
@@ -71,6 +86,16 @@ class DiscardDialog(private val cardId: String) : BaseDialog<DialogCardDiscardBi
                     } ?: run { error() }
                 }
                 is DiscardDialogEvent.SomethingWentWrong -> error()
+            }
+        }
+    }
+
+    private fun setCardInfo() {
+        binding.apply {
+            card?.let {
+                Glide.with(requireContext()).load(it.image).into(ivImage)
+                tvName.text = it.name
+                if (it.discarded) setDiscardedCard() else setNotDiscardedCard()
             }
         }
     }
@@ -106,7 +131,7 @@ class DiscardDialog(private val cardId: String) : BaseDialog<DialogCardDiscardBi
             when (state) {
                 NONE -> cvState.visibility = View.GONE
                 DISCARDED -> {
-                    tvState.text = getString(R.string.card_people_info_state_discard)
+                    tvState.text = getString(R.string.discard_card_info_state_discard)
                 }
             }
         }
@@ -115,8 +140,8 @@ class DiscardDialog(private val cardId: String) : BaseDialog<DialogCardDiscardBi
     private fun error() = activity?.showErrorDialog(goBack = false)
 
     companion object {
-        fun newInstance(cardId: String): DiscardDialog {
-            return DiscardDialog(cardId)
+        fun newInstance(cardId: String, opportunities: Int): DiscardDialog {
+            return DiscardDialog(cardId, opportunities)
         }
     }
 }

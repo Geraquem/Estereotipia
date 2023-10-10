@@ -36,7 +36,7 @@ class SelectedCardDialog(private val cardId: String) : BaseDialog<DialogCardSele
     }
 
     override fun setUI() {
-        isCancelable = false
+        isCancelable = true
         binding.apply {
             card?.let {
                 Glide.with(requireContext()).load(it.image).into(ivImage)

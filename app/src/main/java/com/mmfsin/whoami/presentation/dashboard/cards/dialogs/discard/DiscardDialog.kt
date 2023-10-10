@@ -11,16 +11,18 @@ import com.mmfsin.whoami.R
 import com.mmfsin.whoami.base.BaseDialog
 import com.mmfsin.whoami.databinding.DialogCardDiscardBinding
 import com.mmfsin.whoami.domain.models.Card
-import com.mmfsin.whoami.presentation.models.PeopleCardState
-import com.mmfsin.whoami.presentation.models.PeopleCardState.DISCARDED
-import com.mmfsin.whoami.presentation.models.PeopleCardState.NONE
+import com.mmfsin.whoami.presentation.dashboard.cards.interfaces.ICardsListener
+import com.mmfsin.whoami.presentation.models.CardState
+import com.mmfsin.whoami.presentation.models.CardState.DISCARDED
+import com.mmfsin.whoami.presentation.models.CardState.NONE
 import com.mmfsin.whoami.utils.animateDialog
 import com.mmfsin.whoami.utils.showErrorDialog
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class DiscardDialog(private val cardId: String, private val opportunities: Int) :
-    BaseDialog<DialogCardDiscardBinding>() {
+class DiscardDialog(
+    private val cardId: String, private val opportunities: Int, val listener: ICardsListener
+) : BaseDialog<DialogCardDiscardBinding>() {
 
     private val viewModel: DiscardDialogViewModel by viewModels()
 
@@ -68,18 +70,21 @@ class DiscardDialog(private val cardId: String, private val opportunities: Int) 
                 choice.root.visibility = View.GONE
                 buttons.root.visibility = View.VISIBLE
             }
-            choice.btnYes.setOnClickListener { dismiss() }
+            choice.btnYes.setOnClickListener {
+                listener.makeChoice(cardId)
+                dismiss()
+            }
         }
     }
 
     private fun observe() {
         viewModel.event.observe(this) { event ->
             when (event) {
-                is DiscardDialogEvent.GetPeopleCard -> {
+                is DiscardDialogEvent.GetCard -> {
                     this.card = event.card
                     setCardInfo()
                 }
-                is DiscardDialogEvent.DiscardPeopleCard -> {
+                is DiscardDialogEvent.DiscardCard -> {
                     event.discarded?.let {
                         if (it) dismiss()
                         else setNotDiscardedCard()
@@ -125,7 +130,7 @@ class DiscardDialog(private val cardId: String, private val opportunities: Int) 
         }
     }
 
-    private fun setState(state: PeopleCardState) {
+    private fun setState(state: CardState) {
         binding.apply {
 
             when (state) {
@@ -140,8 +145,10 @@ class DiscardDialog(private val cardId: String, private val opportunities: Int) 
     private fun error() = activity?.showErrorDialog(goBack = false)
 
     companion object {
-        fun newInstance(cardId: String, opportunities: Int): DiscardDialog {
-            return DiscardDialog(cardId, opportunities)
+        fun newInstance(
+            cardId: String, opportunities: Int, listener: ICardsListener
+        ): DiscardDialog {
+            return DiscardDialog(cardId, opportunities, listener)
         }
     }
 }

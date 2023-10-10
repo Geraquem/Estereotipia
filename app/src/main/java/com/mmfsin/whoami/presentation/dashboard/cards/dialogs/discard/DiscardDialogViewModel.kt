@@ -16,7 +16,7 @@ class DiscardDialogViewModel @Inject constructor(
         executeUseCase(
             { getCardByIdUseCase.execute(GetCardByIdUseCase.Params(cardId)) },
             { result ->
-                _event.value = result?.let { DiscardDialogEvent.GetPeopleCard(it) }
+                _event.value = result?.let { DiscardDialogEvent.GetCard(it) }
                     ?: run { DiscardDialogEvent.SomethingWentWrong }
             },
             { _event.value = DiscardDialogEvent.SomethingWentWrong }
@@ -26,7 +26,7 @@ class DiscardDialogViewModel @Inject constructor(
     fun discardCard(cardId: String) {
         executeUseCase(
             { discardCardUseCase.execute(DiscardCardUseCase.Params(cardId)) },
-            { result -> _event.value = DiscardDialogEvent.DiscardPeopleCard(result) },
+            { result -> _event.value = DiscardDialogEvent.DiscardCard(result) },
             { _event.value = DiscardDialogEvent.SomethingWentWrong }
         )
     }

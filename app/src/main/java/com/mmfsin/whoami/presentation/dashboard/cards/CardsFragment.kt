@@ -13,6 +13,7 @@ import com.mmfsin.whoami.databinding.FragmentCardsBinding
 import com.mmfsin.whoami.domain.models.Card
 import com.mmfsin.whoami.presentation.MainActivity
 import com.mmfsin.whoami.presentation.dashboard.cards.adapter.CardsAdapter
+import com.mmfsin.whoami.presentation.dashboard.cards.dialogs.choice.ChoiceDialog
 import com.mmfsin.whoami.presentation.dashboard.cards.dialogs.discard.DiscardDialog
 import com.mmfsin.whoami.presentation.dashboard.cards.dialogs.selected.SelectedCardDialog
 import com.mmfsin.whoami.presentation.dashboard.cards.dialogs.wait.WaitSelectDialog
@@ -31,6 +32,7 @@ class CardsFragment(val deckId: String, private val selectedCardId: String) :
     private var cardsAdapter: CardsAdapter? = null
 
     private var selectedReady = false
+    private var opportunities = 2
 
     override fun inflateView(
         inflater: LayoutInflater, container: ViewGroup?
@@ -66,7 +68,9 @@ class CardsFragment(val deckId: String, private val selectedCardId: String) :
 
     override fun onCardClick(cardId: String) {
         if (!selectedReady) activity?.showFragmentDialog(SelectedCardDialog.newInstance(cardId))
-        else activity?.showFragmentDialog(DiscardDialog.newInstance(cardId, 5))
+        else activity?.showFragmentDialog(
+            DiscardDialog.newInstance(cardId, opportunities, this@CardsFragment)
+        )
     }
 
     private fun actionOnCard(cardId: String) {
@@ -76,7 +80,16 @@ class CardsFragment(val deckId: String, private val selectedCardId: String) :
         } else cardsAdapter?.updateDiscardedCards(cardId)
     }
 
-//    override fun onDiscardClick(cardId: String) = viewModel.discardCard(cardId, updateFlow = false)
+    override fun makeChoice(cardId: String) {
+        activity?.showFragmentDialog(
+            ChoiceDialog.newInstance(cardId, opportunities, this@CardsFragment)
+        )
+    }
+
+    override fun choiceComplete(winner: Boolean) {
+        if (winner) opportunities = 0
+        else opportunities--
+    }
 
     private fun error() {
         (activity as MainActivity).inDashboard = false

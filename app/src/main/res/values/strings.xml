@@ -39,6 +39,16 @@
     <!-- SELECT CARD LOADING -->
     <string name="select_card_loading_title">Selección de personaje en</string>
 
+    <!-- CHOICE DIALOG -->
+    <string name="choice_dialog_title">¿Es %s el personaje de tu rival?</string>
+    <string name="choice_dialog_yes">¡Sí!</string>
+    <string name="choice_dialog_no">No</string>
+    <string name="choice_dialog_back">Volver</string>
+    <string name="choice_dialog_winner">¡Genial!</string>
+    <string name="choice_dialog_looser">Vaya</string>
+    <string name="choice_dialog_looser_opportunities">Pero todavía te queda otra oportunidad</string>
+    <string name="choice_dialog_looser_zero_opportunities">Has acabado con todas tus oportunidades…</string>
+
     <!-- QUESTIONS DIALOG -->
     <string name="questions_do_question">Hacer nueva pregunta</string>
     <string name="questions_list_of">Preguntas antiguas</string>

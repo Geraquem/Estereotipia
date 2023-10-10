@@ -1,6 +1,6 @@
 package com.mmfsin.whoami.presentation.models
 
-enum class PeopleCardState {
+enum class CardState {
     NONE,
     DISCARDED,
 }

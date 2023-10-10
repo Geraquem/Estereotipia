@@ -1,20 +1,22 @@
 package com.mmfsin.whoami.presentation.decks.mydecks
 
 import com.mmfsin.whoami.base.BaseViewModel
-import com.mmfsin.whoami.domain.usecases.CheckVersionUseCase
-import com.mmfsin.whoami.domain.usecases.GetDecksUseCase
+import com.mmfsin.whoami.domain.usecases.GetMyDecksUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
 @HiltViewModel
 class MyDecksViewModel @Inject constructor(
-    private val checkVersionUseCase: CheckVersionUseCase
+    private val getMyDecksUseCase: GetMyDecksUseCase
 ) : BaseViewModel<MyDecksEvent>() {
 
-    fun checkVersion() {
+    fun getMyDecks() {
         executeUseCase(
-            { checkVersionUseCase.execute() },
-            { _event.value = MyDecksEvent.Completed },
+            { getMyDecksUseCase.execute() },
+            { result ->
+                _event.value = if (result.isEmpty()) MyDecksEvent.SomethingWentWrong
+                else MyDecksEvent.MyDecks(result)
+            },
             { _event.value = MyDecksEvent.SomethingWentWrong }
         )
     }

@@ -25,6 +25,6 @@ fun QuestionDTO.toQuestion() = Question(question = question)
 fun List<QuestionDTO>.toQuestionList() = this.map { it.toQuestion() }
 
 /** MY DECK */
-fun MyDeckDTO.toMyDeck() = MyDeck(id, name, cards)
+fun MyDeckDTO.toMyDeck() = MyDeck(id, image, name, cards)
 
 fun List<MyDeckDTO>.toMyDeckList() = this.map { it.toMyDeck() }

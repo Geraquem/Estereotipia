@@ -8,4 +8,5 @@ interface IDeckRepository {
     fun getDeckById(id: String): Deck?
 
     fun createDeck(deck: MyDeck)
+    fun getMyDecks(): List<MyDeck>
 }

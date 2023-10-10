@@ -18,6 +18,9 @@
                 app:argType="string" />
         </action>
         <action
+            android:id="@+id/action_menu_to_myDecks"
+            app:destination="@id/myDecksFragment" />
+        <action
             android:id="@+id/action_menu_to_createDeck"
             app:destination="@id/createDeckFragment" />
         <action
@@ -30,6 +33,12 @@
         android:name="com.mmfsin.whoami.presentation.dashboard.viepager.ViewPagerFragment"
         android:label="dashboardFragment"
         tools:layout="@layout/fragment_view_pager" />
+
+    <fragment
+        android:id="@+id/myDecksFragment"
+        android:name="com.mmfsin.whoami.presentation.decks.mydecks.MyDecksFragment"
+        android:label="myDecksFragment"
+        tools:layout="@layout/fragment_my_decks" />
 
     <fragment
         android:id="@+id/createDeckFragment"

@@ -6,32 +6,31 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
-import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.StaggeredGridLayoutManager
+import androidx.recyclerview.widget.StaggeredGridLayoutManager.VERTICAL
 import com.mmfsin.whoami.R
 import com.mmfsin.whoami.base.BaseFragment
-import com.mmfsin.whoami.databinding.FragmentMenuBinding
+import com.mmfsin.whoami.databinding.FragmentMyDecksBinding
+import com.mmfsin.whoami.domain.models.MyDeck
 import com.mmfsin.whoami.presentation.MainActivity
-import com.mmfsin.whoami.presentation.decks.dialogs.MyDecksDialog
-import com.mmfsin.whoami.presentation.menu.MenuFragmentDirections.Companion.actionMenuToAllCards
-import com.mmfsin.whoami.presentation.menu.MenuFragmentDirections.Companion.actionMenuToDashboard
-import com.mmfsin.whoami.presentation.menu.decks.DecksDialog
+import com.mmfsin.whoami.presentation.decks.mydecks.adapter.MyDecksAdapter
+import com.mmfsin.whoami.presentation.decks.mydecks.interfaces.IMyDeckListener
 import com.mmfsin.whoami.utils.showErrorDialog
-import com.mmfsin.whoami.utils.showFragmentDialog
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class MyDecksFragment : BaseFragment<FragmentMenuBinding, MyDecksViewModel>() {
+class MyDecksFragment : BaseFragment<FragmentMyDecksBinding, MyDecksViewModel>(), IMyDeckListener {
 
     override val viewModel: MyDecksViewModel by viewModels()
     private lateinit var mContext: Context
 
     override fun inflateView(
         inflater: LayoutInflater, container: ViewGroup?
-    ) = FragmentMenuBinding.inflate(inflater, container, false)
+    ) = FragmentMyDecksBinding.inflate(inflater, container, false)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        viewModel.getMyDecks()
     }
 
     override fun setUI() {
@@ -55,10 +54,21 @@ class MyDecksFragment : BaseFragment<FragmentMenuBinding, MyDecksViewModel>() {
     override fun observe() {
         viewModel.event.observe(this) { event ->
             when (event) {
-                is MyDecksEvent.Completed -> binding.loading.root.visibility = View.GONE
+                is MyDecksEvent.MyDecks -> setUpDecks(event.decks)
                 is MyDecksEvent.SomethingWentWrong -> error()
             }
         }
+    }
+
+    private fun setUpDecks(decks: List<MyDeck>) {
+        binding.rvMyDecks.apply {
+            layoutManager = StaggeredGridLayoutManager(2, VERTICAL)
+            adapter = MyDecksAdapter(decks, this@MyDecksFragment)
+        }
+    }
+
+    override fun onMyDeckClick(id: String) {
+
     }
 
     private fun error() = activity?.showErrorDialog()

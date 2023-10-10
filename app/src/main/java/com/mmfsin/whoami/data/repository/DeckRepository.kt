@@ -4,6 +4,7 @@ import android.content.Context
 import com.mmfsin.whoami.data.mappers.toDeck
 import com.mmfsin.whoami.data.mappers.toDeckList
 import com.mmfsin.whoami.data.mappers.toMyDeckDTO
+import com.mmfsin.whoami.data.mappers.toMyDeckList
 import com.mmfsin.whoami.data.models.DeckDTO
 import com.mmfsin.whoami.data.models.MyDeckDTO
 import com.mmfsin.whoami.domain.interfaces.IDeckRepository
@@ -44,5 +45,11 @@ class DeckRepository @Inject constructor(
 
         val myDeckDTO = deck.toMyDeckDTO(image, order)
         realmDatabase.addObject { myDeckDTO }
+    }
+
+    override fun getMyDecks(): List<MyDeck> {
+        val decks = realmDatabase.getObjectsFromRealm { where<MyDeckDTO>().findAll() }
+        return if (decks.isEmpty()) emptyList()
+        else decks.sortedBy { it.order }.toMyDeckList()
     }
 }

@@ -1,6 +1,5 @@
 package com.mmfsin.whoami.presentation.decks.create.adapter
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,7 +7,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.mmfsin.whoami.R
 import com.mmfsin.whoami.databinding.ItemNewDeckCardBinding
-import com.mmfsin.whoami.domain.models.Card
 import com.mmfsin.whoami.domain.models.CreateDeckCard
 import com.mmfsin.whoami.presentation.decks.create.interfaces.ICreateDeckCardListener
 
@@ -33,23 +31,6 @@ class NewDeckCardsAdapter(
                 }
             }
         }
-
-        private fun updateBtnDiscardText(c: Context, card: Card) {
-            val imgDiscarded = if (card.discarded) R.drawable.ic_redo
-            else R.drawable.ic_discard_cross
-//            binding.btnDiscard.setImageResource(imgDiscarded)
-        }
-    }
-
-    fun updateDiscardedCards(id: String) {
-//        var position: Int? = null
-//        cards.forEachIndexed() { i, card ->
-//            if (card.id == id) {
-//                card.discarded = !card.discarded
-//                position = i
-//            }
-//        }
-//        position?.let { pos -> notifyItemChanged(pos) }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {

@@ -16,6 +16,7 @@ import com.mmfsin.whoami.presentation.decks.interfaces.IMyDecksListener
 import com.mmfsin.whoami.presentation.menu.MenuFragmentDirections.Companion.actionMenuToAllCards
 import com.mmfsin.whoami.presentation.menu.MenuFragmentDirections.Companion.actionMenuToCreateDeck
 import com.mmfsin.whoami.presentation.menu.MenuFragmentDirections.Companion.actionMenuToDashboard
+import com.mmfsin.whoami.presentation.menu.MenuFragmentDirections.Companion.actionMenuToMyDecks
 import com.mmfsin.whoami.presentation.menu.decks.DecksDialog
 import com.mmfsin.whoami.utils.showErrorDialog
 import com.mmfsin.whoami.utils.showFragmentDialog
@@ -80,7 +81,7 @@ class MenuFragment : BaseFragment<FragmentMenuBinding, MenuViewModel>(), IMyDeck
     }
 
     override fun openMyDecks() {
-        //TODO
+        findNavController().navigate(actionMenuToMyDecks())
     }
 
     override fun createDeck() {

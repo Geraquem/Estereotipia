@@ -63,6 +63,16 @@
     <!-- QUESTIONS LIST DIALOG -->
     <string name="questions_list_empty">Todavía no se ha hecho ninguna pregunta.</string>
 
+    <!-- MY DECKS -->
+    <string name="my_decks_toolbar">Mis barajas</string>
+    <string name="my_decks_view">Ver mis barajas</string>
+    <string name="my_decks_create_new_toolbar">Crear baraja</string>
+    <string name="my_decks_create_new">Crear nueva baraja</string>
+    <string name="my_decks_create_new_accept">Aceptar</string>
+    <string name="my_decks_create_new_hint">…</string>
+    <string name="my_decks_create_new_name">Nombre de la baraja</string>
+    <string name="my_decks_create_new_name_error">El nombre no puede estar vacío</string>
+
     <!-- INSTRUCTIONS -->
     <string name="instructions_close">Cerrar</string>
 

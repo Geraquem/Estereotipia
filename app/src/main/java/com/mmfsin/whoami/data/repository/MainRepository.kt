@@ -1,33 +1,30 @@
 package com.mmfsin.whoami.data.repository
 
+import android.content.Context
+import android.content.Context.MODE_PRIVATE
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import com.mmfsin.whoami.data.models.CardDTO
 import com.mmfsin.whoami.data.models.DeckDTO
 import com.mmfsin.whoami.data.models.QuestionDTO
-import com.mmfsin.whoami.data.models.VersionDTO
 import com.mmfsin.whoami.domain.interfaces.IMainRepository
 import com.mmfsin.whoami.domain.interfaces.IRealmDatabase
-import com.mmfsin.whoami.utils.CARDS
-import com.mmfsin.whoami.utils.DECKS
-import com.mmfsin.whoami.utils.QUESTIONS
-import com.mmfsin.whoami.utils.VERSION
-import io.realm.kotlin.where
+import com.mmfsin.whoami.utils.*
+import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import java.util.concurrent.CountDownLatch
 import javax.inject.Inject
 
 class MainRepository @Inject constructor(
+    @ApplicationContext val context: Context,
     private val realmDatabase: IRealmDatabase
 ) : IMainRepository {
 
     private val reference = Firebase.database.reference
 
     override suspend fun checkVersion() {
-        val savedVersion = realmDatabase.getObjectsFromRealm { where<VersionDTO>().findAll() }
-        val actualVersion = if (savedVersion.isEmpty()) -1 else savedVersion.first().version
-        getDataFromFirebase(actualVersion)
+        getDataFromFirebase(getSavedVersion())
     }
 
     private suspend fun getDataFromFirebase(savedVersion: Long): List<DeckDTO> {
@@ -35,10 +32,11 @@ class MainRepository @Inject constructor(
         val decks = mutableListOf<DeckDTO>()
         reference.get().addOnSuccessListener {
             val version = it.child(VERSION).value as Long
-            realmDatabase.addObject { VersionDTO(VERSION, version) }
             if (version == savedVersion) {
                 latch.countDown()
             } else {
+                saveVersion(newVersion = version)
+
                 val fbDecks = it.child(DECKS)
                 for (child in fbDecks.children) {
                     child.getValue(DeckDTO::class.java)?.let { deck ->
@@ -61,6 +59,9 @@ class MainRepository @Inject constructor(
                     saveQuestionInRealm(question)
                 }
 
+                val defaultImage = it.child(DEFAULT_DECK_IMAGE).value as String
+                updateDefaultDeckImage(defaultImage)
+
                 latch.countDown()
             }
 
@@ -73,6 +74,23 @@ class MainRepository @Inject constructor(
         }
         return decks
     }
+
+
+    private fun saveVersion(newVersion: Long) {
+        val editor = getSharedPreferences().edit()
+        editor.putLong(SAVED_VERSION, newVersion)
+        editor.apply()
+    }
+
+    private fun getSavedVersion(): Long = getSharedPreferences().getLong(SAVED_VERSION, -1)
+
+    private fun updateDefaultDeckImage(imageURL: String) {
+        val editor = getSharedPreferences().edit()
+        editor.putString(DEFAULT_DECK_IMAGE, imageURL)
+        editor.apply()
+    }
+
+    private fun getSharedPreferences() = context.getSharedPreferences(MY_SHARED_PREFS, MODE_PRIVATE)
 
     private fun saveDeckInRealm(deck: DeckDTO) = realmDatabase.addObject { deck }
     private fun saveCardInRealm(card: CardDTO) = realmDatabase.addObject { card }

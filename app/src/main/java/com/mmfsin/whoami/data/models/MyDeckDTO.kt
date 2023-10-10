@@ -3,8 +3,11 @@ package com.mmfsin.whoami.data.models
 import io.realm.RealmObject
 import io.realm.annotations.PrimaryKey
 
-open class VersionDTO(
+open class MyDeckDTO(
     @PrimaryKey
     var id: String = "",
-    var version: Long = 0,
+    var image: String = "",
+    var name: String = "",
+    var cards: String = "",
+    var order: Long = 0
 ) : RealmObject()

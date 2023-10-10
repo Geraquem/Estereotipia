@@ -1,4 +1,4 @@
-package com.mmfsin.whoami.presentation.menu
+package com.mmfsin.whoami.presentation.decks.mydecks
 
 import android.content.Context
 import android.os.Bundle
@@ -12,9 +12,7 @@ import com.mmfsin.whoami.base.BaseFragment
 import com.mmfsin.whoami.databinding.FragmentMenuBinding
 import com.mmfsin.whoami.presentation.MainActivity
 import com.mmfsin.whoami.presentation.decks.dialogs.MyDecksDialog
-import com.mmfsin.whoami.presentation.decks.interfaces.IMyDecksListener
 import com.mmfsin.whoami.presentation.menu.MenuFragmentDirections.Companion.actionMenuToAllCards
-import com.mmfsin.whoami.presentation.menu.MenuFragmentDirections.Companion.actionMenuToCreateDeck
 import com.mmfsin.whoami.presentation.menu.MenuFragmentDirections.Companion.actionMenuToDashboard
 import com.mmfsin.whoami.presentation.menu.decks.DecksDialog
 import com.mmfsin.whoami.utils.showErrorDialog
@@ -22,9 +20,9 @@ import com.mmfsin.whoami.utils.showFragmentDialog
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class MenuFragment : BaseFragment<FragmentMenuBinding, MenuViewModel>(), IMyDecksListener {
+class MyDecksFragment : BaseFragment<FragmentMenuBinding, MyDecksViewModel>() {
 
-    override val viewModel: MenuViewModel by viewModels()
+    override val viewModel: MyDecksViewModel by viewModels()
     private lateinit var mContext: Context
 
     override fun inflateView(
@@ -33,11 +31,7 @@ class MenuFragment : BaseFragment<FragmentMenuBinding, MenuViewModel>(), IMyDeck
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val checkVersion = (activity as MainActivity).checkVersion
-        if (checkVersion) {
-            (activity as MainActivity).checkVersion = false
-            viewModel.checkVersion()
-        } else binding.loading.root.visibility = View.GONE
+
     }
 
     override fun setUI() {
@@ -48,43 +42,23 @@ class MenuFragment : BaseFragment<FragmentMenuBinding, MenuViewModel>(), IMyDeck
 
     private fun setToolbar() {
         (activity as MainActivity).apply {
-            this.inDashboard = false
-            setUpToolbar(showBack = false, getString(R.string.app_name))
+            setUpToolbar(showBack = false, getString(R.string.my_decks_toolbar))
         }
     }
 
     override fun setListeners() {
         binding.apply {
-            tvInstructions.setOnClickListener { (activity as MainActivity).openInstructions() }
 
-            tvPlay.setOnClickListener {
-                activity?.showFragmentDialog(DecksDialog() { id -> navigateToDashboard(id) })
-            }
-
-            tvMyDecks.setOnClickListener { activity?.showFragmentDialog(MyDecksDialog(this@MenuFragment)) }
-            tvAllCards.setOnClickListener { findNavController().navigate(actionMenuToAllCards()) }
         }
     }
 
     override fun observe() {
         viewModel.event.observe(this) { event ->
             when (event) {
-                is MenuEvent.Completed -> binding.loading.root.visibility = View.GONE
-                is MenuEvent.SomethingWentWrong -> error()
+                is MyDecksEvent.Completed -> binding.loading.root.visibility = View.GONE
+                is MyDecksEvent.SomethingWentWrong -> error()
             }
         }
-    }
-
-    private fun navigateToDashboard(deckId: String) {
-        findNavController().navigate(actionMenuToDashboard(deckId))
-    }
-
-    override fun openMyDecks() {
-        //TODO
-    }
-
-    override fun createDeck() {
-        findNavController().navigate(actionMenuToCreateDeck())
     }
 
     private fun error() = activity?.showErrorDialog()

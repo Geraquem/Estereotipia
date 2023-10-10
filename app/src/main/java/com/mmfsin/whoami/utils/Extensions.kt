@@ -6,6 +6,7 @@ import android.animation.ObjectAnimator
 import android.app.Activity
 import android.app.Dialog
 import android.content.Context
+import android.os.CountDownTimer
 import android.transition.AutoTransition
 import android.transition.TransitionManager
 import android.view.View
@@ -27,6 +28,21 @@ fun Activity.closeKeyboard() {
         val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as? InputMethodManager
         imm?.hideSoftInputFromWindow(view.windowToken, 0)
     }
+}
+
+fun Context.closeKeyboardFromDialog() {
+    val imm: InputMethodManager =
+        this.getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
+    if (imm.isActive) imm.toggleSoftInput(0, InputMethodManager.HIDE_NOT_ALWAYS)
+}
+
+fun countDown(millis: Long, action: () -> Unit) {
+    object : CountDownTimer(millis, 1000) {
+        override fun onTick(millisUntilFinished: Long) {}
+        override fun onFinish() {
+            action()
+        }
+    }.start()
 }
 
 fun FragmentActivity?.showFragmentDialog(dialog: DialogFragment) =

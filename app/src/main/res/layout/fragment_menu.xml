@@ -8,91 +8,92 @@
     android:clipChildren="false"
     android:clipToPadding="false">
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/gl_right"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.95" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/gl_left"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.05" />
-
-    <LinearLayout
-        android:layout_width="0dp"
+    <ScrollView
+        style="@style/scroll_no_effects"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:clipChildren="false"
         android:clipToPadding="false"
-        android:orientation="vertical"
-        android:paddingTop="24dp"
-        app:layout_constraintLeft_toLeftOf="@id/gl_left"
-        app:layout_constraintRight_toRightOf="@id/gl_right"
+        android:paddingBottom="32dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
-            android:id="@+id/tv_instructions"
-            style="@style/MediumTextView"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/bg_white_box"
-            android:elevation="4dp"
-            android:paddingHorizontal="12dp"
-            android:paddingVertical="18dp"
-            android:text="@string/menu_instructions"
-            android:textAllCaps="true"
-            android:textSize="24sp" />
+            android:clipChildren="false"
+            android:clipToPadding="false"
+            android:paddingTop="24dp">
 
-        <TextView
-            android:id="@+id/tv_play"
-            style="@style/MediumTextView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginVertical="42dp"
-            android:background="@drawable/bg_white_box"
-            android:elevation="4dp"
-            android:paddingHorizontal="12dp"
-            android:paddingVertical="18dp"
-            android:text="@string/menu_play"
-            android:textAllCaps="true"
-            android:textSize="24sp" />
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/gl_right"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.95" />
 
-        <TextView
-            android:id="@+id/tv_my_decks"
-            style="@style/MediumTextView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            android:background="@drawable/bg_white_box"
-            android:elevation="4dp"
-            android:paddingHorizontal="12dp"
-            android:paddingVertical="18dp"
-            android:text="@string/menu_my_decks"
-            android:textAllCaps="true"
-            android:textSize="24sp" />
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/gl_left"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.05" />
 
-        <include
-            android:id="@+id/all_cards"
-            layout="@layout/include_menu_cards"/>
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:clipChildren="false"
+                android:clipToPadding="false"
+                android:orientation="vertical"
+                app:layout_constraintLeft_toLeftOf="@id/gl_left"
+                app:layout_constraintRight_toRightOf="@id/gl_right"
+                app:layout_constraintTop_toTopOf="parent">
 
-    </LinearLayout>
+                <TextView
+                    android:id="@+id/tv_instructions"
+                    style="@style/MediumTextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_white_box"
+                    android:elevation="4dp"
+                    android:paddingHorizontal="12dp"
+                    android:paddingVertical="18dp"
+                    android:text="@string/menu_instructions"
+                    android:textAllCaps="true"
+                    android:textSize="24sp" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_decks"
-        style="@style/scroll_no_effects"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:paddingVertical="24dp"
-        android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="@id/gl_left"
-        app:layout_constraintRight_toRightOf="@id/gl_right"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:itemCount="4"
-        tools:listitem="@layout/item_deck" />
+                <TextView
+                    android:id="@+id/tv_play"
+                    style="@style/MediumTextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginVertical="42dp"
+                    android:background="@drawable/bg_white_box"
+                    android:elevation="4dp"
+                    android:paddingHorizontal="12dp"
+                    android:paddingVertical="18dp"
+                    android:text="@string/menu_play"
+                    android:textAllCaps="true"
+                    android:textSize="24sp" />
+
+                <include
+                    android:id="@+id/decks"
+                    layout="@layout/include_menu_decks"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="16dp" />
+
+                <include
+                    android:id="@+id/all_cards"
+                    layout="@layout/include_menu_cards"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
 
     <include
         android:id="@+id/loading"

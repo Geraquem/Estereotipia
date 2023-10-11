@@ -15,8 +15,6 @@ import com.mmfsin.whoami.base.BaseFragment
 import com.mmfsin.whoami.databinding.FragmentMenuBinding
 import com.mmfsin.whoami.domain.models.Card
 import com.mmfsin.whoami.presentation.MainActivity
-import com.mmfsin.whoami.presentation.decks.dialogs.MyDecksDialog
-import com.mmfsin.whoami.presentation.decks.interfaces.IMyDecksListener
 import com.mmfsin.whoami.presentation.menu.MenuFragmentDirections.Companion.actionMenuToAllCards
 import com.mmfsin.whoami.presentation.menu.MenuFragmentDirections.Companion.actionMenuToCreateDeck
 import com.mmfsin.whoami.presentation.menu.MenuFragmentDirections.Companion.actionMenuToDashboard
@@ -29,8 +27,7 @@ import com.mmfsin.whoami.utils.showFragmentDialog
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class MenuFragment : BaseFragment<FragmentMenuBinding, MenuViewModel>(), IMyDecksListener,
-    IMenuListener {
+class MenuFragment : BaseFragment<FragmentMenuBinding, MenuViewModel>(), IMenuListener {
 
     override val viewModel: MenuViewModel by viewModels()
     private lateinit var mContext: Context
@@ -69,7 +66,9 @@ class MenuFragment : BaseFragment<FragmentMenuBinding, MenuViewModel>(), IMyDeck
                 activity?.showFragmentDialog(DecksDialog() { id -> navigateToDashboard(id) })
             }
 
-            tvMyDecks.setOnClickListener { activity?.showFragmentDialog(MyDecksDialog(this@MenuFragment)) }
+            decks.tvMyDecks.setOnClickListener { navigateTo(actionMenuToMyDecks()) }
+            decks.tvCreateDeck.setOnClickListener { navigateTo(actionMenuToCreateDeck()) }
+
             allCards.root.setOnClickListener { navigateToAllCards() }
         }
     }
@@ -102,14 +101,6 @@ class MenuFragment : BaseFragment<FragmentMenuBinding, MenuViewModel>(), IMyDeck
 
     private fun navigateToDashboard(deckId: String) {
         navigateTo(actionMenuToDashboard(deckId))
-    }
-
-    override fun openMyDecks() {
-        navigateTo(actionMenuToMyDecks())
-    }
-
-    override fun createDeck() {
-        navigateTo(actionMenuToCreateDeck())
     }
 
     private fun navigateToAllCards() = navigateTo(actionMenuToAllCards())

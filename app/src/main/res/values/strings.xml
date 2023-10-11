@@ -22,6 +22,9 @@
     <string name="menu_instructions">Instrucciones</string>
     <string name="menu_play">Jugar</string>
     <string name="menu_my_decks">Barajas</string>
+    <string name="menu_my_decks_description">Crea tus propias barajas con las cartas que más te gusten y compártelas.</string>
+    <string name="menu_my_decks_mine">Mis barajas</string>
+    <string name="menu_my_decks_create">Crear baraja</string>
     <string name="menu_all_cards">Las cartas</string>
     <string name="menu_all_cards_description_one">Pulsa aquí para ver todas las cartas de personaje que contiene la aplicación.</string>
     <string name="menu_all_cards_description_two">Échales un vistazo para crear tus propias barajas de cartas.</string>

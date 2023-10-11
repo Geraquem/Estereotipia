@@ -26,6 +26,7 @@ class CardsRepository @Inject constructor(
             where<CardDTO>().findAll()
         }
         return if (cards.isEmpty()) null else setNonDiscardedCards(cards).toCardList()
+            .sortedBy { it.name }
     }
 
     override fun getCardsByDeckId(deckId: String): List<Card>? {

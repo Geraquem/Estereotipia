@@ -6,10 +6,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.navigation.NavDirections
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView.HORIZONTAL
 import com.mmfsin.whoami.R
 import com.mmfsin.whoami.base.BaseFragment
 import com.mmfsin.whoami.databinding.FragmentMenuBinding
+import com.mmfsin.whoami.domain.models.Card
 import com.mmfsin.whoami.presentation.MainActivity
 import com.mmfsin.whoami.presentation.decks.dialogs.MyDecksDialog
 import com.mmfsin.whoami.presentation.decks.interfaces.IMyDecksListener
@@ -17,13 +21,16 @@ import com.mmfsin.whoami.presentation.menu.MenuFragmentDirections.Companion.acti
 import com.mmfsin.whoami.presentation.menu.MenuFragmentDirections.Companion.actionMenuToCreateDeck
 import com.mmfsin.whoami.presentation.menu.MenuFragmentDirections.Companion.actionMenuToDashboard
 import com.mmfsin.whoami.presentation.menu.MenuFragmentDirections.Companion.actionMenuToMyDecks
+import com.mmfsin.whoami.presentation.menu.adapter.MenuCardsAdapter
 import com.mmfsin.whoami.presentation.menu.decks.DecksDialog
+import com.mmfsin.whoami.presentation.menu.listener.IMenuListener
 import com.mmfsin.whoami.utils.showErrorDialog
 import com.mmfsin.whoami.utils.showFragmentDialog
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class MenuFragment : BaseFragment<FragmentMenuBinding, MenuViewModel>(), IMyDecksListener {
+class MenuFragment : BaseFragment<FragmentMenuBinding, MenuViewModel>(), IMyDecksListener,
+    IMenuListener {
 
     override val viewModel: MenuViewModel by viewModels()
     private lateinit var mContext: Context
@@ -63,30 +70,51 @@ class MenuFragment : BaseFragment<FragmentMenuBinding, MenuViewModel>(), IMyDeck
             }
 
             tvMyDecks.setOnClickListener { activity?.showFragmentDialog(MyDecksDialog(this@MenuFragment)) }
-            tvAllCards.setOnClickListener { findNavController().navigate(actionMenuToAllCards()) }
+            allCards.root.setOnClickListener { navigateToAllCards() }
         }
     }
 
     override fun observe() {
         viewModel.event.observe(this) { event ->
             when (event) {
-                is MenuEvent.Completed -> binding.loading.root.visibility = View.GONE
+                is MenuEvent.Completed -> versionCheckCompleted()
+                is MenuEvent.MenuCards -> setUpMenuCards(event.cards)
                 is MenuEvent.SomethingWentWrong -> error()
             }
         }
     }
 
+    private fun versionCheckCompleted() {
+        binding.loading.root.visibility = View.GONE
+        viewModel.getMenuCards()
+    }
+
+    private fun setUpMenuCards(cards: List<Card>) {
+        binding.allCards.rvMenuCards.apply {
+            layoutManager = LinearLayoutManager(mContext, HORIZONTAL, false)
+            adapter = MenuCardsAdapter(cards, this@MenuFragment)
+        }
+    }
+
+    override fun onMenuCardClick() {
+        navigateToAllCards()
+    }
+
     private fun navigateToDashboard(deckId: String) {
-        findNavController().navigate(actionMenuToDashboard(deckId))
+        navigateTo(actionMenuToDashboard(deckId))
     }
 
     override fun openMyDecks() {
-        findNavController().navigate(actionMenuToMyDecks())
+        navigateTo(actionMenuToMyDecks())
     }
 
     override fun createDeck() {
-        findNavController().navigate(actionMenuToCreateDeck())
+        navigateTo(actionMenuToCreateDeck())
     }
+
+    private fun navigateToAllCards() = navigateTo(actionMenuToAllCards())
+
+    private fun navigateTo(directions: NavDirections) = findNavController().navigate(directions)
 
     private fun error() = activity?.showErrorDialog()
 

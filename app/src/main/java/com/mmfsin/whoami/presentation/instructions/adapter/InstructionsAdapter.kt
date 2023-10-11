@@ -32,9 +32,6 @@ class InstructionsAdapter(
                     if (instruction.text != null && instruction.layout == null) {
                         val isVisible = tvText.isVisible
                         tvText.isVisible = !isVisible
-
-//                        setExpandableView(tvText, llMain)
-
                     } else listener.onInstructionClick(instruction)
                 }
             }

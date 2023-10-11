@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.SimpleItemAnimator
 import com.mmfsin.whoami.R
 import com.mmfsin.whoami.base.BaseFragment
@@ -56,7 +57,18 @@ class InstructionsFragment : BaseFragment<FragmentInstructionsBinding, Instructi
     }
 
     private fun setUpInstructions(instructions: List<Instruction>) {
-        binding.rvInstructions.apply {
+        val group1 = instructions.filter { it.group == 1 }
+        setUpRecyclerView(binding.rvInstructionsOne, group1)
+
+        val group2 = instructions.filter { it.group == 2 }
+        setUpRecyclerView(binding.rvInstructionsTwo, group2)
+
+        val group3 = instructions.filter { it.group == 3 }
+        setUpRecyclerView(binding.rvInstructionsThree, group3)
+    }
+
+    private fun setUpRecyclerView(recycler: RecyclerView, instructions: List<Instruction>) {
+        recycler.apply {
             (this.itemAnimator as SimpleItemAnimator).supportsChangeAnimations = false
             layoutManager = LinearLayoutManager(mContext)
             adapter = InstructionsAdapter(instructions, this@InstructionsFragment)

@@ -40,19 +40,66 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_instructions"
-        style="@style/scroll_no_effects"
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layout_marginTop="16dp"
         android:clipChildren="false"
         android:clipToPadding="false"
-        android:paddingBottom="32dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/inst_toolbar"
-        tools:itemCount="3"
-        tools:listitem="@layout/item_instruction" />
+        app:layout_constraintTop_toBottomOf="@id/inst_toolbar">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:clipChildren="false"
+            android:clipToPadding="false"
+            android:orientation="vertical">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_instructions_one"
+                style="@style/scroll_no_effects"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="24dp"
+                android:background="@drawable/bg_white_box"
+                android:clipChildren="false"
+                android:clipToPadding="false"
+                android:elevation="6dp"
+                tools:itemCount="1"
+                tools:listitem="@layout/item_instruction" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_instructions_two"
+                style="@style/scroll_no_effects"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="24dp"
+                android:background="@drawable/bg_white_box"
+                android:clipChildren="false"
+                android:clipToPadding="false"
+                android:elevation="6dp"
+                tools:itemCount="1"
+                tools:listitem="@layout/item_instruction" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_instructions_three"
+                style="@style/scroll_no_effects"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_white_box"
+                android:clipChildren="false"
+                android:clipToPadding="false"
+                android:elevation="6dp"
+                tools:itemCount="1"
+                tools:listitem="@layout/item_instruction" />
+
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

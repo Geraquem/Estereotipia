@@ -106,12 +106,14 @@
     <string name="instructions_how_many_questions_details">Por partida puedes hacer hasta <b>10 preguntas diferentes.</b>\n\nTodas las preguntas son de carácter subjetivo, nunca irán referidas al físico de los personajes de las cartas.</string>
 
     <string name="instructions_how_many_opportunities">¿Cuántas oportunidades para acertar tengo?</string>
+    <string name="instructions_how_many_opportunities_number">2</string>
+    <string name="instructions_how_many_opportunities_number_text">El número representa los intentos que te quedan.</string>
     <string name="instructions_how_many_opportunities_details_1">Tienes <b>dos oportunidades</b> para adivinar el personaje de tu rival.</string>
     <string name="instructions_how_many_opportunities_details_2">Para hacer tu apuesta selecciona la carta que creas que es la de tu rival y pulsa el botón con el siguiente icono:</string>
-    <string name="instructions_how_many_opportunities_details_3">Si aciertas y has sido el primer equipo en acertar, has ganado.</string>
+    <string name="instructions_how_many_opportunities_details_3">Si <b>aciertas</b> y has sido el primer equipo en acertar, <b>has ganado.</b></string>
     <string name="instructions_how_many_opportunities_details_4">Si fallas tendrás una <b>segunda oportunidad</b> para repetir el proceso.</string>
     <string name="instructions_how_many_opportunities_details_5">Si fallas por segunda vez seguirás en juego pero sin poder hacer preguntas, solo respondiendo y rezando para que tu rival no adivine tu personaje.</string>
-    <string name="instructions_how_many_opportunities_details_6">El juego termina cuando uno de los dos equipos adivina la carta del equipo rival o cuando ambos equipos fallan las dos oportunidades que tienen.</string>
+    <string name="instructions_how_many_opportunities_details_6"><b>El juego termina</b> cuando uno de los dos equipos <b>adivina la carta</b> del equipo rival o cuando <b>ambos equipos fallan</b> las dos oportunidades que tienen.</string>
 
     <string name="instructions_when_ends">¿Cuándo termina el juego?</string>
     <string name="instructions_when_ends_details">El juego termina cuando uno de los dos equipos adivina la carta del equipo rival o cuando ambos equipos fallan las dos oportunidades que tienen.\n\nSi uno de los equipos falla las dos oportunidades que tiene para acertar, <b>sigue en juego</b> respondiendo hasta que el otro equipo gane o falle las dos oportunidades que tiene de acertar.</string>

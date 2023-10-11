@@ -3,12 +3,12 @@ package com.mmfsin.whoami.presentation.instructions.adapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
 import com.mmfsin.whoami.R
 import com.mmfsin.whoami.databinding.ItemInstructionBinding
 import com.mmfsin.whoami.domain.models.Instruction
 import com.mmfsin.whoami.presentation.instructions.interfaces.IInstructionsListener
-import com.mmfsin.whoami.utils.setExpandableView
 
 class InstructionsAdapter(
     private val instructions: List<Instruction>, private val listener: IInstructionsListener
@@ -17,10 +17,10 @@ class InstructionsAdapter(
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         private val binding = ItemInstructionBinding.bind(view)
         private val c = binding.root.context
-        fun bind(instruction: Instruction, position: Int, listener: IInstructionsListener) {
+        fun bind(instruction: Instruction, listener: IInstructionsListener) {
             binding.apply {
+                ivIcon.setImageResource(instruction.icon)
                 tvTitle.text = instruction.title
-
                 instruction.text?.let { text -> tvText.text = c.getText(text) }
 
                 val view = instruction.layout?.let { View.VISIBLE } ?: run { View.GONE }
@@ -28,12 +28,12 @@ class InstructionsAdapter(
 
                 tvText.visibility = View.GONE
 
-                cvMain.setOnClickListener {
+                clMain.setOnClickListener {
                     if (instruction.text != null && instruction.layout == null) {
-//                        val isVisible = tvText.isVisible
-//                        tvText.isVisible = !isVisible
+                        val isVisible = tvText.isVisible
+                        tvText.isVisible = !isVisible
 
-                        setExpandableView(tvText, llMain)
+//                        setExpandableView(tvText, llMain)
 
                     } else listener.onInstructionClick(instruction)
                 }
@@ -48,7 +48,7 @@ class InstructionsAdapter(
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bind(instructions[position], position, listener)
+        holder.bind(instructions[position], listener)
     }
 
     override fun getItemCount(): Int = instructions.size

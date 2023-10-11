@@ -3,6 +3,6 @@ package com.mmfsin.whoami.domain.models
 open class Instruction(
     val order: Int,
     val title: String,
-    val layout: Int,
-    var descVisible: Boolean = false
+    val text: Int? = null,
+    val layout: Int? = null
 )

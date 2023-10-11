@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.SimpleItemAnimator
 import com.mmfsin.whoami.R
 import com.mmfsin.whoami.base.BaseFragment
 import com.mmfsin.whoami.databinding.FragmentInstructionsBinding
@@ -18,6 +19,7 @@ import com.mmfsin.whoami.presentation.instructions.interfaces.IInstructionsListe
 import com.mmfsin.whoami.utils.INSTRUCTIONS_DETAIL
 import com.mmfsin.whoami.utils.showErrorDialog
 import dagger.hilt.android.AndroidEntryPoint
+
 
 @AndroidEntryPoint
 class InstructionsFragment : BaseFragment<FragmentInstructionsBinding, InstructionsViewModel>(),
@@ -44,7 +46,6 @@ class InstructionsFragment : BaseFragment<FragmentInstructionsBinding, Instructi
         }
     }
 
-
     override fun observe() {
         viewModel.event.observe(this) { event ->
             when (event) {
@@ -56,6 +57,7 @@ class InstructionsFragment : BaseFragment<FragmentInstructionsBinding, Instructi
 
     private fun setUpInstructions(instructions: List<Instruction>) {
         binding.rvInstructions.apply {
+            (this.itemAnimator as SimpleItemAnimator).supportsChangeAnimations = false
             layoutManager = LinearLayoutManager(mContext)
             adapter = InstructionsAdapter(instructions, this@InstructionsFragment)
         }

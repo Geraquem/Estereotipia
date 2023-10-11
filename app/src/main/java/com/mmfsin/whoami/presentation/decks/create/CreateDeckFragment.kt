@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
+import androidx.recyclerview.widget.SimpleItemAnimator
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.mmfsin.whoami.R
 import com.mmfsin.whoami.base.BaseFragment
@@ -78,6 +79,7 @@ class CreateDeckFragment : BaseFragment<FragmentCreateDeckBinding, CreateDeckVie
 
     private fun setUpCards(cards: List<CreateDeckCard>) {
         binding.rvCards.apply {
+            (this.itemAnimator as SimpleItemAnimator).supportsChangeAnimations = false
             layoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
             mAdapter = NewDeckCardsAdapter(cards, this@CreateDeckFragment)
             adapter = mAdapter

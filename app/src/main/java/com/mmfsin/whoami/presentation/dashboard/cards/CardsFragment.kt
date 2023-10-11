@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.recyclerview.widget.SimpleItemAnimator
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import androidx.recyclerview.widget.StaggeredGridLayoutManager.VERTICAL
 import com.mmfsin.whoami.base.BaseFragment
@@ -59,6 +60,7 @@ class CardsFragment(val deckId: String, private val selectedCardId: String) :
 
     private fun setUpCards(cards: List<Card>) {
         binding.rvCards.apply {
+            (this.itemAnimator as SimpleItemAnimator).supportsChangeAnimations = false
             layoutManager = StaggeredGridLayoutManager(2, VERTICAL)
             cardsAdapter = CardsAdapter(cards, this@CardsFragment)
             adapter = cardsAdapter

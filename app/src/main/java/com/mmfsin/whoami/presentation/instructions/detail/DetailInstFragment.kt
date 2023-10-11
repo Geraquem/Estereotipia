@@ -34,10 +34,11 @@ class DetailInstFragment(private val instruction: Instruction) :
     override fun setUI() {
         binding.apply {
             tvTitle.text = instruction.title
-
-            val inflater = LayoutInflater.from(mContext)
-            val inflatedView = inflater.inflate(instruction.layout, null, false)
-            llDescription.addView(inflatedView)
+            instruction.layout?.let { layout ->
+                val inflater = LayoutInflater.from(mContext)
+                val inflatedView = inflater.inflate(layout, null, false)
+                llDescription.addView(inflatedView)
+            } ?: run { error() }
         }
     }
 
@@ -56,6 +57,8 @@ class DetailInstFragment(private val instruction: Instruction) :
             }
         }
     }
+
+    private fun error() = activity?.showErrorDialog()
 
     override fun onAttach(context: Context) {
         super.onAttach(context)

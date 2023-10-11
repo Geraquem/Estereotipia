@@ -13,7 +13,9 @@ class GetInstructionsUseCase @Inject constructor(@ApplicationContext val context
     override suspend fun execute(): List<Instruction> {
         val instructions = listOf(
             Instruction(
-                1, getString(R.string.instructions_whats_about), layout = R.layout.inst_whats_about
+                1,
+                getString(R.string.instructions_whats_about),
+                text = R.string.instructions_whats_about_detail
             ),
             Instruction(
                 2,

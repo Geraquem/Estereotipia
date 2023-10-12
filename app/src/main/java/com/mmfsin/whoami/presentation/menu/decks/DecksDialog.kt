@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.mmfsin.whoami.base.BaseDialog
 import com.mmfsin.whoami.databinding.DialogDecksBinding
 import com.mmfsin.whoami.domain.models.Deck
-import com.mmfsin.whoami.presentation.menu.decks.adapter.DeckAdapter
+import com.mmfsin.whoami.presentation.menu.decks.adapter.DecksAdapter
 import com.mmfsin.whoami.presentation.menu.decks.interfaces.IDeckListener
 import com.mmfsin.whoami.utils.showErrorDialog
 import dagger.hilt.android.AndroidEntryPoint
@@ -34,11 +34,7 @@ class DecksDialog(val navigate: (deckId: String) -> Unit) : BaseDialog<DialogDec
         binding.apply { }
     }
 
-    override fun setListeners() {
-        binding.apply {
-            ivClose.setOnClickListener { dismiss() }
-        }
-    }
+    override fun setListeners() {}
 
     private fun observe() {
         viewModel.event.observe(this) { event ->
@@ -52,7 +48,7 @@ class DecksDialog(val navigate: (deckId: String) -> Unit) : BaseDialog<DialogDec
     private fun setUpDecks(decks: List<Deck>) {
         binding.rvDecks.apply {
             layoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
-            adapter = DeckAdapter(decks, this@DecksDialog)
+            adapter = DecksAdapter(decks, this@DecksDialog)
         }
     }
 

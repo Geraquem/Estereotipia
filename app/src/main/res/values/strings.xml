@@ -29,6 +29,11 @@
     <string name="menu_all_cards_description_one">Pulsa aquí para ver todas las cartas de personaje que contiene la aplicación.</string>
     <string name="menu_all_cards_description_two">Échales un vistazo para crear tus propias barajas de cartas.</string>
 
+    <!-- DECKS DIALOG -->
+    <string name="decks_dialog_top_text">¿Con qué baraja quieres jugar?</string>
+    <string name="decks_dialog_top_description">Elige la misma que la de tu rival</string>
+    <string name="decks_dialog_cards">%s Cartas</string>
+
     <!-- DISCARD DIALOG -->
     <string name="discard_card_info_state_discard">Descartado</string>
     <string name="discard_card_choice_title">¿Crees que esta es la carta de tu rival?</string>

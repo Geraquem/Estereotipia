@@ -10,7 +10,9 @@ import com.mmfsin.whoami.domain.models.MyDeck
 import com.mmfsin.whoami.domain.models.Question
 
 /** DECK */
-fun DeckDTO.toDeck() = Deck(id, image, name, cards)
+fun DeckDTO.toDeck() = Deck(id, image, name, cards, numOfCards(cards))
+
+private fun numOfCards(cards: String): Int = cards.split(",").size
 
 fun List<DeckDTO>.toDeckList() = this.map { it.toDeck() }
 
@@ -25,6 +27,6 @@ fun QuestionDTO.toQuestion() = Question(question = question)
 fun List<QuestionDTO>.toQuestionList() = this.map { it.toQuestion() }
 
 /** MY DECK */
-fun MyDeckDTO.toMyDeck() = MyDeck(id, image, name, cards)
+fun MyDeckDTO.toMyDeck() = MyDeck(id, image, name, cards, numOfCards(cards))
 
 fun List<MyDeckDTO>.toMyDeckList() = this.map { it.toMyDeck() }

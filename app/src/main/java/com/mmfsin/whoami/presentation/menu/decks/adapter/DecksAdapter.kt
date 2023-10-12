@@ -10,17 +10,18 @@ import com.mmfsin.whoami.databinding.ItemDeckBinding
 import com.mmfsin.whoami.domain.models.Deck
 import com.mmfsin.whoami.presentation.menu.decks.interfaces.IDeckListener
 
-class DeckAdapter(
-    private val decks: List<Deck>,
-    private val listener: IDeckListener
-) : RecyclerView.Adapter<DeckAdapter.ViewHolder>() {
+class DecksAdapter(
+    private val decks: List<Deck>, private val listener: IDeckListener
+) : RecyclerView.Adapter<DecksAdapter.ViewHolder>() {
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         private val binding = ItemDeckBinding.bind(view)
+        private val c = binding.root.context
         fun bind(deck: Deck) {
             binding.apply {
                 Glide.with(binding.root.context).load(deck.image).into(ivImage)
                 tvName.text = deck.name
+                tvCards.text = c.getString(R.string.decks_dialog_cards, deck.numOfCards.toString())
             }
         }
     }

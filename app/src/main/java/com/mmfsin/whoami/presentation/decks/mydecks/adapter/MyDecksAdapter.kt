@@ -17,17 +17,19 @@ class MyDecksAdapter(
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val binding = ItemDeckBinding.bind(view)
+        val c = binding.root.context
         fun bind(deck: MyDeck) {
             binding.apply {
                 Glide.with(binding.root.context).load(deck.image).into(ivImage)
                 tvName.text = deck.name
+                tvCards.text = c.getString(R.string.decks_dialog_cards, deck.numOfCards.toString())
             }
         }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(
-            LayoutInflater.from(parent.context).inflate(R.layout.item_new_deck_card, parent, false)
+            LayoutInflater.from(parent.context).inflate(R.layout.item_deck, parent, false)
         )
     }
 

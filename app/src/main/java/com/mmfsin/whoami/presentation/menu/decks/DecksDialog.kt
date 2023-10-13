@@ -10,11 +10,12 @@ import com.mmfsin.whoami.databinding.DialogDecksBinding
 import com.mmfsin.whoami.domain.models.Deck
 import com.mmfsin.whoami.presentation.menu.decks.adapter.DecksAdapter
 import com.mmfsin.whoami.presentation.menu.decks.interfaces.IDeckListener
+import com.mmfsin.whoami.presentation.menu.listener.IMenuListener
 import com.mmfsin.whoami.utils.showErrorDialog
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class DecksDialog(val navigate: (deckId: String) -> Unit) : BaseDialog<DialogDecksBinding>(),
+class DecksDialog(val listener: IMenuListener) : BaseDialog<DialogDecksBinding>(),
     IDeckListener {
 
     private val viewModel: DecksViewModel by viewModels()
@@ -53,10 +54,9 @@ class DecksDialog(val navigate: (deckId: String) -> Unit) : BaseDialog<DialogDec
     }
 
     override fun onDeckClick(deckId: String) {
-        navigate(deckId)
+        listener.startGame(deckId)
         dismiss()
     }
 
     private fun error() = activity?.showErrorDialog(goBack = false)
-
 }

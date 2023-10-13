@@ -1,7 +1,6 @@
 package com.mmfsin.whoami.utils
 
 import android.animation.AnimatorSet
-import android.animation.LayoutTransition
 import android.animation.ObjectAnimator
 import android.app.Activity
 import android.app.Dialog
@@ -68,7 +67,10 @@ fun setExpandableView(expandable: View, linear: LinearLayout) {
     val v = if (expandable.isVisible) View.GONE else View.VISIBLE
     TransitionManager.beginDelayedTransition(linear, AutoTransition())
     expandable.visibility = v
-//    linear.layoutTransition.enableTransitionType(LayoutTransition.CHANGING)
+}
+
+fun <T1 : Any, T2 : Any, R : Any> checkNotNulls(p1: T1?, p2: T2?, block: (T1, T2) -> R): R? {
+    return if (p1 != null && p2 != null) block(p1, p2) else null
 }
 
 //fun FragmentActivity.shouldShowInterstitial(position: Int) =

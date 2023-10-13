@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import androidx.recyclerview.widget.StaggeredGridLayoutManager.VERTICAL
 import com.mmfsin.whoami.R
@@ -14,11 +15,13 @@ import com.mmfsin.whoami.base.BaseFragment
 import com.mmfsin.whoami.databinding.FragmentMyDecksBinding
 import com.mmfsin.whoami.domain.models.MyDeck
 import com.mmfsin.whoami.presentation.MainActivity
+import com.mmfsin.whoami.presentation.decks.mydecks.MyDecksFragmentDirections.Companion.actionMyDecksToDashboard
 import com.mmfsin.whoami.presentation.decks.mydecks.adapter.MyDecksAdapter
 import com.mmfsin.whoami.presentation.decks.mydecks.dialogs.MyDeckDialog
 import com.mmfsin.whoami.presentation.decks.mydecks.dialogs.delete.DeleteMyDeckDialog
 import com.mmfsin.whoami.presentation.decks.mydecks.dialogs.edit.EditMyDeckDialog
 import com.mmfsin.whoami.presentation.decks.mydecks.interfaces.IMyDeckListener
+import com.mmfsin.whoami.presentation.models.DeckType.CUSTOM_DECK
 import com.mmfsin.whoami.utils.showErrorDialog
 import com.mmfsin.whoami.utils.showFragmentDialog
 import dagger.hilt.android.AndroidEntryPoint
@@ -77,6 +80,9 @@ class MyDecksFragment : BaseFragment<FragmentMyDecksBinding, MyDecksViewModel>()
     override fun onMyDeckClick(id: String) {
         activity?.showFragmentDialog(MyDeckDialog.newInstance(id, this@MyDecksFragment))
     }
+
+    override fun playWithCustomDeck(id: String) =
+        findNavController().navigate(actionMyDecksToDashboard(id, CUSTOM_DECK))
 
     override fun editName(id: String) {
         activity?.showFragmentDialog(EditMyDeckDialog.newInstance(id, this@MyDecksFragment))

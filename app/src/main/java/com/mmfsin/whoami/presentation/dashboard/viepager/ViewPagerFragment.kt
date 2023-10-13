@@ -12,10 +12,14 @@ import com.mmfsin.whoami.databinding.FragmentViewPagerBinding
 import com.mmfsin.whoami.presentation.MainActivity
 import com.mmfsin.whoami.presentation.dashboard.viepager.adapter.ViewPagerAdapter
 import com.mmfsin.whoami.presentation.dashboard.viepager.interfaces.IViewPagerListener
+import com.mmfsin.whoami.presentation.models.DeckType
+import com.mmfsin.whoami.presentation.models.DeckType.CUSTOM_DECK
+import com.mmfsin.whoami.presentation.models.DeckType.SYSTEM_DECK
 import com.mmfsin.whoami.utils.DECK_ID
+import com.mmfsin.whoami.utils.DECK_TYPE
+import com.mmfsin.whoami.utils.checkNotNulls
 import com.mmfsin.whoami.utils.showErrorDialog
 import dagger.hilt.android.AndroidEntryPoint
-
 
 @AndroidEntryPoint
 class ViewPagerFragment : BaseFragment<FragmentViewPagerBinding, ViewPagerViewModel>(),
@@ -23,6 +27,7 @@ class ViewPagerFragment : BaseFragment<FragmentViewPagerBinding, ViewPagerViewMo
 
     override val viewModel: ViewPagerViewModel by viewModels()
 
+    private var deckType: DeckType? = null
     private var deckId: String? = null
 
     override fun inflateView(
@@ -30,12 +35,15 @@ class ViewPagerFragment : BaseFragment<FragmentViewPagerBinding, ViewPagerViewMo
     ) = FragmentViewPagerBinding.inflate(inflater, container, false)
 
     override fun getBundleArgs() {
+        arguments?.let { deckType = it.getSerializable(DECK_TYPE) as DeckType }
         arguments?.let { deckId = it.getString(DECK_ID) }
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        deckId?.let { id -> viewModel.getDeckById(id) } ?: run { error() }
+        checkNotNulls(deckId, deckType) { id, type ->
+            viewModel.getDeck(id, type)
+        } ?: run { error() }
     }
 
     override fun setUI() {
@@ -45,13 +53,18 @@ class ViewPagerFragment : BaseFragment<FragmentViewPagerBinding, ViewPagerViewMo
     override fun observe() {
         viewModel.event.observe(this) { event ->
             when (event) {
-                is ViewPagerEvent.ActualDeck -> {
+                is ViewPagerEvent.SystemDeck -> {
                     setUpToolbar(event.deck.name)
-                    deckId?.let { id -> viewModel.getRandomSelectedCard(id) } ?: run { error() }
+                    deckId?.let { id -> viewModel.getRandomSelectedCard(id, SYSTEM_DECK) }
+                        ?: run { error() }
+                }
+                is ViewPagerEvent.CustomDeck -> {
+                    setUpToolbar(event.myDeck.name)
+                    deckId?.let { id -> viewModel.getRandomSelectedCard(id, CUSTOM_DECK) }
+                        ?: run { error() }
                 }
                 is ViewPagerEvent.SelectedCard -> setUpViewPager(event.selectedCardId)
                 is ViewPagerEvent.SomethingWentWrong -> error()
-
             }
         }
     }
@@ -64,11 +77,11 @@ class ViewPagerFragment : BaseFragment<FragmentViewPagerBinding, ViewPagerViewMo
     }
 
     private fun setUpViewPager(selectedCardId: String) {
-        deckId?.let { deckId ->
+        checkNotNulls(deckId, deckType) { id, type ->
             binding.apply {
                 activity?.let {
                     viewPager.adapter =
-                        ViewPagerAdapter(it, deckId, selectedCardId, this@ViewPagerFragment)
+                        ViewPagerAdapter(it, id, type, selectedCardId, this@ViewPagerFragment)
                     TabLayoutMediator(tabLayout, viewPager) { tab, position ->
                         when (position) {
                             0 -> tab.text = getString(R.string.vp_tab_cards)

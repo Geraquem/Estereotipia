@@ -4,6 +4,7 @@ import com.mmfsin.whoami.data.mappers.toCard
 import com.mmfsin.whoami.data.mappers.toCardList
 import com.mmfsin.whoami.data.models.CardDTO
 import com.mmfsin.whoami.data.models.DeckDTO
+import com.mmfsin.whoami.data.models.MyDeckDTO
 import com.mmfsin.whoami.domain.interfaces.ICardsRepository
 import com.mmfsin.whoami.domain.interfaces.IRealmDatabase
 import com.mmfsin.whoami.domain.models.Card
@@ -32,6 +33,15 @@ class CardsRepository @Inject constructor(
     override fun getCardsByDeckId(deckId: String): List<Card>? {
         val deck = realmDatabase.getObjectsFromRealm {
             where<DeckDTO>().equalTo("id", deckId).findAll()
+        }
+        val deckCards =
+            if (deck.isEmpty()) null else deck.first().cards.filter { !it.isWhitespace() }
+        return deckCards?.let { cards -> getCardsByListId(cards.split(",")) } ?: run { null }
+    }
+
+    override fun getCardsByCustomDeckId(deckId: String): List<Card>? {
+        val deck = realmDatabase.getObjectsFromRealm {
+            where<MyDeckDTO>().equalTo("id", deckId).findAll()
         }
         val deckCards =
             if (deck.isEmpty()) null else deck.first().cards.filter { !it.isWhitespace() }

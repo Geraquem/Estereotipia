@@ -39,8 +39,7 @@ class MyDeckDialog(private val myDeckId: String, val listener: IMyDeckListener) 
 
     override fun setListeners() {
         binding.apply {
-            tvPlay.setOnClickListener { }
-
+            tvPlay.setOnClickListener { actionAndDismiss { listener.playWithCustomDeck(myDeckId) } }
             tvEditName.setOnClickListener { actionAndDismiss { listener.editName(myDeckId) } }
             tvEditCards.setOnClickListener { }
             tvShare.setOnClickListener { }

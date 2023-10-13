@@ -2,13 +2,18 @@ package com.mmfsin.whoami.domain.usecases
 
 import com.mmfsin.whoami.base.BaseUseCase
 import com.mmfsin.whoami.domain.interfaces.ICardsRepository
+import com.mmfsin.whoami.presentation.models.DeckType
 import javax.inject.Inject
 
 class GetRandomSelectedCardUseCase @Inject constructor(val repository: ICardsRepository) :
     BaseUseCase<GetRandomSelectedCardUseCase.Params, String?>() {
 
     override suspend fun execute(params: Params): String? {
-        val cards = repository.getCardsByDeckId(params.deckId)
+        val cards = when (params.type) {
+            DeckType.SYSTEM_DECK -> repository.getCardsByDeckId(params.deckId)
+            DeckType.CUSTOM_DECK -> repository.getCardsByCustomDeckId(params.deckId)
+        }
+
         return try {
             cards?.let {
                 val date = System.currentTimeMillis().toString()
@@ -28,5 +33,6 @@ class GetRandomSelectedCardUseCase @Inject constructor(val repository: ICardsRep
 
     class Params(
         val deckId: String,
+        val type: DeckType,
     )
 }

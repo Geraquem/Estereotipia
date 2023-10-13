@@ -22,6 +22,7 @@ import com.mmfsin.whoami.presentation.menu.MenuFragmentDirections.Companion.acti
 import com.mmfsin.whoami.presentation.menu.adapter.MenuCardsAdapter
 import com.mmfsin.whoami.presentation.menu.decks.DecksDialog
 import com.mmfsin.whoami.presentation.menu.listener.IMenuListener
+import com.mmfsin.whoami.presentation.models.DeckType.SYSTEM_DECK
 import com.mmfsin.whoami.utils.showErrorDialog
 import com.mmfsin.whoami.utils.showFragmentDialog
 import dagger.hilt.android.AndroidEntryPoint
@@ -62,9 +63,7 @@ class MenuFragment : BaseFragment<FragmentMenuBinding, MenuViewModel>(), IMenuLi
         binding.apply {
             tvInstructions.setOnClickListener { (activity as MainActivity).openInstructions() }
 
-            tvPlay.setOnClickListener {
-                activity?.showFragmentDialog(DecksDialog() { id -> navigateToDashboard(id) })
-            }
+            tvPlay.setOnClickListener { activity?.showFragmentDialog(DecksDialog(this@MenuFragment)) }
 
             decks.tvMyDecks.setOnClickListener { navigateTo(actionMenuToMyDecks()) }
             decks.tvCreateDeck.setOnClickListener { navigateTo(actionMenuToCreateDeck()) }
@@ -99,9 +98,7 @@ class MenuFragment : BaseFragment<FragmentMenuBinding, MenuViewModel>(), IMenuLi
         navigateToAllCards()
     }
 
-    private fun navigateToDashboard(deckId: String) {
-        navigateTo(actionMenuToDashboard(deckId))
-    }
+    override fun startGame(deckId: String) = navigateTo(actionMenuToDashboard(deckId, SYSTEM_DECK))
 
     private fun navigateToAllCards() = navigateTo(actionMenuToAllCards())
 

@@ -9,6 +9,7 @@ const val CARDS = "cards"
 const val QUESTIONS = "questions"
 
 const val DECK_ID = "deckId"
+const val DECK_TYPE = "deckType"
 
 const val MY_SHARED_PREFS = "mSharedPrefs"
 const val SAVED_VERSION = "savedVersion"

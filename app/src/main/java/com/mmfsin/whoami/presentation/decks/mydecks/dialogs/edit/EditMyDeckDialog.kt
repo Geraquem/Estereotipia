@@ -1,6 +1,5 @@
-package com.mmfsin.whoami.presentation.decks.create.dialog
+package com.mmfsin.whoami.presentation.decks.mydecks.dialogs.edit
 
-import android.animation.Animator
 import android.app.Dialog
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,19 +8,19 @@ import androidx.fragment.app.viewModels
 import com.mmfsin.whoami.R
 import com.mmfsin.whoami.base.BaseDialog
 import com.mmfsin.whoami.databinding.DialogCreateDeckNameBinding
-import com.mmfsin.whoami.domain.models.MyDeck
-import com.mmfsin.whoami.presentation.decks.create.interfaces.ICreateDeckCardListener
+import com.mmfsin.whoami.presentation.decks.mydecks.dialogs.MyDeckEvent
+import com.mmfsin.whoami.presentation.decks.mydecks.dialogs.MyDeckViewModel
+import com.mmfsin.whoami.presentation.decks.mydecks.interfaces.IMyDeckListener
 import com.mmfsin.whoami.utils.animateDialog
-import com.mmfsin.whoami.utils.closeKeyboardFromDialog
 import com.mmfsin.whoami.utils.countDown
 import com.mmfsin.whoami.utils.showErrorDialog
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class DeckNameDialog(val cards: String, private val listener: ICreateDeckCardListener) :
+class EditMyDeckDialog(private val myDeckId: String, val listener: IMyDeckListener) :
     BaseDialog<DialogCreateDeckNameBinding>() {
 
-    private val viewModel: DeckNameViewModel by viewModels()
+    private val viewModel: MyDeckViewModel by viewModels()
 
     override fun inflateView(inflater: LayoutInflater) =
         DialogCreateDeckNameBinding.inflate(inflater)
@@ -36,13 +35,15 @@ class DeckNameDialog(val cards: String, private val listener: ICreateDeckCardLis
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         observe()
+        viewModel.getMyDeck(myDeckId)
     }
 
     override fun setUI() {
         isCancelable = true
         binding.apply {
-            tvError.visibility = View.GONE
             llFlowEnd.visibility = View.GONE
+            tvError.visibility = View.GONE
+            btnAccept.text = getString(R.string.my_decks_dialog_edit)
         }
     }
 
@@ -52,9 +53,8 @@ class DeckNameDialog(val cards: String, private val listener: ICreateDeckCardLis
                 val name = etName.text.toString()
                 if (name.isNotEmpty() && name.isNotBlank()) {
                     countDown(300) {
-                        viewModel.createDeck(MyDeck(name = name, cards = cards))
+                        viewModel.editMyDeckName(myDeckId, name)
                     }
-
                 } else tvError.visibility = View.VISIBLE
             }
         }
@@ -63,38 +63,27 @@ class DeckNameDialog(val cards: String, private val listener: ICreateDeckCardLis
     private fun observe() {
         viewModel.event.observe(this) { event ->
             when (event) {
-                is DeckNameEvent.CreatedCompleted -> endFlow()
-                is DeckNameEvent.SomethingWentWrong -> error()
+                is MyDeckEvent.GetDeck -> {
+                    binding.apply {
+                        val name = event.deck.name
+                        tvTitle.text = name
+                        etName.setText(name)
+                    }
+                }
+                is MyDeckEvent.EditedCompleted -> {
+                    listener.editCompleted()
+                    dismiss()
+                }
+                is MyDeckEvent.SomethingWentWrong -> error()
             }
         }
     }
 
-    private fun endFlow() {
-        binding.apply {
-            llMain.visibility = View.INVISIBLE
-            llFlowEnd.visibility = View.VISIBLE
-            lottie.addAnimatorListener(object : Animator.AnimatorListener {
-                override fun onAnimationStart(animation: Animator?) {}
-                override fun onAnimationEnd(animation: Animator?) {
-                    listener.flowCompleted()
-                    dismiss()
-                }
-
-                override fun onAnimationCancel(animation: Animator?) {}
-                override fun onAnimationRepeat(animation: Animator?) {}
-            })
-
-            lottie.setAnimation(R.raw.lottie_ok)
-            lottie.playAnimation()
-        }
-
-    }
-
-    private fun error() = activity?.showErrorDialog()
+    private fun error() = activity?.showErrorDialog(goBack = false)
 
     companion object {
-        fun newInstance(cards: String, listener: ICreateDeckCardListener): DeckNameDialog {
-            return DeckNameDialog(cards, listener)
+        fun newInstance(myDeckId: String, listener: IMyDeckListener): EditMyDeckDialog {
+            return EditMyDeckDialog(myDeckId, listener)
         }
     }
 }

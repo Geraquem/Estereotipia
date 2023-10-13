@@ -15,8 +15,7 @@ import io.realm.kotlin.where
 import javax.inject.Inject
 
 class DeckRepository @Inject constructor(
-    @ApplicationContext val context: Context,
-    private val realmDatabase: IRealmDatabase
+    @ApplicationContext val context: Context, private val realmDatabase: IRealmDatabase
 ) : IDeckRepository {
 
     override fun getDecks(): List<Deck>? {
@@ -50,18 +49,25 @@ class DeckRepository @Inject constructor(
         else decks.sortedBy { it.order }.toMyDeckList()
     }
 
-    override fun getMyDeckById(id: String): MyDeck? {
+    private fun getMyDeckDTO(id: String): MyDeckDTO? {
         val decks = realmDatabase.getObjectsFromRealm {
             where<MyDeckDTO>().equalTo("id", id).findAll()
         }
-        return if (decks.isEmpty()) null else decks.first().toMyDeck()
+        return if (decks.isEmpty()) null else decks.first()
+    }
+
+    override fun getMyDeckById(id: String): MyDeck? = getMyDeckDTO(id)?.toMyDeck()
+
+    override fun editMyDeckNameById(id: String, name: String) {
+        val deck = getMyDeckDTO(id)
+        deck?.let {
+            it.name = name
+            realmDatabase.addObject { deck }
+        }
     }
 
     override fun deleteMyDeck(id: String) {
-        val decks = realmDatabase.getObjectsFromRealm {
-            where<MyDeckDTO>().equalTo("id", id).findAll()
-        }
-        val deck = if (decks.isEmpty()) null else decks.first()
+        val deck = getMyDeckDTO(id)
         deck?.let { realmDatabase.deleteObject({ it }, it.id) }
     }
 }

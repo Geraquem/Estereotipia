@@ -17,6 +17,7 @@ import com.mmfsin.whoami.presentation.MainActivity
 import com.mmfsin.whoami.presentation.decks.mydecks.adapter.MyDecksAdapter
 import com.mmfsin.whoami.presentation.decks.mydecks.dialogs.MyDeckDialog
 import com.mmfsin.whoami.presentation.decks.mydecks.dialogs.delete.DeleteMyDeckDialog
+import com.mmfsin.whoami.presentation.decks.mydecks.dialogs.edit.EditMyDeckDialog
 import com.mmfsin.whoami.presentation.decks.mydecks.interfaces.IMyDeckListener
 import com.mmfsin.whoami.utils.showErrorDialog
 import com.mmfsin.whoami.utils.showFragmentDialog
@@ -76,6 +77,16 @@ class MyDecksFragment : BaseFragment<FragmentMyDecksBinding, MyDecksViewModel>()
     override fun onMyDeckClick(id: String) {
         activity?.showFragmentDialog(MyDeckDialog.newInstance(id, this@MyDecksFragment))
     }
+
+    override fun editName(id: String) {
+        activity?.showFragmentDialog(EditMyDeckDialog.newInstance(id, this@MyDecksFragment))
+    }
+
+    override fun editCards(id: String) {
+        TODO("Not yet implemented")
+    }
+
+    override fun editCompleted() = viewModel.getMyDecks()
 
     override fun confirmDeleteMyDeck(id: String) {
         activity?.showFragmentDialog(DeleteMyDeckDialog.newInstance(id, this@MyDecksFragment))

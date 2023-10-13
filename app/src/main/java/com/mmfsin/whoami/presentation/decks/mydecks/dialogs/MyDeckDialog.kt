@@ -41,23 +41,23 @@ class MyDeckDialog(private val myDeckId: String, val listener: IMyDeckListener) 
         binding.apply {
             tvPlay.setOnClickListener { }
 
-            tvEditName.setOnClickListener { }
-
+            tvEditName.setOnClickListener { actionAndDismiss { listener.editName(myDeckId) } }
             tvEditCards.setOnClickListener { }
-
             tvShare.setOnClickListener { }
-
-            tvDelete.setOnClickListener {
-                listener.confirmDeleteMyDeck(myDeckId)
-                dismiss()
-            }
+            tvDelete.setOnClickListener { actionAndDismiss { listener.confirmDeleteMyDeck(myDeckId) } }
         }
+    }
+
+    private fun actionAndDismiss(action: () -> Unit) {
+        action()
+        dismiss()
     }
 
     private fun observe() {
         viewModel.event.observe(this) { event ->
             when (event) {
                 is MyDeckEvent.GetDeck -> binding.tvTitle.text = event.deck.name
+                is MyDeckEvent.EditedCompleted -> {}
                 is MyDeckEvent.SomethingWentWrong -> error()
             }
         }

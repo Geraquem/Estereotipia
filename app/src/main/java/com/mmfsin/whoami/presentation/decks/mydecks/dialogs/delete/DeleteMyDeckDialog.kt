@@ -55,6 +55,7 @@ class DeleteMyDeckDialog(private val myDeckId: String, val listener: IMyDeckList
             when (event) {
                 is MyDeckEvent.GetDeck -> binding.tvText.text =
                     getString(R.string.my_decks_dialog_delete_confirm, event.deck.name)
+                is MyDeckEvent.EditedCompleted -> {}
                 is MyDeckEvent.SomethingWentWrong -> error()
             }
         }

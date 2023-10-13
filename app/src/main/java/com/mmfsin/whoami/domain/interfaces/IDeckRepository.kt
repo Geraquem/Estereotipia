@@ -10,5 +10,6 @@ interface IDeckRepository {
     fun createDeck(deck: MyDeck)
     fun getMyDecks(): List<MyDeck>
     fun getMyDeckById(id: String): MyDeck?
+    fun editMyDeckNameById(id: String, name: String)
     fun deleteMyDeck(id: String)
 }

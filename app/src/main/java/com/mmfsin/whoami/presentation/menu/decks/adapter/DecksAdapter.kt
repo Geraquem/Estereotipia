@@ -21,7 +21,7 @@ class DecksAdapter(
             binding.apply {
                 Glide.with(binding.root.context).load(deck.image).into(ivImage)
                 tvName.text = deck.name
-                tvCards.text = c.getString(R.string.decks_dialog_cards, deck.numOfCards.toString())
+                myDeck.tvCards.text = deck.numOfCards.toString()
             }
         }
     }

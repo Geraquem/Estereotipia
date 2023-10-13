@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Who Am I</string>
+    <string name="app_name">PyP</string>
 
     <string name="content_description">image</string>
 
@@ -32,7 +32,7 @@
     <!-- DECKS DIALOG -->
     <string name="decks_dialog_top_text">¿Con qué baraja quieres jugar?</string>
     <string name="decks_dialog_top_description">Elige la misma que la de tu rival</string>
-    <string name="decks_dialog_cards">%s Cartas</string>
+    <string name="decks_dialog_cards">Cartas</string>
 
     <!-- DISCARD DIALOG -->
     <string name="discard_card_info_state_discard">Descartado</string>
@@ -86,12 +86,25 @@
     <!-- MY DECKS -->
     <string name="my_decks_toolbar">Mis barajas</string>
     <string name="my_decks_view">Ver mis barajas</string>
+    <string name="my_decks_empty">Todavía no has creado ninguna baraja</string>
     <string name="my_decks_create_new_toolbar">Crear baraja</string>
     <string name="my_decks_create_new">Crear nueva baraja</string>
     <string name="my_decks_create_new_accept">Aceptar</string>
-    <string name="my_decks_create_new_hint">…</string>
+    <string name="my_decks_create_new_create">Crear baraja</string>
+    <string name="my_decks_create_new_hint">Escribe aquí…</string>
     <string name="my_decks_create_new_name">Nombre de la baraja</string>
     <string name="my_decks_create_new_name_error">El nombre no puede estar vacío</string>
+    <string name="my_decks_create_new_name_perfect">¡Baraja creada!</string>
+
+    <string name="my_decks_dialog_play">Jugar con esta baraja</string>
+    <string name="my_decks_dialog_edit_name">Cambiar nombre</string>
+    <string name="my_decks_dialog_edit_cards">Editar cartas</string>
+    <string name="my_decks_dialog_share">Compartir</string>
+
+    <string name="my_decks_dialog_delete">Eliminar baraja</string>
+    <string name="my_decks_dialog_delete_confirm">¿Quieres eliminar %s definitivamente?</string>
+    <string name="my_decks_dialog_delete_yes">Eliminar</string>
+    <string name="my_decks_dialog_delete_no">Volver</string>
 
     <!-- INSTRUCTIONS -->
     <string name="instructions_close">Cerrar</string>

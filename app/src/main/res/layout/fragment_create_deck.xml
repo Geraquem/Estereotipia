@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:animateLayoutChanges="true"
     android:background="@color/background"
     android:clickable="true"
     android:focusable="true">
@@ -30,6 +31,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/bg_btn_ok_create_deck"
+        android:clipChildren="false"
+        android:clipToPadding="false"
+        android:elevation="6dp"
         android:paddingVertical="24dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -49,16 +53,17 @@
             android:orientation="vertical"
             app:layout_constraintGuide_percent="0.95" />
 
-        <TextView
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/btn_ok"
             style="@style/MediumTextView"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:background="@color/soft_green"
+            android:background="@drawable/bg_soft_grey"
             android:gravity="center"
-            android:paddingVertical="12dp"
             android:text="@string/my_decks_create_new_accept"
             android:textAllCaps="true"
+            android:textStyle="bold"
+            app:backgroundTint="@null"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="@id/gl_left"
             app:layout_constraintRight_toRightOf="@id/gl_right"

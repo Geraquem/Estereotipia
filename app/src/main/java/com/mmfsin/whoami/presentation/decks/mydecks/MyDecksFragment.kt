@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import androidx.recyclerview.widget.StaggeredGridLayoutManager.VERTICAL
@@ -14,8 +15,11 @@ import com.mmfsin.whoami.databinding.FragmentMyDecksBinding
 import com.mmfsin.whoami.domain.models.MyDeck
 import com.mmfsin.whoami.presentation.MainActivity
 import com.mmfsin.whoami.presentation.decks.mydecks.adapter.MyDecksAdapter
+import com.mmfsin.whoami.presentation.decks.mydecks.dialogs.MyDeckDialog
+import com.mmfsin.whoami.presentation.decks.mydecks.dialogs.delete.DeleteMyDeckDialog
 import com.mmfsin.whoami.presentation.decks.mydecks.interfaces.IMyDeckListener
 import com.mmfsin.whoami.utils.showErrorDialog
+import com.mmfsin.whoami.utils.showFragmentDialog
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -36,6 +40,7 @@ class MyDecksFragment : BaseFragment<FragmentMyDecksBinding, MyDecksViewModel>()
     override fun setUI() {
         binding.apply {
             setToolbar()
+            tvEmpty.visibility = View.GONE
         }
     }
 
@@ -45,31 +50,38 @@ class MyDecksFragment : BaseFragment<FragmentMyDecksBinding, MyDecksViewModel>()
         }
     }
 
-    override fun setListeners() {
-        binding.apply {
-
-        }
-    }
+    override fun setListeners() {}
 
     override fun observe() {
         viewModel.event.observe(this) { event ->
             when (event) {
                 is MyDecksEvent.MyDecks -> setUpDecks(event.decks)
+                is MyDecksEvent.FlowCompleted -> viewModel.getMyDecks()
                 is MyDecksEvent.SomethingWentWrong -> error()
             }
         }
     }
 
     private fun setUpDecks(decks: List<MyDeck>) {
-        binding.rvMyDecks.apply {
-            layoutManager = StaggeredGridLayoutManager(2, VERTICAL)
-            adapter = MyDecksAdapter(decks, this@MyDecksFragment)
+        binding.apply {
+            rvMyDecks.apply {
+                layoutManager = StaggeredGridLayoutManager(2, VERTICAL)
+                adapter = MyDecksAdapter(decks, this@MyDecksFragment)
+            }
+            tvEmpty.isVisible = decks.isEmpty()
+            rvMyDecks.isVisible = decks.isNotEmpty()
         }
     }
 
     override fun onMyDeckClick(id: String) {
-
+        activity?.showFragmentDialog(MyDeckDialog.newInstance(id, this@MyDecksFragment))
     }
+
+    override fun confirmDeleteMyDeck(id: String) {
+        activity?.showFragmentDialog(DeleteMyDeckDialog.newInstance(id, this@MyDecksFragment))
+    }
+
+    override fun deleteMyDeck(id: String) = viewModel.deleteMyDeck(id)
 
     private fun error() = activity?.showErrorDialog()
 

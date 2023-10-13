@@ -1,10 +1,7 @@
 package com.mmfsin.whoami.data.repository
 
 import android.content.Context
-import com.mmfsin.whoami.data.mappers.toDeck
-import com.mmfsin.whoami.data.mappers.toDeckList
-import com.mmfsin.whoami.data.mappers.toMyDeckDTO
-import com.mmfsin.whoami.data.mappers.toMyDeckList
+import com.mmfsin.whoami.data.mappers.*
 import com.mmfsin.whoami.data.models.DeckDTO
 import com.mmfsin.whoami.data.models.MyDeckDTO
 import com.mmfsin.whoami.domain.interfaces.IDeckRepository
@@ -51,5 +48,20 @@ class DeckRepository @Inject constructor(
         val decks = realmDatabase.getObjectsFromRealm { where<MyDeckDTO>().findAll() }
         return if (decks.isEmpty()) emptyList()
         else decks.sortedBy { it.order }.toMyDeckList()
+    }
+
+    override fun getMyDeckById(id: String): MyDeck? {
+        val decks = realmDatabase.getObjectsFromRealm {
+            where<MyDeckDTO>().equalTo("id", id).findAll()
+        }
+        return if (decks.isEmpty()) null else decks.first().toMyDeck()
+    }
+
+    override fun deleteMyDeck(id: String) {
+        val decks = realmDatabase.getObjectsFromRealm {
+            where<MyDeckDTO>().equalTo("id", id).findAll()
+        }
+        val deck = if (decks.isEmpty()) null else decks.first()
+        deck?.let { realmDatabase.deleteObject({ it }, it.id) }
     }
 }

@@ -103,4 +103,8 @@
         <item name="android:textSize">17sp</item>
     </style>
 
+    <style name="Button.Green" parent="ThemeOverlay.AppCompat">
+        <item name="colorAccent">@color/soft_green</item>
+    </style>
+
 </resources>

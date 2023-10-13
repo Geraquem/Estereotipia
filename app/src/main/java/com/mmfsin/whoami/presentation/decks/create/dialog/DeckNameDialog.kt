@@ -42,7 +42,7 @@ class DeckNameDialog(val cards: String, private val listener: ICreateDeckCardLis
         isCancelable = true
         binding.apply {
             tvError.visibility = View.GONE
-            lottie.visibility = View.GONE
+            llFlowEnd.visibility = View.GONE
         }
     }
 
@@ -72,7 +72,7 @@ class DeckNameDialog(val cards: String, private val listener: ICreateDeckCardLis
     private fun endFlow() {
         binding.apply {
             llMain.visibility = View.INVISIBLE
-            lottie.visibility = View.VISIBLE
+            llFlowEnd.visibility = View.VISIBLE
             lottie.addAnimatorListener(object : Animator.AnimatorListener {
                 override fun onAnimationStart(animation: Animator?) {}
                 override fun onAnimationEnd(animation: Animator?) {

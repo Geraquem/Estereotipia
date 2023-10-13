@@ -21,7 +21,14 @@
             android:layout_width="164dp"
             android:layout_height="164dp"
             android:contentDescription="@string/content_description"
-            android:src="@color/black" />
+            android:src="@color/black"
+            android:visibility="gone" />
+
+        <include
+            android:id="@+id/my_deck"
+            layout="@layout/include_deck"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
 
         <TextView
             android:id="@+id/tv_name"
@@ -31,15 +38,6 @@
             android:layout_marginTop="8dp"
             android:textSize="25sp"
             tools:text="Baraja 1" />
-
-        <TextView
-            android:id="@+id/tv_cards"
-            style="@style/MediumTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="2dp"
-            android:textSize="18sp"
-            tools:text="5 Cartas" />
 
     </LinearLayout>
 

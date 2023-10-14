@@ -11,7 +11,7 @@
 
     <TextView
         android:id="@+id/tv_name"
-        style="@style/MediumTextView"
+        style="@style/MediumTextView_Card"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:background="@drawable/bg_card_info_name"

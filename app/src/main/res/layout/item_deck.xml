@@ -4,40 +4,47 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginHorizontal="4dp"
-    android:paddingVertical="16dp">
+    android:layout_marginBottom="8dp"
+    android:background="@drawable/bg_white_box"
+    android:elevation="6dp"
+    android:foreground="?attr/selectableItemBackground"
+    android:padding="16dp">
+
+    <ImageView
+        android:id="@+id/icon"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:contentDescription="@string/content_description"
+        android:src="@drawable/ic_deck"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:gravity="center"
+        android:layout_marginStart="8dp"
         android:orientation="vertical"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toRightOf="@id/icon"
         app:layout_constraintTop_toTopOf="parent">
-
-        <ImageView
-            android:id="@+id/iv_image"
-            android:layout_width="164dp"
-            android:layout_height="164dp"
-            android:contentDescription="@string/content_description"
-            android:src="@color/black"
-            android:visibility="gone" />
-
-        <include
-            android:id="@+id/my_deck"
-            layout="@layout/include_deck"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
 
         <TextView
             android:id="@+id/tv_name"
             style="@style/MediumTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:textSize="25sp"
+            android:textSize="20sp"
+            android:textStyle="bold"
             tools:text="Baraja 1" />
+
+        <TextView
+            android:id="@+id/tv_cards"
+            style="@style/MediumTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            tools:text="15 cartas" />
 
     </LinearLayout>
 

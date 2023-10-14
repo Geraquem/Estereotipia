@@ -41,6 +41,7 @@ class EditMyDeckDialog(private val myDeckId: String, val listener: IMyDeckListen
     override fun setUI() {
         isCancelable = true
         binding.apply {
+            tvTitle.text = getString(R.string.my_decks_dialog_edit_name)
             llFlowEnd.visibility = View.GONE
             tvError.visibility = View.GONE
             btnAccept.text = getString(R.string.my_decks_dialog_edit)
@@ -66,7 +67,6 @@ class EditMyDeckDialog(private val myDeckId: String, val listener: IMyDeckListen
                 is MyDeckEvent.GetDeck -> {
                     binding.apply {
                         val name = event.deck.name
-                        tvTitle.text = name
                         etName.setText(name)
                     }
                 }

@@ -8,8 +8,7 @@ import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.StaggeredGridLayoutManager
-import androidx.recyclerview.widget.StaggeredGridLayoutManager.VERTICAL
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.mmfsin.whoami.R
 import com.mmfsin.whoami.base.BaseFragment
 import com.mmfsin.whoami.databinding.FragmentMyDecksBinding
@@ -50,6 +49,7 @@ class MyDecksFragment : BaseFragment<FragmentMyDecksBinding, MyDecksViewModel>()
 
     private fun setToolbar() {
         (activity as MainActivity).apply {
+            this.inDashboard = false
             setUpToolbar(showBack = false, getString(R.string.my_decks_toolbar))
         }
     }
@@ -69,7 +69,8 @@ class MyDecksFragment : BaseFragment<FragmentMyDecksBinding, MyDecksViewModel>()
     private fun setUpDecks(decks: List<MyDeck>) {
         binding.apply {
             rvMyDecks.apply {
-                layoutManager = StaggeredGridLayoutManager(2, VERTICAL)
+//                layoutManager = StaggeredGridLayoutManager(2, VERTICAL)
+                layoutManager = LinearLayoutManager(mContext)
                 adapter = MyDecksAdapter(decks, this@MyDecksFragment)
             }
             tvEmpty.isVisible = decks.isEmpty()

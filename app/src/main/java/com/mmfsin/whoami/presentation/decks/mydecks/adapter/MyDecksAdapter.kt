@@ -20,9 +20,9 @@ class MyDecksAdapter(
         val c = binding.root.context
         fun bind(deck: MyDeck) {
             binding.apply {
-                Glide.with(binding.root.context).load(deck.image).into(ivImage)
+                Glide.with(binding.root.context).load(deck.image).into(icon)
                 tvName.text = deck.name
-                myDeck.tvCards.text = deck.numOfCards.toString()
+                tvCards.text = c.getString(R.string.decks_dialog_cards, deck.numOfCards.toString())
             }
         }
     }

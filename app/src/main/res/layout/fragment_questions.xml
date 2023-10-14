@@ -59,11 +59,13 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="18dp"
                     android:background="@drawable/bg_white_box"
+                    android:drawablePadding="8dp"
                     android:elevation="3dp"
                     android:foreground="?attr/selectableItemBackground"
                     android:paddingHorizontal="12dp"
                     android:paddingVertical="16dp"
-                    android:text="@string/questions_do_question" />
+                    android:text="@string/questions_do_question"
+                    app:drawableStartCompat="@drawable/ic_question" />
 
                 <TextView
                     android:id="@+id/tv_all_questions"
@@ -72,11 +74,13 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="18dp"
                     android:background="@drawable/bg_white_box"
+                    android:drawablePadding="8dp"
                     android:elevation="3dp"
                     android:foreground="?attr/selectableItemBackground"
                     android:paddingHorizontal="12dp"
                     android:paddingVertical="16dp"
-                    android:text="@string/questions_list_of" />
+                    android:text="@string/questions_list_of"
+                    app:drawableStartCompat="@drawable/ic_list" />
 
                 <TextView
                     android:id="@+id/tv_my_card"
@@ -85,11 +89,13 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="32dp"
                     android:background="@drawable/bg_white_box"
+                    android:drawablePadding="8dp"
                     android:elevation="3dp"
                     android:foreground="?attr/selectableItemBackground"
                     android:paddingHorizontal="12dp"
                     android:paddingVertical="16dp"
-                    android:text="@string/questions_my_card" />
+                    android:text="@string/questions_my_card"
+                    app:drawableStartCompat="@drawable/ic_card" />
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
@@ -132,11 +138,11 @@
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/cv_what_now"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     app:cardCornerRadius="12dp"
                     app:cardElevation="6dp"
-                    app:contentPadding="16dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    app:contentPadding="16dp">
 
                     <LinearLayout
                         android:id="@+id/ll_what_now"

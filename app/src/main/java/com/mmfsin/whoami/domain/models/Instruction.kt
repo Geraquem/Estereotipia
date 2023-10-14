@@ -6,5 +6,6 @@ open class Instruction(
     val icon: Int,
     val title: String,
     val text: Int? = null,
-    val layout: Int? = null
+    val layout: Int? = null,
+    var textOpened: Boolean = false
 )

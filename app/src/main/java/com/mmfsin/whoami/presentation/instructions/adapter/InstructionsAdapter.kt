@@ -26,14 +26,7 @@ class InstructionsAdapter(
                 val view = instruction.layout?.let { View.VISIBLE } ?: run { View.GONE }
                 ivArrow.visibility = view
 
-                tvText.visibility = View.GONE
-
-                clMain.setOnClickListener {
-                    if (instruction.text != null && instruction.layout == null) {
-                        val isVisible = tvText.isVisible
-                        tvText.isVisible = !isVisible
-                    } else listener.onInstructionClick(instruction)
-                }
+                tvText.isVisible = instruction.textOpened
             }
         }
     }
@@ -45,7 +38,14 @@ class InstructionsAdapter(
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bind(instructions[position], listener)
+        val instruction = instructions[position]
+        holder.bind(instruction, listener)
+        holder.itemView.setOnClickListener {
+            if (instruction.text != null && instruction.layout == null) {
+                instruction.textOpened = !instruction.textOpened
+                notifyItemChanged(position)
+            } else listener.onInstructionClick(instruction)
+        }
     }
 
     override fun getItemCount(): Int = instructions.size

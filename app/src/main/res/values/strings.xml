@@ -47,7 +47,7 @@
     <string name="selected_card_continue">Vale</string>
 
     <!-- SELECT CARD LOADING -->
-    <string name="select_card_loading_title">Selección de personaje en</string>
+    <string name="select_card_loading_title">Preparándolo todo</string>
 
     <!-- CHOICE DIALOG -->
     <string name="choice_dialog_title">¿Es %s el personaje de tu rival?</string>

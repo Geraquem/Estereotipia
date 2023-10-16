@@ -12,4 +12,6 @@ interface ICardsRepository {
     fun discardCard(id: String): Boolean?
     fun selectCard(id: String)
     fun observeFlow(): StateFlow<Pair<Boolean, String>>
+
+    fun setRivalCard(id: String)
 }

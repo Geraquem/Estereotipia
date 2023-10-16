@@ -94,6 +94,16 @@ class CardsRepository @Inject constructor(
         }
     }
 
+    override fun setRivalCard(id: String) {
+        val card = getCardDTO(id)
+        card?.let {
+            it.discard = false
+            it.rivalCard = true
+            saveCardInRealm(it)
+            flowValue.value = Pair(!flowValue.value.first, it.id)
+        }
+    }
+
     private fun saveCardInRealm(card: CardDTO) = realmDatabase.addObject { card }
 
     override fun observeFlow(): StateFlow<Pair<Boolean, String>> {

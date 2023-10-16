@@ -1,9 +1,10 @@
 package com.mmfsin.whoami.presentation.dashboard.cards.adapter
 
-import android.content.Context
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.res.ResourcesCompat
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -13,24 +14,27 @@ import com.mmfsin.whoami.domain.models.Card
 import com.mmfsin.whoami.presentation.dashboard.cards.interfaces.ICardsListener
 
 class CardsAdapter(
-    private val cards: List<Card>,
-    private val listener: ICardsListener
+    private val cards: List<Card>, private val listener: ICardsListener
 ) : RecyclerView.Adapter<CardsAdapter.ViewHolder>() {
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val binding = ItemCardBinding.bind(view)
+        private val c = binding.root.context
+
+        @SuppressLint("UseCompatLoadingForDrawables")
         fun bind(card: Card) {
             binding.apply {
                 ivDiscard.isVisible = card.discarded
-                Glide.with(binding.root.context).load(card.image).into(ivImage)
+                Glide.with(c).load(card.image).into(ivImage)
                 tvName.text = card.name
-            }
-        }
 
-        private fun updateBtnDiscardText(c: Context, card: Card) {
-            val imgDiscarded = if (card.discarded) R.drawable.ic_redo
-            else R.drawable.ic_discard_cross
-//            binding.btnDiscard.setImageResource(imgDiscarded)
+                if (card.rivalCard) {
+                    val golden = ResourcesCompat.getDrawable(
+                        c.resources, R.drawable.bg_white_box_golden_line, null
+                    )
+                    clBackground.background = golden
+                }
+            }
         }
     }
 

@@ -75,7 +75,7 @@ class ChoiceDialog(
                 lottieLooser.playAnimation()
             }
         }
-        listener.choiceComplete(winner)
+        listener.choiceComplete(winner, cardId)
     }
 
     private fun observe() {

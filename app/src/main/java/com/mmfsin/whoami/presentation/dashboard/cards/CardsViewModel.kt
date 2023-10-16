@@ -5,6 +5,7 @@ import com.mmfsin.whoami.base.BaseViewModel
 import com.mmfsin.whoami.domain.usecases.DiscardCardUseCase
 import com.mmfsin.whoami.domain.usecases.GetCardsByDeckIdUseCase
 import com.mmfsin.whoami.domain.usecases.ObserveFlowUseCase
+import com.mmfsin.whoami.domain.usecases.SetRivalCardUseCase
 import com.mmfsin.whoami.presentation.models.DeckType
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Job
@@ -15,6 +16,7 @@ import javax.inject.Inject
 class CardsViewModel @Inject constructor(
     private val getCardsByDeckIdUseCase: GetCardsByDeckIdUseCase,
     private val discardCardUseCase: DiscardCardUseCase,
+    private val setRivalCardUseCase: SetRivalCardUseCase,
     private val observeFlowUseCase: ObserveFlowUseCase
 ) : BaseViewModel<CardsEvent>() {
 
@@ -46,6 +48,14 @@ class CardsViewModel @Inject constructor(
     fun discardCard(cardId: String) {
         executeUseCase(
             { discardCardUseCase.execute(DiscardCardUseCase.Params(cardId)) },
+            { /** Flow do the rest */ },
+            { _event.value = CardsEvent.SomethingWentWrong }
+        )
+    }
+
+    fun setRivalCard(cardId: String) {
+        executeUseCase(
+            { setRivalCardUseCase.execute(SetRivalCardUseCase.Params(cardId)) },
             { /** Flow do the rest */ },
             { _event.value = CardsEvent.SomethingWentWrong }
         )

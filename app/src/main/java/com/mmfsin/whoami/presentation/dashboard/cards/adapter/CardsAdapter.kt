@@ -49,6 +49,18 @@ class CardsAdapter(
         position?.let { pos -> notifyItemChanged(pos) }
     }
 
+    fun updateRivalCard(id: String) {
+        var position: Int? = null
+        cards.forEachIndexed() { i, card ->
+            if (card.id == id) {
+                card.discarded = false
+                card.rivalCard = true
+                position = i
+            }
+        }
+        position?.let { pos -> notifyItemChanged(pos) }
+    }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(
             LayoutInflater.from(parent.context).inflate(R.layout.item_card, parent, false)

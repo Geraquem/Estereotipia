@@ -93,7 +93,7 @@ class CardsFragment(
     override fun choiceComplete(winner: Boolean, cardId: String) {
         if (winner) {
             opportunities = 0
-            viewModel.setRivalCard(cardId)
+            cardsAdapter?.updateRivalCard(cardId)
         } else opportunities--
     }
 

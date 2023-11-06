@@ -14,6 +14,7 @@ import com.mmfsin.whoami.presentation.dashboard.questions.dialogs.NewQuestionDia
 import com.mmfsin.whoami.presentation.dashboard.questions.dialogs.QuestionsListDialog
 import com.mmfsin.whoami.presentation.dashboard.questions.dialogs.interfaces.INewQuestionListener
 import com.mmfsin.whoami.presentation.dashboard.viepager.interfaces.IViewPagerListener
+import com.mmfsin.whoami.utils.NUM_OF_QUESTIONS
 import com.mmfsin.whoami.utils.setExpandableView
 import com.mmfsin.whoami.utils.showErrorDialog
 import com.mmfsin.whoami.utils.showFragmentDialog
@@ -52,7 +53,7 @@ class QuestionsFragment(
         binding.apply {
             tvNewQuestion.setOnClickListener {
                 questions?.let { list ->
-                    if (cont < list.size) {
+                    if (cont < NUM_OF_QUESTIONS) {
                         val question = list[cont]
                         questionsDone.add(question)
                         activity?.showFragmentDialog(

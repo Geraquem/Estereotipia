@@ -7,5 +7,6 @@ open class Instruction(
     val title: String,
     val text: Int? = null,
     val layout: Int? = null,
-    var textOpened: Boolean = false
+    var textOpened: Boolean = false,
+    var background: Int
 )

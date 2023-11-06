@@ -1,51 +1,56 @@
 package com.mmfsin.whoami.presentation.instructions.adapter
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.mmfsin.whoami.R
-import com.mmfsin.whoami.databinding.ItemInstructionBinding
 import com.mmfsin.whoami.domain.models.Instruction
+import com.mmfsin.whoami.presentation.instructions.adapter.viewholders.InstructionSpaceViewHolder
+import com.mmfsin.whoami.presentation.instructions.adapter.viewholders.InstructionViewHolder
 import com.mmfsin.whoami.presentation.instructions.interfaces.IInstructionsListener
 
 class InstructionsAdapter(
-    private val instructions: List<Instruction>, private val listener: IInstructionsListener
-) : RecyclerView.Adapter<InstructionsAdapter.ViewHolder>() {
+    private val instructions: List<Any>,
+    private val listener: IInstructionsListener
+) : RecyclerView.Adapter<ViewHolder>() {
 
-    class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        private val binding = ItemInstructionBinding.bind(view)
-        private val c = binding.root.context
-        fun bind(instruction: Instruction, listener: IInstructionsListener) {
-            binding.apply {
-                ivIcon.setImageResource(instruction.icon)
-                tvTitle.text = instruction.title
-                instruction.text?.let { text -> tvText.text = c.getText(text) }
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+        return when (viewType) {
+            InstructionViewHolder.ITEM_INST_TYPE -> {
+                val view = LayoutInflater.from(parent.context)
+                    .inflate(R.layout.item_instruction, parent, false)
+                InstructionViewHolder(view)
+            }
 
-                val view = instruction.layout?.let { View.VISIBLE } ?: run { View.GONE }
-                ivArrow.visibility = view
-
-                tvText.isVisible = instruction.textOpened
+            else -> {
+                val view = LayoutInflater.from(parent.context)
+                    .inflate(R.layout.item_instruction_space, parent, false)
+                InstructionSpaceViewHolder(view)
             }
         }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        return ViewHolder(
-            LayoutInflater.from(parent.context).inflate(R.layout.item_instruction, parent, false)
-        )
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        when (holder) {
+            is InstructionViewHolder -> {
+                val instruction = instructions[position] as Instruction
+                holder.bind(instruction)
+                holder.itemView.setOnClickListener {
+                    if (instruction.text != null && instruction.layout == null) {
+                        instruction.textOpened = !instruction.textOpened
+                        notifyItemChanged(position)
+                    } else listener.onInstructionClick(instruction)
+                }
+            }
+
+            is InstructionSpaceViewHolder -> holder.bind()
+        }
     }
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val instruction = instructions[position]
-        holder.bind(instruction, listener)
-        holder.itemView.setOnClickListener {
-            if (instruction.text != null && instruction.layout == null) {
-                instruction.textOpened = !instruction.textOpened
-                notifyItemChanged(position)
-            } else listener.onInstructionClick(instruction)
-        }
+    override fun getItemViewType(position: Int): Int {
+        return if(instructions[position] is Instruction) InstructionViewHolder.ITEM_INST_TYPE
+        else InstructionSpaceViewHolder.ITEM_SPACE_TYPE
     }
 
     override fun getItemCount(): Int = instructions.size

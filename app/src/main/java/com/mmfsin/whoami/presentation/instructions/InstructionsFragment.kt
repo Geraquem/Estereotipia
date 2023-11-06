@@ -7,7 +7,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.SimpleItemAnimator
 import com.mmfsin.whoami.R
 import com.mmfsin.whoami.base.BaseFragment
@@ -57,18 +56,25 @@ class InstructionsFragment : BaseFragment<FragmentInstructionsBinding, Instructi
     }
 
     private fun setUpInstructions(instructions: List<Instruction>) {
+        val finalList = mutableListOf<Any>()
         val group1 = instructions.filter { it.group == 1 }
-        setUpRecyclerView(binding.rvInstructionsOne, group1)
-
+        finalList.addItem(group1)
+        finalList.add(SPACE)
         val group2 = instructions.filter { it.group == 2 }
-        setUpRecyclerView(binding.rvInstructionsTwo, group2)
-
+        finalList.addItem(group2)
+        finalList.add(SPACE)
         val group3 = instructions.filter { it.group == 3 }
-        setUpRecyclerView(binding.rvInstructionsThree, group3)
+        finalList.addItem(group3)
+
+        setUpRecyclerView(finalList)
     }
 
-    private fun setUpRecyclerView(recycler: RecyclerView, instructions: List<Instruction>) {
-        recycler.apply {
+    private fun MutableList<Any>.addItem(list: List<Any>) {
+        for (item in list) this.add(item)
+    }
+
+    private fun setUpRecyclerView(instructions: List<Any>) {
+        binding.rvInstructions.apply {
             (this.itemAnimator as SimpleItemAnimator).supportsChangeAnimations = false
             layoutManager = LinearLayoutManager(mContext)
             adapter = InstructionsAdapter(instructions, this@InstructionsFragment)
@@ -85,5 +91,9 @@ class InstructionsFragment : BaseFragment<FragmentInstructionsBinding, Instructi
     override fun onAttach(context: Context) {
         super.onAttach(context)
         mContext = context
+    }
+
+    companion object {
+        const val SPACE = "instruction_space"
     }
 }

@@ -11,6 +11,8 @@ import com.mmfsin.whoami.R
 import com.mmfsin.whoami.base.BaseDialog
 import com.mmfsin.whoami.databinding.DialogCardDiscardBinding
 import com.mmfsin.whoami.domain.models.Card
+import com.mmfsin.whoami.presentation.dashboard.cards.dialogs.discard.DiscardDialog.ActionType.FIRST_BUTTONS
+import com.mmfsin.whoami.presentation.dashboard.cards.dialogs.discard.DiscardDialog.ActionType.SECOND_BUTTONS
 import com.mmfsin.whoami.presentation.dashboard.cards.interfaces.ICardsListener
 import com.mmfsin.whoami.presentation.models.CardState
 import com.mmfsin.whoami.presentation.models.CardState.DISCARDED
@@ -28,13 +30,19 @@ class DiscardDialog(
 
     private var card: Card? = null
 
+    private var firstAccess = true
+    private var actionType = FIRST_BUTTONS
+
     override fun inflateView(inflater: LayoutInflater) = DialogCardDiscardBinding.inflate(inflater)
 
     override fun setCustomViewDialog(dialog: Dialog) = centerCustomViewDialog(dialog)
 
     override fun onResume() {
         super.onResume()
-        requireDialog().animateDialog()
+        if (firstAccess) {
+            firstAccess = false
+            requireDialog().animateDialog()
+        }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -46,16 +54,24 @@ class DiscardDialog(
     override fun setUI() {
         isCancelable = true
         binding.apply {
-            if (opportunities == 0) {
-                buttons.root.visibility = View.GONE
-            } else {
-                val choices = when (opportunities) {
-                    1 -> getString(R.string.discard_card_choice_one_try)
-                    else -> getString(R.string.discard_card_choice_two_try)
+            when (actionType) {
+                FIRST_BUTTONS -> {
+                    if (opportunities == 0) buttons.root.visibility = View.GONE
+                    else {
+                        val choices = when (opportunities) {
+                            1 -> getString(R.string.discard_card_choice_one_try)
+                            else -> getString(R.string.discard_card_choice_two_try)
+                        }
+                        buttons.tvOpportunities.text = choices
+                    }
+                    choice.root.visibility = View.GONE
                 }
-                buttons.tvOpportunities.text = choices
+
+                SECOND_BUTTONS -> {
+                    /** already handled.
+                     * This is for when the user blocks screen */
+                }
             }
-            choice.root.visibility = View.GONE
         }
     }
 
@@ -63,10 +79,12 @@ class DiscardDialog(
         binding.apply {
             buttons.ivDiscard.setOnClickListener { viewModel.discardCard(cardId) }
             buttons.ivFinalAnswer.setOnClickListener {
+                actionType = SECOND_BUTTONS
                 buttons.root.visibility = View.GONE
                 choice.root.visibility = View.VISIBLE
             }
             choice.btnNo.setOnClickListener {
+                actionType = FIRST_BUTTONS
                 choice.root.visibility = View.GONE
                 buttons.root.visibility = View.VISIBLE
             }
@@ -84,12 +102,14 @@ class DiscardDialog(
                     this.card = event.card
                     setCardInfo()
                 }
+
                 is DiscardDialogEvent.DiscardCard -> {
                     event.discarded?.let {
                         if (it) dismiss()
                         else setNotDiscardedCard()
                     } ?: run { error() }
                 }
+
                 is DiscardDialogEvent.SomethingWentWrong -> error()
             }
         }
@@ -150,5 +170,10 @@ class DiscardDialog(
         ): DiscardDialog {
             return DiscardDialog(cardId, opportunities, listener)
         }
+    }
+
+    enum class ActionType {
+        FIRST_BUTTONS,
+        SECOND_BUTTONS
     }
 }

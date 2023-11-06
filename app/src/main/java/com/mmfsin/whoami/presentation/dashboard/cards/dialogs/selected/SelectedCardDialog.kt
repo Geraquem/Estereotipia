@@ -19,6 +19,7 @@ class SelectedCardDialog(private val cardId: String) : BaseDialog<DialogCardSele
     private val viewModel: SelectedCardDialogViewModel by viewModels()
 
     private var card: Card? = null
+    private var firstAccess = true
 
     override fun inflateView(inflater: LayoutInflater) = DialogCardSelectBinding.inflate(inflater)
 
@@ -26,7 +27,10 @@ class SelectedCardDialog(private val cardId: String) : BaseDialog<DialogCardSele
 
     override fun onResume() {
         super.onResume()
-        requireDialog().animateDialog()
+        if (firstAccess) {
+            firstAccess = false
+            requireDialog().animateDialog()
+        }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -47,7 +51,7 @@ class SelectedCardDialog(private val cardId: String) : BaseDialog<DialogCardSele
 
     override fun setListeners() {
         binding.apply {
-            btnSelect.setOnClickListener { dismiss() }
+            btnOk.setOnClickListener { dismiss() }
         }
     }
 
@@ -58,6 +62,7 @@ class SelectedCardDialog(private val cardId: String) : BaseDialog<DialogCardSele
                     this.card = event.card
                     setUI()
                 }
+
                 is SelectedCardDialogEvent.SomethingWentWrong -> error()
             }
         }

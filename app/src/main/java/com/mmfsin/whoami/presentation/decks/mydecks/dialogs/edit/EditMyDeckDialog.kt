@@ -22,6 +22,8 @@ class EditMyDeckDialog(private val myDeckId: String, val listener: IMyDeckListen
 
     private val viewModel: MyDeckViewModel by viewModels()
 
+    private var firstAccess = true
+
     override fun inflateView(inflater: LayoutInflater) =
         DialogCreateDeckNameBinding.inflate(inflater)
 
@@ -29,7 +31,10 @@ class EditMyDeckDialog(private val myDeckId: String, val listener: IMyDeckListen
 
     override fun onResume() {
         super.onResume()
-        requireDialog().animateDialog()
+        if (firstAccess) {
+            firstAccess = false
+            requireDialog().animateDialog()
+        }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -70,10 +75,12 @@ class EditMyDeckDialog(private val myDeckId: String, val listener: IMyDeckListen
                         etName.setText(name)
                     }
                 }
+
                 is MyDeckEvent.EditedCompleted -> {
                     listener.editCompleted()
                     dismiss()
                 }
+
                 is MyDeckEvent.SomethingWentWrong -> error()
             }
         }

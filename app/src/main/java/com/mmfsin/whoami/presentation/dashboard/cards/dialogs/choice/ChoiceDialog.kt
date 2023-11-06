@@ -11,6 +11,10 @@ import com.mmfsin.whoami.R
 import com.mmfsin.whoami.base.BaseDialog
 import com.mmfsin.whoami.databinding.DialogCardChoiceBinding
 import com.mmfsin.whoami.domain.models.Card
+import com.mmfsin.whoami.presentation.dashboard.cards.dialogs.choice.ChoiceDialog.ActionType.FIRST_BUTTONS
+import com.mmfsin.whoami.presentation.dashboard.cards.dialogs.choice.ChoiceDialog.ActionType.SECOND_BUTTONS
+import com.mmfsin.whoami.presentation.dashboard.cards.dialogs.choice.ChoiceDialog.ResultType.LOOSER
+import com.mmfsin.whoami.presentation.dashboard.cards.dialogs.choice.ChoiceDialog.ResultType.WINNER
 import com.mmfsin.whoami.presentation.dashboard.cards.interfaces.ICardsListener
 import com.mmfsin.whoami.utils.animateDialog
 import com.mmfsin.whoami.utils.showErrorDialog
@@ -25,13 +29,20 @@ class ChoiceDialog(
 
     private var card: Card? = null
 
+    private var firstAccess = true
+    private var actionType = FIRST_BUTTONS
+    private var result: ResultType? = null
+
     override fun inflateView(inflater: LayoutInflater) = DialogCardChoiceBinding.inflate(inflater)
 
     override fun setCustomViewDialog(dialog: Dialog) = centerCustomViewDialog(dialog)
 
     override fun onResume() {
         super.onResume()
-        requireDialog().animateDialog()
+        if (firstAccess) {
+            firstAccess = false
+            requireDialog().animateDialog()
+        }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -43,9 +54,11 @@ class ChoiceDialog(
     override fun setUI() {
         isCancelable = false
         binding.apply {
-            llFinalWinner.visibility = View.GONE
-            llFinalLooser.visibility = View.GONE
-            tvBack.visibility = View.GONE
+            if (actionType == FIRST_BUTTONS) {
+                llFinalWinner.visibility = View.GONE
+                llFinalLooser.visibility = View.GONE
+                tvBack.visibility = View.GONE
+            }
         }
     }
 
@@ -58,15 +71,18 @@ class ChoiceDialog(
     }
 
     private fun finalAnswer(winner: Boolean) {
+        actionType = SECOND_BUTTONS
         binding.apply {
             llCard.visibility = View.INVISIBLE
             buttons.root.visibility = View.GONE
             tvBack.visibility = View.VISIBLE
             if (winner) {
+                result = WINNER
                 lottieWinner.setAnimation(R.raw.lottie_trophy)
                 llFinalWinner.isVisible = true
                 lottieWinner.playAnimation()
             } else {
+                result = LOOSER
                 val text = if (opportunities == 2) R.string.choice_dialog_looser_opportunities
                 else R.string.choice_dialog_looser_zero_opportunities
                 tvLooser.text = getString(text)
@@ -85,6 +101,7 @@ class ChoiceDialog(
                     this.card = event.card
                     setCardInfo()
                 }
+
                 is ChoiceDialogEvent.SomethingWentWrong -> error()
             }
         }
@@ -107,5 +124,13 @@ class ChoiceDialog(
         ): ChoiceDialog {
             return ChoiceDialog(cardId, opportunities, listener)
         }
+    }
+
+    enum class ActionType {
+        FIRST_BUTTONS, SECOND_BUTTONS
+    }
+
+    enum class ResultType {
+        WINNER, LOOSER
     }
 }

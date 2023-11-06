@@ -53,14 +53,16 @@ class QuestionsFragment(
         binding.apply {
             tvNewQuestion.setOnClickListener {
                 questions?.let { list ->
-                    if (cont < NUM_OF_QUESTIONS) {
-                        val question = list[cont]
-                        questionsDone.add(question)
-                        activity?.showFragmentDialog(
-                            NewQuestionDialog.newInstance(this@QuestionsFragment, question)
-                        )
-                        cont++
-                    } else activity?.showFragmentDialog(NewQuestionDialog.newInstance(this@QuestionsFragment))
+                    if (list.isNotEmpty()) {
+                        if (cont < NUM_OF_QUESTIONS) {
+                            val question = list[cont]
+                            questionsDone.add(question)
+                            activity?.showFragmentDialog(
+                                NewQuestionDialog.newInstance(this@QuestionsFragment, question)
+                            )
+                            cont++
+                        } else activity?.showFragmentDialog(NewQuestionDialog.newInstance(this@QuestionsFragment))
+                    } else viewModel.getQuestions()
                 }
             }
 
@@ -81,6 +83,7 @@ class QuestionsFragment(
                     questions = event.questions
                     binding.loading.root.visibility = View.GONE
                 }
+
                 is QuestionsEvent.SomethingWentWrong -> error()
             }
         }

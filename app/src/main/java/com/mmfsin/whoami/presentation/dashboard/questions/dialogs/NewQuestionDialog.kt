@@ -16,13 +16,21 @@ class NewQuestionDialog(
     private val question: Question? = null
 ) : BaseDialog<DialogNewQuestionBinding>() {
 
+    private var firstAccess = true
+
     override fun inflateView(inflater: LayoutInflater) = DialogNewQuestionBinding.inflate(inflater)
 
     override fun setCustomViewDialog(dialog: Dialog) = centerViewDialog(dialog)
 
     override fun onResume() {
         super.onResume()
-        requireDialog().animateDialog()
+        if(firstAccess){
+            firstAccess = false
+                   if(firstAccess){
+            firstAccess = false
+            requireDialog().animateDialog()
+        }
+        }
     }
 
     override fun setUI() {

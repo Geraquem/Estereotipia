@@ -20,13 +20,18 @@ class DeleteMyDeckDialog(private val myDeckId: String, val listener: IMyDeckList
 
     private val viewModel: MyDeckViewModel by viewModels()
 
+    private var firstAccess = true
+
     override fun inflateView(inflater: LayoutInflater) = DialogDeleteMyDeckBinding.inflate(inflater)
 
     override fun setCustomViewDialog(dialog: Dialog) = centerViewDialog(dialog)
 
     override fun onResume() {
         super.onResume()
-        requireDialog().animateDialog()
+        if (firstAccess) {
+            firstAccess = false
+            requireDialog().animateDialog()
+        }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -55,6 +60,7 @@ class DeleteMyDeckDialog(private val myDeckId: String, val listener: IMyDeckList
             when (event) {
                 is MyDeckEvent.GetDeck -> binding.tvText.text =
                     getString(R.string.my_decks_dialog_delete_confirm, event.deck.name)
+
                 is MyDeckEvent.EditedCompleted -> {}
                 is MyDeckEvent.SomethingWentWrong -> error()
             }

@@ -11,13 +11,18 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class WaitSelectDialog(val dialogFinished: () -> Unit) : BaseDialog<DialogWaitSelectBinding>() {
 
+    private var firstAccess = true
+
     override fun inflateView(inflater: LayoutInflater) = DialogWaitSelectBinding.inflate(inflater)
 
     override fun setCustomViewDialog(dialog: Dialog) = centerCustomViewDialog(dialog)
 
     override fun onResume() {
         super.onResume()
-        requireDialog().animateDialog()
+        if (firstAccess) {
+            firstAccess = false
+            requireDialog().animateDialog()
+        }
     }
 
     override fun setUI() {

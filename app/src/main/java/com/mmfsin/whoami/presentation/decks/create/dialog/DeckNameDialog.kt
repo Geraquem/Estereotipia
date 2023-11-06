@@ -12,7 +12,6 @@ import com.mmfsin.whoami.databinding.DialogCreateDeckNameBinding
 import com.mmfsin.whoami.domain.models.MyDeck
 import com.mmfsin.whoami.presentation.decks.create.interfaces.ICreateDeckCardListener
 import com.mmfsin.whoami.utils.animateDialog
-import com.mmfsin.whoami.utils.closeKeyboardFromDialog
 import com.mmfsin.whoami.utils.countDown
 import com.mmfsin.whoami.utils.showErrorDialog
 import dagger.hilt.android.AndroidEntryPoint
@@ -23,6 +22,8 @@ class DeckNameDialog(val cards: String, private val listener: ICreateDeckCardLis
 
     private val viewModel: DeckNameViewModel by viewModels()
 
+    private var firstAccess = true
+
     override fun inflateView(inflater: LayoutInflater) =
         DialogCreateDeckNameBinding.inflate(inflater)
 
@@ -30,7 +31,10 @@ class DeckNameDialog(val cards: String, private val listener: ICreateDeckCardLis
 
     override fun onResume() {
         super.onResume()
-        requireDialog().animateDialog()
+        if (firstAccess) {
+            firstAccess = false
+            requireDialog().animateDialog()
+        }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

@@ -19,6 +19,7 @@ class AllCardDialog(private val cardId: String) : BaseDialog<DialogAllCardInfoBi
     private val viewModel: AllCardDialogViewModel by viewModels()
 
     private var card: Card? = null
+    private var firstAccess = true
 
     override fun inflateView(inflater: LayoutInflater) = DialogAllCardInfoBinding.inflate(inflater)
 
@@ -26,7 +27,10 @@ class AllCardDialog(private val cardId: String) : BaseDialog<DialogAllCardInfoBi
 
     override fun onResume() {
         super.onResume()
-        requireDialog().animateDialog()
+        if (firstAccess) {
+            firstAccess = false
+            requireDialog().animateDialog()
+        }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -54,6 +58,7 @@ class AllCardDialog(private val cardId: String) : BaseDialog<DialogAllCardInfoBi
                     this.card = event.card
                     setUI()
                 }
+
                 is AllCardDialogEvent.SomethingWentWrong -> error()
             }
         }

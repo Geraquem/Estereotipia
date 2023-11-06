@@ -17,13 +17,18 @@ class MyDeckDialog(private val myDeckId: String, val listener: IMyDeckListener) 
 
     private val viewModel: MyDeckViewModel by viewModels()
 
+    private var firstAccess = true
+
     override fun inflateView(inflater: LayoutInflater) = DialogMyDeckBinding.inflate(inflater)
 
     override fun setCustomViewDialog(dialog: Dialog) = centerViewDialog(dialog)
 
     override fun onResume() {
         super.onResume()
-        requireDialog().animateDialog()
+        if (firstAccess) {
+            firstAccess = false
+            requireDialog().animateDialog()
+        }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

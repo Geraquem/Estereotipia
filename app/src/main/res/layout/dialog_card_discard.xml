@@ -37,8 +37,8 @@
         <com.jsibbold.zoomage.ZoomageView
             android:id="@+id/iv_image"
             style="@style/ZoomableImageView"
-            android:layout_width="320dp"
-            android:layout_height="320dp"
+            android:layout_width="280dp"
+            android:layout_height="280dp"
             android:layout_margin="12dp"
             android:src="@drawable/default_face"
             app:layout_constraintLeft_toLeftOf="parent"

@@ -49,32 +49,19 @@
                 app:layout_constraintRight_toRightOf="@id/gl_right"
                 app:layout_constraintTop_toTopOf="parent">
 
-                <TextView
-                    android:id="@+id/tv_instructions"
-                    style="@style/MediumTextView"
-                    android:layout_width="match_parent"
+                <include
+                    android:id="@+id/instructions"
+                    layout="@layout/include_menu_instructions"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/bg_white_box"
-                    android:elevation="4dp"
-                    android:paddingHorizontal="12dp"
-                    android:paddingVertical="18dp"
-                    android:text="@string/menu_instructions"
-                    android:textAllCaps="true"
-                    android:textSize="24sp" />
+                    android:layout_marginBottom="16dp" />
 
-                <TextView
-                    android:id="@+id/tv_play"
-                    style="@style/MediumTextView"
-                    android:layout_width="match_parent"
+                <include
+                    android:id="@+id/play"
+                    layout="@layout/include_menu_play"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginVertical="42dp"
-                    android:background="@drawable/bg_white_box"
-                    android:elevation="4dp"
-                    android:paddingHorizontal="12dp"
-                    android:paddingVertical="18dp"
-                    android:text="@string/menu_play"
-                    android:textAllCaps="true"
-                    android:textSize="24sp" />
+                    android:layout_marginBottom="16dp" />
 
                 <include
                     android:id="@+id/decks"

@@ -19,7 +19,6 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
-            android:id="@+id/tv_all_cards"
             style="@style/MediumTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

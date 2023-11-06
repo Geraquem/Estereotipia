@@ -61,9 +61,9 @@ class MenuFragment : BaseFragment<FragmentMenuBinding, MenuViewModel>(), IMenuLi
 
     override fun setListeners() {
         binding.apply {
-            tvInstructions.setOnClickListener { (activity as MainActivity).openInstructions() }
+            instructions.root.setOnClickListener { (activity as MainActivity).openInstructions() }
 
-            tvPlay.setOnClickListener { activity?.showFragmentDialog(DecksDialog(this@MenuFragment)) }
+            play.root.setOnClickListener { activity?.showFragmentDialog(DecksDialog(this@MenuFragment)) }
 
             decks.tvMyDecks.setOnClickListener { navigateTo(actionMenuToMyDecks()) }
             decks.tvCreateDeck.setOnClickListener { navigateTo(actionMenuToCreateDeck()) }

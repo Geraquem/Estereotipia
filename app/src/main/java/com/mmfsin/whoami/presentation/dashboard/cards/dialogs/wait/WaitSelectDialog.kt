@@ -23,13 +23,8 @@ class WaitSelectDialog(val dialogFinished: () -> Unit) : BaseDialog<DialogWaitSe
     override fun setUI() {
         isCancelable = false
         binding.apply {
-//            tvCountdown.text = "3"
-//            object : CountDownTimer(3000, 1000) {
             object : CountDownTimer(1500, 1000) {
-                override fun onTick(millisUntilFinished: Long) {
-                    val seconds = (millisUntilFinished + 1000) / 1000
-//                    tvCountdown.text = seconds.toString()
-                }
+                override fun onTick(millisUntilFinished: Long) {}
 
                 override fun onFinish() {
                     dialogFinished()

@@ -8,11 +8,12 @@ import com.bumptech.glide.Glide
 import com.mmfsin.whoami.R
 import com.mmfsin.whoami.databinding.ItemMenuCardBinding
 import com.mmfsin.whoami.domain.models.Card
+import com.mmfsin.whoami.presentation.menu.listener.IMenuCardsListener
 import com.mmfsin.whoami.presentation.menu.listener.IMenuListener
 
 class MenuCardsAdapter(
     private val cards: List<Card>,
-    private val listener: IMenuListener
+    private val listener: IMenuCardsListener
 ) : RecyclerView.Adapter<MenuCardsAdapter.ViewHolder>() {
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {

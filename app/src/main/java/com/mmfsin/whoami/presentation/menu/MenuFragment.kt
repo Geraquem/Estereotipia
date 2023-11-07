@@ -10,26 +10,29 @@ import androidx.navigation.NavDirections
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.tabs.TabLayoutMediator
 import com.mmfsin.whoami.base.BaseFragment
-import com.mmfsin.whoami.databinding.FragmentMenuuuuuuuuuuBinding
-import com.mmfsin.whoami.domain.models.Card
+import com.mmfsin.whoami.databinding.FragmentMenuBinding
 import com.mmfsin.whoami.presentation.MainActivity
 import com.mmfsin.whoami.presentation.menu.MenuFragmentDirections.Companion.actionMenuToAllCards
+import com.mmfsin.whoami.presentation.menu.MenuFragmentDirections.Companion.actionMenuToCreateDeck
 import com.mmfsin.whoami.presentation.menu.MenuFragmentDirections.Companion.actionMenuToDashboard
+import com.mmfsin.whoami.presentation.menu.MenuFragmentDirections.Companion.actionMenuToMyDecks
 import com.mmfsin.whoami.presentation.menu.adapter.MenuViewPagerAdapter
+import com.mmfsin.whoami.presentation.menu.decks.DecksDialog
 import com.mmfsin.whoami.presentation.menu.listener.IMenuListener
 import com.mmfsin.whoami.presentation.models.DeckType.SYSTEM_DECK
 import com.mmfsin.whoami.utils.showErrorDialog
+import com.mmfsin.whoami.utils.showFragmentDialog
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class MenuFragment : BaseFragment<FragmentMenuuuuuuuuuuBinding, MenuViewModel>(), IMenuListener {
+class MenuFragment : BaseFragment<FragmentMenuBinding, MenuViewModel>(), IMenuListener {
 
     override val viewModel: MenuViewModel by viewModels()
     private lateinit var mContext: Context
 
     override fun inflateView(
         inflater: LayoutInflater, container: ViewGroup?
-    ) = FragmentMenuuuuuuuuuuBinding.inflate(inflater, container, false)
+    ) = FragmentMenuBinding.inflate(inflater, container, false)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -56,14 +59,8 @@ class MenuFragment : BaseFragment<FragmentMenuuuuuuuuuuBinding, MenuViewModel>()
 
     override fun setListeners() {
         binding.apply {
-//            instructions.root.setOnClickListener { (activity as MainActivity).openInstructions() }
-//
-//            play.root.setOnClickListener { activity?.showFragmentDialog(DecksDialog(this@MenuFragment)) }
-//
-//            decks.tvMyDecks.setOnClickListener { navigateTo(actionMenuToMyDecks()) }
-//            decks.tvCreateDeck.setOnClickListener { navigateTo(actionMenuToCreateDeck()) }
-//
-//            allCards.root.setOnClickListener { navigateToAllCards() }
+            instructions.setOnClickListener { (activity as MainActivity).openInstructions() }
+            llPlay.setOnClickListener { activity?.showFragmentDialog(DecksDialog(this@MenuFragment)) }
         }
     }
 
@@ -71,7 +68,7 @@ class MenuFragment : BaseFragment<FragmentMenuuuuuuuuuuBinding, MenuViewModel>()
         viewModel.event.observe(this) { event ->
             when (event) {
                 is MenuEvent.Completed -> versionCheckCompleted()
-                is MenuEvent.MenuCards -> setUpMenuCards(event.cards)
+                is MenuEvent.MenuCards -> {}
                 is MenuEvent.SomethingWentWrong -> error()
             }
         }
@@ -82,28 +79,20 @@ class MenuFragment : BaseFragment<FragmentMenuuuuuuuuuuBinding, MenuViewModel>()
         viewModel.getMenuCards()
     }
 
-    private fun setUpMenuCards(cards: List<Card>) {
-//        binding.allCards.rvMenuCards.apply {
-//            layoutManager = LinearLayoutManager(mContext, HORIZONTAL, false)
-//            adapter = MenuCardsAdapter(cards, this@MenuFragment)
-//        }
-    }
-
     private fun setUpViewPager() {
         binding.apply {
             activity?.let {
-                viewPager.adapter = MenuViewPagerAdapter(it)
+                viewPager.adapter = MenuViewPagerAdapter(it, this@MenuFragment)
                 TabLayoutMediator(tabLayout, viewPager) { _, _ -> }.attach()
             }
             loading.root.visibility = View.GONE
         }
     }
 
-    override fun onMenuCardClick() = navigateToAllCards()
-
     override fun startGame(deckId: String) = navigateTo(actionMenuToDashboard(deckId, SYSTEM_DECK))
-
-    private fun navigateToAllCards() = navigateTo(actionMenuToAllCards())
+    override fun openMyDecks() = navigateTo(actionMenuToMyDecks())
+    override fun openCreateDeck() = navigateTo(actionMenuToCreateDeck())
+    override fun openAllCards() = navigateTo(actionMenuToAllCards())
 
     private fun navigateTo(directions: NavDirections) = findNavController().navigate(directions)
 

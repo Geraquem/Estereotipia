@@ -10,20 +10,22 @@
 
     <ScrollView
         style="@style/scroll_no_effects"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:clipChildren="false"
         android:clipToPadding="false"
-        android:paddingBottom="32dp"
+        android:fitsSystemWindows="true"
+        android:paddingBottom="24dp"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:clipChildren="false"
-            android:clipToPadding="false"
-            android:paddingTop="24dp">
+            android:clipToPadding="false">
 
             <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/gl_right"
@@ -39,55 +41,166 @@
                 android:orientation="vertical"
                 app:layout_constraintGuide_percent="0.05" />
 
-            <LinearLayout
-                android:layout_width="0dp"
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/cl_top"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:clipChildren="false"
                 android:clipToPadding="false"
-                android:orientation="vertical"
-                app:layout_constraintLeft_toLeftOf="@id/gl_left"
-                app:layout_constraintRight_toRightOf="@id/gl_right"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
-                <include
+                <FrameLayout
+                    android:id="@+id/bg_guide"
+                    android:layout_width="match_parent"
+                    android:layout_height="0.1dp"
+                    app:layout_constraintBottom_toBottomOf="@id/fl_main_image"
+                    app:layout_constraintTop_toTopOf="@id/fl_main_image" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:background="@drawable/bg_menu"
+                    android:clipChildren="false"
+                    android:clipToPadding="false"
+                    android:elevation="6dp"
+                    app:layout_constraintBottom_toBottomOf="@id/bg_guide"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tv_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="36dp"
+                    android:elevation="6dp"
+                    android:fontFamily="@font/font_fresh_market"
+                    android:gravity="center"
+                    android:text="@string/app_name"
+                    android:textSize="48sp"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <FrameLayout
+                    android:id="@+id/fl_main_image"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="36dp"
+                    android:background="@drawable/bg_white_box"
+                    android:elevation="6dp"
+                    android:padding="6dp"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_title">
+
+                    <ImageView
+                        android:layout_width="120dp"
+                        android:layout_height="120dp"
+                        android:layout_gravity="center"
+                        android:background="@drawable/bg_white_box_fine_line"
+                        android:contentDescription="@string/content_description"
+                        android:src="@drawable/default_face" />
+
+                </FrameLayout>
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_top"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:orientation="horizontal"
+                app:layout_constraintLeft_toLeftOf="@id/gl_left"
+                app:layout_constraintRight_toRightOf="@id/gl_right"
+                app:layout_constraintTop_toBottomOf="@id/cl_top">
+
+                <FrameLayout
                     android:id="@+id/instructions"
-                    layout="@layout/include_menu_instructions"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="16dp" />
+                    android:layout_width="80dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginEnd="16dp"
+                    android:background="@drawable/bg_white_box">
 
-                <include
-                    android:id="@+id/play"
-                    layout="@layout/include_menu_play"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="16dp" />
+                    <ImageView
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:layout_gravity="center"
+                        android:contentDescription="@string/content_description"
+                        android:src="@drawable/ic_info" />
 
-                <include
-                    android:id="@+id/decks"
-                    layout="@layout/include_menu_decks"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="16dp" />
+                </FrameLayout>
 
-                <include
-                    android:id="@+id/all_cards"
-                    layout="@layout/include_menu_cards"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                <LinearLayout
+                    android:id="@+id/ll_play"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_white_box"
+                    android:clipChildren="false"
+                    android:clipToPadding="false"
+                    android:orientation="vertical"
+                    android:padding="16dp"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <TextView
+                        style="@style/MediumTextView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="8dp"
+                        android:text="@string/menu_play"
+                        android:textAllCaps="true"
+                        android:textSize="24sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        style="@style/MediumTextView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/menu_instructions_description" />
+
+                </LinearLayout>
 
             </LinearLayout>
+
+            <androidx.viewpager2.widget.ViewPager2
+                android:id="@+id/viewPager"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="24dp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/ll_top" />
+
+            <com.google.android.material.tabs.TabLayout
+                android:id="@+id/tabLayout"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                app:layout_constraintLeft_toLeftOf="@id/gl_left"
+                app:layout_constraintRight_toRightOf="@id/gl_right"
+                app:layout_constraintTop_toBottomOf="@id/viewPager"
+                app:tabBackground="@drawable/tab_menu_selector"
+                app:tabGravity="center"
+                app:tabIndicator="@drawable/menu_animation_dot"
+                app:tabIndicatorAnimationMode="elastic"
+                app:tabIndicatorColor="@color/orange"
+                app:tabIndicatorGravity="stretch"
+                app:tabPadding="8dp" />
+
+            <include
+                android:id="@+id/loading"
+                layout="@layout/include_loading"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:visibility="visible"
+                tools:visibility="gone" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </ScrollView>
-
-    <include
-        android:id="@+id/loading"
-        layout="@layout/include_loading"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:visibility="visible"
-        tools:visibility="gone" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

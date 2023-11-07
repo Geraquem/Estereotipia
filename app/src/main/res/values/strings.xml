@@ -61,8 +61,8 @@
     <string name="choice_dialog_looser_zero_opportunities">Has acabado con todas tus oportunidades</string>
 
     <!-- QUESTIONS DIALOG -->
-    <string name="questions_do_question">Hacer nueva pregunta</string>
-    <string name="questions_list_of">Preguntas antiguas</string>
+    <string name="questions_do_question">Nueva pregunta</string>
+    <string name="questions_list_of">Todas las preguntas</string>
     <string name="questions_my_card">¿Cuál era mi carta?</string>
 
     <string name="questions_mini_help">Una ayudita</string>
@@ -70,7 +70,7 @@
     <string name="questions_what_now_1">Tienes que <b>adivinar</b> la carta de tu rival antes de que tu rival adivine la tuya primero.</string>
     <string name="questions_what_now_2">Para saber cuál es la carta de tu rival tienes que hacerle <b>preguntas</b>.</string>
     <string name="questions_what_now_3"><b>¿De dónde saco las preguntas?</b></string>
-    <string name="questions_what_now_4">Del botón <i>"Hacer nueva pregunta"</i>.</string>
+    <string name="questions_what_now_4">Del botón <i>"Nueva pregunta"</i>.</string>
     <string name="questions_what_now_5">Alternádote con tu rival tendréis que ir haciéndoos preguntas e ir descartando cartas hasta adivinar qué personaje le ha tocado a tu rival.</string>
     <string name="questions_what_now_6">Podrás hacer hasta <b>10 preguntas</b> por partida y tendrás <b>2 oportunidades</b> para acertar la carta de tu rival</string>
     <string name="questions_what_now_7">Para marcar tu decision sobre qué personaje es el de tu rival, selecciona la carta correspondiente y pulsa el icono</string>

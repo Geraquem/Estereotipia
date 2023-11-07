@@ -140,7 +140,7 @@
                     android:id="@+id/cv_what_now"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:cardCornerRadius="12dp"
+                    android:layout_marginBottom="16dp"
                     app:cardElevation="6dp"
                     app:contentPadding="16dp">
 
@@ -159,7 +159,45 @@
 
                         <include
                             android:id="@+id/details_what_now"
-                            layout="@layout/include_mini_help"
+                            layout="@layout/include_mini_help_what_now"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="12dp"
+                            android:visibility="gone"
+                            tools:visibility="gone" />
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cv_buttons"
+                    android:layout_width="match_parent"
+                    android:clipChildren="false"
+                    android:clipToPadding="false"
+                    android:layout_height="wrap_content"
+                    app:cardCornerRadius="12dp"
+                    app:cardElevation="6dp"
+                    app:contentPadding="16dp">
+
+                    <LinearLayout
+                        android:id="@+id/ll_buttons"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:animateLayoutChanges="true"
+                        android:clipChildren="false"
+                        android:clipToPadding="false"
+                        android:orientation="vertical">
+
+                        <TextView
+                            style="@style/MediumTextView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/questions_what_now" />
+
+                        <include
+                            android:id="@+id/details_buttons"
+                            layout="@layout/include_mini_help_buttons"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="12dp"

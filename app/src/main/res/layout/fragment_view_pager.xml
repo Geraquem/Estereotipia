@@ -35,6 +35,6 @@
     <include
         android:id="@+id/loading"
         layout="@layout/fragment_loading"
-        tools:visibility="visible" />
+        tools:visibility="invisible" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

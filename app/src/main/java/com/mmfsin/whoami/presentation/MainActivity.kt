@@ -26,6 +26,10 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
     }
 
+    fun hideToolbar(hide: Boolean = true) {
+        binding.toolbar.root.isVisible = !hide
+    }
+
     fun setUpToolbar(showBack: Boolean, title: String) {
         binding.toolbar.apply {
             ivBack.isVisible = showBack
@@ -34,6 +38,7 @@ class MainActivity : AppCompatActivity() {
             ivBack.setOnClickListener { onBackPressed() }
 
             ivInstructions.setOnClickListener { openInstructions() }
+            hideToolbar(false)
         }
     }
 

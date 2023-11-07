@@ -20,7 +20,7 @@
 
     <!-- MENU -->
     <string name="menu_instructions">Instrucciones</string>
-    <string name="menu_instructions_description">¿De qué va esto? ¿No sabes cómo jugar?\nPulsa aquí para conocerlo todo sobre este juego.</string>
+    <string name="menu_instructions_description">Con las barajas predefinidas.</string>
     <string name="menu_play">Jugar</string>
     <string name="menu_my_decks">Barajas</string>
     <string name="menu_my_decks_description">Crea tus propias barajas con las cartas que más te gusten y compártelas.</string>

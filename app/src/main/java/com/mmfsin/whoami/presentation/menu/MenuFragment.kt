@@ -6,9 +6,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavDirections
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.tabs.TabLayoutMediator
+import com.mmfsin.whoami.R
 import com.mmfsin.whoami.base.BaseFragment
 import com.mmfsin.whoami.databinding.FragmentMenuBinding
 import com.mmfsin.whoami.presentation.MainActivity
@@ -17,11 +19,10 @@ import com.mmfsin.whoami.presentation.menu.MenuFragmentDirections.Companion.acti
 import com.mmfsin.whoami.presentation.menu.MenuFragmentDirections.Companion.actionMenuToDashboard
 import com.mmfsin.whoami.presentation.menu.MenuFragmentDirections.Companion.actionMenuToMyDecks
 import com.mmfsin.whoami.presentation.menu.adapter.MenuViewPagerAdapter
-import com.mmfsin.whoami.presentation.menu.decks.DecksDialog
 import com.mmfsin.whoami.presentation.menu.listener.IMenuListener
 import com.mmfsin.whoami.presentation.models.DeckType.SYSTEM_DECK
+import com.mmfsin.whoami.utils.countDown
 import com.mmfsin.whoami.utils.showErrorDialog
-import com.mmfsin.whoami.utils.showFragmentDialog
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -40,13 +41,18 @@ class MenuFragment : BaseFragment<FragmentMenuBinding, MenuViewModel>(), IMenuLi
         if (checkVersion) {
             (activity as MainActivity).checkVersion = false
             viewModel.checkVersion()
-        } else binding.loading.root.visibility = View.GONE
+        } else versionCheckCompleted()
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
     }
 
     override fun setUI() {
         binding.apply {
+            loading.root.visibility = View.VISIBLE
+            clBottom.visibility = View.GONE
             setToolbar()
-            setUpViewPager()
         }
     }
 
@@ -57,12 +63,7 @@ class MenuFragment : BaseFragment<FragmentMenuBinding, MenuViewModel>(), IMenuLi
         }
     }
 
-    override fun setListeners() {
-        binding.apply {
-            instructions.setOnClickListener { (activity as MainActivity).openInstructions() }
-            llPlay.setOnClickListener { activity?.showFragmentDialog(DecksDialog(this@MenuFragment)) }
-        }
-    }
+    override fun setListeners() {}
 
     override fun observe() {
         viewModel.event.observe(this) { event ->
@@ -75,9 +76,37 @@ class MenuFragment : BaseFragment<FragmentMenuBinding, MenuViewModel>(), IMenuLi
     }
 
     private fun versionCheckCompleted() {
-        binding.loading.root.visibility = View.GONE
-        viewModel.getMenuCards()
+        binding.apply {
+            loading.root.visibility = View.GONE
+            val justOpened = (activity as MainActivity).justOpened
+//            if (justOpened) {
+                (activity as MainActivity).justOpened = false
+                clBottom.animate(800f, 10)
+                countDown(100) {
+                    setUpFragMenuTop()
+                    countDown(300) {
+                        setUpViewPager()
+                        clBottom.visibility = View.VISIBLE
+                        clBottom.animate(0f, 300)
+                    }
+                }
+//            } else {
+//                setUpFragMenuTop(false)
+//                setUpViewPager()
+//                clBottom.visibility = View.VISIBLE
+//            }
+        }
     }
+
+    private fun setUpFragMenuTop(animation: Boolean = true) {
+        val trans = activity?.supportFragmentManager?.beginTransaction()
+        if (animation) trans?.setCustomAnimations(R.anim.fragment_from_top, 0, 0, 0)
+        trans?.add(R.id.fcv_menu_top, MenuTopFragment(this@MenuFragment))?.commit()
+        trans ?: run { error() }
+    }
+
+    private fun View.animate(pos: Float, duration: Long) =
+        this.animate().translationY(pos).setDuration(duration)
 
     private fun setUpViewPager() {
         binding.apply {
@@ -85,11 +114,13 @@ class MenuFragment : BaseFragment<FragmentMenuBinding, MenuViewModel>(), IMenuLi
                 viewPager.adapter = MenuViewPagerAdapter(it, this@MenuFragment)
                 TabLayoutMediator(tabLayout, viewPager) { _, _ -> }.attach()
             }
-            loading.root.visibility = View.GONE
         }
     }
 
-    override fun startGame(deckId: String) = navigateTo(actionMenuToDashboard(deckId, SYSTEM_DECK))
+    override fun startGame(deckId: String) =
+        navigateTo(actionMenuToDashboard(deckId, SYSTEM_DECK))
+
+    override fun openInstructions() = (activity as MainActivity).openInstructions()
     override fun openMyDecks() = navigateTo(actionMenuToMyDecks())
     override fun openCreateDeck() = navigateTo(actionMenuToCreateDeck())
     override fun openAllCards() = navigateTo(actionMenuToAllCards())

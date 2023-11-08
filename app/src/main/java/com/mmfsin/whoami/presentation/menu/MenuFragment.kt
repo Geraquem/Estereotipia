@@ -44,10 +44,6 @@ class MenuFragment : BaseFragment<FragmentMenuBinding, MenuViewModel>(), IMenuLi
         } else versionCheckCompleted()
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
-
     override fun setUI() {
         binding.apply {
             loading.root.visibility = View.VISIBLE

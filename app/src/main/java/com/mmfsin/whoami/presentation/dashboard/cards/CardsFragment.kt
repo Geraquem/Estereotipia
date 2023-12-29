@@ -26,7 +26,7 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class CardsFragment(
-    val deckId: String, val deckType: DeckType, private val selectedCardId: String
+    val deckId: String, private val deckType: DeckType, private val selectedCardId: String
 ) : BaseFragment<FragmentCardsBinding, CardsViewModel>(), ICardsListener {
 
     override val viewModel: CardsViewModel by viewModels()

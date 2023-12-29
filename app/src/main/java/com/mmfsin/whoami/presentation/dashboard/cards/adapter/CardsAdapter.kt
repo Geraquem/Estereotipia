@@ -1,6 +1,5 @@
 package com.mmfsin.whoami.presentation.dashboard.cards.adapter
 
-import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -21,7 +20,6 @@ class CardsAdapter(
         val binding = ItemCardBinding.bind(view)
         private val c = binding.root.context
 
-        @SuppressLint("UseCompatLoadingForDrawables")
         fun bind(card: Card) {
             binding.apply {
                 ivDiscard.isVisible = card.discarded

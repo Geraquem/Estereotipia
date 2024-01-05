@@ -1,6 +1,7 @@
 package com.mmfsin.whoami.presentation.menu
 
 import android.content.Context
+import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -9,6 +10,10 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.NavDirections
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.DataSource
+import com.bumptech.glide.load.engine.GlideException
+import com.bumptech.glide.request.RequestListener
+import com.bumptech.glide.request.target.Target
 import com.google.android.material.tabs.TabLayoutMediator
 import com.mmfsin.whoami.R
 import com.mmfsin.whoami.base.BaseFragment
@@ -23,6 +28,7 @@ import com.mmfsin.whoami.presentation.menu.adapter.MenuViewPagerAdapter
 import com.mmfsin.whoami.presentation.menu.decks.DecksDialog
 import com.mmfsin.whoami.presentation.menu.listener.IMenuListener
 import com.mmfsin.whoami.presentation.models.DeckType.SYSTEM_DECK
+import com.mmfsin.whoami.utils.animateX
 import com.mmfsin.whoami.utils.countDown
 import com.mmfsin.whoami.utils.showErrorDialog
 import com.mmfsin.whoami.utils.showFragmentDialog
@@ -50,8 +56,8 @@ class MenuFragment : BaseFragment<FragmentMenuBinding, MenuViewModel>(), IMenuLi
     override fun setUI() {
         binding.apply {
             loading.root.visibility = View.VISIBLE
-            clTop.visibility = View.GONE
-            clBottom.visibility = View.GONE
+            tvTitle.visibility = View.INVISIBLE
+            clBottom.visibility = View.INVISIBLE
             setToolbar()
         }
     }
@@ -75,8 +81,7 @@ class MenuFragment : BaseFragment<FragmentMenuBinding, MenuViewModel>(), IMenuLi
             when (event) {
                 is MenuEvent.Completed -> getTopCardImage()
                 is MenuEvent.MenuCards -> {
-                    setTopCardMenu(event.cards)
-                    menuFlowCompleted()
+                    menuFlowCompleted(event.cards)
                 }
 
                 is MenuEvent.SomethingWentWrong -> error()
@@ -86,43 +91,61 @@ class MenuFragment : BaseFragment<FragmentMenuBinding, MenuViewModel>(), IMenuLi
 
     private fun getTopCardImage() = viewModel.getMenuCards()
 
-    private fun setTopCardMenu(cards: List<Card>) {
-        binding.apply {
-            if (cards.isEmpty()) ivTop.setImageResource(R.drawable.default_face)
-            else {
-                val image = cards.first().image
-                Glide.with(requireContext()).load(image).into(ivTop)
-            }
-        }
-    }
-
-    private fun menuFlowCompleted() {
+    private fun menuFlowCompleted(cards: List<Card>) {
         binding.apply {
             loading.root.visibility = View.GONE
             val justOpened = (activity as MainActivity).justOpened
             if (justOpened) {
+                setTopCardMenu(cards, true)
                 (activity as MainActivity).justOpened = false
-                clTop.animate(-500f, 10)
-                clBottom.animate(1000f, 10)
+                tvTitle.animateX(-1000f, 10)
                 countDown(100) {
-                    clTop.visibility = View.VISIBLE
-                    clTop.animate(0f, 300)
-                    countDown(300) {
-                        setUpViewPager()
-                        clBottom.visibility = View.VISIBLE
-                        clBottom.animate(0f, 300)
-                    }
+                    tvTitle.visibility = View.VISIBLE
+                    tvTitle.animateX(0f, 750)
+                    setUpViewPager()
+                    clBottom.visibility = View.VISIBLE
                 }
             } else {
+                setTopCardMenu(cards, false)
                 setUpViewPager()
-                clTop.visibility = View.VISIBLE
+                tvTitle.visibility = View.VISIBLE
                 clBottom.visibility = View.VISIBLE
             }
         }
     }
 
-    private fun View.animate(pos: Float, duration: Long) =
-        this.animate().translationY(pos).setDuration(duration)
+    private fun setTopCardMenu(cards: List<Card>, firstTime: Boolean) {
+        binding.apply {
+            ivTop.alpha = 0f
+            if (cards.isEmpty()) ivTop.setImageResource(R.drawable.default_face)
+            else {
+                val image = cards.first().image
+                Glide.with(requireContext()).load(image)
+                    .listener(object : RequestListener<Drawable> {
+                        override fun onLoadFailed(
+                            e: GlideException?,
+                            model: Any?,
+                            target: Target<Drawable>?,
+                            isFirstResource: Boolean
+                        ): Boolean {
+                            return false
+                        }
+
+                        override fun onResourceReady(
+                            resource: Drawable?,
+                            model: Any?,
+                            target: Target<Drawable>?,
+                            dataSource: DataSource?,
+                            isFirstResource: Boolean
+                        ): Boolean {
+                            val duration = if (firstTime) 1000 else 10
+                            ivTop.animate().alpha(1f).duration = duration.toLong()
+                            return false
+                        }
+                    }).into(ivTop)
+            }
+        }
+    }
 
     private fun setUpViewPager() {
         binding.apply {

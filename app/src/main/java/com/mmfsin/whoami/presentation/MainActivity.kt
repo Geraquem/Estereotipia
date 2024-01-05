@@ -1,6 +1,8 @@
 package com.mmfsin.whoami.presentation
 
+import android.net.Uri
 import android.os.Bundle
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import androidx.fragment.app.FragmentManager.POP_BACK_STACK_INCLUSIVE
@@ -21,10 +23,15 @@ class MainActivity : AppCompatActivity() {
     var justOpened = true
     var inDashboard = false
 
+    private var uri: Uri? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        uri = intent.data
+        val a = 2
     }
 
     fun hideToolbar(hide: Boolean = true) {

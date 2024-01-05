@@ -9,6 +9,7 @@ import android.os.CountDownTimer
 import android.transition.AutoTransition
 import android.transition.TransitionManager
 import android.view.View
+import android.view.ViewPropertyAnimator
 import android.view.animation.AccelerateDecelerateInterpolator
 import android.view.inputmethod.InputMethodManager
 import android.widget.LinearLayout
@@ -46,6 +47,12 @@ fun countDown(millis: Long, action: () -> Unit) {
 
 fun FragmentActivity?.showFragmentDialog(dialog: DialogFragment) =
     this?.let { dialog.show(it.supportFragmentManager, "") }
+
+fun View.animateY(pos: Float, duration: Long) =
+    this.animate().translationY(pos).setDuration(duration)
+
+fun View.animateX(pos: Float, duration: Long) =
+    this.animate().translationX(pos).setDuration(duration)
 
 fun Dialog.animateDialog() {
     val dialogView = this.window?.decorView

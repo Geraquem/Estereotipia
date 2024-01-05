@@ -51,11 +51,11 @@
 
         <TextView
             android:id="@+id/tv_text"
-            style="@style/BigTextView"
+            style="@style/MediumTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginBottom="16dp"
+            android:layout_marginBottom="24dp"
             android:gravity="center"
             tools:text="@string/my_decks_dialog_delete_confirm" />
 

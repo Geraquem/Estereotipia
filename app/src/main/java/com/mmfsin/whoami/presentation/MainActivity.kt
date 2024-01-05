@@ -31,7 +31,6 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         uri = intent.data
-        val a = 2
     }
 
     fun hideToolbar(hide: Boolean = true) {

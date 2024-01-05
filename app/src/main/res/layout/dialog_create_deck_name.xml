@@ -84,6 +84,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/bg_soft_grey"
+            android:fontFamily="@font/mont_regular"
             android:gravity="center"
             android:text="@string/my_decks_create_new_accept"
             android:textAllCaps="true"

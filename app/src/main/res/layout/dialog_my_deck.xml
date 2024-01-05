@@ -25,14 +25,14 @@
 
     <TextView
         android:id="@+id/tv_title"
-        android:ellipsize="end"
-        android:maxLines="1"
         style="@style/MediumTextView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/bg_card_info_name"
         android:contentDescription="@string/content_description"
+        android:ellipsize="end"
         android:gravity="center"
+        android:maxLines="1"
         android:paddingVertical="16dp"
         android:textAllCaps="true"
         android:textStyle="bold"
@@ -111,8 +111,10 @@
             android:padding="12dp"
             android:text="@string/my_decks_dialog_share"
             android:textAllCaps="true"
+            android:textColor="@color/blue"
             android:textSize="20sp"
-            app:drawableStartCompat="@drawable/ic_share" />
+            app:drawableStartCompat="@drawable/ic_share"
+            app:drawableTint="@color/blue" />
 
         <TextView
             android:id="@+id/tv_delete"
@@ -125,8 +127,10 @@
             android:padding="12dp"
             android:text="@string/my_decks_dialog_delete"
             android:textAllCaps="true"
+            android:textColor="@color/red"
             android:textSize="20sp"
-            app:drawableStartCompat="@drawable/ic_trash" />
+            app:drawableStartCompat="@drawable/ic_trash"
+            app:drawableTint="@color/red" />
 
     </LinearLayout>
 

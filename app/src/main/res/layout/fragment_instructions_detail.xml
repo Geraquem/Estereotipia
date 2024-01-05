@@ -95,6 +95,7 @@
                 <TextView
                     android:id="@+id/tv_title"
                     style="@style/BigTextView"
+                    android:fontFamily="@font/mont_regular"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:gravity="center"

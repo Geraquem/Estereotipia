@@ -52,6 +52,9 @@
                 android:name="deckType"
                 app:argType="com.mmfsin.whoami.presentation.models.DeckType" />
         </action>
+        <action
+            android:id="@+id/action_myDecks_to_createDeck"
+            app:destination="@id/createDeckFragment" />
     </fragment>
 
     <fragment

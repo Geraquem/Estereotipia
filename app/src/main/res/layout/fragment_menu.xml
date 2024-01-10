@@ -115,6 +115,15 @@
                         android:contentDescription="@string/content_description"
                         tools:src="@drawable/default_face" />
 
+                    <com.airbnb.lottie.LottieAnimationView
+                        android:id="@+id/loading"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:layout_gravity="center"
+                        app:lottie_autoPlay="true"
+                        app:lottie_loop="true"
+                        app:lottie_rawRes="@raw/lottie_waiting" />
+
                 </FrameLayout>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -204,13 +213,5 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </ScrollView>
-
-    <include
-        android:id="@+id/loading"
-        layout="@layout/include_loading"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:visibility="visible"
-        tools:visibility="gone" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -69,7 +69,6 @@
                 android:id="@+id/btn_no"
                 style="@style/MediumTextView"
                 android:layout_width="0dp"
-                android:fontFamily="@font/mont_regular"
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
                 android:layout_weight="0.475"
@@ -89,7 +88,7 @@
 
             <TextView
                 android:id="@+id/btn_yes"
-                style="@style/MediumTextView"
+                style="@style/MediumTextView_Bold"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -97,7 +96,6 @@
                 android:background="@drawable/bg_soft_red"
                 android:elevation="6dp"
                 android:foreground="?attr/selectableItemBackground"
-                android:fontFamily="@font/mont_regular"
                 android:gravity="center"
                 android:padding="12dp"
                 android:text="@string/my_decks_dialog_delete_yes"

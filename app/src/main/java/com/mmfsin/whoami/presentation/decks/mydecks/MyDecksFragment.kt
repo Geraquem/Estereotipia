@@ -14,6 +14,7 @@ import com.mmfsin.whoami.base.BaseFragment
 import com.mmfsin.whoami.databinding.FragmentMyDecksBinding
 import com.mmfsin.whoami.domain.models.MyDeck
 import com.mmfsin.whoami.presentation.MainActivity
+import com.mmfsin.whoami.presentation.decks.mydecks.MyDecksFragmentDirections.Companion.actionMyDecksToCreateDeck
 import com.mmfsin.whoami.presentation.decks.mydecks.MyDecksFragmentDirections.Companion.actionMyDecksToDashboard
 import com.mmfsin.whoami.presentation.decks.mydecks.adapter.MyDecksAdapter
 import com.mmfsin.whoami.presentation.decks.mydecks.dialogs.MyDeckDialog
@@ -50,11 +51,17 @@ class MyDecksFragment : BaseFragment<FragmentMyDecksBinding, MyDecksViewModel>()
     private fun setToolbar() {
         (activity as MainActivity).apply {
             this.inDashboard = false
-            setUpToolbar(showBack = false, getString(R.string.my_decks_toolbar))
+            setUpToolbar(showBack = true, getString(R.string.my_decks_toolbar))
         }
     }
 
-    override fun setListeners() {}
+    override fun setListeners() {
+        binding.apply {
+            btnCreateDeck.setOnClickListener {
+                findNavController().navigate(actionMyDecksToCreateDeck())
+            }
+        }
+    }
 
     override fun observe() {
         viewModel.event.observe(this) { event ->

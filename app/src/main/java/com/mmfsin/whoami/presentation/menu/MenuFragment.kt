@@ -55,8 +55,9 @@ class MenuFragment : BaseFragment<FragmentMenuBinding, MenuViewModel>(), IMenuLi
 
     override fun setUI() {
         binding.apply {
-            loading.root.visibility = View.VISIBLE
+            loading.visibility = View.VISIBLE
             tvTitle.visibility = View.INVISIBLE
+            ivTop.alpha = 0f
             clBottom.visibility = View.INVISIBLE
             setToolbar()
         }
@@ -80,10 +81,7 @@ class MenuFragment : BaseFragment<FragmentMenuBinding, MenuViewModel>(), IMenuLi
         viewModel.event.observe(this) { event ->
             when (event) {
                 is MenuEvent.Completed -> getTopCardImage()
-                is MenuEvent.MenuCards -> {
-                    menuFlowCompleted(event.cards)
-                }
-
+                is MenuEvent.MenuCards -> menuFlowCompleted(event.cards)
                 is MenuEvent.SomethingWentWrong -> error()
             }
         }
@@ -93,7 +91,7 @@ class MenuFragment : BaseFragment<FragmentMenuBinding, MenuViewModel>(), IMenuLi
 
     private fun menuFlowCompleted(cards: List<Card>) {
         binding.apply {
-            loading.root.visibility = View.GONE
+            loading.visibility = View.GONE
             val justOpened = (activity as MainActivity).justOpened
             if (justOpened) {
                 setTopCardMenu(cards, true)
@@ -116,7 +114,6 @@ class MenuFragment : BaseFragment<FragmentMenuBinding, MenuViewModel>(), IMenuLi
 
     private fun setTopCardMenu(cards: List<Card>, firstTime: Boolean) {
         binding.apply {
-            ivTop.alpha = 0f
             if (cards.isEmpty()) ivTop.setImageResource(R.drawable.default_face)
             else {
                 val image = cards.first().image

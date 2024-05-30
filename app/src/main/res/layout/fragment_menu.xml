@@ -156,7 +156,7 @@
                     android:id="@+id/ll_play"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/bg_white_box"
+                    android:background="@drawable/click_effect"
                     android:clipChildren="false"
                     android:clipToPadding="false"
                     android:orientation="vertical"

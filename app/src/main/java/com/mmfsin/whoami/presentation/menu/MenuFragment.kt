@@ -25,7 +25,7 @@ import com.mmfsin.whoami.presentation.menu.MenuFragmentDirections.Companion.acti
 import com.mmfsin.whoami.presentation.menu.MenuFragmentDirections.Companion.actionMenuToDashboard
 import com.mmfsin.whoami.presentation.menu.MenuFragmentDirections.Companion.actionMenuToMyDecks
 import com.mmfsin.whoami.presentation.menu.adapter.MenuViewPagerAdapter
-import com.mmfsin.whoami.presentation.menu.decks.DecksDialog
+import com.mmfsin.whoami.presentation.menu.decks.DecksSheet
 import com.mmfsin.whoami.presentation.menu.listener.IMenuListener
 import com.mmfsin.whoami.presentation.models.DeckType.SYSTEM_DECK
 import com.mmfsin.whoami.utils.animateX
@@ -73,7 +73,7 @@ class MenuFragment : BaseFragment<FragmentMenuBinding, MenuViewModel>(), IMenuLi
     override fun setListeners() {
         binding.apply {
             ivInstructions.setOnClickListener { (activity as MainActivity).openInstructions() }
-            llPlay.setOnClickListener { activity?.showFragmentDialog(DecksDialog(this@MenuFragment)) }
+            llPlay.setOnClickListener { activity?.showFragmentDialog(DecksSheet(this@MenuFragment)) }
         }
     }
 

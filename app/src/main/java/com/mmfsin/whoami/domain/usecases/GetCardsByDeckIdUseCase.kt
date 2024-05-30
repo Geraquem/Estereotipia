@@ -3,23 +3,20 @@ package com.mmfsin.whoami.domain.usecases
 import com.mmfsin.whoami.base.BaseUseCase
 import com.mmfsin.whoami.domain.interfaces.ICardsRepository
 import com.mmfsin.whoami.domain.models.Card
-import com.mmfsin.whoami.presentation.models.DeckType
-import com.mmfsin.whoami.presentation.models.DeckType.CUSTOM_DECK
-import com.mmfsin.whoami.presentation.models.DeckType.SYSTEM_DECK
 import javax.inject.Inject
 
 class GetCardsByDeckIdUseCase @Inject constructor(private val repository: ICardsRepository) :
     BaseUseCase<GetCardsByDeckIdUseCase.Params, List<Card>?>() {
 
     override suspend fun execute(params: Params): List<Card>? {
-        return when (params.type) {
-            SYSTEM_DECK -> repository.getCardsByDeckId(params.deckId)
-            CUSTOM_DECK -> repository.getCardsByCustomDeckId(params.deckId)
-        }
+//        return when (params.type) {
+//            SYSTEM_DECK -> repository.getCardsByDeckId(params.deckId)
+//            CUSTOM_DECK -> repository.getCardsByCustomDeckId(params.deckId)
+//        }
+        return emptyList()
     }
 
     class Params(
         val deckId: String,
-        val type: DeckType
     )
 }

@@ -6,12 +6,10 @@ import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.mmfsin.whoami.presentation.dashboard.cards.CardsFragment
 import com.mmfsin.whoami.presentation.dashboard.questions.QuestionsFragment
 import com.mmfsin.whoami.presentation.dashboard.viepager.interfaces.IViewPagerListener
-import com.mmfsin.whoami.presentation.models.DeckType
 
 class ViewPagerAdapter(
     fragmentActivity: FragmentActivity,
     val deckId: String,
-    val deckType: DeckType,
     private val selectedCardId: String,
     val listener: IViewPagerListener
 ) :
@@ -21,7 +19,7 @@ class ViewPagerAdapter(
 
     override fun createFragment(position: Int): Fragment {
         return when (position) {
-            0 -> CardsFragment(deckId, deckType, selectedCardId)
+            0 -> CardsFragment(deckId, selectedCardId)
             else -> QuestionsFragment(selectedCardId, listener)
         }
     }

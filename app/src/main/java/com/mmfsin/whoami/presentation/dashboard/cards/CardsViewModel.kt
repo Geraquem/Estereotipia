@@ -5,7 +5,6 @@ import com.mmfsin.whoami.base.BaseViewModel
 import com.mmfsin.whoami.domain.usecases.DiscardCardUseCase
 import com.mmfsin.whoami.domain.usecases.GetCardsByDeckIdUseCase
 import com.mmfsin.whoami.domain.usecases.ObserveFlowUseCase
-import com.mmfsin.whoami.presentation.models.DeckType
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
@@ -32,9 +31,9 @@ class CardsViewModel @Inject constructor(
 
     override fun onCleared() = qrJob.cancel()
 
-    fun getCards(deckId: String, deckType: DeckType) {
+    fun getCards(deckId: String) {
         executeUseCase(
-            { getCardsByDeckIdUseCase.execute(GetCardsByDeckIdUseCase.Params(deckId, deckType)) },
+            { getCardsByDeckIdUseCase.execute(GetCardsByDeckIdUseCase.Params(deckId)) },
             { result ->
                 _event.value = result?.let { CardsEvent.GetCards(it) }
                     ?: run { CardsEvent.SomethingWentWrong }

@@ -12,22 +12,19 @@ import androidx.recyclerview.widget.StaggeredGridLayoutManager.VERTICAL
 import com.mmfsin.whoami.base.BaseFragment
 import com.mmfsin.whoami.databinding.FragmentCardsBinding
 import com.mmfsin.whoami.domain.models.Card
-import com.mmfsin.whoami.presentation.MainActivity
 import com.mmfsin.whoami.presentation.dashboard.cards.adapter.CardsAdapter
 import com.mmfsin.whoami.presentation.dashboard.cards.dialogs.choice.ChoiceDialog
 import com.mmfsin.whoami.presentation.dashboard.cards.dialogs.discard.DiscardDialog
 import com.mmfsin.whoami.presentation.dashboard.cards.dialogs.selected.SelectedCardDialog
 import com.mmfsin.whoami.presentation.dashboard.cards.dialogs.wait.WaitSelectDialog
 import com.mmfsin.whoami.presentation.dashboard.cards.interfaces.ICardsListener
-import com.mmfsin.whoami.presentation.models.DeckType
 import com.mmfsin.whoami.utils.showErrorDialog
 import com.mmfsin.whoami.utils.showFragmentDialog
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class CardsFragment(
-    val deckId: String, private val deckType: DeckType, private val selectedCardId: String
-) : BaseFragment<FragmentCardsBinding, CardsViewModel>(), ICardsListener {
+class CardsFragment(val deckId: String, private val selectedCardId: String) :
+    BaseFragment<FragmentCardsBinding, CardsViewModel>(), ICardsListener {
 
     override val viewModel: CardsViewModel by viewModels()
     private lateinit var mContext: Context
@@ -43,7 +40,7 @@ class CardsFragment(
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel.getCards(deckId, deckType)
+        viewModel.getCards(deckId)
     }
 
     override fun setUI() {}

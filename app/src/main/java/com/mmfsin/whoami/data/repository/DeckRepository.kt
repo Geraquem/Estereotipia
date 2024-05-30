@@ -25,6 +25,7 @@ class DeckRepository @Inject constructor(
     }
 
     override fun getDeckById(id: String): Deck? {
+        /** hacer que busque en la pdef y si no se vaya a los creados */
         val decks = realmDatabase.getObjectsFromRealm {
             where<DeckDTO>().equalTo("id", id).findAll()
         }

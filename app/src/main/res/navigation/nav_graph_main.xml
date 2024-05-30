@@ -11,16 +11,6 @@
         android:label="menuFragment"
         tools:layout="@layout/fragment_menu">
         <action
-            android:id="@+id/action_menu_to_dashboard"
-            app:destination="@id/dashboardFragment">
-            <argument
-                android:name="deckId"
-                app:argType="string" />
-            <argument
-                android:name="deckType"
-                app:argType="com.mmfsin.whoami.presentation.models.DeckType" />
-        </action>
-        <action
             android:id="@+id/action_menu_to_myDecks"
             app:destination="@id/myDecksFragment" />
         <action
@@ -42,16 +32,6 @@
         android:name="com.mmfsin.whoami.presentation.decks.mydecks.MyDecksFragment"
         android:label="myDecksFragment"
         tools:layout="@layout/fragment_my_decks">
-        <action
-            android:id="@+id/action_myDecks_to_dashboard"
-            app:destination="@id/dashboardFragment">
-            <argument
-                android:name="deckId"
-                app:argType="string" />
-            <argument
-                android:name="deckType"
-                app:argType="com.mmfsin.whoami.presentation.models.DeckType" />
-        </action>
         <action
             android:id="@+id/action_myDecks_to_createDeck"
             app:destination="@id/createDeckFragment" />

@@ -9,7 +9,6 @@ import com.google.android.material.tabs.TabLayoutMediator
 import com.mmfsin.whoami.R
 import com.mmfsin.whoami.base.BaseFragment
 import com.mmfsin.whoami.databinding.FragmentViewPagerBinding
-import com.mmfsin.whoami.presentation.MainActivity
 import com.mmfsin.whoami.presentation.dashboard.viepager.adapter.ViewPagerAdapter
 import com.mmfsin.whoami.presentation.dashboard.viepager.interfaces.IViewPagerListener
 import com.mmfsin.whoami.presentation.models.DeckType
@@ -54,25 +53,18 @@ class ViewPagerFragment : BaseFragment<FragmentViewPagerBinding, ViewPagerViewMo
         viewModel.event.observe(this) { event ->
             when (event) {
                 is ViewPagerEvent.SystemDeck -> {
-                    setUpToolbar(event.deck.name)
+//                    setUpToolbar(event.deck.name)
                     deckId?.let { id -> viewModel.getRandomSelectedCard(id, SYSTEM_DECK) }
                         ?: run { error() }
                 }
                 is ViewPagerEvent.CustomDeck -> {
-                    setUpToolbar(event.myDeck.name)
+//                    setUpToolbar(event.myDeck.name)
                     deckId?.let { id -> viewModel.getRandomSelectedCard(id, CUSTOM_DECK) }
                         ?: run { error() }
                 }
                 is ViewPagerEvent.SelectedCard -> setUpViewPager(event.selectedCardId)
                 is ViewPagerEvent.SomethingWentWrong -> error()
             }
-        }
-    }
-
-    private fun setUpToolbar(deckName: String) {
-        (activity as MainActivity).apply {
-            this.inDashboard = true
-            setUpToolbar(showBack = true, deckName)
         }
     }
 
@@ -100,7 +92,6 @@ class ViewPagerFragment : BaseFragment<FragmentViewPagerBinding, ViewPagerViewMo
     }
 
     private fun error() {
-        (activity as MainActivity).inDashboard = false
         activity?.showErrorDialog()
     }
 }

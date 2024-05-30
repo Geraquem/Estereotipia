@@ -53,7 +53,7 @@ class CreateDeckFragment : BaseFragment<FragmentCreateDeckBinding, CreateDeckVie
 
     private fun setToolbar() {
         (activity as MainActivity).apply {
-            setUpToolbar(showBack = true, getString(R.string.my_decks_create_new_toolbar))
+//            setUpToolbar(showBack = true, getString(R.string.my_decks_create_new_toolbar))
         }
     }
 

@@ -97,10 +97,7 @@ class CardsFragment(
         } else opportunities--
     }
 
-    private fun error() {
-        (activity as MainActivity).inDashboard = false
-        activity?.showErrorDialog()
-    }
+    private fun error() = activity?.showErrorDialog()
 
     override fun onAttach(context: Context) {
         super.onAttach(context)

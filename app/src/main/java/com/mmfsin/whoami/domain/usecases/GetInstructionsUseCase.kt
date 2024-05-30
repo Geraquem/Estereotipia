@@ -64,7 +64,7 @@ class GetInstructionsUseCase @Inject constructor(@ApplicationContext val context
             ), Instruction(
                 order = 7,
                 group = 3,
-                icon = R.drawable.ic_thumbs_up,
+                icon = R.drawable.ic_dart,
                 title = getString(R.string.instructions_how_many_opportunities),
                 layout = R.layout.inst_how_many_opportunities,
                 background = R.drawable.bg_instructions_middle

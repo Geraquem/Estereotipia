@@ -64,10 +64,7 @@ class AllCardDialog(private val cardId: String) : BaseDialog<DialogAllCardInfoBi
         }
     }
 
-    private fun error() {
-        (activity as MainActivity).inDashboard = false
-        activity?.showErrorDialog()
-    }
+    private fun error() = activity?.showErrorDialog()
 
     companion object {
         fun newInstance(cardId: String): AllCardDialog {

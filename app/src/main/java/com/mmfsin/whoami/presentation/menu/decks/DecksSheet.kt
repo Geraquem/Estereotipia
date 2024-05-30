@@ -6,7 +6,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.ViewGroup.LayoutParams
+import androidx.core.content.ContextCompat.getDrawable
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
@@ -60,16 +60,11 @@ class DecksSheet(val listener: IMenuListener) : BottomSheetDialogFragment(), IDe
                 it.layoutParams.height = maxHeight
                 behavior.peekHeight = maxHeight
                 it.requestLayout()
+
+                it.background = getDrawable(requireContext(), R.drawable.bg_header_dialog)
             }
         }
-
         return dialog
-    }
-
-    private fun setupFullHeight(bottomSheet: View) {
-        val layoutParams = bottomSheet.layoutParams
-        layoutParams.height = LayoutParams.MATCH_PARENT
-        bottomSheet.layoutParams = layoutParams
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

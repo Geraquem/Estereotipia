@@ -7,27 +7,18 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
-import androidx.navigation.NavDirections
-import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.DataSource
 import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.Target
-import com.google.android.material.tabs.TabLayoutMediator
 import com.mmfsin.whoami.R
 import com.mmfsin.whoami.base.BaseFragment
 import com.mmfsin.whoami.databinding.FragmentMenuBinding
 import com.mmfsin.whoami.domain.models.Card
 import com.mmfsin.whoami.presentation.MainActivity
-import com.mmfsin.whoami.presentation.menu.MenuFragmentDirections.Companion.actionMenuToAllCards
-import com.mmfsin.whoami.presentation.menu.MenuFragmentDirections.Companion.actionMenuToCreateDeck
-import com.mmfsin.whoami.presentation.menu.MenuFragmentDirections.Companion.actionMenuToDashboard
-import com.mmfsin.whoami.presentation.menu.MenuFragmentDirections.Companion.actionMenuToMyDecks
-import com.mmfsin.whoami.presentation.menu.adapter.MenuViewPagerAdapter
 import com.mmfsin.whoami.presentation.menu.decks.DecksSheet
 import com.mmfsin.whoami.presentation.menu.listener.IMenuListener
-import com.mmfsin.whoami.presentation.models.DeckType.SYSTEM_DECK
 import com.mmfsin.whoami.utils.animateX
 import com.mmfsin.whoami.utils.countDown
 import com.mmfsin.whoami.utils.showErrorDialog
@@ -56,17 +47,7 @@ class MenuFragment : BaseFragment<FragmentMenuBinding, MenuViewModel>(), IMenuLi
     override fun setUI() {
         binding.apply {
             loading.visibility = View.VISIBLE
-            tvTitle.visibility = View.INVISIBLE
             ivTop.alpha = 0f
-            clBottom.visibility = View.INVISIBLE
-            setToolbar()
-        }
-    }
-
-    private fun setToolbar() {
-        (activity as MainActivity).apply {
-            this.inDashboard = false
-            hideToolbar()
         }
     }
 
@@ -92,27 +73,17 @@ class MenuFragment : BaseFragment<FragmentMenuBinding, MenuViewModel>(), IMenuLi
     private fun menuFlowCompleted(cards: List<Card>) {
         binding.apply {
             loading.visibility = View.GONE
-            val justOpened = (activity as MainActivity).justOpened
-            if (justOpened) {
-                setTopCardMenu(cards, true)
-                (activity as MainActivity).justOpened = false
-                tvTitle.animateX(-1000f, 10)
-                countDown(100) {
-                    tvTitle.visibility = View.VISIBLE
-                    tvTitle.animateX(0f, 750)
-                    setUpViewPager()
-                    clBottom.visibility = View.VISIBLE
-                }
-            } else {
-                setTopCardMenu(cards, false)
-                setUpViewPager()
+            setTopCardMenu(cards)
+            tvTitle.animateX(-1000f, 10)
+            countDown(100) {
                 tvTitle.visibility = View.VISIBLE
+                tvTitle.animateX(0f, 750)
                 clBottom.visibility = View.VISIBLE
             }
         }
     }
 
-    private fun setTopCardMenu(cards: List<Card>, firstTime: Boolean) {
+    private fun setTopCardMenu(cards: List<Card>) {
         binding.apply {
             if (cards.isEmpty()) ivTop.setImageResource(R.drawable.default_face)
             else {
@@ -135,8 +106,7 @@ class MenuFragment : BaseFragment<FragmentMenuBinding, MenuViewModel>(), IMenuLi
                             dataSource: DataSource?,
                             isFirstResource: Boolean
                         ): Boolean {
-                            val duration = if (firstTime) 1000 else 10
-                            ivTop.animate().alpha(1f).duration = duration.toLong()
+                            ivTop.animate().alpha(1f).duration = 1000
                             return false
                         }
                     }).into(ivTop)
@@ -144,21 +114,18 @@ class MenuFragment : BaseFragment<FragmentMenuBinding, MenuViewModel>(), IMenuLi
         }
     }
 
-    private fun setUpViewPager() {
-        binding.apply {
-            activity?.let {
-                viewPager.adapter = MenuViewPagerAdapter(it, this@MenuFragment)
-                TabLayoutMediator(tabLayout, viewPager) { _, _ -> }.attach()
-            }
-        }
+    override fun startGame(deckId: String) = navigateTo(R.navigation.nav_graph_dashboard, deckId)
+    override fun openMyDecks() {} // navigateTo(actionMenuToMyDecks())
+    override fun openCreateDeck() {} // navigateTo(actionMenuToCreateDeck())
+    override fun openAllCards() {} // navigateTo(actionMenuToAllCards())
+
+    private fun navigateTo(navGraph: Int, strArgs: String? = null, booleanArgs: Boolean? = null) {
+        (activity as MainActivity).openBedRockActivity(
+            navGraph = navGraph,
+            strArgs = strArgs,
+            booleanArgs = booleanArgs
+        )
     }
-
-    override fun startGame(deckId: String) = navigateTo(actionMenuToDashboard(deckId, SYSTEM_DECK))
-    override fun openMyDecks() = navigateTo(actionMenuToMyDecks())
-    override fun openCreateDeck() = navigateTo(actionMenuToCreateDeck())
-    override fun openAllCards() = navigateTo(actionMenuToAllCards())
-
-    private fun navigateTo(directions: NavDirections) = findNavController().navigate(directions)
 
     private fun error() = activity?.showErrorDialog()
 

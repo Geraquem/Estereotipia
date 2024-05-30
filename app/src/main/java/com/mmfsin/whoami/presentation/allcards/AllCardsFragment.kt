@@ -37,16 +37,10 @@ class AllCardsFragment : BaseFragment<FragmentAllCardsBinding, AllCardsViewModel
     }
 
     override fun setUI() {
-        setUpToolbar(getString(R.string.menu_all_cards))
+//        setUpToolbar(getString(R.string.menu_all_cards))
     }
 
     override fun setListeners() {}
-
-    private fun setUpToolbar(title: String) {
-        (activity as MainActivity).apply {
-            setUpToolbar(showBack = true, title)
-        }
-    }
 
     override fun observe() {
         viewModel.event.observe(this) { event ->

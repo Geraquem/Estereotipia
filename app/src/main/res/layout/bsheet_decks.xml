@@ -5,6 +5,7 @@
     android:id="@+id/sheet"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:backgroundTint="@color/orange"
     android:animateLayoutChanges="true"
     app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
 

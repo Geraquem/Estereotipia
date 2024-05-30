@@ -43,15 +43,7 @@ class MyDecksFragment : BaseFragment<FragmentMyDecksBinding, MyDecksViewModel>()
 
     override fun setUI() {
         binding.apply {
-            setToolbar()
             tvEmpty.visibility = View.GONE
-        }
-    }
-
-    private fun setToolbar() {
-        (activity as MainActivity).apply {
-            this.inDashboard = false
-            setUpToolbar(showBack = true, getString(R.string.my_decks_toolbar))
         }
     }
 

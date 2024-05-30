@@ -36,10 +36,7 @@ class FirstAccessDialog : BaseDialog<DialogCardSelectBinding>() {
         }
     }
 
-    private fun error() {
-        (activity as MainActivity).inDashboard = false
-        activity?.showErrorDialog()
-    }
+    private fun error() = activity?.showErrorDialog()
 
     companion object {
         fun newInstance(): FirstAccessDialog {

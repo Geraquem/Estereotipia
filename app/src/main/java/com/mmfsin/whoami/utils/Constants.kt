@@ -1,5 +1,10 @@
 package com.mmfsin.whoami.utils
 
+/** INTENT */
+const val ROOT_ACTIVITY_NAV_GRAPH = "root_nav_graph"
+const val BEDROCK_STR_ARGS = "bedrock_str_args"
+const val BEDROCK_BOOLEAN_ARGS = "bedrock_boolean_args"
+
 const val INSTRUCTIONS = "instructions"
 const val INSTRUCTIONS_DETAIL = "instructions_detail"
 

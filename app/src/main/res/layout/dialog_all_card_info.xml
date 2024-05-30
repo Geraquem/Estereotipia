@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:background="@drawable/bg_card"
+    android:background="@drawable/click_effect"
     android:clipChildren="false"
     android:clipToPadding="false"
     android:paddingBottom="24dp">
@@ -14,7 +14,8 @@
         style="@style/MediumTextView_Card"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:background="@drawable/bg_card_info_name"
+        android:background="@drawable/bg_top_box"
+        android:backgroundTint="@color/grey"
         android:gravity="center"
         android:padding="8dp"
         android:textAllCaps="true"

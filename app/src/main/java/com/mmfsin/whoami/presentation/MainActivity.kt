@@ -5,6 +5,8 @@ import android.net.Uri
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
+import androidx.core.view.WindowInsetsControllerCompat
 import androidx.core.view.isVisible
 import androidx.fragment.app.FragmentManager.POP_BACK_STACK_INCLUSIVE
 import com.mmfsin.whoami.R
@@ -33,7 +35,14 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        changeStatusBar()
         uri = intent.data
+    }
+
+    private fun changeStatusBar() {
+        window.statusBarColor = ContextCompat.getColor(this, R.color.orange)
+        val controller = WindowInsetsControllerCompat(window, window.decorView)
+        controller.isAppearanceLightStatusBars = true
     }
 
     fun openInstructions() {

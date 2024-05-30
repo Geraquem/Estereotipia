@@ -110,7 +110,7 @@
     </style>
 
     <style name="Button.Green" parent="ThemeOverlay.AppCompat">
-        <item name="colorAccent">@color/soft_green</item>
+        <item name="colorAccent">@color/green</item>
     </style>
 
     <style name="BottomSheetDialogThemeNoFloating" parent="Theme.Design.Light.BottomSheetDialog">

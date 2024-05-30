@@ -76,7 +76,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:alpha="0.5"
-                    android:background="@color/inst_color" />
+                    android:background="@color/instructions_color" />
 
                 <androidx.constraintlayout.widget.Guideline
                     android:id="@+id/gl2_left"

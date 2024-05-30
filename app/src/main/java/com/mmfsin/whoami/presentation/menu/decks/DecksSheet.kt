@@ -61,7 +61,7 @@ class DecksSheet(val listener: IMenuListener) : BottomSheetDialogFragment(), IDe
                 behavior.peekHeight = maxHeight
                 it.requestLayout()
 
-                it.background = getDrawable(requireContext(), R.drawable.bg_header_dialog)
+                it.background = getDrawable(requireContext(), R.drawable.bg_top_box)
             }
         }
         return dialog

@@ -12,7 +12,7 @@
         android:id="@+id/cl_background"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/bg_card"
+        android:background="@drawable/bg_white_box"
         android:clipChildren="false"
         android:clipToPadding="false"
         android:elevation="6dp"

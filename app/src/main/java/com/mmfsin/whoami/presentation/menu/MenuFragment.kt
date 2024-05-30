@@ -53,7 +53,12 @@ class MenuFragment : BaseFragment<FragmentMenuBinding, MenuViewModel>(), IMenuLi
 
     override fun setListeners() {
         binding.apply {
-            ivInstructions.setOnClickListener { (activity as MainActivity).openInstructions() }
+            ivInstructions.setOnClickListener {
+                (activity as MainActivity).apply {
+                    openInstructions()
+                    changeStatusBar(R.color.white)
+                }
+            }
             llPlay.setOnClickListener { activity?.showFragmentDialog(DecksSheet(this@MenuFragment)) }
         }
     }

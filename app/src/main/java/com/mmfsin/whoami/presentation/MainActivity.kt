@@ -3,21 +3,16 @@ package com.mmfsin.whoami.presentation
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.view.WindowInsetsControllerCompat
-import androidx.core.view.isVisible
-import androidx.fragment.app.FragmentManager.POP_BACK_STACK_INCLUSIVE
 import com.mmfsin.whoami.R
 import com.mmfsin.whoami.base.bedrock.BedRockActivity
 import com.mmfsin.whoami.databinding.ActivityMainBinding
-import com.mmfsin.whoami.presentation.exit.ExitDialog
 import com.mmfsin.whoami.presentation.instructions.InstructionsFragment
 import com.mmfsin.whoami.utils.BEDROCK_BOOLEAN_ARGS
 import com.mmfsin.whoami.utils.BEDROCK_STR_ARGS
 import com.mmfsin.whoami.utils.INSTRUCTIONS
-import com.mmfsin.whoami.utils.INSTRUCTIONS_DETAIL
 import com.mmfsin.whoami.utils.ROOT_ACTIVITY_NAV_GRAPH
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -35,12 +30,12 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        changeStatusBar()
+        changeStatusBar(R.color.orange)
         uri = intent.data
     }
 
-    private fun changeStatusBar() {
-        window.statusBarColor = ContextCompat.getColor(this, R.color.orange)
+    fun changeStatusBar(color: Int) {
+        window.statusBarColor = ContextCompat.getColor(this, color)
         val controller = WindowInsetsControllerCompat(window, window.decorView)
         controller.isAppearanceLightStatusBars = true
     }
@@ -49,10 +44,6 @@ class MainActivity : AppCompatActivity() {
         supportFragmentManager.beginTransaction().addToBackStack(INSTRUCTIONS)
             .setCustomAnimations(R.anim.fragment_up, 0, 0, R.anim.fragment_down)
             .add(R.id.fc_instructions, InstructionsFragment()).commit()
-    }
-
-    private fun removeFragment(fragmentName: String) {
-        supportFragmentManager.popBackStack(fragmentName, POP_BACK_STACK_INCLUSIVE)
     }
 
     fun openBedRockActivity(
@@ -68,17 +59,13 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onBackPressed() {
-//        val count = supportFragmentManager.backStackEntryCount
-//        if (count == 0) {
-//            if (inDashboard) {
-//                val dialog = ExitDialog() { super.onBackPressed() }
-//                dialog.show(supportFragmentManager, "")
-//            } else super.onBackPressed()
-//        } else {
-//            when (supportFragmentManager.getBackStackEntryAt(count - 1).name) {
-//                INSTRUCTIONS_DETAIL -> removeFragment(INSTRUCTIONS_DETAIL)
-//                INSTRUCTIONS -> removeFragment(INSTRUCTIONS)
-//            }
-//        }
+        val count = supportFragmentManager.backStackEntryCount
+        if (count == 0) super.onBackPressed()
+        else {
+            when (supportFragmentManager.getBackStackEntryAt(count - 1).name) {
+                INSTRUCTIONS -> changeStatusBar(R.color.orange)
+            }
+            super.onBackPressed()
+        }
     }
 }

@@ -4,7 +4,6 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.view.WindowInsetsControllerCompat
-import androidx.core.view.isVisible
 import androidx.navigation.fragment.NavHostFragment
 import com.mmfsin.whoami.R
 import com.mmfsin.whoami.databinding.ActivityBedrockBinding
@@ -18,8 +17,6 @@ import dagger.hilt.android.AndroidEntryPoint
 class BedRockActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityBedrockBinding
-
-    var routineOpened: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

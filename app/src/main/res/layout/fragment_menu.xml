@@ -147,6 +147,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
+                    android:paddingBottom="42dp"
                     app:layout_constraintLeft_toLeftOf="@id/gl_left"
                     app:layout_constraintRight_toRightOf="@id/gl_right"
                     app:layout_constraintTop_toTopOf="parent">

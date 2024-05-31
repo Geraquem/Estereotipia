@@ -18,7 +18,7 @@ import com.mmfsin.whoami.databinding.BsheetDecksBinding
 import com.mmfsin.whoami.domain.models.Deck
 import com.mmfsin.whoami.presentation.menu.decks.adapter.DecksAdapter
 import com.mmfsin.whoami.presentation.menu.decks.interfaces.IDeckListener
-import com.mmfsin.whoami.presentation.menu.listener.IMenuListener
+import com.mmfsin.whoami.presentation.menu.interfaces.IMenuListener
 import com.mmfsin.whoami.utils.showErrorDialog
 import dagger.hilt.android.AndroidEntryPoint
 

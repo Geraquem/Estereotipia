@@ -1,4 +1,4 @@
-package com.mmfsin.whoami.presentation.menu.listener
+package com.mmfsin.whoami.presentation.menu.interfaces
 
 interface IMenuCardsListener {
     fun onMenuCardClick()

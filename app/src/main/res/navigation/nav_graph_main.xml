@@ -2,35 +2,13 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main_nav_graph"
+    android:id="@+id/nav_graph_main"
     app:startDestination="@id/menuFragment">
 
     <fragment
         android:id="@+id/menuFragment"
         android:name="com.mmfsin.whoami.presentation.menu.MenuFragment"
         android:label="menuFragment"
-        tools:layout="@layout/fragment_menu">
-        <action
-            android:id="@+id/action_menu_to_myDecks"
-            app:destination="@id/myDecksFragment" />
-        <action
-            android:id="@+id/action_menu_to_createDeck"
-            app:destination="@id/createDeckFragment" />
-        <action
-            android:id="@+id/action_menu_to_allCards"
-            app:destination="@id/allCardsFragment" />
-    </fragment>
-
-    <fragment
-        android:id="@+id/createDeckFragment"
-        android:name="com.mmfsin.whoami.presentation.customdecks.create.CreateDeckFragment"
-        android:label="createDeckFragment"
-        tools:layout="@layout/fragment_create_deck" />
-
-    <fragment
-        android:id="@+id/allCardsFragment"
-        android:name="com.mmfsin.whoami.presentation.allcards.AllCardsFragment"
-        android:label="allCardsFragment"
-        tools:layout="@layout/fragment_all_cards" />
+        tools:layout="@layout/fragment_menu" />
 
 </navigation>

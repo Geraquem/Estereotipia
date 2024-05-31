@@ -8,12 +8,11 @@ import androidx.fragment.app.viewModels
 import com.google.android.material.tabs.TabLayoutMediator
 import com.mmfsin.whoami.R
 import com.mmfsin.whoami.base.BaseFragment
+import com.mmfsin.whoami.base.bedrock.BedRockActivity
 import com.mmfsin.whoami.databinding.FragmentViewPagerBinding
 import com.mmfsin.whoami.presentation.dashboard.viepager.adapter.ViewPagerAdapter
 import com.mmfsin.whoami.presentation.dashboard.viepager.interfaces.IViewPagerListener
 import com.mmfsin.whoami.utils.BEDROCK_STR_ARGS
-import com.mmfsin.whoami.utils.DECK_TYPE
-import com.mmfsin.whoami.utils.checkNotNulls
 import com.mmfsin.whoami.utils.showErrorDialog
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -35,10 +34,7 @@ class ViewPagerFragment : BaseFragment<FragmentViewPagerBinding, ViewPagerViewMo
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        deckId?.let { viewModel.getDeck(it) }
-//        checkNotNulls(deckId, deckType) { id, type ->
-//            viewModel.getDeck(id, type)
-//        } ?: run { error() }
+        deckId?.let { viewModel.getDeck(it) } ?: run { error() }
     }
 
     override fun setUI() {
@@ -48,16 +44,9 @@ class ViewPagerFragment : BaseFragment<FragmentViewPagerBinding, ViewPagerViewMo
     override fun observe() {
         viewModel.event.observe(this) { event ->
             when (event) {
-                is ViewPagerEvent.SystemDeck -> {
-//                    setUpToolbar(event.deck.name)
-                    deckId?.let { id -> viewModel.getRandomSelectedCard(id) }
-                        ?: run { error() }
-                }
-
-                is ViewPagerEvent.CustomDeck -> {
-//                    setUpToolbar(event.myDeck.name)
-                    deckId?.let { id -> viewModel.getRandomSelectedCard(id) }
-                        ?: run { error() }
+                is ViewPagerEvent.GetDeck -> {
+                    setUpToolbar(event.deck.name)
+                    deckId?.let { id -> viewModel.getRandomSelectedCard(id) } ?: run { error() }
                 }
 
                 is ViewPagerEvent.SelectedCard -> setUpViewPager(event.selectedCardId)
@@ -65,6 +54,9 @@ class ViewPagerFragment : BaseFragment<FragmentViewPagerBinding, ViewPagerViewMo
             }
         }
     }
+
+    private fun setUpToolbar(deckName: String) =
+        (activity as BedRockActivity).setUpToolbar(deckName)
 
     private fun setUpViewPager(selectedCardId: String) {
         deckId?.let { id ->

@@ -8,13 +8,8 @@ import javax.inject.Inject
 class GetCardsByDeckIdUseCase @Inject constructor(private val repository: ICardsRepository) :
     BaseUseCase<GetCardsByDeckIdUseCase.Params, List<Card>?>() {
 
-    override suspend fun execute(params: Params): List<Card>? {
-//        return when (params.type) {
-//            SYSTEM_DECK -> repository.getCardsByDeckId(params.deckId)
-//            CUSTOM_DECK -> repository.getCardsByCustomDeckId(params.deckId)
-//        }
-        return emptyList()
-    }
+    override suspend fun execute(params: Params): List<Card>? =
+        repository.getCardsByDeckId(params.deckId)
 
     class Params(
         val deckId: String,

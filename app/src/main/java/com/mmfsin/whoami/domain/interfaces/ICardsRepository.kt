@@ -5,7 +5,6 @@ import kotlinx.coroutines.flow.StateFlow
 
 interface ICardsRepository {
     fun getCardsByDeckId(deckId: String): List<Card>?
-    fun getCardsByCustomDeckId(deckId: String): List<Card>?
 
     fun getAllCards(): List<Card>?
     fun getCardById(id: String): Card?

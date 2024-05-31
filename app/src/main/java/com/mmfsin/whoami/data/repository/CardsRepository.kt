@@ -3,11 +3,12 @@ package com.mmfsin.whoami.data.repository
 import com.mmfsin.whoami.data.mappers.toCard
 import com.mmfsin.whoami.data.mappers.toCardList
 import com.mmfsin.whoami.data.models.CardDTO
+import com.mmfsin.whoami.data.models.CustomDeckDTO
 import com.mmfsin.whoami.data.models.DeckDTO
-import com.mmfsin.whoami.data.models.MyDeckDTO
 import com.mmfsin.whoami.domain.interfaces.ICardsRepository
 import com.mmfsin.whoami.domain.interfaces.IRealmDatabase
 import com.mmfsin.whoami.domain.models.Card
+import com.mmfsin.whoami.utils.ID
 import io.realm.kotlin.where
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -31,26 +32,24 @@ class CardsRepository @Inject constructor(
     }
 
     override fun getCardsByDeckId(deckId: String): List<Card>? {
-        val deck = realmDatabase.getObjectsFromRealm {
-            where<DeckDTO>().equalTo("id", deckId).findAll()
+        /** check system decks */
+        val systemDeck = realmDatabase.getObjectFromRealm(DeckDTO::class.java, ID, deckId)
+        systemDeck?.let { d ->
+            val cardsList = d.cards.filter { !it.isWhitespace() }
+            return getCardsByListId(cardsList.split(","))
         }
-        val deckCards =
-            if (deck.isEmpty()) null else deck.first().cards.filter { !it.isWhitespace() }
-        return deckCards?.let { cards -> getCardsByListId(cards.split(",")) } ?: run { null }
-    }
-
-    override fun getCardsByCustomDeckId(deckId: String): List<Card>? {
-        val deck = realmDatabase.getObjectsFromRealm {
-            where<MyDeckDTO>().equalTo("id", deckId).findAll()
+        /** si no puede que sea creado por el user */
+        val customDeck = realmDatabase.getObjectFromRealm(CustomDeckDTO::class.java, ID, deckId)
+        customDeck?.let { d ->
+            val cardsList = d.cards.filter { !it.isWhitespace() }
+            return getCardsByListId(cardsList.split(","))
         }
-        val deckCards =
-            if (deck.isEmpty()) null else deck.first().cards.filter { !it.isWhitespace() }
-        return deckCards?.let { cards -> getCardsByListId(cards.split(",")) } ?: run { null }
+        return null
     }
 
     private fun getCardsByListId(ids: List<String>): List<Card> {
         val cards = mutableListOf<CardDTO>()
-        for (id in ids) {
+        ids.forEach { id ->
             val card = getCardDTO(id)
             card?.let { cards.add(it) }
         }

@@ -8,6 +8,10 @@ const val BEDROCK_BOOLEAN_ARGS = "bedrock_boolean_args"
 const val INSTRUCTIONS = "instructions"
 const val INSTRUCTIONS_DETAIL = "instructions_detail"
 
+const val ID = "id"
+
+
+
 const val VERSION = "version"
 const val DECKS = "decks"
 const val CARDS = "cards"

@@ -16,7 +16,7 @@ class ViewPagerViewModel @Inject constructor(
         executeUseCase(
             { getDeckByIdUseCase.execute(GetDeckByIdUseCase.Params(deckId)) },
             { result ->
-                _event.value = result?.let { ViewPagerEvent.SystemDeck(it) }
+                _event.value = result?.let { ViewPagerEvent.GetDeck(it) }
                     ?: run { ViewPagerEvent.SomethingWentWrong }
             },
             { _event.value = ViewPagerEvent.SomethingWentWrong }
@@ -25,11 +25,7 @@ class ViewPagerViewModel @Inject constructor(
 
     fun getRandomSelectedCard(deckId: String) {
         executeUseCase(
-            {
-                getRandomSelectedCardUseCase.execute(
-                    GetRandomSelectedCardUseCase.Params(deckId)
-                )
-            },
+            { getRandomSelectedCardUseCase.execute(GetRandomSelectedCardUseCase.Params(deckId)) },
             { result ->
                 _event.value = result?.let { ViewPagerEvent.SelectedCard(it) }
                     ?: run { ViewPagerEvent.SomethingWentWrong }

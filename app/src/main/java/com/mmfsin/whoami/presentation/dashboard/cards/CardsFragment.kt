@@ -31,7 +31,6 @@ class CardsFragment(val deckId: String, private val selectedCardId: String) :
 
     private var cardsAdapter: CardsAdapter? = null
 
-    private var selectedReady = false
     private var opportunities = 2
 
     override fun inflateView(
@@ -51,7 +50,7 @@ class CardsFragment(val deckId: String, private val selectedCardId: String) :
         viewModel.event.observe(this) { event ->
             when (event) {
                 is CardsEvent.GetCards -> setUpCards(event.cards)
-                is CardsEvent.UpdateCard -> actionOnCard(event.cardId)
+                is CardsEvent.UpdateCard -> cardsAdapter?.updateDiscardedCards(event.cardId)
                 is CardsEvent.SomethingWentWrong -> error()
             }
         }
@@ -64,21 +63,19 @@ class CardsFragment(val deckId: String, private val selectedCardId: String) :
             cardsAdapter = CardsAdapter(cards, this@CardsFragment)
             adapter = cardsAdapter
         }
-        activity?.showFragmentDialog(WaitSelectDialog { actionOnCard(selectedCardId) })
+        activity?.showFragmentDialog(WaitSelectDialog {
+            activity?.showFragmentDialog(SelectedCardDialog.newInstance(selectedCardId))
+        })
     }
 
     override fun onCardClick(cardId: String) {
-        if (!selectedReady) activity?.showFragmentDialog(SelectedCardDialog.newInstance(cardId))
-        else activity?.showFragmentDialog(
-            DiscardDialog.newInstance(cardId, opportunities, this@CardsFragment)
+        activity?.showFragmentDialog(
+            DiscardDialog.newInstance(
+                cardId,
+                opportunities,
+                this@CardsFragment
+            )
         )
-    }
-
-    private fun actionOnCard(cardId: String) {
-        if (!selectedReady) {
-            selectedReady = true
-            activity?.showFragmentDialog(SelectedCardDialog.newInstance(cardId))
-        } else cardsAdapter?.updateDiscardedCards(cardId)
     }
 
     override fun makeChoice(cardId: String) {

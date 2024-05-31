@@ -83,9 +83,15 @@ class ChoiceDialog(
                 lottieWinner.playAnimation()
             } else {
                 result = LOOSER
-                val text = if (opportunities == 2) R.string.choice_dialog_looser_opportunities
-                else R.string.choice_dialog_looser_zero_opportunities
-                tvLooser.text = getString(text)
+                if (opportunities == 2) {
+                    tvLooserTitle.text = getString(R.string.choice_dialog_looser_title_1)
+                    tvLooserDescription.text =
+                        getString(R.string.choice_dialog_looser_opportunities)
+                } else {
+                    tvLooserTitle.text = getString(R.string.choice_dialog_looser_title_2)
+                    tvLooserDescription.text =
+                        getString(R.string.choice_dialog_looser_zero_opportunities)
+                }
                 lottieLooser.setAnimation(R.raw.lottie_sad_face)
                 llFinalLooser.isVisible = true
                 lottieLooser.playAnimation()

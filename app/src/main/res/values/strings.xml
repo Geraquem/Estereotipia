@@ -51,12 +51,16 @@
     <string name="select_card_loading_title">Preparándolo todo</string>
 
     <!-- CHOICE DIALOG -->
-    <string name="choice_dialog_title">¿Es %s el personaje de tu rival?</string>
+    <string name="choice_dialog_title">Has apostado que %s es el personaje de tu rival.</string>
+    <string name="choice_dialog_subtitle">Pregúntale a ver qué te responde.</string>
+    <string name="choice_dialog_question">¿Has acertado?</string>
     <string name="choice_dialog_yes">¡Sí!</string>
     <string name="choice_dialog_no">No</string>
     <string name="choice_dialog_back">Volver</string>
     <string name="choice_dialog_winner">¡Genial!</string>
-    <string name="choice_dialog_looser">Vaya…</string>
+    <string name="choice_dialog_winner_subtitle">Has acertado el personaje de tu rival</string>
+    <string name="choice_dialog_looser_title_1">No pasa nada</string>
+    <string name="choice_dialog_looser_title_2">Menudo fracaso</string>
     <string name="choice_dialog_looser_opportunities">Todavía tienes otra oportunidad</string>
     <string name="choice_dialog_looser_zero_opportunities">Has acabado con todas tus oportunidades</string>
 

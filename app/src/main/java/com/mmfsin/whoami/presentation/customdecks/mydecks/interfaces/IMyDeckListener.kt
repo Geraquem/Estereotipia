@@ -1,4 +1,4 @@
-package com.mmfsin.whoami.presentation.decks.mydecks.interfaces
+package com.mmfsin.whoami.presentation.customdecks.mydecks.interfaces
 
 interface IMyDeckListener {
     fun onMyDeckClick(id: String)

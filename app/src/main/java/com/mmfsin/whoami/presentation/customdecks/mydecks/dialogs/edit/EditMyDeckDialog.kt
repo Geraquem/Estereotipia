@@ -1,4 +1,4 @@
-package com.mmfsin.whoami.presentation.decks.mydecks.dialogs.edit
+package com.mmfsin.whoami.presentation.customdecks.mydecks.dialogs.edit
 
 import android.app.Dialog
 import android.os.Bundle
@@ -8,9 +8,9 @@ import androidx.fragment.app.viewModels
 import com.mmfsin.whoami.R
 import com.mmfsin.whoami.base.BaseDialog
 import com.mmfsin.whoami.databinding.DialogCreateDeckNameBinding
-import com.mmfsin.whoami.presentation.decks.mydecks.dialogs.MyDeckEvent
-import com.mmfsin.whoami.presentation.decks.mydecks.dialogs.MyDeckViewModel
-import com.mmfsin.whoami.presentation.decks.mydecks.interfaces.IMyDeckListener
+import com.mmfsin.whoami.presentation.customdecks.mydecks.dialogs.MyDeckEvent
+import com.mmfsin.whoami.presentation.customdecks.mydecks.dialogs.MyDeckViewModel
+import com.mmfsin.whoami.presentation.customdecks.mydecks.interfaces.IMyDeckListener
 import com.mmfsin.whoami.utils.animateDialog
 import com.mmfsin.whoami.utils.countDown
 import com.mmfsin.whoami.utils.showErrorDialog

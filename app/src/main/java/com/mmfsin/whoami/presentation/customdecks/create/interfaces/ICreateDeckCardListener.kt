@@ -1,4 +1,4 @@
-package com.mmfsin.whoami.presentation.decks.create.interfaces
+package com.mmfsin.whoami.presentation.customdecks.create.interfaces
 
 interface ICreateDeckCardListener {
     fun onCardClick(id: String)

@@ -1,4 +1,4 @@
-package com.mmfsin.whoami.presentation.decks.mydecks.dialogs
+package com.mmfsin.whoami.presentation.customdecks.mydecks.dialogs
 
 import android.app.Dialog
 import android.os.Bundle
@@ -6,7 +6,7 @@ import android.view.LayoutInflater
 import androidx.fragment.app.viewModels
 import com.mmfsin.whoami.base.BaseDialog
 import com.mmfsin.whoami.databinding.DialogMyDeckBinding
-import com.mmfsin.whoami.presentation.decks.mydecks.interfaces.IMyDeckListener
+import com.mmfsin.whoami.presentation.customdecks.mydecks.interfaces.IMyDeckListener
 import com.mmfsin.whoami.utils.animateDialog
 import com.mmfsin.whoami.utils.showErrorDialog
 import dagger.hilt.android.AndroidEntryPoint

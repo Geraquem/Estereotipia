@@ -1,4 +1,4 @@
-package com.mmfsin.whoami.presentation.decks.mydecks.dialogs.delete
+package com.mmfsin.whoami.presentation.customdecks.mydecks.dialogs.delete
 
 import android.app.Dialog
 import android.os.Bundle
@@ -7,9 +7,9 @@ import androidx.fragment.app.viewModels
 import com.mmfsin.whoami.R
 import com.mmfsin.whoami.base.BaseDialog
 import com.mmfsin.whoami.databinding.DialogDeleteMyDeckBinding
-import com.mmfsin.whoami.presentation.decks.mydecks.dialogs.MyDeckEvent
-import com.mmfsin.whoami.presentation.decks.mydecks.dialogs.MyDeckViewModel
-import com.mmfsin.whoami.presentation.decks.mydecks.interfaces.IMyDeckListener
+import com.mmfsin.whoami.presentation.customdecks.mydecks.dialogs.MyDeckEvent
+import com.mmfsin.whoami.presentation.customdecks.mydecks.dialogs.MyDeckViewModel
+import com.mmfsin.whoami.presentation.customdecks.mydecks.interfaces.IMyDeckListener
 import com.mmfsin.whoami.utils.animateDialog
 import com.mmfsin.whoami.utils.showErrorDialog
 import dagger.hilt.android.AndroidEntryPoint

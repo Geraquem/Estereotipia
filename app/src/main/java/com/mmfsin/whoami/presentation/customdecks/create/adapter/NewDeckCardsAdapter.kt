@@ -1,4 +1,4 @@
-package com.mmfsin.whoami.presentation.decks.create.adapter
+package com.mmfsin.whoami.presentation.customdecks.create.adapter
 
 import android.view.LayoutInflater
 import android.view.View
@@ -8,7 +8,7 @@ import com.bumptech.glide.Glide
 import com.mmfsin.whoami.R
 import com.mmfsin.whoami.databinding.ItemNewDeckCardBinding
 import com.mmfsin.whoami.domain.models.CreateDeckCard
-import com.mmfsin.whoami.presentation.decks.create.interfaces.ICreateDeckCardListener
+import com.mmfsin.whoami.presentation.customdecks.create.interfaces.ICreateDeckCardListener
 
 class NewDeckCardsAdapter(
     private val cards: List<CreateDeckCard>,

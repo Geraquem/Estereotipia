@@ -1,4 +1,4 @@
-package com.mmfsin.whoami.presentation.decks.mydecks.adapter
+package com.mmfsin.whoami.presentation.customdecks.mydecks.adapter
 
 import android.view.LayoutInflater
 import android.view.View
@@ -8,7 +8,7 @@ import com.bumptech.glide.Glide
 import com.mmfsin.whoami.R
 import com.mmfsin.whoami.databinding.ItemDeckBinding
 import com.mmfsin.whoami.domain.models.MyDeck
-import com.mmfsin.whoami.presentation.decks.mydecks.interfaces.IMyDeckListener
+import com.mmfsin.whoami.presentation.customdecks.mydecks.interfaces.IMyDeckListener
 
 class MyDecksAdapter(
     private val decks: List<MyDeck>,

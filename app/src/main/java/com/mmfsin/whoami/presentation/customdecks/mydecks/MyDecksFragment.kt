@@ -1,4 +1,4 @@
-package com.mmfsin.whoami.presentation.decks.mydecks
+package com.mmfsin.whoami.presentation.customdecks.mydecks
 
 import android.content.Context
 import android.os.Bundle
@@ -9,15 +9,19 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.mmfsin.whoami.R
 import com.mmfsin.whoami.base.BaseFragment
+import com.mmfsin.whoami.base.bedrock.BedRockActivity
 import com.mmfsin.whoami.databinding.FragmentMyDecksBinding
 import com.mmfsin.whoami.domain.models.MyDeck
-import com.mmfsin.whoami.presentation.decks.mydecks.MyDecksFragmentDirections.Companion.actionMyDecksToCreateDeck
-import com.mmfsin.whoami.presentation.decks.mydecks.adapter.MyDecksAdapter
-import com.mmfsin.whoami.presentation.decks.mydecks.dialogs.MyDeckDialog
-import com.mmfsin.whoami.presentation.decks.mydecks.dialogs.delete.DeleteMyDeckDialog
-import com.mmfsin.whoami.presentation.decks.mydecks.dialogs.edit.EditMyDeckDialog
-import com.mmfsin.whoami.presentation.decks.mydecks.interfaces.IMyDeckListener
+import com.mmfsin.whoami.presentation.customdecks.mydecks.MyDecksFragmentDirections.Companion.actionMyDecksToCreateNewDeck
+import com.mmfsin.whoami.presentation.customdecks.mydecks.adapter.MyDecksAdapter
+import com.mmfsin.whoami.presentation.customdecks.mydecks.dialogs.MyDeckDialog
+import com.mmfsin.whoami.presentation.customdecks.mydecks.dialogs.delete.DeleteMyDeckDialog
+import com.mmfsin.whoami.presentation.customdecks.mydecks.dialogs.edit.EditMyDeckDialog
+import com.mmfsin.whoami.presentation.customdecks.mydecks.interfaces.IMyDeckListener
+import com.mmfsin.whoami.utils.BEDROCK_BOOLEAN_ARGS
+import com.mmfsin.whoami.utils.BEDROCK_STR_ARGS
 import com.mmfsin.whoami.utils.showErrorDialog
 import com.mmfsin.whoami.utils.showFragmentDialog
 import dagger.hilt.android.AndroidEntryPoint
@@ -28,28 +32,39 @@ class MyDecksFragment : BaseFragment<FragmentMyDecksBinding, MyDecksViewModel>()
     override val viewModel: MyDecksViewModel by viewModels()
     private lateinit var mContext: Context
 
+    private var openCreateNewDeck = false
+
     override fun inflateView(
         inflater: LayoutInflater, container: ViewGroup?
     ) = FragmentMyDecksBinding.inflate(inflater, container, false)
 
+    override fun getBundleArgs() {
+        openCreateNewDeck = activity?.intent?.getBooleanExtra(BEDROCK_BOOLEAN_ARGS, false) ?: false
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        if (openCreateNewDeck) {
+            openCreateNewDeck = false
+            createNewDeck()
+        }
         viewModel.getMyDecks()
     }
 
     override fun setUI() {
         binding.apply {
             tvEmpty.visibility = View.GONE
+            (activity as BedRockActivity).setUpToolbar(getString(R.string.my_decks_toolbar))
         }
     }
 
     override fun setListeners() {
         binding.apply {
-            btnCreateDeck.setOnClickListener {
-                findNavController().navigate(actionMyDecksToCreateDeck())
-            }
+            btnCreateDeck.setOnClickListener { createNewDeck() }
         }
     }
+
+    private fun createNewDeck() = findNavController().navigate(actionMyDecksToCreateNewDeck())
 
     override fun observe() {
         viewModel.event.observe(this) { event ->
@@ -64,7 +79,6 @@ class MyDecksFragment : BaseFragment<FragmentMyDecksBinding, MyDecksViewModel>()
     private fun setUpDecks(decks: List<MyDeck>) {
         binding.apply {
             rvMyDecks.apply {
-//                layoutManager = StaggeredGridLayoutManager(2, VERTICAL)
                 layoutManager = LinearLayoutManager(mContext)
                 adapter = MyDecksAdapter(decks, this@MyDecksFragment)
             }

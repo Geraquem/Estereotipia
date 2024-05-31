@@ -1,25 +1,23 @@
-package com.mmfsin.whoami.presentation.decks.create
+package com.mmfsin.whoami.presentation.customdecks.create
 
 import android.content.Context
-import android.content.res.ColorStateList
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.SimpleItemAnimator
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.mmfsin.whoami.R
 import com.mmfsin.whoami.base.BaseFragment
+import com.mmfsin.whoami.base.bedrock.BedRockActivity
 import com.mmfsin.whoami.databinding.FragmentCreateDeckBinding
 import com.mmfsin.whoami.domain.models.CreateDeckCard
-import com.mmfsin.whoami.presentation.MainActivity
 import com.mmfsin.whoami.presentation.allcards.dialogs.AllCardDialog
-import com.mmfsin.whoami.presentation.decks.create.adapter.NewDeckCardsAdapter
-import com.mmfsin.whoami.presentation.decks.create.dialog.DeckNameDialog
-import com.mmfsin.whoami.presentation.decks.create.interfaces.ICreateDeckCardListener
+import com.mmfsin.whoami.presentation.customdecks.create.adapter.NewDeckCardsAdapter
+import com.mmfsin.whoami.presentation.customdecks.create.dialog.DeckNameDialog
+import com.mmfsin.whoami.presentation.customdecks.create.interfaces.ICreateDeckCardListener
 import com.mmfsin.whoami.utils.showErrorDialog
 import com.mmfsin.whoami.utils.showFragmentDialog
 import dagger.hilt.android.AndroidEntryPoint
@@ -52,9 +50,7 @@ class CreateDeckFragment : BaseFragment<FragmentCreateDeckBinding, CreateDeckVie
     }
 
     private fun setToolbar() {
-        (activity as MainActivity).apply {
-//            setUpToolbar(showBack = true, getString(R.string.my_decks_create_new_toolbar))
-        }
+        (activity as BedRockActivity).setUpToolbar(getString(R.string.my_decks_create_new_toolbar))
     }
 
     override fun setListeners() {

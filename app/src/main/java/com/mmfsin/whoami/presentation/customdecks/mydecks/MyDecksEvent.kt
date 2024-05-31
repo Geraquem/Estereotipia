@@ -1,4 +1,4 @@
-package com.mmfsin.whoami.presentation.decks.mydecks
+package com.mmfsin.whoami.presentation.customdecks.mydecks
 
 import com.mmfsin.whoami.domain.models.MyDeck
 

@@ -60,6 +60,14 @@ class MenuFragment : BaseFragment<FragmentMenuBinding, MenuViewModel>(), IMenuLi
                 }
             }
             llPlay.setOnClickListener { activity?.showFragmentDialog(DecksSheet(this@MenuFragment)) }
+
+            menuDecks.tvMyDecks.setOnClickListener { navigateTo(R.navigation.nav_graph_my_decks) }
+            menuDecks.tvCreateDeck.setOnClickListener {
+                navigateTo(
+                    navGraph = R.navigation.nav_graph_my_decks,
+                    booleanArgs = true
+                )
+            }
         }
     }
 
@@ -120,9 +128,6 @@ class MenuFragment : BaseFragment<FragmentMenuBinding, MenuViewModel>(), IMenuLi
     }
 
     override fun startGame(deckId: String) = navigateTo(R.navigation.nav_graph_dashboard, deckId)
-    override fun openMyDecks() {} // navigateTo(actionMenuToMyDecks())
-    override fun openCreateDeck() {} // navigateTo(actionMenuToCreateDeck())
-    override fun openAllCards() {} // navigateTo(actionMenuToAllCards())
 
     private fun navigateTo(navGraph: Int, strArgs: String? = null, booleanArgs: Boolean? = null) {
         (activity as MainActivity).openBedRockActivity(

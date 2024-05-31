@@ -179,12 +179,14 @@
                     </LinearLayout>
 
                     <include
+                        android:id="@+id/menu_decks"
                         layout="@layout/include_menu_decks"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="12dp" />
 
                     <include
+                        android:id="@+id/menu_cards"
                         layout="@layout/include_menu_cards"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" />

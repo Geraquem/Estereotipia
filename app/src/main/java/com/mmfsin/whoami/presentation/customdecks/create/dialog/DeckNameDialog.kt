@@ -1,4 +1,4 @@
-package com.mmfsin.whoami.presentation.decks.create.dialog
+package com.mmfsin.whoami.presentation.customdecks.create.dialog
 
 import android.animation.Animator
 import android.app.Dialog
@@ -10,7 +10,7 @@ import com.mmfsin.whoami.R
 import com.mmfsin.whoami.base.BaseDialog
 import com.mmfsin.whoami.databinding.DialogCreateDeckNameBinding
 import com.mmfsin.whoami.domain.models.MyDeck
-import com.mmfsin.whoami.presentation.decks.create.interfaces.ICreateDeckCardListener
+import com.mmfsin.whoami.presentation.customdecks.create.interfaces.ICreateDeckCardListener
 import com.mmfsin.whoami.utils.animateDialog
 import com.mmfsin.whoami.utils.countDown
 import com.mmfsin.whoami.utils.showErrorDialog

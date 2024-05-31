@@ -1,4 +1,4 @@
-package com.mmfsin.whoami.presentation.decks.create
+package com.mmfsin.whoami.presentation.customdecks.create
 
 import com.mmfsin.whoami.domain.models.CreateDeckCard
 

@@ -6,10 +6,9 @@
     android:orientation="vertical">
 
     <TextView
-        style="@style/Instructions_TextView"
+        style="@style/MediumTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/instructions_how_to_play_details"
-        android:textSize="18sp" />
+        android:text="@string/instructions_how_to_play_details" />
 
 </LinearLayout>

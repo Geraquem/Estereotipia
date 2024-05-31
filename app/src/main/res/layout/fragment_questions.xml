@@ -57,11 +57,10 @@
                     style="@style/MediumTextView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="18dp"
-                    android:background="@drawable/bg_white_box"
+                    android:layout_marginBottom="12dp"
+                    android:background="@drawable/click_effect"
                     android:drawablePadding="8dp"
                     android:elevation="3dp"
-                    android:foreground="?attr/selectableItemBackground"
                     android:paddingHorizontal="12dp"
                     android:paddingVertical="16dp"
                     android:text="@string/questions_do_question"
@@ -72,11 +71,10 @@
                     style="@style/MediumTextView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="18dp"
-                    android:background="@drawable/bg_white_box"
+                    android:layout_marginBottom="12dp"
+                    android:background="@drawable/click_effect"
                     android:drawablePadding="8dp"
                     android:elevation="3dp"
-                    android:foreground="?attr/selectableItemBackground"
                     android:paddingHorizontal="12dp"
                     android:paddingVertical="16dp"
                     android:text="@string/questions_list_of"
@@ -88,10 +86,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="32dp"
-                    android:background="@drawable/bg_white_box"
+                    android:background="@drawable/click_effect"
                     android:drawablePadding="8dp"
                     android:elevation="3dp"
-                    android:foreground="?attr/selectableItemBackground"
                     android:paddingHorizontal="12dp"
                     android:paddingVertical="16dp"
                     android:text="@string/questions_my_card"
@@ -140,7 +137,8 @@
                     android:id="@+id/cv_what_now"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="16dp"
+                    android:layout_marginBottom="12dp"
+                    app:cardCornerRadius="12dp"
                     app:cardElevation="6dp"
                     app:contentPadding="16dp">
 
@@ -173,9 +171,10 @@
                 <androidx.cardview.widget.CardView
                     android:id="@+id/cv_buttons"
                     android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="12dp"
                     android:clipChildren="false"
                     android:clipToPadding="false"
-                    android:layout_height="wrap_content"
                     app:cardCornerRadius="12dp"
                     app:cardElevation="6dp"
                     app:contentPadding="16dp">
@@ -193,7 +192,7 @@
                             style="@style/MediumTextView"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@string/questions_what_now" />
+                            android:text="@string/questions_help_buttons" />
 
                         <include
                             android:id="@+id/details_buttons"
@@ -201,8 +200,44 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="12dp"
-                            android:visibility="gone"
-                            tools:visibility="visible" />
+                            android:visibility="gone" />
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cv_when_ends"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:clipChildren="false"
+                    android:clipToPadding="false"
+                    app:cardCornerRadius="12dp"
+                    app:cardElevation="6dp"
+                    app:contentPadding="16dp">
+
+                    <LinearLayout
+                        android:id="@+id/ll_when_ends"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:animateLayoutChanges="true"
+                        android:clipChildren="false"
+                        android:clipToPadding="false"
+                        android:orientation="vertical">
+
+                        <TextView
+                            style="@style/MediumTextView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/questions_when_ends" />
+
+                        <include
+                            android:id="@+id/details_when_ends"
+                            layout="@layout/include_mini_help_when_ends"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="12dp"
+                            android:visibility="gone" />
 
                     </LinearLayout>
 

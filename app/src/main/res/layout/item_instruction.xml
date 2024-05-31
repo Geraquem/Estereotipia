@@ -33,7 +33,7 @@
 
         <TextView
             android:id="@+id/tv_title"
-            style="@style/Instructions_TextView"
+            style="@style/MediumTextView"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -59,11 +59,10 @@
 
     <TextView
         android:id="@+id/tv_text"
-        style="@style/Instructions_TextView"
+        style="@style/MediumTextView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:textSize="18sp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/cl_title"

@@ -74,6 +74,7 @@ class QuestionsFragment(
 
             cvWhatNow.setOnClickListener { setExpandableView(detailsWhatNow.linear, llWhatNow) }
             cvButtons.setOnClickListener { setExpandableView(detailsButtons.linear, llButtons) }
+            cvWhenEnds.setOnClickListener { setExpandableView(detailsWhenEnds.linear, llWhenEnds) }
         }
     }
 

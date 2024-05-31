@@ -18,6 +18,8 @@ class BedRockActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityBedrockBinding
 
+    var isGameFinished = false
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityBedrockBinding.inflate(layoutInflater)

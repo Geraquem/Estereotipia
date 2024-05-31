@@ -7,11 +7,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import com.mmfsin.whoami.base.BaseFragment
+import com.mmfsin.whoami.base.bedrock.BedRockActivity
 import com.mmfsin.whoami.databinding.FragmentQuestionsBinding
 import com.mmfsin.whoami.domain.models.Question
 import com.mmfsin.whoami.presentation.dashboard.cards.dialogs.selected.SelectedCardDialog
 import com.mmfsin.whoami.presentation.dashboard.questions.dialogs.NewQuestionDialog
-import com.mmfsin.whoami.presentation.dashboard.questions.dialogs.QuestionsListDialog
+import com.mmfsin.whoami.presentation.dashboard.questions.dialogs.QuestionsListSheet
 import com.mmfsin.whoami.presentation.dashboard.questions.dialogs.interfaces.INewQuestionListener
 import com.mmfsin.whoami.presentation.dashboard.viepager.interfaces.IViewPagerListener
 import com.mmfsin.whoami.utils.NUM_OF_QUESTIONS
@@ -43,9 +44,26 @@ class QuestionsFragment(
         viewModel.getQuestions()
     }
 
+    override fun onResume() {
+        checkIfGameFinished()
+        super.onResume()
+    }
+
     override fun setUI() {
         binding.apply {
             loading.root.visibility = View.VISIBLE
+        }
+    }
+
+    private fun checkIfGameFinished() {
+        binding.apply {
+            if ((activity as BedRockActivity).isGameFinished) {
+                tvNewQuestion.isEnabled = false
+                tvNewQuestion.alpha = 0.75f
+            } else {
+                tvNewQuestion.isEnabled = true
+                tvNewQuestion.alpha = 1f
+            }
         }
     }
 
@@ -92,7 +110,7 @@ class QuestionsFragment(
     }
 
     private fun showAllQuestions() =
-        activity?.showFragmentDialog(QuestionsListDialog(questionsDone.toList()))
+        activity?.showFragmentDialog(QuestionsListSheet(questionsDone.toList()))
 
     override fun goToAllQuestions() {
         showAllQuestions()

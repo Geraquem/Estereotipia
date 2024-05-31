@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.SimpleItemAnimator
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import androidx.recyclerview.widget.StaggeredGridLayoutManager.VERTICAL
 import com.mmfsin.whoami.base.BaseFragment
+import com.mmfsin.whoami.base.bedrock.BedRockActivity
 import com.mmfsin.whoami.databinding.FragmentCardsBinding
 import com.mmfsin.whoami.domain.models.Card
 import com.mmfsin.whoami.presentation.dashboard.cards.adapter.CardsAdapter
@@ -89,6 +90,8 @@ class CardsFragment(val deckId: String, private val selectedCardId: String) :
             opportunities = 0
             cardsAdapter?.updateRivalCard(cardId)
         } else opportunities--
+
+        if (opportunities == 0) (activity as BedRockActivity).isGameFinished = true
     }
 
     private fun error() = activity?.showErrorDialog()

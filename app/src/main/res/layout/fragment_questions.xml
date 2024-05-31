@@ -153,7 +153,9 @@
                             style="@style/MediumTextView"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@string/questions_what_now" />
+                            android:drawablePadding="8dp"
+                            android:text="@string/questions_what_now"
+                            app:drawableStartCompat="@drawable/ic_shrug" />
 
                         <include
                             android:id="@+id/details_what_now"
@@ -192,7 +194,9 @@
                             style="@style/MediumTextView"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@string/questions_help_buttons" />
+                            android:drawablePadding="8dp"
+                            android:text="@string/questions_help_buttons"
+                            app:drawableStartCompat="@drawable/ic_button" />
 
                         <include
                             android:id="@+id/details_buttons"
@@ -229,7 +233,9 @@
                             style="@style/MediumTextView"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@string/questions_when_ends" />
+                            android:drawablePadding="8dp"
+                            android:text="@string/questions_when_ends"
+                            app:drawableStartCompat="@drawable/ic_finish" />
 
                         <include
                             android:id="@+id/details_when_ends"

@@ -90,14 +90,14 @@ class MenuFragment : BaseFragment<FragmentMenuBinding, MenuViewModel>(), IMenuLi
     private fun setUpMenuCards(cards: List<Card>) {
         binding.menuCards.rvMenuCards.apply {
             layoutManager = LinearLayoutManager(mContext, HORIZONTAL, false)
-            adapter = MenuCardsAdapter(cards, this@MenuFragment)
+            adapter = MenuCardsAdapter(cards.take(6), this@MenuFragment)
         }
         try {
-            setTopCardMenu(cards.first().name)
-            menuFlowCompleted()
+            setTopCardMenu(cards.last().image)
         } catch (e: Exception) {
             Log.e("Error", "no cards available")
         }
+        menuFlowCompleted()
     }
 
     override fun onMenuCardClick() = navigateTo(R.navigation.nav_graph_all_cards)

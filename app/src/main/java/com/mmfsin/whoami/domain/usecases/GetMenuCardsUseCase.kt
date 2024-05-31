@@ -10,6 +10,6 @@ class GetMenuCardsUseCase @Inject constructor(private val repository: ICardsRepo
 
     override suspend fun execute(): List<Card> {
         val cards = repository.getAllCards()
-        return cards?.shuffled()?.take(5) ?: run { emptyList() }
+        return cards?.shuffled()?.take(7) ?: run { emptyList() }
     }
 }

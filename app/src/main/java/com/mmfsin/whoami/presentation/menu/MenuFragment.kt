@@ -74,6 +74,8 @@ class MenuFragment : BaseFragment<FragmentMenuBinding, MenuViewModel>(), IMenuLi
                     booleanArgs = true
                 )
             }
+
+            menuCards.container.setOnClickListener { onMenuCardClick() }
         }
     }
 

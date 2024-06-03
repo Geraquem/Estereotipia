@@ -2,10 +2,11 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@drawable/click_effect"
-    android:padding="16dp">
+    android:paddingBottom="16dp">
 
     <LinearLayout
         android:id="@+id/ll_main"
@@ -14,6 +15,8 @@
         android:clipChildren="false"
         android:clipToPadding="false"
         android:orientation="vertical"
+        android:paddingHorizontal="16dp"
+        android:paddingTop="16dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -34,8 +37,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="4dp"
-            android:text="@string/menu_all_cards_description_one"
-            android:textSize="18sp" />
+            android:text="@string/menu_all_cards_description_one" />
 
     </LinearLayout>
 

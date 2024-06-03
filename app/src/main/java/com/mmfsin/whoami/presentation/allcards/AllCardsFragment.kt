@@ -9,9 +9,9 @@ import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.mmfsin.whoami.R
 import com.mmfsin.whoami.base.BaseFragment
+import com.mmfsin.whoami.base.bedrock.BedRockActivity
 import com.mmfsin.whoami.databinding.FragmentAllCardsBinding
 import com.mmfsin.whoami.domain.models.Card
-import com.mmfsin.whoami.presentation.MainActivity
 import com.mmfsin.whoami.presentation.allcards.adapter.AllCardsAdapter
 import com.mmfsin.whoami.presentation.allcards.dialogs.AllCardDialog
 import com.mmfsin.whoami.presentation.allcards.interfaces.IAllCardsListener
@@ -37,7 +37,7 @@ class AllCardsFragment : BaseFragment<FragmentAllCardsBinding, AllCardsViewModel
     }
 
     override fun setUI() {
-//        setUpToolbar(getString(R.string.menu_all_cards))
+        (activity as BedRockActivity).setUpToolbar(getString(R.string.menu_all_cards))
     }
 
     override fun setListeners() {}

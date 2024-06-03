@@ -1,11 +1,11 @@
 package com.mmfsin.whoami.presentation.dashboard.cards.dialogs.wait
 
 import android.app.Dialog
-import android.os.CountDownTimer
 import android.view.LayoutInflater
 import com.mmfsin.whoami.base.BaseDialog
 import com.mmfsin.whoami.databinding.DialogWaitSelectBinding
 import com.mmfsin.whoami.utils.animateDialog
+import com.mmfsin.whoami.utils.countDown
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -28,19 +28,11 @@ class WaitSelectDialog(val dialogFinished: () -> Unit) : BaseDialog<DialogWaitSe
     override fun setUI() {
         isCancelable = false
         binding.apply {
-            object : CountDownTimer(750, 1000) {
-                override fun onTick(millisUntilFinished: Long) {}
-
-                override fun onFinish() {
-                    dialogFinished()
-                    dismiss()
-                }
-            }.start()
+            countDown(1000) {
+                dialogFinished()
+                dismiss()
+            }
         }
-    }
-
-    override fun setListeners() {
-        binding.apply {}
     }
 
     companion object {

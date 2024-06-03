@@ -67,10 +67,10 @@ class MenuFragment : BaseFragment<FragmentMenuBinding, MenuViewModel>(), IMenuLi
             }
             llPlay.setOnClickListener { activity?.showFragmentDialog(DecksSheet(this@MenuFragment)) }
 
-            menuDecks.tvMyDecks.setOnClickListener { navigateTo(R.navigation.nav_graph_my_decks) }
+            menuDecks.tvMyDecks.setOnClickListener { navigateTo(R.navigation.nav_graph_custom_decks) }
             menuDecks.tvCreateDeck.setOnClickListener {
                 navigateTo(
-                    navGraph = R.navigation.nav_graph_my_decks,
+                    navGraph = R.navigation.nav_graph_custom_decks,
                     booleanArgs = true
                 )
             }
@@ -100,7 +100,9 @@ class MenuFragment : BaseFragment<FragmentMenuBinding, MenuViewModel>(), IMenuLi
         menuFlowCompleted()
     }
 
-    override fun onMenuCardClick() = navigateTo(R.navigation.nav_graph_all_cards)
+    /** false = isNotCustomDeck */
+    override fun onMenuCardClick() =
+        navigateTo(R.navigation.nav_graph_all_cards, booleanArgs = false)
 
     private fun menuFlowCompleted() {
         binding.apply {

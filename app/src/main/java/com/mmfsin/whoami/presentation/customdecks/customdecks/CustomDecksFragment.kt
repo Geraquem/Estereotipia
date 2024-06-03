@@ -1,4 +1,4 @@
-package com.mmfsin.whoami.presentation.customdecks.mydecks
+package com.mmfsin.whoami.presentation.customdecks.customdecks
 
 import android.content.Context
 import android.os.Bundle
@@ -12,31 +12,32 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.mmfsin.whoami.R
 import com.mmfsin.whoami.base.BaseFragment
 import com.mmfsin.whoami.base.bedrock.BedRockActivity
-import com.mmfsin.whoami.databinding.FragmentMyDecksBinding
-import com.mmfsin.whoami.domain.models.MyDeck
-import com.mmfsin.whoami.presentation.customdecks.mydecks.MyDecksFragmentDirections.Companion.actionMyDecksToCreateNewDeck
-import com.mmfsin.whoami.presentation.customdecks.mydecks.adapter.MyDecksAdapter
-import com.mmfsin.whoami.presentation.customdecks.mydecks.dialogs.MyDeckDialog
-import com.mmfsin.whoami.presentation.customdecks.mydecks.dialogs.delete.DeleteMyDeckDialog
-import com.mmfsin.whoami.presentation.customdecks.mydecks.dialogs.edit.EditMyDeckDialog
-import com.mmfsin.whoami.presentation.customdecks.mydecks.interfaces.IMyDeckListener
+import com.mmfsin.whoami.databinding.FragmentCustomDecksBinding
+import com.mmfsin.whoami.domain.models.Deck
+import com.mmfsin.whoami.presentation.customdecks.customdecks.CustomDecksFragmentDirections.Companion.actionCustomDecksToCreateNewDeck
+import com.mmfsin.whoami.presentation.customdecks.customdecks.CustomDecksFragmentDirections.Companion.actionCustomDecksToDashboard
+import com.mmfsin.whoami.presentation.customdecks.customdecks.adapter.CustomDecksAdapter
+import com.mmfsin.whoami.presentation.customdecks.customdecks.dialogs.CustomDeckDialog
+import com.mmfsin.whoami.presentation.customdecks.customdecks.dialogs.delete.DeleteCustomDeckDialog
+import com.mmfsin.whoami.presentation.customdecks.customdecks.dialogs.edit.EditCustomDeckDialog
+import com.mmfsin.whoami.presentation.customdecks.customdecks.interfaces.ICustomDeckListener
 import com.mmfsin.whoami.utils.BEDROCK_BOOLEAN_ARGS
-import com.mmfsin.whoami.utils.BEDROCK_STR_ARGS
 import com.mmfsin.whoami.utils.showErrorDialog
 import com.mmfsin.whoami.utils.showFragmentDialog
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class MyDecksFragment : BaseFragment<FragmentMyDecksBinding, MyDecksViewModel>(), IMyDeckListener {
+class CustomDecksFragment : BaseFragment<FragmentCustomDecksBinding, CustomDecksViewModel>(),
+    ICustomDeckListener {
 
-    override val viewModel: MyDecksViewModel by viewModels()
+    override val viewModel: CustomDecksViewModel by viewModels()
     private lateinit var mContext: Context
 
     private var openCreateNewDeck = false
 
     override fun inflateView(
         inflater: LayoutInflater, container: ViewGroup?
-    ) = FragmentMyDecksBinding.inflate(inflater, container, false)
+    ) = FragmentCustomDecksBinding.inflate(inflater, container, false)
 
     override fun getBundleArgs() {
         openCreateNewDeck = activity?.intent?.getBooleanExtra(BEDROCK_BOOLEAN_ARGS, false) ?: false
@@ -48,7 +49,7 @@ class MyDecksFragment : BaseFragment<FragmentMyDecksBinding, MyDecksViewModel>()
             openCreateNewDeck = false
             createNewDeck()
         }
-        viewModel.getMyDecks()
+        viewModel.getCustomDecks()
     }
 
     override fun setUI() {
@@ -64,47 +65,53 @@ class MyDecksFragment : BaseFragment<FragmentMyDecksBinding, MyDecksViewModel>()
         }
     }
 
-    private fun createNewDeck() = findNavController().navigate(actionMyDecksToCreateNewDeck())
+    private fun createNewDeck() = findNavController().navigate(actionCustomDecksToCreateNewDeck())
 
     override fun observe() {
         viewModel.event.observe(this) { event ->
             when (event) {
-                is MyDecksEvent.MyDecks -> setUpDecks(event.decks)
-                is MyDecksEvent.FlowCompleted -> viewModel.getMyDecks()
-                is MyDecksEvent.SomethingWentWrong -> error()
+                is CustomDecksEvent.CustomDecks -> setUpDecks(event.decks)
+                is CustomDecksEvent.FlowCompleted -> viewModel.getCustomDecks()
+                is CustomDecksEvent.SomethingWentWrong -> error()
             }
         }
     }
 
-    private fun setUpDecks(decks: List<MyDeck>) {
+    private fun setUpDecks(decks: List<Deck>) {
         binding.apply {
             rvMyDecks.apply {
                 layoutManager = LinearLayoutManager(mContext)
-                adapter = MyDecksAdapter(decks, this@MyDecksFragment)
+                adapter = CustomDecksAdapter(decks, this@CustomDecksFragment)
             }
             tvEmpty.isVisible = decks.isEmpty()
             rvMyDecks.isVisible = decks.isNotEmpty()
         }
     }
 
-    override fun onMyDeckClick(id: String) {
-        activity?.showFragmentDialog(MyDeckDialog.newInstance(id, this@MyDecksFragment))
+    override fun onCustomDeckClick(id: String) {
+        activity?.showFragmentDialog(CustomDeckDialog.newInstance(id, this@CustomDecksFragment))
     }
 
-    override fun playWithCustomDeck(id: String) {}
+    override fun playWithCustomDeck(id: String) =
+        findNavController().navigate(actionCustomDecksToDashboard(id))
 
     override fun editName(id: String) {
-        activity?.showFragmentDialog(EditMyDeckDialog.newInstance(id, this@MyDecksFragment))
+        activity?.showFragmentDialog(EditCustomDeckDialog.newInstance(id, this@CustomDecksFragment))
     }
 
     override fun editCards(id: String) {
         TODO("Not yet implemented")
     }
 
-    override fun editCompleted() = viewModel.getMyDecks()
+    override fun editCompleted() = viewModel.getCustomDecks()
 
     override fun confirmDeleteMyDeck(id: String) {
-        activity?.showFragmentDialog(DeleteMyDeckDialog.newInstance(id, this@MyDecksFragment))
+        activity?.showFragmentDialog(
+            DeleteCustomDeckDialog.newInstance(
+                id,
+                this@CustomDecksFragment
+            )
+        )
     }
 
     override fun deleteMyDeck(id: String) = viewModel.deleteMyDeck(id)

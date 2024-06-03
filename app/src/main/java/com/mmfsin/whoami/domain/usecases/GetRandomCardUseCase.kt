@@ -1,14 +1,20 @@
 package com.mmfsin.whoami.domain.usecases
 
 import com.mmfsin.whoami.base.BaseUseCase
-import com.mmfsin.whoami.domain.interfaces.ICardsRepository
+import com.mmfsin.whoami.utils.getCards
 import javax.inject.Inject
 import kotlin.random.Random
 
-class GetRandomSelectedCardUseCase @Inject constructor(val repository: ICardsRepository) :
-    BaseUseCase<GetRandomSelectedCardUseCase.Params, String?>() {
+class GetRandomCardUseCase @Inject constructor() :
+    BaseUseCase<GetRandomCardUseCase.Params, String?>() {
 
     override suspend fun execute(params: Params): String? {
+
+        val cards = params.cards.getCards()
+        val randomIndex = Random.nextInt(cards.size)
+        val a = cards[randomIndex]
+        return a
+
 //        val cards = when (params.type) {
 //            DeckType.SYSTEM_DECK -> repository.getCardsByDeckId(params.deckId)
 //            DeckType.CUSTOM_DECK -> repository.getCardsByCustomDeckId(params.deckId)
@@ -33,7 +39,6 @@ class GetRandomSelectedCardUseCase @Inject constructor(val repository: ICardsRep
 //                cards[rnd].id
 //            } ?: run { null }
 //        }
-        return "card1"
     }
 
     private fun getRandomNumber(max: Int): Int {
@@ -41,6 +46,6 @@ class GetRandomSelectedCardUseCase @Inject constructor(val repository: ICardsRep
     }
 
     class Params(
-        val deckId: String,
+        val cards: String,
     )
 }

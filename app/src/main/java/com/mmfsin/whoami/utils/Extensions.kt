@@ -9,7 +9,6 @@ import android.os.CountDownTimer
 import android.transition.AutoTransition
 import android.transition.TransitionManager
 import android.view.View
-import android.view.ViewPropertyAnimator
 import android.view.animation.AccelerateDecelerateInterpolator
 import android.view.inputmethod.InputMethodManager
 import android.widget.LinearLayout
@@ -78,6 +77,11 @@ fun setExpandableView(expandable: View, linear: LinearLayout) {
 
 fun <T1 : Any, T2 : Any, R : Any> checkNotNulls(p1: T1?, p2: T2?, block: (T1, T2) -> R): R? {
     return if (p1 != null && p2 != null) block(p1, p2) else null
+}
+
+fun String.getCards(): List<String>{
+    val cards = this.filter { !it.isWhitespace() }
+    return cards.split(",")
 }
 
 //fun FragmentActivity.shouldShowInterstitial(position: Int) =

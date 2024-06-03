@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph_my_decks"
+    app:startDestination="@id/customDecksFragment">
+
+    <fragment
+        android:id="@+id/customDecksFragment"
+        android:name="com.mmfsin.whoami.presentation.customdecks.customdecks.CustomDecksFragment"
+        android:label="customDecksFragment"
+        tools:layout="@layout/fragment_custom_decks">
+        <action
+            android:id="@+id/action_customDecks_to_createNewDeck"
+            app:destination="@id/createDeckFragment" />
+        <action
+            android:id="@+id/action_customDecks_to_dashboard"
+            app:destination="@id/viewPagerFragment">
+            <argument
+                android:name="deckId"
+                app:argType="string" />
+        </action>
+    </fragment>
+
+    <fragment
+        android:id="@+id/createDeckFragment"
+        android:name="com.mmfsin.whoami.presentation.customdecks.create.CreateDeckFragment"
+        android:label="createDeckFragment"
+        tools:layout="@layout/fragment_create_deck" />
+
+    <fragment
+        android:id="@+id/viewPagerFragment"
+        android:name="com.mmfsin.whoami.presentation.dashboard.viepager.ViewPagerFragment"
+        android:label="viewPagerFragment"
+        tools:layout="@layout/fragment_view_pager" />
+</navigation>

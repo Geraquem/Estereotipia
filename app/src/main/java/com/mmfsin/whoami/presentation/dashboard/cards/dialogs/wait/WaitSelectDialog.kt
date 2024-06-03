@@ -28,7 +28,7 @@ class WaitSelectDialog(val dialogFinished: () -> Unit) : BaseDialog<DialogWaitSe
     override fun setUI() {
         isCancelable = false
         binding.apply {
-            object : CountDownTimer(1500, 1000) {
+            object : CountDownTimer(750, 1000) {
                 override fun onTick(millisUntilFinished: Long) {}
 
                 override fun onFinish() {

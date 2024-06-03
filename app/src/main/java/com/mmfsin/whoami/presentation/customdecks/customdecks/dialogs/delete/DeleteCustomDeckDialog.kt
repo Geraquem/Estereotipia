@@ -1,4 +1,4 @@
-package com.mmfsin.whoami.presentation.customdecks.mydecks.dialogs.delete
+package com.mmfsin.whoami.presentation.customdecks.customdecks.dialogs.delete
 
 import android.app.Dialog
 import android.os.Bundle
@@ -6,23 +6,24 @@ import android.view.LayoutInflater
 import androidx.fragment.app.viewModels
 import com.mmfsin.whoami.R
 import com.mmfsin.whoami.base.BaseDialog
-import com.mmfsin.whoami.databinding.DialogDeleteMyDeckBinding
-import com.mmfsin.whoami.presentation.customdecks.mydecks.dialogs.MyDeckEvent
-import com.mmfsin.whoami.presentation.customdecks.mydecks.dialogs.MyDeckViewModel
-import com.mmfsin.whoami.presentation.customdecks.mydecks.interfaces.IMyDeckListener
+import com.mmfsin.whoami.databinding.DialogDeleteCustomDeckBinding
+import com.mmfsin.whoami.presentation.customdecks.customdecks.dialogs.CustomDeckEvent
+import com.mmfsin.whoami.presentation.customdecks.customdecks.dialogs.CustomDeckViewModel
+import com.mmfsin.whoami.presentation.customdecks.customdecks.interfaces.ICustomDeckListener
 import com.mmfsin.whoami.utils.animateDialog
 import com.mmfsin.whoami.utils.showErrorDialog
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class DeleteMyDeckDialog(private val myDeckId: String, val listener: IMyDeckListener) :
-    BaseDialog<DialogDeleteMyDeckBinding>() {
+class DeleteCustomDeckDialog(private val myDeckId: String, val listener: ICustomDeckListener) :
+    BaseDialog<DialogDeleteCustomDeckBinding>() {
 
-    private val viewModel: MyDeckViewModel by viewModels()
+    private val viewModel: CustomDeckViewModel by viewModels()
 
     private var firstAccess = true
 
-    override fun inflateView(inflater: LayoutInflater) = DialogDeleteMyDeckBinding.inflate(inflater)
+    override fun inflateView(inflater: LayoutInflater) =
+        DialogDeleteCustomDeckBinding.inflate(inflater)
 
     override fun setCustomViewDialog(dialog: Dialog) = centerViewDialog(dialog)
 
@@ -37,7 +38,7 @@ class DeleteMyDeckDialog(private val myDeckId: String, val listener: IMyDeckList
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         observe()
-        viewModel.getMyDeck(myDeckId)
+        viewModel.getCustomDeck(myDeckId)
     }
 
     override fun setUI() {
@@ -58,11 +59,11 @@ class DeleteMyDeckDialog(private val myDeckId: String, val listener: IMyDeckList
     private fun observe() {
         viewModel.event.observe(this) { event ->
             when (event) {
-                is MyDeckEvent.GetDeck -> binding.tvText.text =
+                is CustomDeckEvent.GetDeck -> binding.tvText.text =
                     getString(R.string.my_decks_dialog_delete_confirm, event.deck.name)
 
-                is MyDeckEvent.EditedCompleted -> {}
-                is MyDeckEvent.SomethingWentWrong -> error()
+                is CustomDeckEvent.EditedCompleted -> {}
+                is CustomDeckEvent.SomethingWentWrong -> error()
             }
         }
     }
@@ -70,8 +71,8 @@ class DeleteMyDeckDialog(private val myDeckId: String, val listener: IMyDeckList
     private fun error() = activity?.showErrorDialog(goBack = false)
 
     companion object {
-        fun newInstance(myDeckId: String, listener: IMyDeckListener): DeleteMyDeckDialog {
-            return DeleteMyDeckDialog(myDeckId, listener)
+        fun newInstance(myDeckId: String, listener: ICustomDeckListener): DeleteCustomDeckDialog {
+            return DeleteCustomDeckDialog(myDeckId, listener)
         }
     }
 }

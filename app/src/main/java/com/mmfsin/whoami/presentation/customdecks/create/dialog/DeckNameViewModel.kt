@@ -1,19 +1,18 @@
 package com.mmfsin.whoami.presentation.customdecks.create.dialog
 
 import com.mmfsin.whoami.base.BaseViewModel
-import com.mmfsin.whoami.domain.models.MyDeck
-import com.mmfsin.whoami.domain.usecases.CreateDeckUseCase
+import com.mmfsin.whoami.domain.usecases.CreateCustomDeckUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
 @HiltViewModel
 class DeckNameViewModel @Inject constructor(
-    private val createDeckUseCase: CreateDeckUseCase
+    private val createCustomDeckUseCase: CreateCustomDeckUseCase
 ) : BaseViewModel<DeckNameEvent>() {
 
-    fun createDeck(myDeck: MyDeck) {
+    fun createDeck(name: String, cards: List<String>) {
         executeUseCase(
-            { createDeckUseCase.execute(CreateDeckUseCase.Params(myDeck)) },
+            { createCustomDeckUseCase.execute(CreateCustomDeckUseCase.Params(name, cards)) },
             { _event.value = DeckNameEvent.CreatedCompleted },
             { _event.value = DeckNameEvent.SomethingWentWrong }
         )

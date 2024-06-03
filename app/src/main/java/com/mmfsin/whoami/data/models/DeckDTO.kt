@@ -6,8 +6,8 @@ import io.realm.annotations.PrimaryKey
 open class DeckDTO(
     @PrimaryKey
     var id: String = "",
-    var image: String = "",
     var name: String = "",
     var cards: String = "",
-    var order: Long = 0
+    var order: Long = 0,
+    var isCustom: Boolean = false
 ) : RealmObject()

@@ -1,4 +1,4 @@
-package com.mmfsin.whoami.presentation.customdecks.mydecks.dialogs.edit
+package com.mmfsin.whoami.presentation.customdecks.customdecks.dialogs.edit
 
 import android.app.Dialog
 import android.os.Bundle
@@ -8,19 +8,19 @@ import androidx.fragment.app.viewModels
 import com.mmfsin.whoami.R
 import com.mmfsin.whoami.base.BaseDialog
 import com.mmfsin.whoami.databinding.DialogCreateDeckNameBinding
-import com.mmfsin.whoami.presentation.customdecks.mydecks.dialogs.MyDeckEvent
-import com.mmfsin.whoami.presentation.customdecks.mydecks.dialogs.MyDeckViewModel
-import com.mmfsin.whoami.presentation.customdecks.mydecks.interfaces.IMyDeckListener
+import com.mmfsin.whoami.presentation.customdecks.customdecks.dialogs.CustomDeckEvent
+import com.mmfsin.whoami.presentation.customdecks.customdecks.dialogs.CustomDeckViewModel
+import com.mmfsin.whoami.presentation.customdecks.customdecks.interfaces.ICustomDeckListener
 import com.mmfsin.whoami.utils.animateDialog
 import com.mmfsin.whoami.utils.countDown
 import com.mmfsin.whoami.utils.showErrorDialog
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class EditMyDeckDialog(private val myDeckId: String, val listener: IMyDeckListener) :
+class EditCustomDeckDialog(private val myDeckId: String, val listener: ICustomDeckListener) :
     BaseDialog<DialogCreateDeckNameBinding>() {
 
-    private val viewModel: MyDeckViewModel by viewModels()
+    private val viewModel: CustomDeckViewModel by viewModels()
 
     private var firstAccess = true
 
@@ -40,7 +40,7 @@ class EditMyDeckDialog(private val myDeckId: String, val listener: IMyDeckListen
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         observe()
-        viewModel.getMyDeck(myDeckId)
+        viewModel.getCustomDeck(myDeckId)
     }
 
     override fun setUI() {
@@ -59,7 +59,7 @@ class EditMyDeckDialog(private val myDeckId: String, val listener: IMyDeckListen
                 val name = etName.text.toString()
                 if (name.isNotEmpty() && name.isNotBlank()) {
                     countDown(300) {
-                        viewModel.editMyDeckName(myDeckId, name)
+                        viewModel.editCustomDeckName(myDeckId, name)
                     }
                 } else tvError.visibility = View.VISIBLE
             }
@@ -69,19 +69,19 @@ class EditMyDeckDialog(private val myDeckId: String, val listener: IMyDeckListen
     private fun observe() {
         viewModel.event.observe(this) { event ->
             when (event) {
-                is MyDeckEvent.GetDeck -> {
+                is CustomDeckEvent.GetDeck -> {
                     binding.apply {
                         val name = event.deck.name
                         etName.setText(name)
                     }
                 }
 
-                is MyDeckEvent.EditedCompleted -> {
+                is CustomDeckEvent.EditedCompleted -> {
                     listener.editCompleted()
                     dismiss()
                 }
 
-                is MyDeckEvent.SomethingWentWrong -> error()
+                is CustomDeckEvent.SomethingWentWrong -> error()
             }
         }
     }
@@ -89,8 +89,8 @@ class EditMyDeckDialog(private val myDeckId: String, val listener: IMyDeckListen
     private fun error() = activity?.showErrorDialog(goBack = false)
 
     companion object {
-        fun newInstance(myDeckId: String, listener: IMyDeckListener): EditMyDeckDialog {
-            return EditMyDeckDialog(myDeckId, listener)
+        fun newInstance(myDeckId: String, listener: ICustomDeckListener): EditCustomDeckDialog {
+            return EditCustomDeckDialog(myDeckId, listener)
         }
     }
 }

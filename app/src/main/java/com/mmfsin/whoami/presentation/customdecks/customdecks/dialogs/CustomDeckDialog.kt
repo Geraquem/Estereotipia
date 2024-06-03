@@ -1,25 +1,25 @@
-package com.mmfsin.whoami.presentation.customdecks.mydecks.dialogs
+package com.mmfsin.whoami.presentation.customdecks.customdecks.dialogs
 
 import android.app.Dialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import androidx.fragment.app.viewModels
 import com.mmfsin.whoami.base.BaseDialog
-import com.mmfsin.whoami.databinding.DialogMyDeckBinding
-import com.mmfsin.whoami.presentation.customdecks.mydecks.interfaces.IMyDeckListener
+import com.mmfsin.whoami.databinding.DialogCustomDeckBinding
+import com.mmfsin.whoami.presentation.customdecks.customdecks.interfaces.ICustomDeckListener
 import com.mmfsin.whoami.utils.animateDialog
 import com.mmfsin.whoami.utils.showErrorDialog
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class MyDeckDialog(private val myDeckId: String, val listener: IMyDeckListener) :
-    BaseDialog<DialogMyDeckBinding>() {
+class CustomDeckDialog(private val myDeckId: String, val listener: ICustomDeckListener) :
+    BaseDialog<DialogCustomDeckBinding>() {
 
-    private val viewModel: MyDeckViewModel by viewModels()
+    private val viewModel: CustomDeckViewModel by viewModels()
 
     private var firstAccess = true
 
-    override fun inflateView(inflater: LayoutInflater) = DialogMyDeckBinding.inflate(inflater)
+    override fun inflateView(inflater: LayoutInflater) = DialogCustomDeckBinding.inflate(inflater)
 
     override fun setCustomViewDialog(dialog: Dialog) = centerViewDialog(dialog)
 
@@ -34,7 +34,7 @@ class MyDeckDialog(private val myDeckId: String, val listener: IMyDeckListener) 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         observe()
-        viewModel.getMyDeck(myDeckId)
+        viewModel.getCustomDeck(myDeckId)
     }
 
     override fun setUI() {
@@ -60,9 +60,9 @@ class MyDeckDialog(private val myDeckId: String, val listener: IMyDeckListener) 
     private fun observe() {
         viewModel.event.observe(this) { event ->
             when (event) {
-                is MyDeckEvent.GetDeck -> binding.tvTitle.text = event.deck.name
-                is MyDeckEvent.EditedCompleted -> {}
-                is MyDeckEvent.SomethingWentWrong -> error()
+                is CustomDeckEvent.GetDeck -> binding.tvTitle.text = event.deck.name
+                is CustomDeckEvent.EditedCompleted -> {}
+                is CustomDeckEvent.SomethingWentWrong -> error()
             }
         }
     }
@@ -70,8 +70,8 @@ class MyDeckDialog(private val myDeckId: String, val listener: IMyDeckListener) 
     private fun error() = activity?.showErrorDialog(goBack = false)
 
     companion object {
-        fun newInstance(myDeckId: String, listener: IMyDeckListener): MyDeckDialog {
-            return MyDeckDialog(myDeckId, listener)
+        fun newInstance(myDeckId: String, listener: ICustomDeckListener): CustomDeckDialog {
+            return CustomDeckDialog(myDeckId, listener)
         }
     }
 }

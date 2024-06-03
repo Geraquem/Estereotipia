@@ -59,9 +59,6 @@ class MainRepository @Inject constructor(
                     saveQuestionInRealm(question)
                 }
 
-                val defaultImage = it.child(DEFAULT_DECK_IMAGE).value as String
-                updateDefaultDeckImage(defaultImage)
-
                 latch.countDown()
             }
 
@@ -83,12 +80,6 @@ class MainRepository @Inject constructor(
     }
 
     private fun getSavedVersion(): Long = getSharedPreferences().getLong(SAVED_VERSION, -1)
-
-    private fun updateDefaultDeckImage(imageURL: String) {
-        val editor = getSharedPreferences().edit()
-        editor.putString(DEFAULT_DECK_IMAGE, imageURL)
-        editor.apply()
-    }
 
     private fun getSharedPreferences() = context.getSharedPreferences(MY_SHARED_PREFS, MODE_PRIVATE)
 

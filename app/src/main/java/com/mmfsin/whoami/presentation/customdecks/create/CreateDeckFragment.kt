@@ -56,11 +56,8 @@ class CreateDeckFragment : BaseFragment<FragmentCreateDeckBinding, CreateDeckVie
     override fun setListeners() {
         binding.apply {
             btnOk.setOnClickListener {
-                val cards = cardList.toString().replace("[", "").replace("]", "")
-                    .filter { !it.isWhitespace() }
-
                 activity?.showFragmentDialog(
-                    DeckNameDialog.newInstance(cards, this@CreateDeckFragment)
+                    DeckNameDialog.newInstance(cardList, this@CreateDeckFragment)
                 )
             }
         }

@@ -1,4 +1,4 @@
-package com.mmfsin.whoami.presentation.customdecks.mydecks.adapter
+package com.mmfsin.whoami.presentation.customdecks.customdecks.adapter
 
 import android.view.LayoutInflater
 import android.view.View
@@ -7,20 +7,19 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.mmfsin.whoami.R
 import com.mmfsin.whoami.databinding.ItemDeckBinding
-import com.mmfsin.whoami.domain.models.MyDeck
-import com.mmfsin.whoami.presentation.customdecks.mydecks.interfaces.IMyDeckListener
+import com.mmfsin.whoami.domain.models.Deck
+import com.mmfsin.whoami.presentation.customdecks.customdecks.interfaces.ICustomDeckListener
 
-class MyDecksAdapter(
-    private val decks: List<MyDeck>,
-    private val listener: IMyDeckListener
-) : RecyclerView.Adapter<MyDecksAdapter.ViewHolder>() {
+class CustomDecksAdapter(
+    private val decks: List<Deck>,
+    private val listener: ICustomDeckListener
+) : RecyclerView.Adapter<CustomDecksAdapter.ViewHolder>() {
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val binding = ItemDeckBinding.bind(view)
         val c = binding.root.context
-        fun bind(deck: MyDeck) {
+        fun bind(deck: Deck) {
             binding.apply {
-                Glide.with(binding.root.context).load(deck.image).into(icon)
                 tvName.text = deck.name
                 tvCards.text = c.getString(R.string.decks_dialog_cards, deck.numOfCards.toString())
             }
@@ -35,7 +34,7 @@ class MyDecksAdapter(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bind(decks[position])
-        holder.itemView.setOnClickListener { listener.onMyDeckClick(decks[position].id) }
+        holder.itemView.setOnClickListener { listener.onCustomDeckClick(decks[position].id) }
     }
 
     override fun getItemCount(): Int = decks.size

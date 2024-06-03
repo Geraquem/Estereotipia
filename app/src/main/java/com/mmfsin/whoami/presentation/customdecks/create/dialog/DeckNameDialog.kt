@@ -9,7 +9,6 @@ import androidx.fragment.app.viewModels
 import com.mmfsin.whoami.R
 import com.mmfsin.whoami.base.BaseDialog
 import com.mmfsin.whoami.databinding.DialogCreateDeckNameBinding
-import com.mmfsin.whoami.domain.models.MyDeck
 import com.mmfsin.whoami.presentation.customdecks.create.interfaces.ICreateDeckCardListener
 import com.mmfsin.whoami.utils.animateDialog
 import com.mmfsin.whoami.utils.countDown
@@ -17,7 +16,7 @@ import com.mmfsin.whoami.utils.showErrorDialog
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class DeckNameDialog(val cards: String, private val listener: ICreateDeckCardListener) :
+class DeckNameDialog(val cards: List<String>, private val listener: ICreateDeckCardListener) :
     BaseDialog<DialogCreateDeckNameBinding>() {
 
     private val viewModel: DeckNameViewModel by viewModels()
@@ -55,9 +54,7 @@ class DeckNameDialog(val cards: String, private val listener: ICreateDeckCardLis
             btnAccept.setOnClickListener {
                 val name = etName.text.toString()
                 if (name.isNotEmpty() && name.isNotBlank()) {
-                    countDown(300) {
-                        viewModel.createDeck(MyDeck(name = name, cards = cards))
-                    }
+                    countDown(300) { viewModel.createDeck(name, cards) }
 
                 } else tvError.visibility = View.VISIBLE
             }
@@ -97,7 +94,7 @@ class DeckNameDialog(val cards: String, private val listener: ICreateDeckCardLis
     private fun error() = activity?.showErrorDialog()
 
     companion object {
-        fun newInstance(cards: String, listener: ICreateDeckCardListener): DeckNameDialog {
+        fun newInstance(cards: List<String>, listener: ICreateDeckCardListener): DeckNameDialog {
             return DeckNameDialog(cards, listener)
         }
     }

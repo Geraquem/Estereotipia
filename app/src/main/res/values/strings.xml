@@ -44,7 +44,7 @@
     <string name="discard_card_choice_yes">Lo creo</string>
 
     <!-- SELECTED DIALOG -->
-    <string name="selected_card_info">¡Esta es tu carta!</string>
+    <string name="selected_card_info">Esta es tu carta</string>
     <string name="selected_card_continue">Entendido</string>
 
     <!-- SELECT CARD LOADING -->

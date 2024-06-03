@@ -1,13 +1,12 @@
 package com.mmfsin.whoami.data.mappers
 
-import com.mmfsin.whoami.data.models.CustomDeckDTO
-import com.mmfsin.whoami.domain.models.MyDeck
-import java.util.*
+import com.mmfsin.whoami.data.models.DeckDTO
+import java.util.UUID
 
-fun MyDeck.toMyDeckDTO(defaultDeckImg: String, order: Long) = CustomDeckDTO(
+fun createCustomDeckDTO(name: String, cards: List<String>) = DeckDTO(
     id = UUID.randomUUID().toString(),
-    image = defaultDeckImg,
-    name = this.name,
-    cards = this.cards,
-    order = order
+    name = name,
+    cards = cards.toString(),
+    order = System.currentTimeMillis(),
+    isCustom = true
 )

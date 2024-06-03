@@ -1,15 +1,16 @@
 package com.mmfsin.whoami.domain.interfaces
 
 import com.mmfsin.whoami.domain.models.Deck
-import com.mmfsin.whoami.domain.models.MyDeck
 
 interface IDeckRepository {
-    fun getDecks(): List<Deck>?
-    fun getDeckById(id: String): Deck?
+    /** System decks */
+    fun getSystemDecks(): List<Deck>?
+    fun getSystemDeckById(id: String): Deck?
 
-    fun createDeck(deck: MyDeck)
-    fun getMyDecks(): List<MyDeck>
-    fun getMyDeckById(id: String): MyDeck?
-    fun editMyDeckNameById(id: String, name: String)
-    fun deleteMyDeck(id: String)
+    /** Custom decks */
+    fun getCustomDeckById(id: String): Deck?
+    fun createDeck(name: String, cards: List<String>)
+    fun getCustomDecks(): List<Deck>
+    fun editCustomDeckNameById(id: String, name: String)
+    fun deleteCustomDeck(id: String)
 }

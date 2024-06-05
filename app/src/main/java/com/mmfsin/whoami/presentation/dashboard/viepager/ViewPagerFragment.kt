@@ -47,6 +47,7 @@ class ViewPagerFragment : BaseFragment<FragmentViewPagerBinding, ViewPagerViewMo
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        (activity as BedRockActivity).inDashboard = true
         checkNotNulls(deckId, isCustomDeck) { id, _ -> viewModel.getDeck(id) } ?: run { error() }
     }
 

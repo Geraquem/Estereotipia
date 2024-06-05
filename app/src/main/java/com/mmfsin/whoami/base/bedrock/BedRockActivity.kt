@@ -1,12 +1,15 @@
 package com.mmfsin.whoami.base.bedrock
 
 import android.os.Bundle
+import android.window.OnBackInvokedDispatcher
+import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.view.WindowInsetsControllerCompat
 import androidx.navigation.fragment.NavHostFragment
 import com.mmfsin.whoami.R
 import com.mmfsin.whoami.databinding.ActivityBedrockBinding
+import com.mmfsin.whoami.presentation.exit.ExitDialog
 import com.mmfsin.whoami.presentation.instructions.InstructionsFragment
 import com.mmfsin.whoami.utils.INSTRUCTIONS
 import com.mmfsin.whoami.utils.ROOT_ACTIVITY_NAV_GRAPH
@@ -19,11 +22,15 @@ class BedRockActivity : AppCompatActivity() {
     private lateinit var binding: ActivityBedrockBinding
 
     var isGameFinished = false
+    var inDashboard = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityBedrockBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        /** handle back */
+        onBackPressedDispatcher.addCallback(this, onBackPressedCallback)
 
         changeStatusBar()
         setUpNavGraph()
@@ -58,4 +65,15 @@ class BedRockActivity : AppCompatActivity() {
     }
 
     private fun error() = showErrorDialog(goBack = true)
+
+    private val onBackPressedCallback = object : OnBackPressedCallback(true) {
+        override fun handleOnBackPressed() {
+            if(inDashboard) {
+                val dialog = ExitDialog { finish() }
+                dialog.show(supportFragmentManager, "")
+            }else{
+                finish()
+            }
+        }
+    }
 }

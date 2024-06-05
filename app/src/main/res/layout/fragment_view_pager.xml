@@ -22,15 +22,15 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:tabIndicator="@drawable/tab_selected"
-        app:tabIndicatorColor="@color/orange"
+        app:tabIndicatorColor="@color/background"
         app:tabIndicatorGravity="stretch"
         app:tabMode="fixed"
         app:tabPadding="8dp"
         app:tabPaddingEnd="8dp"
         app:tabRippleColor="@null"
-        app:tabSelectedTextColor="@color/white"
+        app:tabSelectedTextColor="@color/black"
         app:tabTextAppearance="@style/tab_text"
-        app:tabTextColor="@color/black" />
+        app:tabTextColor="@color/soft_black" />
 
     <include
         android:id="@+id/loading"

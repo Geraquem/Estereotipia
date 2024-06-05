@@ -14,7 +14,7 @@
         android:layout_marginHorizontal="8dp"
         android:clipChildren="false"
         android:clipToPadding="false"
-        android:paddingTop="74dp"
+        android:paddingTop="78dp"
         android:paddingBottom="48dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent"

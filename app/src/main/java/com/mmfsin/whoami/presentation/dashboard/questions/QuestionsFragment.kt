@@ -1,20 +1,27 @@
 package com.mmfsin.whoami.presentation.dashboard.questions
 
 import android.content.Context
+import android.content.res.Resources
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.viewModels
+import com.google.android.material.bottomsheet.BottomSheetBehavior
+import com.mmfsin.whoami.R
 import com.mmfsin.whoami.base.BaseFragment
 import com.mmfsin.whoami.base.bedrock.BedRockActivity
 import com.mmfsin.whoami.databinding.FragmentQuestionsBinding
 import com.mmfsin.whoami.domain.models.Question
 import com.mmfsin.whoami.presentation.dashboard.cards.dialogs.selected.SelectedCardDialog
+import com.mmfsin.whoami.presentation.dashboard.questions.dialogs.MiniHelpSheet
 import com.mmfsin.whoami.presentation.dashboard.questions.dialogs.NewQuestionDialog
 import com.mmfsin.whoami.presentation.dashboard.questions.dialogs.QuestionsListSheet
 import com.mmfsin.whoami.presentation.dashboard.questions.dialogs.interfaces.INewQuestionListener
 import com.mmfsin.whoami.presentation.dashboard.viepager.interfaces.IViewPagerListener
+import com.mmfsin.whoami.presentation.menu.decks.DecksSheet
 import com.mmfsin.whoami.utils.NUM_OF_QUESTIONS
 import com.mmfsin.whoami.utils.animateY
 import com.mmfsin.whoami.utils.countDown
@@ -54,8 +61,8 @@ class QuestionsFragment(
     override fun setUI() {
         binding.apply {
             loading.root.visibility = View.VISIBLE
-            svBottom.visibility = View.INVISIBLE
-            svBottom.animateY(1500f, 10)
+
+            tvNewQuestion.setOnClickListener { activity?.showFragmentDialog(MiniHelpSheet()) }
         }
     }
 
@@ -73,29 +80,31 @@ class QuestionsFragment(
 
     override fun setListeners() {
         binding.apply {
-            tvNewQuestion.setOnClickListener {
-                questions?.let { list ->
-                    if (list.isNotEmpty()) {
-                        if (cont < NUM_OF_QUESTIONS) {
-                            val question = list[cont]
-                            questionsDone.add(question)
-                            activity?.showFragmentDialog(
-                                NewQuestionDialog.newInstance(this@QuestionsFragment, question)
-                            )
-                            cont++
-                        } else activity?.showFragmentDialog(NewQuestionDialog.newInstance(this@QuestionsFragment))
-                    } else viewModel.getQuestions()
-                }
-            }
 
-            tvAllQuestions.setOnClickListener { showAllQuestions() }
+
+//            tvNewQuestion.setOnClickListener {
+//                questions?.let { list ->
+//                    if (list.isNotEmpty()) {
+//                        if (cont < NUM_OF_QUESTIONS) {
+//                            val question = list[cont]
+//                            questionsDone.add(question)
+//                            activity?.showFragmentDialog(
+//                                NewQuestionDialog.newInstance(this@QuestionsFragment, question)
+//                            )
+//                            cont++
+//                        } else activity?.showFragmentDialog(NewQuestionDialog.newInstance(this@QuestionsFragment))
+//                    } else viewModel.getQuestions()
+//                }
+//            }
+
+//            tvAllQuestions.setOnClickListener { showAllQuestions() }
 
             tvMyCard.setOnClickListener {
                 activity?.showFragmentDialog(SelectedCardDialog.newInstance(selectedCardId))
             }
 
 
-            llWhatNow.setOnClickListener {  }
+//            llWhatNow.setOnClickListener {  }
 //            cvWhatNow.setOnClickListener { setExpandableView(detailsWhatNow.linear, llWhatNow) }
 //            cvButtons.setOnClickListener { setExpandableView(detailsButtons.linear, llButtons) }
 //            cvWhenEnds.setOnClickListener { setExpandableView(detailsWhenEnds.linear, llWhenEnds) }
@@ -127,10 +136,10 @@ class QuestionsFragment(
     private fun finishFlow() {
         binding.apply {
             loading.root.visibility = View.GONE
-            countDown(300) {
-                svBottom.visibility = View.VISIBLE
-                svBottom.animateY(0f, 500)
-            }
+//            countDown(300) {
+//                svBottom.visibility = View.VISIBLE
+//                svBottom.animateY(0f, 500)
+//            }
         }
     }
 

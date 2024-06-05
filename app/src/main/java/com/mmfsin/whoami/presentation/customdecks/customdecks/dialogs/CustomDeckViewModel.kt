@@ -2,21 +2,19 @@ package com.mmfsin.whoami.presentation.customdecks.customdecks.dialogs
 
 import com.mmfsin.whoami.base.BaseViewModel
 import com.mmfsin.whoami.domain.usecases.EditCustomDeckNameUseCase
-import com.mmfsin.whoami.domain.usecases.GetCustomDeckByIdUseCase
-import com.mmfsin.whoami.domain.usecases.GetCustomDecksUseCase
-import com.mmfsin.whoami.domain.usecases.GetSystemDeckByIdUseCase
+import com.mmfsin.whoami.domain.usecases.GetDeckByIdUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
 @HiltViewModel
 class CustomDeckViewModel @Inject constructor(
-    private val getCustomDeckByIdUseCase: GetCustomDeckByIdUseCase,
+    private val getDeckByIdUseCase: GetDeckByIdUseCase,
     private val editCustomDeckNameUseCase: EditCustomDeckNameUseCase
 ) : BaseViewModel<CustomDeckEvent>() {
 
     fun getCustomDeck(id: String) {
         executeUseCase(
-            { getCustomDeckByIdUseCase.execute(GetCustomDeckByIdUseCase.Params(id)) },
+            { getDeckByIdUseCase.execute(GetDeckByIdUseCase.Params(id)) },
             { result ->
                 _event.value = result?.let { CustomDeckEvent.GetDeck(result) }
                     ?: run { CustomDeckEvent.SomethingWentWrong }

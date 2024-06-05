@@ -10,9 +10,6 @@ import com.mmfsin.whoami.R
 import com.mmfsin.whoami.base.BaseFragment
 import com.mmfsin.whoami.base.bedrock.BedRockActivity
 import com.mmfsin.whoami.databinding.FragmentViewPagerBinding
-import com.mmfsin.whoami.domain.models.DeckType
-import com.mmfsin.whoami.domain.models.DeckType.CUSTOM
-import com.mmfsin.whoami.domain.models.DeckType.SYSTEM
 import com.mmfsin.whoami.presentation.dashboard.viepager.adapter.ViewPagerAdapter
 import com.mmfsin.whoami.presentation.dashboard.viepager.interfaces.IViewPagerListener
 import com.mmfsin.whoami.utils.BEDROCK_BOOLEAN_ARGS
@@ -29,7 +26,6 @@ class ViewPagerFragment : BaseFragment<FragmentViewPagerBinding, ViewPagerViewMo
     override val viewModel: ViewPagerViewModel by viewModels()
 
     private var deckId: String? = null
-    private var isCustomDeck: DeckType? = null
 
     override fun inflateView(
         inflater: LayoutInflater, container: ViewGroup?
@@ -40,15 +36,13 @@ class ViewPagerFragment : BaseFragment<FragmentViewPagerBinding, ViewPagerViewMo
             deckId = it.getString(DECK_ID)
         } ?: run {
             deckId = activity?.intent?.getStringExtra(BEDROCK_STR_ARGS)
-            val customDeck = activity?.intent?.getBooleanExtra(BEDROCK_BOOLEAN_ARGS, false)
-            customDeck?.let { isCustomDeck = if (it) CUSTOM else SYSTEM }
         }
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         (activity as BedRockActivity).inDashboard = true
-        checkNotNulls(deckId, isCustomDeck) { id, _ -> viewModel.getDeck(id) } ?: run { error() }
+        deckId?.let { id -> viewModel.getDeck(id) } ?: run { error() }
     }
 
     override fun setUI() {

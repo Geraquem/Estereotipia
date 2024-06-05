@@ -25,7 +25,7 @@ class DeckRepository @Inject constructor(
         return decks.toDeckList()
     }
 
-    override fun getSystemDeckById(id: String): Deck? {
+    override fun getDeckById(id: String): Deck? {
         return realmDatabase.getObjectFromRealm(DeckDTO::class.java, ID, id)?.toDeck()
     }
 
@@ -38,10 +38,6 @@ class DeckRepository @Inject constructor(
             where<DeckDTO>().equalTo(IS_CUSTOM_DECK, true).findAll()
         }
         return decks.toDeckList()
-    }
-
-    override fun getCustomDeckById(id: String): Deck? {
-        return realmDatabase.getObjectFromRealm(DeckDTO::class.java, ID, id)?.toDeck()
     }
 
     override fun editCustomDeckNameById(id: String, name: String) {

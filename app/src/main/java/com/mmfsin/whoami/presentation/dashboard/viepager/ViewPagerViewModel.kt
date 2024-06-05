@@ -1,21 +1,20 @@
 package com.mmfsin.whoami.presentation.dashboard.viepager
 
 import com.mmfsin.whoami.base.BaseViewModel
-import com.mmfsin.whoami.domain.models.DeckType
-import com.mmfsin.whoami.domain.usecases.GetSystemDeckByIdUseCase
+import com.mmfsin.whoami.domain.usecases.GetDeckByIdUseCase
 import com.mmfsin.whoami.domain.usecases.GetRandomCardUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
 @HiltViewModel
 class ViewPagerViewModel @Inject constructor(
-    private val getSystemDeckByIdUseCase: GetSystemDeckByIdUseCase,
+    private val getDeckByIdUseCase: GetDeckByIdUseCase,
     private val getRandomCardUseCase: GetRandomCardUseCase,
 ) : BaseViewModel<ViewPagerEvent>() {
 
     fun getDeck(deckId: String) {
         executeUseCase(
-            { getSystemDeckByIdUseCase.execute(GetSystemDeckByIdUseCase.Params(deckId)) },
+            { getDeckByIdUseCase.execute(GetDeckByIdUseCase.Params(deckId)) },
             { result ->
                 _event.value = result?.let { ViewPagerEvent.GetDeck(it) }
                     ?: run { ViewPagerEvent.SomethingWentWrong }

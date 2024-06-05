@@ -5,8 +5,6 @@ import com.mmfsin.whoami.data.models.DeckDTO
 import com.mmfsin.whoami.data.models.QuestionDTO
 import com.mmfsin.whoami.domain.models.Card
 import com.mmfsin.whoami.domain.models.Deck
-import com.mmfsin.whoami.domain.models.DeckType.CUSTOM
-import com.mmfsin.whoami.domain.models.DeckType.SYSTEM
 import com.mmfsin.whoami.domain.models.Question
 
 /** DECK */

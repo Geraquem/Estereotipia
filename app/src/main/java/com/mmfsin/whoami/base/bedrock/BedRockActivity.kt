@@ -30,7 +30,7 @@ class BedRockActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         /** handle back */
-        onBackPressedDispatcher.addCallback(this, onBackPressedCallback)
+            onBackPressedDispatcher.addCallback(this, onBackPressedCallback)
 
         changeStatusBar()
         setUpNavGraph()
@@ -68,11 +68,12 @@ class BedRockActivity : AppCompatActivity() {
 
     private val onBackPressedCallback = object : OnBackPressedCallback(true) {
         override fun handleOnBackPressed() {
-            if(inDashboard) {
+            if (inDashboard) {
                 val dialog = ExitDialog { finish() }
                 dialog.show(supportFragmentManager, "")
-            }else{
-                finish()
+            } else {
+                this.isEnabled = false
+                onBackPressedDispatcher.onBackPressed()
             }
         }
     }

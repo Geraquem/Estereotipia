@@ -9,6 +9,7 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.SimpleItemAnimator
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
+import com.google.android.material.snackbar.Snackbar
 import com.mmfsin.whoami.R
 import com.mmfsin.whoami.base.BaseFragment
 import com.mmfsin.whoami.base.bedrock.BedRockActivity
@@ -18,6 +19,7 @@ import com.mmfsin.whoami.presentation.allcards.dialogs.AllCardDialog
 import com.mmfsin.whoami.presentation.customdecks.create.adapter.NewDeckCardsAdapter
 import com.mmfsin.whoami.presentation.customdecks.create.dialog.DeckNameDialog
 import com.mmfsin.whoami.presentation.customdecks.create.interfaces.ICreateDeckCardListener
+import com.mmfsin.whoami.presentation.customdecks.snackbar.CustomSnackbar
 import com.mmfsin.whoami.utils.showErrorDialog
 import com.mmfsin.whoami.utils.showFragmentDialog
 import dagger.hilt.android.AndroidEntryPoint
@@ -55,7 +57,7 @@ class CreateDeckFragment : BaseFragment<FragmentCreateDeckBinding, CreateDeckVie
 
     override fun setListeners() {
         binding.apply {
-            btnOk.setOnClickListener {
+            btnAccept.setOnClickListener {
                 activity?.showFragmentDialog(
                     DeckNameDialog.newInstance(cardList, this@CreateDeckFragment)
                 )
@@ -91,6 +93,7 @@ class CreateDeckFragment : BaseFragment<FragmentCreateDeckBinding, CreateDeckVie
             if (cardList.contains(id)) cardList.remove(id)
         }
         checkBtnVisibility()
+        totalCardsText()
         mAdapter?.notifyItemChanged(position)
     }
 
@@ -98,8 +101,14 @@ class CreateDeckFragment : BaseFragment<FragmentCreateDeckBinding, CreateDeckVie
         binding.clBtnOk.isVisible = cardList.size > 1
     }
 
+    private fun totalCardsText() {
+        val total = cardList.size.toString()
+        binding.tvNumberCards.text = getString(R.string.custom_decks_total_cards, total)
+    }
+
     override fun flowCompleted() {
-        activity?.onBackPressed()
+        CustomSnackbar.make(binding.clMain, Snackbar.LENGTH_SHORT).show()
+        activity?.onBackPressedDispatcher?.onBackPressed()
     }
 
     private fun error() = activity?.showErrorDialog()

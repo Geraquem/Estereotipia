@@ -39,7 +39,7 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:itemCount="2"
-        tools:listitem="@layout/item_deck" />
+        tools:listitem="@layout/item_custom_deck" />
 
     <TextView
         android:id="@+id/tv_empty"

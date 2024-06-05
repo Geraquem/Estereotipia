@@ -4,9 +4,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 import com.mmfsin.whoami.R
-import com.mmfsin.whoami.databinding.ItemDeckBinding
+import com.mmfsin.whoami.databinding.ItemCustomDeckBinding
 import com.mmfsin.whoami.domain.models.Deck
 import com.mmfsin.whoami.presentation.customdecks.customdecks.interfaces.ICustomDeckListener
 
@@ -16,7 +15,7 @@ class CustomDecksAdapter(
 ) : RecyclerView.Adapter<CustomDecksAdapter.ViewHolder>() {
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val binding = ItemDeckBinding.bind(view)
+        val binding = ItemCustomDeckBinding.bind(view)
         val c = binding.root.context
         fun bind(deck: Deck) {
             binding.apply {
@@ -28,7 +27,7 @@ class CustomDecksAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(
-            LayoutInflater.from(parent.context).inflate(R.layout.item_deck, parent, false)
+            LayoutInflater.from(parent.context).inflate(R.layout.item_custom_deck, parent, false)
         )
     }
 

@@ -71,7 +71,8 @@ class DeckNameDialog(val cards: List<String>, private val listener: ICreateDeckC
 
     private fun endFlow() {
         binding.apply {
-            llMain.visibility = View.INVISIBLE
+            listener.flowCompleted()
+            dismiss()
         }
     }
 

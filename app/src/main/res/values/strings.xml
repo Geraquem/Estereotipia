@@ -98,6 +98,7 @@
     <string name="my_decks_toolbar">Mis barajas</string>
     <string name="my_decks_view">Ver mis barajas</string>
     <string name="my_decks_empty">Todavía no has creado ninguna baraja</string>
+    <string name="custom_decks_total_cards">%s cartas seleccionadas</string>
     <string name="my_decks_create_new_toolbar">Crear baraja</string>
     <string name="my_decks_create_new">Crear nueva baraja</string>
     <string name="my_decks_create_new_accept">Aceptar</string>

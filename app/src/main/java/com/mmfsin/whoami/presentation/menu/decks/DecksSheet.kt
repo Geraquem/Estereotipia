@@ -9,7 +9,7 @@ import android.view.ViewGroup
 import androidx.core.content.ContextCompat.getDrawable
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.viewModels
-import androidx.recyclerview.widget.StaggeredGridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
@@ -74,9 +74,7 @@ class DecksSheet(val listener: IMenuListener) : BottomSheetDialogFragment(), IDe
         setListeners()
     }
 
-    private fun setListeners() {
-        binding.apply { }
-    }
+    private fun setListeners() {}
 
     private fun observe() {
         viewModel.event.observe(this) { event ->
@@ -89,7 +87,7 @@ class DecksSheet(val listener: IMenuListener) : BottomSheetDialogFragment(), IDe
 
     private fun setUpDecks(decks: List<Deck>) {
         binding.rvDecks.apply {
-            layoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
+            layoutManager = LinearLayoutManager(context)
             adapter = DecksAdapter(decks, this@DecksSheet)
         }
     }

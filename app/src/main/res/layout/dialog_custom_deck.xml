@@ -6,52 +6,43 @@
     android:layout_height="wrap_content"
     android:background="@drawable/bg_white_box"
     android:clipChildren="false"
-    android:clipToPadding="false"
-    android:paddingBottom="24dp">
+    android:clipToPadding="false">
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/gl_left"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.05" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/gl_right"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.95" />
-
-    <TextView
-        android:id="@+id/tv_title"
-        style="@style/MediumTextView"
+    <RelativeLayout
+        android:id="@+id/rl_top"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/click_effect"
-        android:contentDescription="@string/content_description"
-        android:ellipsize="end"
-        android:gravity="center"
-        android:maxLines="1"
-        android:paddingVertical="16dp"
-        android:textAllCaps="true"
-        android:textStyle="bold"
-        app:layout_constraintLeft_toLeftOf="@id/gl_left"
-        app:layout_constraintRight_toRightOf="@id/gl_right"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="Baraja 1" />
+        android:background="@drawable/bg_top_box"
+        android:backgroundTint="@color/grey"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/tv_title"
+            style="@style/MediumTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/content_description"
+            android:gravity="center"
+            android:paddingVertical="16dp"
+            android:textStyle="bold"
+            tools:text="Nombre de baraja" />
+
+    </RelativeLayout>
 
     <LinearLayout
         android:id="@+id/ll_main"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
         android:clipChildren="false"
         android:clipToPadding="false"
         android:orientation="vertical"
-        app:layout_constraintLeft_toLeftOf="@id/gl_left"
-        app:layout_constraintRight_toRightOf="@id/gl_right"
-        app:layout_constraintTop_toBottomOf="@id/tv_title">
+        android:paddingHorizontal="16dp"
+        android:paddingVertical="24dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/rl_top">
 
         <TextView
             android:id="@+id/tv_play"
@@ -59,9 +50,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="24dp"
-            android:background="@drawable/click_effect"
+            android:background="@drawable/click_effect_border"
             android:drawablePadding="8dp"
-            android:foreground="?attr/selectableItemBackground"
             android:paddingHorizontal="12dp"
             android:paddingVertical="16dp"
             android:text="@string/my_decks_dialog_play"
@@ -75,9 +65,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
-            android:background="@drawable/click_effect"
+            android:background="@drawable/click_effect_border"
             android:drawablePadding="8dp"
-            android:foreground="?attr/selectableItemBackground"
             android:padding="12dp"
             android:text="@string/my_decks_dialog_edit_name"
             android:textAllCaps="true"
@@ -90,9 +79,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="24dp"
-            android:background="@drawable/click_effect"
+            android:background="@drawable/click_effect_border"
             android:drawablePadding="8dp"
-            android:foreground="?attr/selectableItemBackground"
             android:padding="12dp"
             android:text="@string/my_decks_dialog_edit_cards"
             android:textAllCaps="true"
@@ -105,9 +93,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
-            android:background="@drawable/click_effect"
+            android:background="@drawable/click_effect_border_blue"
             android:drawablePadding="8dp"
-            android:foreground="?attr/selectableItemBackground"
             android:padding="12dp"
             android:text="@string/my_decks_dialog_share"
             android:textAllCaps="true"
@@ -121,9 +108,8 @@
             style="@style/MediumTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/click_effect"
+            android:background="@drawable/click_effect_border_red"
             android:drawablePadding="8dp"
-            android:foreground="?attr/selectableItemBackground"
             android:padding="12dp"
             android:text="@string/my_decks_dialog_delete"
             android:textAllCaps="true"

@@ -39,7 +39,6 @@ class CustomDeckDialog(private val myDeckId: String, val listener: ICustomDeckLi
 
     override fun setUI() {
         isCancelable = true
-        binding.apply { }
     }
 
     override fun setListeners() {

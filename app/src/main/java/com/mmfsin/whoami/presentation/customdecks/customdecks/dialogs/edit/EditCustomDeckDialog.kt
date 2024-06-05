@@ -55,9 +55,7 @@ class EditCustomDeckDialog(private val myDeckId: String, val listener: ICustomDe
             btnAccept.setOnClickListener {
                 val name = etName.text.toString()
                 if (name.isNotEmpty() && name.isNotBlank()) {
-                    countDown(300) {
-                        viewModel.editCustomDeckName(myDeckId, name)
-                    }
+                    countDown(300) { viewModel.editCustomDeckName(myDeckId, name) }
                 } else {
                     tilName.error = getString(R.string.my_decks_create_new_name_error)
                     tilName.isErrorEnabled = true

@@ -10,7 +10,7 @@
     android:padding="16dp">
 
     <com.google.android.material.imageview.ShapeableImageView
-        android:id="@+id/bg_number"
+        android:id="@+id/bg_initial"
         android:layout_width="48dp"
         android:layout_height="48dp"
         android:background="@color/orange"
@@ -19,18 +19,18 @@
         app:shapeAppearanceOverlay="@style/circular_image" />
 
     <TextView
-        android:id="@+id/tv_number"
+        android:id="@+id/tv_initial"
         style="@style/BigTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/mont_bold"
         android:textColor="@color/white"
         android:textSize="28sp"
-        app:layout_constraintBottom_toBottomOf="@id/bg_number"
-        app:layout_constraintLeft_toLeftOf="@id/bg_number"
-        app:layout_constraintRight_toRightOf="@id/bg_number"
-        app:layout_constraintTop_toTopOf="@id/bg_number"
-        tools:text="7" />
+        app:layout_constraintBottom_toBottomOf="@id/bg_initial"
+        app:layout_constraintLeft_toLeftOf="@id/bg_initial"
+        app:layout_constraintRight_toRightOf="@id/bg_initial"
+        app:layout_constraintTop_toTopOf="@id/bg_initial"
+        tools:text="B" />
 
     <ImageView
         android:id="@+id/icon"
@@ -49,7 +49,7 @@
         android:layout_marginStart="8dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toRightOf="@id/bg_number"
+        app:layout_constraintLeft_toRightOf="@id/bg_initial"
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView

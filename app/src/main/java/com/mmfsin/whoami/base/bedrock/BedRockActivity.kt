@@ -12,6 +12,7 @@ import com.mmfsin.whoami.databinding.ActivityBedrockBinding
 import com.mmfsin.whoami.presentation.exit.ExitDialog
 import com.mmfsin.whoami.presentation.instructions.InstructionsFragment
 import com.mmfsin.whoami.utils.INSTRUCTIONS
+import com.mmfsin.whoami.utils.INSTRUCTIONS_DETAIL
 import com.mmfsin.whoami.utils.ROOT_ACTIVITY_NAV_GRAPH
 import com.mmfsin.whoami.utils.showErrorDialog
 import dagger.hilt.android.AndroidEntryPoint
@@ -28,9 +29,6 @@ class BedRockActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityBedrockBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
-        /** handle back */
-            onBackPressedDispatcher.addCallback(this, onBackPressedCallback)
 
         changeStatusBar()
         setUpNavGraph()
@@ -66,15 +64,14 @@ class BedRockActivity : AppCompatActivity() {
 
     private fun error() = showErrorDialog(goBack = true)
 
-    private val onBackPressedCallback = object : OnBackPressedCallback(true) {
-        override fun handleOnBackPressed() {
+    @Deprecated("Deprecated in Java")
+    override fun onBackPressed() {
+        val count = supportFragmentManager.backStackEntryCount
+        if (count == 0) {
             if (inDashboard) {
-                val dialog = ExitDialog { finish() }
+                val dialog = ExitDialog() { super.onBackPressed() }
                 dialog.show(supportFragmentManager, "")
-            } else {
-                this.isEnabled = false
-                onBackPressedDispatcher.onBackPressed()
-            }
-        }
+            } else super.onBackPressed()
+        } else super.onBackPressed()
     }
 }

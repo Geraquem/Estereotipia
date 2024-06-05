@@ -19,6 +19,8 @@ class CustomDecksAdapter(
         val c = binding.root.context
         fun bind(deck: Deck) {
             binding.apply {
+                val initial = if (deck.name.isNotEmpty()) deck.name.first().toString() else "?"
+                tvInitial.text = initial
                 tvName.text = deck.name
                 tvCards.text = c.getString(R.string.decks_dialog_cards, deck.numOfCards.toString())
             }

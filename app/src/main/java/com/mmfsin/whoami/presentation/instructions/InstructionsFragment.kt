@@ -85,10 +85,9 @@ class InstructionsFragment : BaseFragment<FragmentInstructionsBinding, Instructi
     }
 
     override fun onInstructionClick(instruction: Instruction) {
-        (activity as MainActivity).supportFragmentManager.beginTransaction()
-            .addToBackStack(INSTRUCTIONS_DETAIL)
-            .setCustomAnimations(R.anim.slide_from_left, 0, 0, R.anim.slide_to_right)
-            .add(R.id.fc_instructions, DetailInstFragment(instruction)).commit()
+        activity?.supportFragmentManager?.beginTransaction()?.addToBackStack(INSTRUCTIONS_DETAIL)
+            ?.setCustomAnimations(R.anim.slide_from_left, 0, 0, R.anim.slide_to_right)
+            ?.add(R.id.fc_instructions, DetailInstFragment(instruction))?.commit()
     }
 
     override fun onAttach(context: Context) {

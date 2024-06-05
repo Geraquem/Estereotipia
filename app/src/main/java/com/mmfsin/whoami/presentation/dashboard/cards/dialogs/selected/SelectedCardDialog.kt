@@ -40,6 +40,7 @@ class SelectedCardDialog(private val cardId: String) : BaseDialog<DialogCardSele
     }
 
     override fun setUI() {
+        dismiss()
         isCancelable = true
         binding.apply {
             card?.let {

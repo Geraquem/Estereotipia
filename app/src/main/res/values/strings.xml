@@ -83,7 +83,7 @@
     <string name="questions_help_buttons_1">La cruz sirve para descartar un personaje que creas que no se corresponde con las respuestas que te está dando tu rival.\nDescartar un personaje no es definitivo, puede volver a entrar en juego y ser descartado de nuevo tantas veces como quieras.</string>
     <string name="questions_help_buttons_2">Cuando tengas claro cuál es personaje de tu rival pulsa este botón.\nEl numerito indica las oportunidades que te quedan para acertar.</string>
     <string name="questions_when_ends">¿Cuándo acaba la partida?</string>
-    <string name="questions_when_ends_1">La partida acaba cuando ambos equipos han acabado con sus oportunidades para acertar, o han acertado el personaje de su rival.</string>
+    <string name="questions_when_ends_1">La partida acaba cuando ambos equipos han acabado con sus oportunidades para acertar o han acertado el personaje de su rival.</string>
     <string name="questions_when_ends_2">El primer equipo en adivinar el personaje del equipo rival <b>gana</b>.</string>
 
     <!-- NEW QUESTION DIALOG -->

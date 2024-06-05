@@ -32,8 +32,23 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/top_line" />
 
-    <ScrollView
-        android:id="@+id/sv_bottom"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_mini_help"
+        style="@style/scroll_no_effects"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        android:paddingHorizontal="16dp"
+        android:paddingTop="16dp"
+        android:paddingBottom="32dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_top" />
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/mini_help_scroll"
         style="@style/scroll_no_effects"
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -49,8 +64,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintTop_toTopOf="parent">
+            android:orientation="vertical">
 
             <LinearLayout
                 android:id="@+id/ll_what_now"
@@ -80,87 +94,67 @@
 
             </LinearLayout>
 
-            <androidx.cardview.widget.CardView
-                android:id="@+id/cv_buttons"
+            <LinearLayout
+                android:id="@+id/ll_buttons"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="12dp"
+                android:animateLayoutChanges="true"
+                android:background="@drawable/click_effect_border"
                 android:clipChildren="false"
                 android:clipToPadding="false"
-                app:cardCornerRadius="12dp"
-                app:cardElevation="6dp"
-                app:contentPadding="16dp">
+                android:orientation="vertical"
+                android:padding="16dp">
 
-                <LinearLayout
-                    android:id="@+id/ll_buttons"
+                <TextView
+                    style="@style/MediumTextView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:animateLayoutChanges="true"
-                    android:clipChildren="false"
-                    android:clipToPadding="false"
-                    android:orientation="vertical">
+                    android:drawablePadding="8dp"
+                    android:text="@string/questions_help_buttons"
+                    app:drawableStartCompat="@drawable/ic_button" />
 
-                    <TextView
-                        style="@style/MediumTextView"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:drawablePadding="8dp"
-                        android:text="@string/questions_help_buttons"
-                        app:drawableStartCompat="@drawable/ic_button" />
+                <include
+                    android:id="@+id/details_buttons"
+                    layout="@layout/include_mini_help_buttons"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:visibility="gone" />
 
-                    <include
-                        android:id="@+id/details_buttons"
-                        layout="@layout/include_mini_help_buttons"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="12dp"
-                        android:visibility="gone" />
+            </LinearLayout>
 
-                </LinearLayout>
-
-            </androidx.cardview.widget.CardView>
-
-            <androidx.cardview.widget.CardView
-                android:id="@+id/cv_when_ends"
+            <LinearLayout
+                android:id="@+id/ll_when_ends"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:animateLayoutChanges="true"
+                android:background="@drawable/click_effect_border"
                 android:clipChildren="false"
                 android:clipToPadding="false"
-                app:cardCornerRadius="12dp"
-                app:cardElevation="6dp"
-                app:contentPadding="16dp">
+                android:orientation="vertical"
+                android:padding="16dp">
 
-                <LinearLayout
-                    android:id="@+id/ll_when_ends"
+                <TextView
+                    style="@style/MediumTextView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:animateLayoutChanges="true"
-                    android:clipChildren="false"
-                    android:clipToPadding="false"
-                    android:orientation="vertical">
+                    android:drawablePadding="8dp"
+                    android:text="@string/questions_when_ends"
+                    app:drawableStartCompat="@drawable/ic_finish" />
 
-                    <TextView
-                        style="@style/MediumTextView"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:drawablePadding="8dp"
-                        android:text="@string/questions_when_ends"
-                        app:drawableStartCompat="@drawable/ic_finish" />
+                <include
+                    android:id="@+id/details_when_ends"
+                    layout="@layout/include_mini_help_when_ends"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:visibility="gone" />
 
-                    <include
-                        android:id="@+id/details_when_ends"
-                        layout="@layout/include_mini_help_when_ends"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="12dp"
-                        android:visibility="gone" />
-
-                </LinearLayout>
-
-            </androidx.cardview.widget.CardView>
+            </LinearLayout>
 
         </LinearLayout>
 
-    </ScrollView>
+    </androidx.core.widget.NestedScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,4 +1,4 @@
-package com.mmfsin.whoami.presentation.dashboard.questions.dialogs
+package com.mmfsin.whoami.presentation.dashboard.questions.minihelp
 
 import android.app.Dialog
 import android.content.res.Resources
@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat.getDrawable
+import androidx.core.view.isVisible
 import androidx.fragment.app.DialogFragment
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
@@ -36,9 +37,13 @@ class MiniHelpSheet : BottomSheetDialogFragment() {
     }
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-        val dialog = super.onCreateDialog(savedInstanceState) as BottomSheetDialog
+        return super.onCreateDialog(savedInstanceState) as BottomSheetDialog
+    }
 
-        dialog.setOnShowListener { dialogInterface ->
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        dialog?.setOnShowListener { dialogInterface ->
             val bottomSheetDialog = dialogInterface as BottomSheetDialog
             val bottomSheet =
                 bottomSheetDialog.findViewById<View>(com.google.android.material.R.id.design_bottom_sheet)
@@ -47,7 +52,7 @@ class MiniHelpSheet : BottomSheetDialogFragment() {
                 val behavior = BottomSheetBehavior.from(it)
 
                 val metrics = Resources.getSystem().displayMetrics
-                val maxHeight = (metrics.heightPixels * 0.90).toInt()
+                val maxHeight = (metrics.heightPixels * 1).toInt()
                 it.layoutParams.height = maxHeight
                 behavior.peekHeight = maxHeight
                 it.requestLayout()
@@ -55,15 +60,25 @@ class MiniHelpSheet : BottomSheetDialogFragment() {
                 it.background = getDrawable(requireContext(), R.drawable.bg_top_box)
             }
         }
-        return dialog
-    }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
         setListeners()
     }
 
-    private fun setListeners() {}
+    private fun setListeners() {
+        binding.apply {
+            llWhatNow.setOnClickListener {
+                detailsWhatNow.root.isVisible = !detailsWhatNow.root.isVisible
+            }
+
+            llButtons.setOnClickListener {
+                detailsButtons.root.isVisible = !detailsButtons.root.isVisible
+            }
+
+            llWhenEnds.setOnClickListener {
+                detailsWhenEnds.root.isVisible = !detailsWhenEnds.root.isVisible
+            }
+        }
+    }
 
     private fun error() = activity?.showErrorDialog(goBack = false)
 }

@@ -16,6 +16,8 @@ import com.mmfsin.whoami.presentation.dashboard.questions.dialogs.QuestionsListS
 import com.mmfsin.whoami.presentation.dashboard.questions.dialogs.interfaces.INewQuestionListener
 import com.mmfsin.whoami.presentation.dashboard.viepager.interfaces.IViewPagerListener
 import com.mmfsin.whoami.utils.NUM_OF_QUESTIONS
+import com.mmfsin.whoami.utils.animateY
+import com.mmfsin.whoami.utils.countDown
 import com.mmfsin.whoami.utils.setExpandableView
 import com.mmfsin.whoami.utils.showErrorDialog
 import com.mmfsin.whoami.utils.showFragmentDialog
@@ -52,6 +54,8 @@ class QuestionsFragment(
     override fun setUI() {
         binding.apply {
             loading.root.visibility = View.VISIBLE
+            svBottom.visibility = View.INVISIBLE
+            svBottom.animateY(1500f, 10)
         }
     }
 
@@ -90,9 +94,11 @@ class QuestionsFragment(
                 activity?.showFragmentDialog(SelectedCardDialog.newInstance(selectedCardId))
             }
 
-            cvWhatNow.setOnClickListener { setExpandableView(detailsWhatNow.linear, llWhatNow) }
-            cvButtons.setOnClickListener { setExpandableView(detailsButtons.linear, llButtons) }
-            cvWhenEnds.setOnClickListener { setExpandableView(detailsWhenEnds.linear, llWhenEnds) }
+
+            llWhatNow.setOnClickListener {  }
+//            cvWhatNow.setOnClickListener { setExpandableView(detailsWhatNow.linear, llWhatNow) }
+//            cvButtons.setOnClickListener { setExpandableView(detailsButtons.linear, llButtons) }
+//            cvWhenEnds.setOnClickListener { setExpandableView(detailsWhenEnds.linear, llWhenEnds) }
         }
     }
 
@@ -101,7 +107,7 @@ class QuestionsFragment(
             when (event) {
                 is QuestionsEvent.GetQuestions -> {
                     questions = event.questions
-                    binding.loading.root.visibility = View.GONE
+                    finishFlow()
                 }
 
                 is QuestionsEvent.SomethingWentWrong -> error()
@@ -116,8 +122,16 @@ class QuestionsFragment(
         showAllQuestions()
     }
 
-    override fun viewCards() {
-        listener.openCardsView()
+    override fun viewCards() = listener.openCardsView()
+
+    private fun finishFlow() {
+        binding.apply {
+            loading.root.visibility = View.GONE
+            countDown(300) {
+                svBottom.visibility = View.VISIBLE
+                svBottom.animateY(0f, 500)
+            }
+        }
     }
 
     private fun error() = activity?.showErrorDialog()

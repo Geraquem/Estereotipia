@@ -9,249 +9,218 @@
     android:clipChildren="false"
     android:clipToPadding="false">
 
-    <ScrollView
-        style="@style/scroll_no_effects"
-        android:layout_width="match_parent"
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/gl_left"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.05" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/gl_right"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.95" />
+
+    <LinearLayout
+        android:id="@+id/ll_main"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:clipChildren="false"
         android:clipToPadding="false"
+        android:orientation="vertical"
         android:paddingTop="82dp"
-        android:paddingBottom="32dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="@id/gl_left"
+        app:layout_constraintRight_toRightOf="@id/gl_right"
         app:layout_constraintTop_toTopOf="parent">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <TextView
+            android:id="@+id/tv_new_question"
+            style="@style/MediumTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
+            android:background="@drawable/click_effect"
+            android:drawablePadding="8dp"
+            android:elevation="3dp"
+            android:paddingHorizontal="12dp"
+            android:paddingVertical="16dp"
+            android:text="@string/questions_do_question"
+            app:drawableStartCompat="@drawable/ic_question" />
+
+        <TextView
+            android:id="@+id/tv_all_questions"
+            style="@style/MediumTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
+            android:background="@drawable/click_effect"
+            android:drawablePadding="8dp"
+            android:elevation="3dp"
+            android:paddingHorizontal="12dp"
+            android:paddingVertical="16dp"
+            android:text="@string/questions_list_of"
+            app:drawableStartCompat="@drawable/ic_list" />
+
+        <TextView
+            android:id="@+id/tv_my_card"
+            style="@style/MediumTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/click_effect"
+            android:drawablePadding="8dp"
+            android:elevation="3dp"
+            android:paddingHorizontal="12dp"
+            android:paddingVertical="16dp"
+            android:text="@string/questions_my_card"
+            app:drawableStartCompat="@drawable/ic_card" />
+
+    </LinearLayout>
+
+    <ScrollView
+        android:id="@+id/sv_bottom"
+        style="@style/scroll_no_effects"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="18dp"
+        android:background="@drawable/bg_top_box_border"
+        android:clipChildren="false"
+        android:clipToPadding="false"
+        android:elevation="6dp"
+        android:paddingHorizontal="16dp"
+        android:paddingTop="16dp"
+        android:paddingBottom="32dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="@id/gl_left"
+        app:layout_constraintRight_toRightOf="@id/gl_right"
+        app:layout_constraintTop_toBottomOf="@id/ll_main">
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:clipChildren="false"
-            android:clipToPadding="false">
+            android:clipToPadding="false"
+            android:orientation="vertical"
+            app:layout_constraintTop_toTopOf="parent">
 
-            <androidx.constraintlayout.widget.Guideline
-                android:id="@+id/gl_left"
+            <TextView
+                android:id="@+id/tv_mini_help"
+                style="@style/SmallTextView"
                 android:layout_width="wrap_content"
-                android:layout_height="0dp"
-                android:orientation="vertical"
-                app:layout_constraintGuide_percent="0.05" />
-
-            <androidx.constraintlayout.widget.Guideline
-                android:id="@+id/gl_right"
-                android:layout_width="wrap_content"
-                android:layout_height="0dp"
-                android:orientation="vertical"
-                app:layout_constraintGuide_percent="0.95" />
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginBottom="12dp"
+                android:text="@string/questions_mini_help"
+                android:textAllCaps="true" />
 
             <LinearLayout
-                android:id="@+id/ll_main"
-                android:layout_width="0dp"
+                android:id="@+id/ll_what_now"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:clipChildren="false"
-                android:clipToPadding="false"
+                android:layout_marginBottom="12dp"
+                android:animateLayoutChanges="true"
+                android:background="@drawable/click_effect_border"
                 android:orientation="vertical"
-                app:layout_constraintLeft_toLeftOf="@id/gl_left"
-                app:layout_constraintRight_toRightOf="@id/gl_right"
-                app:layout_constraintTop_toTopOf="parent">
+                android:padding="16dp">
 
                 <TextView
-                    android:id="@+id/tv_new_question"
                     style="@style/MediumTextView"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="12dp"
-                    android:background="@drawable/click_effect"
                     android:drawablePadding="8dp"
-                    android:elevation="3dp"
-                    android:paddingHorizontal="12dp"
-                    android:paddingVertical="16dp"
-                    android:text="@string/questions_do_question"
-                    app:drawableStartCompat="@drawable/ic_question" />
+                    android:text="@string/questions_what_now"
+                    app:drawableStartCompat="@drawable/ic_shrug" />
 
-                <TextView
-                    android:id="@+id/tv_all_questions"
-                    style="@style/MediumTextView"
-                    android:layout_width="match_parent"
+                <include
+                    android:id="@+id/details_what_now"
+                    layout="@layout/include_mini_help_what_now"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="12dp"
-                    android:background="@drawable/click_effect"
-                    android:drawablePadding="8dp"
-                    android:elevation="3dp"
-                    android:paddingHorizontal="12dp"
-                    android:paddingVertical="16dp"
-                    android:text="@string/questions_list_of"
-                    app:drawableStartCompat="@drawable/ic_list" />
-
-                <TextView
-                    android:id="@+id/tv_my_card"
-                    style="@style/MediumTextView"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="32dp"
-                    android:background="@drawable/click_effect"
-                    android:drawablePadding="8dp"
-                    android:elevation="3dp"
-                    android:paddingHorizontal="12dp"
-                    android:paddingVertical="16dp"
-                    android:text="@string/questions_my_card"
-                    app:drawableStartCompat="@drawable/ic_card" />
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="12dp"
-                    android:alpha="0.8">
-
-                    <FrameLayout
-                        android:id="@+id/fl_left"
-                        android:layout_width="28dp"
-                        android:layout_height="0.75dp"
-                        android:background="@color/black"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintLeft_toLeftOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                    <TextView
-                        android:id="@+id/tv_mini_help"
-                        style="@style/SmallTextView"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="12dp"
-                        android:text="@string/questions_mini_help"
-                        android:textAllCaps="true"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintLeft_toRightOf="@id/fl_left"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                    <FrameLayout
-                        android:layout_width="0dp"
-                        android:layout_height="0.75dp"
-                        android:layout_marginStart="12dp"
-                        android:background="@color/black"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintLeft_toRightOf="@id/tv_mini_help"
-                        app:layout_constraintRight_toRightOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/cv_what_now"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="12dp"
-                    app:cardCornerRadius="12dp"
-                    app:cardElevation="6dp"
-                    app:contentPadding="16dp">
-
-                    <LinearLayout
-                        android:id="@+id/ll_what_now"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:animateLayoutChanges="true"
-                        android:orientation="vertical">
-
-                        <TextView
-                            style="@style/MediumTextView"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:drawablePadding="8dp"
-                            android:text="@string/questions_what_now"
-                            app:drawableStartCompat="@drawable/ic_shrug" />
-
-                        <include
-                            android:id="@+id/details_what_now"
-                            layout="@layout/include_mini_help_what_now"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="12dp"
-                            android:visibility="gone"
-                            tools:visibility="gone" />
-
-                    </LinearLayout>
-
-                </androidx.cardview.widget.CardView>
-
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/cv_buttons"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="12dp"
-                    android:clipChildren="false"
-                    android:clipToPadding="false"
-                    app:cardCornerRadius="12dp"
-                    app:cardElevation="6dp"
-                    app:contentPadding="16dp">
-
-                    <LinearLayout
-                        android:id="@+id/ll_buttons"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:animateLayoutChanges="true"
-                        android:clipChildren="false"
-                        android:clipToPadding="false"
-                        android:orientation="vertical">
-
-                        <TextView
-                            style="@style/MediumTextView"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:drawablePadding="8dp"
-                            android:text="@string/questions_help_buttons"
-                            app:drawableStartCompat="@drawable/ic_button" />
-
-                        <include
-                            android:id="@+id/details_buttons"
-                            layout="@layout/include_mini_help_buttons"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="12dp"
-                            android:visibility="gone" />
-
-                    </LinearLayout>
-
-                </androidx.cardview.widget.CardView>
-
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/cv_when_ends"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:clipChildren="false"
-                    android:clipToPadding="false"
-                    app:cardCornerRadius="12dp"
-                    app:cardElevation="6dp"
-                    app:contentPadding="16dp">
-
-                    <LinearLayout
-                        android:id="@+id/ll_when_ends"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:animateLayoutChanges="true"
-                        android:clipChildren="false"
-                        android:clipToPadding="false"
-                        android:orientation="vertical">
-
-                        <TextView
-                            style="@style/MediumTextView"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:drawablePadding="8dp"
-                            android:text="@string/questions_when_ends"
-                            app:drawableStartCompat="@drawable/ic_finish" />
-
-                        <include
-                            android:id="@+id/details_when_ends"
-                            layout="@layout/include_mini_help_when_ends"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="12dp"
-                            android:visibility="gone" />
-
-                    </LinearLayout>
-
-                </androidx.cardview.widget.CardView>
+                    android:layout_marginTop="12dp" />
 
             </LinearLayout>
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cv_buttons"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
+                android:clipChildren="false"
+                android:clipToPadding="false"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="6dp"
+                app:contentPadding="16dp">
+
+                <LinearLayout
+                    android:id="@+id/ll_buttons"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:animateLayoutChanges="true"
+                    android:clipChildren="false"
+                    android:clipToPadding="false"
+                    android:orientation="vertical">
+
+                    <TextView
+                        style="@style/MediumTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:drawablePadding="8dp"
+                        android:text="@string/questions_help_buttons"
+                        app:drawableStartCompat="@drawable/ic_button" />
+
+                    <include
+                        android:id="@+id/details_buttons"
+                        layout="@layout/include_mini_help_buttons"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:visibility="gone" />
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cv_when_ends"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:clipChildren="false"
+                android:clipToPadding="false"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="6dp"
+                app:contentPadding="16dp">
+
+                <LinearLayout
+                    android:id="@+id/ll_when_ends"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:animateLayoutChanges="true"
+                    android:clipChildren="false"
+                    android:clipToPadding="false"
+                    android:orientation="vertical">
+
+                    <TextView
+                        style="@style/MediumTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:drawablePadding="8dp"
+                        android:text="@string/questions_when_ends"
+                        app:drawableStartCompat="@drawable/ic_finish" />
+
+                    <include
+                        android:id="@+id/details_when_ends"
+                        layout="@layout/include_mini_help_when_ends"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:visibility="gone" />
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+        </LinearLayout>
 
     </ScrollView>
 

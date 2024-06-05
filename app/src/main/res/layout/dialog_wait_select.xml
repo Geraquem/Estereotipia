@@ -7,18 +7,7 @@
     android:clipChildren="false"
     android:clipToPadding="false"
     android:orientation="vertical"
-    android:paddingHorizontal="42dp"
-    android:paddingTop="24dp"
-    android:paddingBottom="16dp">
-
-    <TextView
-        style="@style/MediumTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginBottom="8dp"
-        android:text="@string/select_card_loading_title"
-        android:textAllCaps="true" />
+    android:padding="24dp">
 
     <com.airbnb.lottie.LottieAnimationView
         android:layout_width="100dp"
@@ -31,4 +20,5 @@
         app:lottie_autoPlay="true"
         app:lottie_loop="true"
         app:lottie_rawRes="@raw/lottie_waiting" />
+
 </LinearLayout>

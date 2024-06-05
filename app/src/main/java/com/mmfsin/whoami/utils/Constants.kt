@@ -10,6 +10,7 @@ const val INSTRUCTIONS_DETAIL = "instructions_detail"
 
 const val ID = "id"
 const val DECK_ID = "deckId"
+const val IS_CUSTOM_DECK = "isCustom"
 /*************************************/
 
 const val VERSION = "version"

@@ -6,7 +6,7 @@ import com.mmfsin.whoami.domain.models.Deck
 import javax.inject.Inject
 
 class GetSystemDecksUseCase @Inject constructor(private val repository: IDeckRepository) :
-    BaseUseCaseNoParams<List<Deck>?>() {
+    BaseUseCaseNoParams<List<Deck>>() {
 
-    override suspend fun execute(): List<Deck>? = repository.getSystemDecks()
+    override suspend fun execute(): List<Deck> = repository.getSystemDecks()
 }

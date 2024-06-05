@@ -102,8 +102,7 @@
     <string name="my_decks_create_new">Crear nueva baraja</string>
     <string name="my_decks_create_new_accept">Aceptar</string>
     <string name="my_decks_create_new_create">Crear baraja</string>
-    <string name="my_decks_create_new_hint">Escribe aquí…</string>
-    <string name="my_decks_create_new_name">Nombre de la baraja</string>
+    <string name="my_decks_create_new_hint">Nombre de la baraja</string>
     <string name="my_decks_create_new_name_error">El nombre no puede estar vacío</string>
     <string name="my_decks_create_new_name_perfect">¡Baraja creada!</string>
 

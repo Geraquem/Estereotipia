@@ -1,6 +1,5 @@
 package com.mmfsin.whoami.presentation.customdecks.create.dialog
 
-import android.animation.Animator
 import android.app.Dialog
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -44,8 +43,6 @@ class DeckNameDialog(val cards: List<String>, private val listener: ICreateDeckC
     override fun setUI() {
         isCancelable = true
         binding.apply {
-            tvError.visibility = View.GONE
-            llFlowEnd.visibility = View.GONE
         }
     }
 
@@ -55,8 +52,10 @@ class DeckNameDialog(val cards: List<String>, private val listener: ICreateDeckC
                 val name = etName.text.toString()
                 if (name.isNotEmpty() && name.isNotBlank()) {
                     countDown(300) { viewModel.createDeck(name, cards) }
-
-                } else tvError.visibility = View.VISIBLE
+                } else {
+                    tilName.error = getString(R.string.my_decks_create_new_name_error)
+                    tilName.isErrorEnabled = true
+                }
             }
         }
     }
@@ -73,22 +72,7 @@ class DeckNameDialog(val cards: List<String>, private val listener: ICreateDeckC
     private fun endFlow() {
         binding.apply {
             llMain.visibility = View.INVISIBLE
-            llFlowEnd.visibility = View.VISIBLE
-            lottie.addAnimatorListener(object : Animator.AnimatorListener {
-                override fun onAnimationStart(animation: Animator?) {}
-                override fun onAnimationEnd(animation: Animator?) {
-                    listener.flowCompleted()
-                    dismiss()
-                }
-
-                override fun onAnimationCancel(animation: Animator?) {}
-                override fun onAnimationRepeat(animation: Animator?) {}
-            })
-
-            lottie.setAnimation(R.raw.lottie_ok)
-            lottie.playAnimation()
         }
-
     }
 
     private fun error() = activity?.showErrorDialog()

@@ -13,10 +13,7 @@ class DecksViewModel @Inject constructor(
     fun getDecks() {
         executeUseCase(
             { getSystemDecksUseCase.execute() },
-            { result ->
-                _event.value = result?.let { DecksEvent.GetDecks(result) }
-                    ?: run { DecksEvent.SomethingWentWrong }
-            },
+            { result -> _event.value = DecksEvent.GetDecks(result) },
             { _event.value = DecksEvent.SomethingWentWrong }
         )
     }

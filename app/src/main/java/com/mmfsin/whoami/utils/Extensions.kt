@@ -79,10 +79,13 @@ fun <T1 : Any, T2 : Any, R : Any> checkNotNulls(p1: T1?, p2: T2?, block: (T1, T2
     return if (p1 != null && p2 != null) block(p1, p2) else null
 }
 
-fun String.getCards(): List<String>{
+fun String.getCards(): List<String> {
     val cards = this.filter { !it.isWhitespace() }
     return cards.split(",")
 }
+
+fun List<String>.toCardList() =
+    this.toString().replace("[", "").replace("]", "")
 
 //fun FragmentActivity.shouldShowInterstitial(position: Int) =
 //    (this as MainActivity).showInterstitial(position)

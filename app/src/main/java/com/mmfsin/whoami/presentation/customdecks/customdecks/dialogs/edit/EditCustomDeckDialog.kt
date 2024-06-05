@@ -3,7 +3,6 @@ package com.mmfsin.whoami.presentation.customdecks.customdecks.dialogs.edit
 import android.app.Dialog
 import android.os.Bundle
 import android.view.LayoutInflater
-import android.view.View
 import androidx.fragment.app.viewModels
 import com.mmfsin.whoami.R
 import com.mmfsin.whoami.base.BaseDialog
@@ -47,8 +46,6 @@ class EditCustomDeckDialog(private val myDeckId: String, val listener: ICustomDe
         isCancelable = true
         binding.apply {
             tvTitle.text = getString(R.string.my_decks_dialog_edit_name)
-            llFlowEnd.visibility = View.GONE
-            tvError.visibility = View.GONE
             btnAccept.text = getString(R.string.my_decks_dialog_edit)
         }
     }
@@ -61,7 +58,10 @@ class EditCustomDeckDialog(private val myDeckId: String, val listener: ICustomDe
                     countDown(300) {
                         viewModel.editCustomDeckName(myDeckId, name)
                     }
-                } else tvError.visibility = View.VISIBLE
+                } else {
+                    tilName.error = getString(R.string.my_decks_create_new_name_error)
+                    tilName.isErrorEnabled = true
+                }
             }
         }
     }

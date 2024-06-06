@@ -2,7 +2,6 @@ package com.mmfsin.whoami.presentation.dashboard.questions.dialogs
 
 import android.app.Dialog
 import android.view.LayoutInflater
-import com.mmfsin.whoami.R
 import com.mmfsin.whoami.base.BaseDialog
 import com.mmfsin.whoami.databinding.DialogNewQuestionBinding
 import com.mmfsin.whoami.domain.models.Question
@@ -13,7 +12,7 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class NewQuestionDialog(
     private val listener: INewQuestionListener,
-    private val question: Question? = null
+    private val question: Question
 ) : BaseDialog<DialogNewQuestionBinding>() {
 
     private var firstAccess = true
@@ -33,7 +32,7 @@ class NewQuestionDialog(
     override fun setUI() {
         isCancelable = true
         binding.apply {
-            val text = question?.question ?: getString(R.string.new_question_empty)
+            val text = question.question
             tvQuestion.text = text
         }
     }
@@ -53,7 +52,7 @@ class NewQuestionDialog(
     companion object {
         fun newInstance(
             listener: INewQuestionListener,
-            question: Question? = null
+            question: Question
         ): NewQuestionDialog {
             return NewQuestionDialog(listener, question)
         }

@@ -93,9 +93,6 @@
     <string name="new_question_cards">Ver cartas</string>
     <string name="new_question_close">Cerrar</string>
 
-    <!-- QUESTIONS LIST DIALOG -->
-    <string name="questions_list_empty">Todavía no se ha hecho ninguna pregunta.</string>
-
     <!-- MY DECKS -->
     <string name="custom_decks_toolbar">Mis barajas</string>
     <string name="custom_decks_view">Ver mis barajas</string>

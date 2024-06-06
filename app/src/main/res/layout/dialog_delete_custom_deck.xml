@@ -26,7 +26,7 @@
             android:contentDescription="@string/content_description"
             android:gravity="center"
             android:paddingVertical="16dp"
-            android:text="@string/my_decks_dialog_delete"
+            android:text="@string/custom_decks_dialog_delete"
             android:textAllCaps="true"
             android:textStyle="bold" />
 
@@ -51,7 +51,7 @@
             android:layout_gravity="center"
             android:layout_marginBottom="24dp"
             android:gravity="center"
-            tools:text="@string/my_decks_dialog_delete_confirm" />
+            tools:text="@string/custom_decks_dialog_delete_confirm" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -71,7 +71,7 @@
                 android:elevation="6dp"
                 android:gravity="center"
                 android:padding="12dp"
-                android:text="@string/my_decks_dialog_delete_no"
+                android:text="@string/custom_decks_dialog_delete_no"
                 android:textAllCaps="true"
                 android:textSize="14sp" />
 
@@ -92,7 +92,7 @@
                 android:elevation="6dp"
                 android:gravity="center"
                 android:padding="12dp"
-                android:text="@string/my_decks_dialog_delete_yes"
+                android:text="@string/custom_decks_dialog_delete_yes"
                 android:textAllCaps="true"
                 android:textSize="14sp" />
 

@@ -13,7 +13,7 @@ class ErrorDialog(private val goBack: Boolean = true) : BaseDialog<DialogErrorBi
 
     override fun setListeners() {
         binding.btnAccept.setOnClickListener {
-            if (goBack) activity?.onBackPressed()
+            if (goBack) activity?.onBackPressedDispatcher?.onBackPressed()
             dismiss()
         }
     }

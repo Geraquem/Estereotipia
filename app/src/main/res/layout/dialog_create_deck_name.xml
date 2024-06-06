@@ -25,7 +25,7 @@
             android:contentDescription="@string/content_description"
             android:gravity="center"
             android:paddingVertical="16dp"
-            android:text="@string/my_decks_create_new_create"
+            android:text="@string/custom_decks_create_new_create"
             android:textAllCaps="true"
             android:textStyle="bold" />
 
@@ -48,7 +48,7 @@
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/my_decks_create_new_hint"
+            android:hint="@string/custom_decks_create_new_hint"
             app:boxStrokeColor="@color/blue"
             app:cursorColor="@color/blue"
             app:hintTextColor="@color/blue">
@@ -75,7 +75,7 @@
             android:backgroundTint="@color/grey"
             android:fontFamily="@font/mont_regular"
             android:gravity="center"
-            android:text="@string/my_decks_create_new_accept"
+            android:text="@string/custom_decks_create_new_accept"
             android:textAllCaps="true"
             android:textStyle="bold"
             app:backgroundTint="@null"

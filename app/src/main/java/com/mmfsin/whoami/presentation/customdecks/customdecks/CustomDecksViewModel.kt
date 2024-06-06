@@ -20,7 +20,7 @@ class CustomDecksViewModel @Inject constructor(
         )
     }
 
-    fun deleteMyDeck(id: String) {
+    fun deleteCustomDeck(id: String) {
         executeUseCase(
             { deleteCustomDeckUseCase.execute(DeleteCustomDeckUseCase.Params(id)) },
             { _event.value = CustomDecksEvent.FlowCompleted },

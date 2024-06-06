@@ -22,10 +22,10 @@
     <string name="menu_instructions">Instrucciones</string>
     <string name="menu_instructions_description">Con las barajas predefinidas.</string>
     <string name="menu_play">Jugar</string>
-    <string name="menu_my_decks">Barajas</string>
-    <string name="menu_my_decks_description">Crea tus propias barajas con las cartas que más te gusten y compártelas.</string>
-    <string name="menu_my_decks_mine">Mis barajas</string>
-    <string name="menu_my_decks_create">Crear baraja</string>
+    <string name="menu_decks">Barajas</string>
+    <string name="menu_custom_decks_description">Crea tus propias barajas con las cartas que más te gusten y compártelas.</string>
+    <string name="menu_custom_decks">Mis barajas</string>
+    <string name="menu_custom_decks_create">Crear baraja</string>
     <string name="menu_all_cards">Las cartas</string>
     <string name="menu_all_cards_description_one">Pulsa aquí para ver todas las cartas de personaje que contiene la aplicación.</string>
     <string name="menu_all_cards_description_two">Échales un vistazo para crear tus propias barajas de cartas.</string>
@@ -96,30 +96,30 @@
     <string name="questions_list_empty">Todavía no se ha hecho ninguna pregunta.</string>
 
     <!-- MY DECKS -->
-    <string name="my_decks_toolbar">Mis barajas</string>
-    <string name="my_decks_view">Ver mis barajas</string>
-    <string name="my_decks_empty">Todavía no has creado ninguna baraja</string>
+    <string name="custom_decks_toolbar">Mis barajas</string>
+    <string name="custom_decks_view">Ver mis barajas</string>
+    <string name="custom_decks_empty">Todavía no has creado ninguna baraja</string>
     <string name="custom_decks_total_cards">%s cartas seleccionadas</string>
-    <string name="my_decks_create_new_toolbar">Crear baraja</string>
-    <string name="my_decks_create_new">Crear nueva baraja</string>
-    <string name="my_decks_create_new_accept">Aceptar</string>
-    <string name="my_decks_create_new_create">Crear baraja</string>
-    <string name="my_decks_create_new_hint">Nombre de la baraja</string>
-    <string name="my_decks_create_new_name_error">El nombre no puede estar vacío</string>
-    <string name="my_decks_create_new_name_perfect">¡Baraja creada!</string>
+    <string name="custom_decks_create_new_toolbar">Crear baraja</string>
+    <string name="custom_decks_create_new">Crear nueva baraja</string>
+    <string name="custom_decks_create_new_accept">Aceptar</string>
+    <string name="custom_decks_create_new_create">Crear baraja</string>
+    <string name="custom_decks_create_new_hint">Nombre de la baraja</string>
+    <string name="custom_decks_create_new_name_error">El nombre no puede estar vacío</string>
+    <string name="custom_decks_create_new_name_perfect">¡Baraja creada!</string>
 
-    <string name="my_decks_dialog_play">Jugar con esta baraja</string>
+    <string name="custom_decks_dialog_play">Jugar con esta baraja</string>
 
-    <string name="my_decks_dialog_edit_name">Cambiar nombre</string>
-    <string name="my_decks_dialog_edit_cards">Editar cartas</string>
-    <string name="my_decks_dialog_edit">Editar</string>
+    <string name="custom_decks_dialog_edit_name">Cambiar nombre</string>
+    <string name="custom_decks_dialog_edit_cards">Editar cartas</string>
+    <string name="custom_decks_dialog_edit">Editar</string>
 
-    <string name="my_decks_dialog_share">Compartir</string>
+    <string name="custom_decks_dialog_share">Compartir</string>
 
-    <string name="my_decks_dialog_delete">Eliminar baraja</string>
-    <string name="my_decks_dialog_delete_confirm">¿Quieres eliminar %s definitivamente?</string>
-    <string name="my_decks_dialog_delete_yes">Eliminar</string>
-    <string name="my_decks_dialog_delete_no">Volver</string>
+    <string name="custom_decks_dialog_delete">Eliminar baraja</string>
+    <string name="custom_decks_dialog_delete_confirm">¿Quieres eliminar %s definitivamente?</string>
+    <string name="custom_decks_dialog_delete_yes">Eliminar</string>
+    <string name="custom_decks_dialog_delete_no">Volver</string>
 
     <!-- INSTRUCTIONS -->
     <string name="instructions_close">Cerrar</string>

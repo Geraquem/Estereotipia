@@ -16,7 +16,7 @@ import com.mmfsin.whoami.utils.showErrorDialog
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class EditCustomDeckDialog(private val myDeckId: String, val listener: ICustomDeckListener) :
+class EditCustomDeckDialog(private val customDeckId: String, val listener: ICustomDeckListener) :
     BaseDialog<DialogCreateDeckNameBinding>() {
 
     private val viewModel: CustomDeckViewModel by viewModels()
@@ -39,14 +39,14 @@ class EditCustomDeckDialog(private val myDeckId: String, val listener: ICustomDe
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         observe()
-        viewModel.getCustomDeck(myDeckId)
+        viewModel.getCustomDeck(customDeckId)
     }
 
     override fun setUI() {
         isCancelable = true
         binding.apply {
-            tvTitle.text = getString(R.string.my_decks_dialog_edit_name)
-            btnAccept.text = getString(R.string.my_decks_dialog_edit)
+            tvTitle.text = getString(R.string.custom_decks_dialog_edit_name)
+            btnAccept.text = getString(R.string.custom_decks_dialog_edit)
         }
     }
 
@@ -55,9 +55,9 @@ class EditCustomDeckDialog(private val myDeckId: String, val listener: ICustomDe
             btnAccept.setOnClickListener {
                 val name = etName.text.toString()
                 if (name.isNotEmpty() && name.isNotBlank()) {
-                    countDown(300) { viewModel.editCustomDeckName(myDeckId, name) }
+                    countDown(300) { viewModel.editCustomDeckName(customDeckId, name) }
                 } else {
-                    tilName.error = getString(R.string.my_decks_create_new_name_error)
+                    tilName.error = getString(R.string.custom_decks_create_new_name_error)
                     tilName.isErrorEnabled = true
                 }
             }
@@ -87,8 +87,8 @@ class EditCustomDeckDialog(private val myDeckId: String, val listener: ICustomDe
     private fun error() = activity?.showErrorDialog(goBack = false)
 
     companion object {
-        fun newInstance(myDeckId: String, listener: ICustomDeckListener): EditCustomDeckDialog {
-            return EditCustomDeckDialog(myDeckId, listener)
+        fun newInstance(customDeckId: String, listener: ICustomDeckListener): EditCustomDeckDialog {
+            return EditCustomDeckDialog(customDeckId, listener)
         }
     }
 }

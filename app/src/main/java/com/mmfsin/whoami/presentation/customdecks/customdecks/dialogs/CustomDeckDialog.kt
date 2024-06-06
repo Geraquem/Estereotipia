@@ -12,7 +12,7 @@ import com.mmfsin.whoami.utils.showErrorDialog
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class CustomDeckDialog(private val myDeckId: String, val listener: ICustomDeckListener) :
+class CustomDeckDialog(private val customDeckId: String, val listener: ICustomDeckListener) :
     BaseDialog<DialogCustomDeckBinding>() {
 
     private val viewModel: CustomDeckViewModel by viewModels()
@@ -21,7 +21,7 @@ class CustomDeckDialog(private val myDeckId: String, val listener: ICustomDeckLi
 
     override fun inflateView(inflater: LayoutInflater) = DialogCustomDeckBinding.inflate(inflater)
 
-    override fun setCustomViewDialog(dialog: Dialog) = centerViewDialog(dialog)
+    override fun setCustomViewDialog(dialog: Dialog) = bottomViewDialog(dialog)
 
     override fun onResume() {
         super.onResume()
@@ -34,7 +34,7 @@ class CustomDeckDialog(private val myDeckId: String, val listener: ICustomDeckLi
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         observe()
-        viewModel.getCustomDeck(myDeckId)
+        viewModel.getCustomDeck(customDeckId)
     }
 
     override fun setUI() {
@@ -43,11 +43,11 @@ class CustomDeckDialog(private val myDeckId: String, val listener: ICustomDeckLi
 
     override fun setListeners() {
         binding.apply {
-            tvPlay.setOnClickListener { actionAndDismiss { listener.playWithCustomDeck(myDeckId) } }
-            tvEditName.setOnClickListener { actionAndDismiss { listener.editName(myDeckId) } }
+            tvPlay.setOnClickListener { actionAndDismiss { listener.playWithCustomDeck(customDeckId) } }
+            tvEditName.setOnClickListener { actionAndDismiss { listener.editName(customDeckId) } }
             tvEditCards.setOnClickListener { }
             tvShare.setOnClickListener { }
-            tvDelete.setOnClickListener { actionAndDismiss { listener.confirmDeleteMyDeck(myDeckId) } }
+            tvDelete.setOnClickListener { actionAndDismiss { listener.confirmDeleteCustomDeck(customDeckId) } }
         }
     }
 
@@ -69,8 +69,8 @@ class CustomDeckDialog(private val myDeckId: String, val listener: ICustomDeckLi
     private fun error() = activity?.showErrorDialog(goBack = false)
 
     companion object {
-        fun newInstance(myDeckId: String, listener: ICustomDeckListener): CustomDeckDialog {
-            return CustomDeckDialog(myDeckId, listener)
+        fun newInstance(customDeckId: String, listener: ICustomDeckListener): CustomDeckDialog {
+            return CustomDeckDialog(customDeckId, listener)
         }
     }
 }

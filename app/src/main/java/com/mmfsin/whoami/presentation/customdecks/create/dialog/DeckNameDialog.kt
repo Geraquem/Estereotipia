@@ -3,7 +3,6 @@ package com.mmfsin.whoami.presentation.customdecks.create.dialog
 import android.app.Dialog
 import android.os.Bundle
 import android.view.LayoutInflater
-import android.view.View
 import androidx.fragment.app.viewModels
 import com.mmfsin.whoami.R
 import com.mmfsin.whoami.base.BaseDialog
@@ -53,7 +52,7 @@ class DeckNameDialog(val cards: List<String>, private val listener: ICreateDeckC
                 if (name.isNotEmpty() && name.isNotBlank()) {
                     countDown(300) { viewModel.createDeck(name, cards) }
                 } else {
-                    tilName.error = getString(R.string.my_decks_create_new_name_error)
+                    tilName.error = getString(R.string.custom_decks_create_new_name_error)
                     tilName.isErrorEnabled = true
                 }
             }

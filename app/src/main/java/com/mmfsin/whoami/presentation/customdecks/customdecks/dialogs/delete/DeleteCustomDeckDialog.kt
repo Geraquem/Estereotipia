@@ -15,7 +15,7 @@ import com.mmfsin.whoami.utils.showErrorDialog
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class DeleteCustomDeckDialog(private val myDeckId: String, val listener: ICustomDeckListener) :
+class DeleteCustomDeckDialog(private val customDeckId: String, val listener: ICustomDeckListener) :
     BaseDialog<DialogDeleteCustomDeckBinding>() {
 
     private val viewModel: CustomDeckViewModel by viewModels()
@@ -38,7 +38,7 @@ class DeleteCustomDeckDialog(private val myDeckId: String, val listener: ICustom
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         observe()
-        viewModel.getCustomDeck(myDeckId)
+        viewModel.getCustomDeck(customDeckId)
     }
 
     override fun setUI() {
@@ -50,7 +50,7 @@ class DeleteCustomDeckDialog(private val myDeckId: String, val listener: ICustom
         binding.apply {
             btnNo.setOnClickListener { dismiss() }
             btnYes.setOnClickListener {
-                listener.deleteMyDeck(myDeckId)
+                listener.deleteCustomDeck(customDeckId)
                 dismiss()
             }
         }
@@ -60,7 +60,7 @@ class DeleteCustomDeckDialog(private val myDeckId: String, val listener: ICustom
         viewModel.event.observe(this) { event ->
             when (event) {
                 is CustomDeckEvent.GetDeck -> binding.tvText.text =
-                    getString(R.string.my_decks_dialog_delete_confirm, event.deck.name)
+                    getString(R.string.custom_decks_dialog_delete_confirm, event.deck.name)
 
                 is CustomDeckEvent.EditedCompleted -> {}
                 is CustomDeckEvent.SomethingWentWrong -> error()
@@ -71,8 +71,8 @@ class DeleteCustomDeckDialog(private val myDeckId: String, val listener: ICustom
     private fun error() = activity?.showErrorDialog(goBack = false)
 
     companion object {
-        fun newInstance(myDeckId: String, listener: ICustomDeckListener): DeleteCustomDeckDialog {
-            return DeleteCustomDeckDialog(myDeckId, listener)
+        fun newInstance(customDeckId: String, listener: ICustomDeckListener): DeleteCustomDeckDialog {
+            return DeleteCustomDeckDialog(customDeckId, listener)
         }
     }
 }

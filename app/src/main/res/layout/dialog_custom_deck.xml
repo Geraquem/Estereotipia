@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/bg_white_box"
+    android:background="@drawable/bg_top_box"
     android:clipChildren="false"
     android:clipToPadding="false">
 
@@ -54,7 +54,7 @@
             android:drawablePadding="8dp"
             android:paddingHorizontal="12dp"
             android:paddingVertical="16dp"
-            android:text="@string/my_decks_dialog_play"
+            android:text="@string/custom_decks_dialog_play"
             android:textAllCaps="true"
             android:textSize="20sp"
             app:drawableStartCompat="@drawable/ic_play" />
@@ -68,7 +68,7 @@
             android:background="@drawable/click_effect_border"
             android:drawablePadding="8dp"
             android:padding="12dp"
-            android:text="@string/my_decks_dialog_edit_name"
+            android:text="@string/custom_decks_dialog_edit_name"
             android:textAllCaps="true"
             android:textSize="20sp"
             app:drawableStartCompat="@drawable/ic_pencil" />
@@ -82,7 +82,7 @@
             android:background="@drawable/click_effect_border"
             android:drawablePadding="8dp"
             android:padding="12dp"
-            android:text="@string/my_decks_dialog_edit_cards"
+            android:text="@string/custom_decks_dialog_edit_cards"
             android:textAllCaps="true"
             android:textSize="20sp"
             app:drawableStartCompat="@drawable/ic_card" />
@@ -96,7 +96,7 @@
             android:background="@drawable/click_effect_border_blue"
             android:drawablePadding="8dp"
             android:padding="12dp"
-            android:text="@string/my_decks_dialog_share"
+            android:text="@string/custom_decks_dialog_share"
             android:textAllCaps="true"
             android:textColor="@color/blue"
             android:textSize="20sp"
@@ -111,7 +111,7 @@
             android:background="@drawable/click_effect_border_red"
             android:drawablePadding="8dp"
             android:padding="12dp"
-            android:text="@string/my_decks_dialog_delete"
+            android:text="@string/custom_decks_dialog_delete"
             android:textAllCaps="true"
             android:textColor="@color/red"
             android:textSize="20sp"

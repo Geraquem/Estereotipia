@@ -52,7 +52,7 @@ class CreateDeckFragment : BaseFragment<FragmentCreateDeckBinding, CreateDeckVie
     }
 
     private fun setToolbar() {
-        (activity as BedRockActivity).setUpToolbar(getString(R.string.my_decks_create_new_toolbar))
+        (activity as BedRockActivity).setUpToolbar(getString(R.string.custom_decks_create_new_toolbar))
     }
 
     override fun setListeners() {

@@ -55,7 +55,7 @@ class CustomDecksFragment : BaseFragment<FragmentCustomDecksBinding, CustomDecks
     override fun setUI() {
         binding.apply {
             tvEmpty.visibility = View.GONE
-            (activity as BedRockActivity).setUpToolbar(getString(R.string.my_decks_toolbar))
+            (activity as BedRockActivity).setUpToolbar(getString(R.string.custom_decks_toolbar))
         }
     }
 
@@ -79,12 +79,12 @@ class CustomDecksFragment : BaseFragment<FragmentCustomDecksBinding, CustomDecks
 
     private fun setUpDecks(decks: List<Deck>) {
         binding.apply {
-            rvMyDecks.apply {
+            rvCustomDecks.apply {
                 layoutManager = LinearLayoutManager(mContext)
                 adapter = CustomDecksAdapter(decks, this@CustomDecksFragment)
             }
             tvEmpty.isVisible = decks.isEmpty()
-            rvMyDecks.isVisible = decks.isNotEmpty()
+            rvCustomDecks.isVisible = decks.isNotEmpty()
         }
     }
 
@@ -105,7 +105,7 @@ class CustomDecksFragment : BaseFragment<FragmentCustomDecksBinding, CustomDecks
 
     override fun editCompleted() = viewModel.getCustomDecks()
 
-    override fun confirmDeleteMyDeck(id: String) {
+    override fun confirmDeleteCustomDeck(id: String) {
         activity?.showFragmentDialog(
             DeleteCustomDeckDialog.newInstance(
                 id,
@@ -114,7 +114,7 @@ class CustomDecksFragment : BaseFragment<FragmentCustomDecksBinding, CustomDecks
         )
     }
 
-    override fun deleteMyDeck(id: String) = viewModel.deleteMyDeck(id)
+    override fun deleteCustomDeck(id: String) = viewModel.deleteCustomDeck(id)
 
     private fun error() = activity?.showErrorDialog()
 

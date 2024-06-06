@@ -44,7 +44,7 @@ class DetailInstFragment(private val instruction: Instruction) :
 
     override fun setListeners() {
         binding.apply {
-            ivBack.setOnClickListener { activity?.onBackPressed() }
+            ivBack.setOnClickListener { activity?.onBackPressedDispatcher?.onBackPressed() }
         }
     }
 

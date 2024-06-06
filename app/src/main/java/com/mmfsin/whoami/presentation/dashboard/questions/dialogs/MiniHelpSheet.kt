@@ -70,6 +70,14 @@ class MiniHelpSheet : BottomSheetDialogFragment() {
                 detailsWhatNow.root.isVisible = !detailsWhatNow.root.isVisible
             }
 
+            llWeirdQuestions.setOnClickListener {
+                detailsWeirdQuestions.root.isVisible = !detailsWeirdQuestions.root.isVisible
+            }
+
+            llHowStart.setOnClickListener {
+                detailsHowStart.root.isVisible = !detailsHowStart.root.isVisible
+            }
+
             llButtons.setOnClickListener {
                 detailsButtons.root.isVisible = !detailsButtons.root.isVisible
             }

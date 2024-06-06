@@ -72,8 +72,9 @@
 
     <string name="questions_mini_help_btn">¿Necesitas ayuda?</string>
     <string name="questions_mini_help">Una ayudita</string>
+
     <string name="questions_what_now">¿Qué tengo que hacer?</string>
-    <string name="questions_what_now_1">Tienes que <b>adivinar</b> la carta de tu rival antes de que tu rival adivine la tuya primero.</string>
+    <string name="questions_what_now_1">Tienes que <b>adivinar</b> la carta de tu rival antes de que tu rival adivine la tuya.</string>
     <string name="questions_what_now_2">Para saber cuál es la carta de tu rival tienes que hacerle <b>preguntas</b>.</string>
     <string name="questions_what_now_3"><b>¿De dónde saco las preguntas?</b></string>
     <string name="questions_what_now_4">Del botón <i>"Nueva pregunta"</i>.</string>
@@ -81,9 +82,20 @@
     <string name="questions_what_now_6">Podrás hacer hasta <b>10 preguntas</b> por partida y tendrás <b>2 oportunidades</b> para acertar la carta de tu rival</string>
     <string name="questions_what_now_7">Para marcar tu decision sobre qué personaje es el de tu rival, selecciona la carta correspondiente y pulsa el icono</string>
     <string name="questions_what_now_8"><b>¿Necesitas más ayuda?</b> Pulsa</string>
+
     <string name="questions_help_buttons">¿Qué significan los botones?</string>
     <string name="questions_help_buttons_1">La cruz sirve para descartar un personaje que creas que no se corresponde con las respuestas que te está dando tu rival.\nDescartar un personaje no es definitivo, puede volver a entrar en juego y ser descartado de nuevo tantas veces como quieras.</string>
     <string name="questions_help_buttons_2">Cuando tengas claro cuál es personaje de tu rival pulsa este botón.\nEl numerito indica las oportunidades que te quedan para acertar.</string>
+
+    <string name="questions_how_start">¿Cómo se empieza?</string>
+    <string name="questions_how_start_1">Echad a suertes quién empieza a hacer las preguntas.</string>
+    <string name="questions_how_start_2">Por turnos, tendréis que ir haciéndoos preguntas pulsando el botón <i>Nueva pregunta</i> y tratar de adivinar la carta del rival a través de las contestaciones que te de.</string>
+
+    <string name="questions_weird_questions">No entiendo las preguntas</string>
+    <string name="questions_weird_questions_1">Las preguntas están hechas para que sean completamente subjetivas y la respuesta dependa de cada persona.</string>
+    <string name="questions_weird_questions_2"><b>No existe una respuesta correcta</b>, simplemente tienes que contestar lo que tú creas, depende únicamente de ti.</string>
+    <string name="questions_weird_questions_3">Puede que tengas otra idea distinta y pienses diferente al resto, pero de eso trata esto, de <b>adivinar cómo interpreta las cartas tu rival</b>.</string>
+
     <string name="questions_when_ends">¿Cuándo acaba la partida?</string>
     <string name="questions_when_ends_1">La partida acaba cuando ambos equipos han acabado con sus oportunidades para acertar o han acertado el personaje de su rival.</string>
     <string name="questions_when_ends_2">El primer equipo en adivinar el personaje del equipo rival <b>gana</b>.</string>

@@ -72,7 +72,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="12dp"
                 android:animateLayoutChanges="true"
-                android:background="@drawable/click_effect_border"
+                android:background="@drawable/bg_white_box_border"
                 android:orientation="vertical"
                 android:padding="16dp">
 
@@ -100,7 +100,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="12dp"
                 android:animateLayoutChanges="true"
-                android:background="@drawable/click_effect_border"
+                android:background="@drawable/bg_white_box_border"
                 android:clipChildren="false"
                 android:clipToPadding="false"
                 android:orientation="vertical"
@@ -125,11 +125,71 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/ll_weird_questions"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
+                android:animateLayoutChanges="true"
+                android:background="@drawable/bg_white_box_border"
+                android:clipChildren="false"
+                android:clipToPadding="false"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <TextView
+                    style="@style/MediumTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawablePadding="8dp"
+                    android:text="@string/questions_weird_questions"
+                    app:drawableStartCompat="@drawable/ic_error" />
+
+                <include
+                    android:id="@+id/details_weird_questions"
+                    layout="@layout/include_mini_help_weird_questions"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:visibility="gone" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_how_start"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
+                android:animateLayoutChanges="true"
+                android:background="@drawable/bg_white_box_border"
+                android:clipChildren="false"
+                android:clipToPadding="false"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <TextView
+                    style="@style/MediumTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawablePadding="8dp"
+                    android:text="@string/questions_how_start"
+                    app:drawableStartCompat="@drawable/ic_error" />
+
+                <include
+                    android:id="@+id/details_how_start"
+                    layout="@layout/include_mini_help_how_start"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:visibility="gone" />
+
+            </LinearLayout>
+
+            <LinearLayout
                 android:id="@+id/ll_when_ends"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:animateLayoutChanges="true"
-                android:background="@drawable/click_effect_border"
+                android:background="@drawable/bg_white_box_border"
                 android:clipChildren="false"
                 android:clipToPadding="false"
                 android:orientation="vertical"

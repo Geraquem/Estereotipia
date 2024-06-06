@@ -64,10 +64,11 @@
     <string name="choice_dialog_looser_opportunities">Todavía tienes otra oportunidad</string>
     <string name="choice_dialog_looser_zero_opportunities">Has acabado con todas tus oportunidades</string>
 
-    <!-- QUESTIONS DIALOG -->
+    <!-- QUESTIONS -->
     <string name="questions_do_question">Nueva pregunta</string>
     <string name="questions_list_of">Todas las preguntas</string>
     <string name="questions_my_card">¿Cuál era mi carta?</string>
+    <string name="questions_position">%s.</string>
 
     <string name="questions_mini_help">Una ayudita</string>
     <string name="questions_what_now">¿Qué tengo que hacer?</string>
@@ -89,7 +90,7 @@
     <!-- NEW QUESTION DIALOG -->
     <string name="new_question_empty">Se acabaron las preguntas</string>
     <string name="new_question_cards">Ver cartas</string>
-    <string name="new_question_all_questions">Todas las preguntas</string>
+    <string name="new_question_close">Cerrar</string>
 
     <!-- QUESTIONS LIST DIALOG -->
     <string name="questions_list_empty">Todavía no se ha hecho ninguna pregunta.</string>
@@ -137,7 +138,7 @@
     <string name="instructions_how_to_play_details">*************************************************</string>
 
     <string name="instructions_my_card">¿Qué carta me ha tocado?</string>
-    <string name="instructions_my_card_details">Tu carta de personaje se elegirá automáticamente al inicio de cada partida.\n\nLamentablemente no se puede cambiar.\n\nSi quieres <b>recordar</b> cuál era tu personaje solo tienes que ir a la pestaña <i>Preguntas</i> y pulsar sobre el botón <i>¿Cuál era mi personaje?</i></string>
+    <string name="instructions_my_card_details">Tu carta de personaje se elegirá automáticamente al inicio de cada partida.\n\nLamentablemente no se puede cambiar.\n\nSi quieres <b>recordar</b> cuál era tu personaje solo tienes que ir a la pestaña <i>Preguntas</i> y pulsar sobre el botón <i>¿Cuál era mi carta?</i></string>
 
     <string name="instructions_how_many_questions">¿Cuántas preguntas se pueden hacer?</string>
     <string name="instructions_how_many_questions_details">Por partida puedes hacer hasta <b>10 preguntas diferentes.</b>\n\nTodas las preguntas son de carácter subjetivo, nunca irán referidas al físico de los personajes de las cartas.</string>

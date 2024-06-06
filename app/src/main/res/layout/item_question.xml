@@ -1,18 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:paddingHorizontal="24dp"
-    android:paddingBottom="16dp">
+    android:layout_marginBottom="8dp">
+
+    <TextView
+        android:id="@+id/tv_number"
+        style="@style/MediumTextView_Bold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="6dp"
+        tools:text="1." />
 
     <TextView
         android:id="@+id/tv_question"
         style="@style/MediumTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/instructions_whats_about"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        tools:text="¿Baila bien?" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>

@@ -24,12 +24,9 @@ class NewQuestionDialog(
 
     override fun onResume() {
         super.onResume()
-        if(firstAccess){
-            firstAccess = false
-                   if(firstAccess){
+        if (firstAccess) {
             firstAccess = false
             requireDialog().animateDialog()
-        }
         }
     }
 
@@ -44,10 +41,8 @@ class NewQuestionDialog(
 
     override fun setListeners() {
         binding.apply {
-            tvAllQuestions.setOnClickListener {
-                listener.goToAllQuestions()
-                dismiss()
-            }
+            tvClose.setOnClickListener { dismiss() }
+
             tvCards.setOnClickListener {
                 listener.viewCards()
                 dismiss()

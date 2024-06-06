@@ -1,5 +1,6 @@
 package com.mmfsin.whoami.presentation.dashboard.questions.dialogs.adapter
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,10 +15,11 @@ class QuestionsListAdapter(
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val binding = ItemQuestionBinding.bind(view)
+        val c: Context = binding.root.context
         fun bind(question: Question, position: Int) {
             binding.apply {
-                val text = (position + 1).toString() + ". " + question.question
-                tvQuestion.text = text
+                tvNumber.text = c.getString(R.string.questions_position, position.toString())
+                tvQuestion.text = question.question
             }
         }
     }
@@ -29,7 +31,7 @@ class QuestionsListAdapter(
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bind(questions[position], position)
+        holder.bind(questions[position], position + 1)
     }
 
     override fun getItemCount(): Int = questions.size

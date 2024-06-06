@@ -36,6 +36,20 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
+            android:id="@+id/tv_my_card"
+            style="@style/MediumTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
+            android:background="@drawable/click_effect"
+            android:drawablePadding="8dp"
+            android:elevation="3dp"
+            android:paddingHorizontal="12dp"
+            android:paddingVertical="16dp"
+            android:text="@string/questions_my_card"
+            app:drawableStartCompat="@drawable/ic_card" />
+
+        <TextView
             android:id="@+id/tv_new_question"
             style="@style/MediumTextView"
             android:layout_width="match_parent"
@@ -49,34 +63,45 @@
             android:text="@string/questions_do_question"
             app:drawableStartCompat="@drawable/ic_question" />
 
-        <TextView
-            android:id="@+id/tv_all_questions"
-            style="@style/MediumTextView"
+        <LinearLayout
+            android:id="@+id/ll_questions"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="12dp"
-            android:background="@drawable/click_effect"
+            android:background="@drawable/bg_white_box"
             android:drawablePadding="8dp"
-            android:elevation="3dp"
-            android:paddingHorizontal="12dp"
-            android:paddingVertical="16dp"
+            android:orientation="vertical"
+            android:paddingHorizontal="16dp"
+            android:paddingTop="16dp"
+            android:paddingBottom="8dp"
             android:text="@string/questions_list_of"
-            app:drawableStartCompat="@drawable/ic_list" />
+            tools:listitem="">
 
-        <TextView
-            android:id="@+id/tv_my_card"
-            style="@style/MediumTextView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/click_effect"
-            android:drawablePadding="8dp"
-            android:elevation="3dp"
-            android:paddingHorizontal="12dp"
-            android:paddingVertical="16dp"
-            android:text="@string/questions_my_card"
-            app:drawableStartCompat="@drawable/ic_card" />
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_all_questions"
+                style="@style/scroll_no_effects"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:itemCount="5"
+                tools:listitem="@layout/item_question" />
+
+        </LinearLayout>
 
     </LinearLayout>
+
+    <TextView
+        android:id="@+id/tv_mini_help"
+        style="@style/MediumTextView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp"
+        android:background="@drawable/click_effect"
+        android:elevation="3dp"
+        android:paddingHorizontal="12dp"
+        android:paddingVertical="16dp"
+        android:text="¿Necesitas ayuda?"
+        android:textAllCaps="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toRightOf="@id/gl_right" />
 
     <include
         android:id="@+id/loading"

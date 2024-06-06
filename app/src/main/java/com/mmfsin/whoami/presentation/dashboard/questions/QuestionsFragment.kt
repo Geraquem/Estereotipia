@@ -5,16 +5,21 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.mmfsin.whoami.base.BaseFragment
 import com.mmfsin.whoami.base.bedrock.BedRockActivity
 import com.mmfsin.whoami.databinding.FragmentQuestionsBinding
 import com.mmfsin.whoami.domain.models.Question
 import com.mmfsin.whoami.presentation.dashboard.cards.dialogs.selected.SelectedCardDialog
-import com.mmfsin.whoami.presentation.dashboard.questions.minihelp.MiniHelpSheet
-import com.mmfsin.whoami.presentation.dashboard.questions.dialogs.QuestionsListSheet
+import com.mmfsin.whoami.presentation.dashboard.questions.dialogs.MiniHelpSheet
+import com.mmfsin.whoami.presentation.dashboard.questions.dialogs.NewQuestionDialog
+import com.mmfsin.whoami.presentation.dashboard.questions.dialogs.adapter.QuestionsListAdapter
 import com.mmfsin.whoami.presentation.dashboard.questions.dialogs.interfaces.INewQuestionListener
 import com.mmfsin.whoami.presentation.dashboard.viepager.interfaces.IViewPagerListener
+import com.mmfsin.whoami.utils.NUM_OF_QUESTIONS
+import com.mmfsin.whoami.utils.countDown
 import com.mmfsin.whoami.utils.showErrorDialog
 import com.mmfsin.whoami.utils.showFragmentDialog
 import dagger.hilt.android.AndroidEntryPoint
@@ -27,9 +32,11 @@ class QuestionsFragment(
 
     override val viewModel: QuestionsViewModel by viewModels()
 
-    private var questions: List<Question>? = null
-    private val questionsDone = ArrayList<Question>()
+    private var totalQuestions: List<Question>? = null
+    private val questionsDone = mutableListOf<Question>()
     private var cont = 0
+
+    private var questionsAdapter: QuestionsListAdapter? = null
 
     private lateinit var mContext: Context
 
@@ -50,53 +57,53 @@ class QuestionsFragment(
     override fun setUI() {
         binding.apply {
             loading.root.visibility = View.VISIBLE
-
-            tvNewQuestion.setOnClickListener { activity?.showFragmentDialog(MiniHelpSheet()) }
+            llQuestions.isVisible = false
         }
     }
 
     private fun checkIfGameFinished() {
         binding.apply {
-            if ((activity as BedRockActivity).isGameFinished) {
-                tvNewQuestion.isEnabled = false
-                tvNewQuestion.alpha = 0.75f
-            } else {
+            if ((activity as BedRockActivity).isGameFinished) disableMoreQuestions()
+            else {
                 tvNewQuestion.isEnabled = true
                 tvNewQuestion.alpha = 1f
             }
         }
     }
 
+    private fun disableMoreQuestions() {
+        (activity as BedRockActivity).isGameFinished = true
+        binding.apply {
+            tvNewQuestion.isEnabled = false
+            tvNewQuestion.alpha = 0.4f
+            tvNewQuestion.elevation = 0f
+        }
+    }
+
     override fun setListeners() {
         binding.apply {
-
-
-//            tvNewQuestion.setOnClickListener {
-//                questions?.let { list ->
-//                    if (list.isNotEmpty()) {
-//                        if (cont < NUM_OF_QUESTIONS) {
-//                            val question = list[cont]
-//                            questionsDone.add(question)
-//                            activity?.showFragmentDialog(
-//                                NewQuestionDialog.newInstance(this@QuestionsFragment, question)
-//                            )
-//                            cont++
-//                        } else activity?.showFragmentDialog(NewQuestionDialog.newInstance(this@QuestionsFragment))
-//                    } else viewModel.getQuestions()
-//                }
-//            }
-
-//            tvAllQuestions.setOnClickListener { showAllQuestions() }
+            tvNewQuestion.setOnClickListener {
+                totalQuestions?.let { list ->
+                    if (list.isNotEmpty()) {
+                        if (cont < NUM_OF_QUESTIONS) {
+                            val question = list[cont]
+                            questionsDone.add(question)
+                            activity?.showFragmentDialog(
+                                NewQuestionDialog.newInstance(this@QuestionsFragment, question)
+                            )
+                            cont++
+                            countDown(500) { setUpQuestionList() }
+                            if (cont >= NUM_OF_QUESTIONS) disableMoreQuestions()
+                        }
+                    } else viewModel.getQuestions()
+                }
+            }
 
             tvMyCard.setOnClickListener {
                 activity?.showFragmentDialog(SelectedCardDialog.newInstance(selectedCardId))
             }
 
-
-//            llWhatNow.setOnClickListener {  }
-//            cvWhatNow.setOnClickListener { setExpandableView(detailsWhatNow.linear, llWhatNow) }
-//            cvButtons.setOnClickListener { setExpandableView(detailsButtons.linear, llButtons) }
-//            cvWhenEnds.setOnClickListener { setExpandableView(detailsWhenEnds.linear, llWhenEnds) }
+            tvMiniHelp.setOnClickListener { activity?.showFragmentDialog(MiniHelpSheet()) }
         }
     }
 
@@ -104,8 +111,8 @@ class QuestionsFragment(
         viewModel.event.observe(this) { event ->
             when (event) {
                 is QuestionsEvent.GetQuestions -> {
-                    questions = event.questions
-                    finishFlow()
+                    totalQuestions = event.questions
+                    binding.loading.root.visibility = View.GONE
                 }
 
                 is QuestionsEvent.SomethingWentWrong -> error()
@@ -113,24 +120,22 @@ class QuestionsFragment(
         }
     }
 
-    private fun showAllQuestions() =
-        activity?.showFragmentDialog(QuestionsListSheet(questionsDone.toList()))
-
-    override fun goToAllQuestions() {
-        showAllQuestions()
+    private fun setUpQuestionList() {
+        binding.apply {
+            llQuestions.isVisible = true
+            if (questionsAdapter == null) {
+                rvAllQuestions.apply {
+                    layoutManager = LinearLayoutManager(activity?.applicationContext)
+                    questionsAdapter = QuestionsListAdapter(questionsDone)
+                    adapter = questionsAdapter
+                }
+            } else {
+                questionsAdapter?.notifyItemInserted(questionsDone.size - 1)
+            }
+        }
     }
 
     override fun viewCards() = listener.openCardsView()
-
-    private fun finishFlow() {
-        binding.apply {
-            loading.root.visibility = View.GONE
-//            countDown(300) {
-//                svBottom.visibility = View.VISIBLE
-//                svBottom.animateY(0f, 500)
-//            }
-        }
-    }
 
     private fun error() = activity?.showErrorDialog()
 

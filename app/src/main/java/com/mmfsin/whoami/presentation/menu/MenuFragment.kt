@@ -142,7 +142,7 @@ class MenuFragment : BaseFragment<FragmentMenuBinding, MenuViewModel>(), IMenuLi
                         dataSource: DataSource?,
                         isFirstResource: Boolean
                     ): Boolean {
-                        ivTop.animate().alpha(1f).duration = 2000
+                        countDown(200) { ivTop.animate().alpha(1f).duration = 1500 }
                         return false
                     }
                 }).into(ivTop)

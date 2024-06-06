@@ -47,6 +47,7 @@ class CreateDeckFragment : BaseFragment<FragmentCreateDeckBinding, CreateDeckVie
     override fun setUI() {
         binding.apply {
             setToolbar()
+            btnAccept.text = getString(R.string.custom_decks_create_new_accept)
             clBtnOk.visibility = View.GONE
         }
     }

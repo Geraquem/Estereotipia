@@ -10,6 +10,7 @@ import com.mmfsin.whoami.domain.interfaces.IRealmDatabase
 import com.mmfsin.whoami.domain.models.Deck
 import com.mmfsin.whoami.utils.ID
 import com.mmfsin.whoami.utils.IS_CUSTOM_DECK
+import com.mmfsin.whoami.utils.toCardList
 import dagger.hilt.android.qualifiers.ApplicationContext
 import io.realm.kotlin.where
 import javax.inject.Inject
@@ -40,11 +41,19 @@ class DeckRepository @Inject constructor(
         return decks.toDeckList()
     }
 
-    override fun editCustomDeckNameById(id: String, name: String) {
+    override fun editCustomDeckName(id: String, name: String) {
         val deck = realmDatabase.getObjectFromRealm(DeckDTO::class.java, ID, id)
         deck?.let {
             it.name = name
-            realmDatabase.addObject { deck }
+            realmDatabase.addObject { it }
+        }
+    }
+
+    override fun editCustomDeckCards(id: String, cards: List<String>) {
+        val deck = realmDatabase.getObjectFromRealm(DeckDTO::class.java, ID, id)
+        deck?.let {
+            it.cards = cards.toCardList()
+            realmDatabase.addObject { it }
         }
     }
 

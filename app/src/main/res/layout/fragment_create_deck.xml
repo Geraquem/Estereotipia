@@ -83,10 +83,10 @@
                 android:backgroundTint="@color/grey"
                 android:fontFamily="@font/mont_regular"
                 android:gravity="center"
-                android:text="@string/custom_decks_create_new_accept"
                 android:textAllCaps="true"
                 android:textStyle="bold"
-                app:backgroundTint="@null" />
+                app:backgroundTint="@null"
+                tools:text="@string/custom_decks_create_new_accept" />
 
         </LinearLayout>
 

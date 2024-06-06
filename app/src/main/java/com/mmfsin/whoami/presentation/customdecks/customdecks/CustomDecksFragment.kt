@@ -16,6 +16,7 @@ import com.mmfsin.whoami.databinding.FragmentCustomDecksBinding
 import com.mmfsin.whoami.domain.models.Deck
 import com.mmfsin.whoami.presentation.customdecks.customdecks.CustomDecksFragmentDirections.Companion.actionCustomDecksToCreateNewDeck
 import com.mmfsin.whoami.presentation.customdecks.customdecks.CustomDecksFragmentDirections.Companion.actionCustomDecksToDashboard
+import com.mmfsin.whoami.presentation.customdecks.customdecks.CustomDecksFragmentDirections.Companion.actionCustomDecksToEditCards
 import com.mmfsin.whoami.presentation.customdecks.customdecks.adapter.CustomDecksAdapter
 import com.mmfsin.whoami.presentation.customdecks.customdecks.dialogs.CustomDeckDialog
 import com.mmfsin.whoami.presentation.customdecks.customdecks.dialogs.delete.DeleteCustomDeckDialog
@@ -102,9 +103,8 @@ class CustomDecksFragment : BaseFragment<FragmentCustomDecksBinding, CustomDecks
         activity?.showFragmentDialog(EditCustomDeckDialog.newInstance(id, this@CustomDecksFragment))
     }
 
-    override fun editCards(id: String) {
-        TODO("Not yet implemented")
-    }
+    override fun editCards(id: String) =
+        findNavController().navigate(actionCustomDecksToEditCards(id))
 
     override fun editCompleted() = viewModel.getCustomDecks()
 

@@ -10,6 +10,7 @@ import androidx.navigation.fragment.findNavController
 import com.mmfsin.whoami.R
 import com.mmfsin.whoami.base.BaseFragment
 import com.mmfsin.whoami.base.bedrock.BedRockActivity
+import com.mmfsin.whoami.databinding.FragmentCreateDeckBinding
 import com.mmfsin.whoami.databinding.FragmentCustomDecksBinding
 import com.mmfsin.whoami.presentation.customdecks.customdecks.CustomDecksFragmentDirections.Companion.actionCustomDecksToCreateNewDeck
 import com.mmfsin.whoami.utils.DECK_ID
@@ -17,7 +18,7 @@ import com.mmfsin.whoami.utils.showErrorDialog
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class EditCardsFragment : BaseFragment<FragmentCustomDecksBinding, EditCardsViewModel>() {
+class EditCardsFragment : BaseFragment<FragmentCreateDeckBinding, EditCardsViewModel>() {
 
     override val viewModel: EditCardsViewModel by viewModels()
     private lateinit var mContext: Context
@@ -26,7 +27,7 @@ class EditCardsFragment : BaseFragment<FragmentCustomDecksBinding, EditCardsView
 
     override fun inflateView(
         inflater: LayoutInflater, container: ViewGroup?
-    ) = FragmentCustomDecksBinding.inflate(inflater, container, false)
+    ) = FragmentCreateDeckBinding.inflate(inflater, container, false)
 
     override fun getBundleArgs() {
         arguments?.let { deckId = it.getString(DECK_ID) }
@@ -39,15 +40,12 @@ class EditCardsFragment : BaseFragment<FragmentCustomDecksBinding, EditCardsView
 
     override fun setUI() {
         binding.apply {
-            tvEmpty.visibility = View.GONE
             (activity as BedRockActivity).setUpToolbar(getString(R.string.custom_decks_dialog_edit_cards))
         }
     }
 
     override fun setListeners() {
-        binding.apply {
-            btnCreateDeck.setOnClickListener { createNewDeck() }
-        }
+        binding.apply {}
     }
 
     private fun createNewDeck() = findNavController().navigate(actionCustomDecksToCreateNewDeck())

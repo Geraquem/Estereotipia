@@ -11,16 +11,31 @@
         android:label="customDecksFragment"
         tools:layout="@layout/fragment_custom_decks">
         <action
-            android:id="@+id/action_customDecks_to_createNewDeck"
-            app:destination="@id/createDeckFragment" />
-        <action
             android:id="@+id/action_customDecks_to_dashboard"
             app:destination="@id/viewPagerFragment">
             <argument
                 android:name="deckId"
                 app:argType="string" />
         </action>
+
+        <action
+            android:id="@+id/action_customDecks_to_createNewDeck"
+            app:destination="@id/createDeckFragment" />
+
+        <action
+            android:id="@+id/action_customDecks_to_editCards"
+            app:destination="@id/editCardsFragment">
+            <argument
+                android:name="deckId"
+                app:argType="string" />
+        </action>
     </fragment>
+
+    <fragment
+        android:id="@+id/viewPagerFragment"
+        android:name="com.mmfsin.whoami.presentation.dashboard.viepager.ViewPagerFragment"
+        android:label="viewPagerFragment"
+        tools:layout="@layout/fragment_view_pager" />
 
     <fragment
         android:id="@+id/createDeckFragment"
@@ -29,8 +44,9 @@
         tools:layout="@layout/fragment_create_deck" />
 
     <fragment
-        android:id="@+id/viewPagerFragment"
-        android:name="com.mmfsin.whoami.presentation.dashboard.viepager.ViewPagerFragment"
-        android:label="viewPagerFragment"
-        tools:layout="@layout/fragment_view_pager" />
+        android:id="@+id/editCardsFragment"
+        android:name="com.mmfsin.whoami.presentation.customdecks.editcards.EditCardsFragment"
+        android:label="editCardsFragment"
+        tools:layout="@layout/fragment_create_deck" />
+
 </navigation>

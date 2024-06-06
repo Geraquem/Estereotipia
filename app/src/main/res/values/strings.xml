@@ -70,6 +70,7 @@
     <string name="questions_my_card">¿Cuál era mi carta?</string>
     <string name="questions_position">%s.</string>
 
+    <string name="questions_mini_help_btn">¿Necesitas ayuda?</string>
     <string name="questions_mini_help">Una ayudita</string>
     <string name="questions_what_now">¿Qué tengo que hacer?</string>
     <string name="questions_what_now_1">Tienes que <b>adivinar</b> la carta de tu rival antes de que tu rival adivine la tuya primero.</string>

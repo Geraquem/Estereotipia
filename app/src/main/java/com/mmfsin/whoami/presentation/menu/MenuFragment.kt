@@ -25,6 +25,7 @@ import com.mmfsin.whoami.presentation.menu.decks.DecksSheet
 import com.mmfsin.whoami.presentation.menu.interfaces.IMenuCardsListener
 import com.mmfsin.whoami.presentation.menu.interfaces.IMenuListener
 import com.mmfsin.whoami.utils.animateX
+import com.mmfsin.whoami.utils.animateY
 import com.mmfsin.whoami.utils.countDown
 import com.mmfsin.whoami.utils.showErrorDialog
 import com.mmfsin.whoami.utils.showFragmentDialog
@@ -53,7 +54,9 @@ class MenuFragment : BaseFragment<FragmentMenuBinding, MenuViewModel>(), IMenuLi
     override fun setUI() {
         binding.apply {
             loading.visibility = View.VISIBLE
+            tvTitle.visibility = View.INVISIBLE
             ivTop.alpha = 0f
+            clBottom.visibility = View.INVISIBLE
         }
     }
 
@@ -102,21 +105,21 @@ class MenuFragment : BaseFragment<FragmentMenuBinding, MenuViewModel>(), IMenuLi
         menuFlowCompleted()
     }
 
-    /** false = isNotCustomDeck */
-    override fun onMenuCardClick() =
-        navigateTo(R.navigation.nav_graph_all_cards, booleanArgs = false)
-
     private fun menuFlowCompleted() {
         binding.apply {
             loading.visibility = View.GONE
             tvTitle.animateX(-1000f, 10)
-            countDown(100) {
+            clBottom.animateY(1500f, 10)
+            countDown(750) {
                 tvTitle.visibility = View.VISIBLE
                 tvTitle.animateX(0f, 750)
                 clBottom.visibility = View.VISIBLE
+                clBottom.animateY(0f, 750)
             }
         }
     }
+
+    override fun onMenuCardClick() = navigateTo(R.navigation.nav_graph_all_cards)
 
     private fun setTopCardMenu(topCardUrl: String) {
         binding.apply {
@@ -139,7 +142,7 @@ class MenuFragment : BaseFragment<FragmentMenuBinding, MenuViewModel>(), IMenuLi
                         dataSource: DataSource?,
                         isFirstResource: Boolean
                     ): Boolean {
-                        ivTop.animate().alpha(1f).duration = 1000
+                        ivTop.animate().alpha(1f).duration = 2000
                         return false
                     }
                 }).into(ivTop)

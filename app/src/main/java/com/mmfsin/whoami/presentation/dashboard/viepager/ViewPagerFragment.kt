@@ -12,10 +12,8 @@ import com.mmfsin.whoami.base.bedrock.BedRockActivity
 import com.mmfsin.whoami.databinding.FragmentViewPagerBinding
 import com.mmfsin.whoami.presentation.dashboard.viepager.adapter.ViewPagerAdapter
 import com.mmfsin.whoami.presentation.dashboard.viepager.interfaces.IViewPagerListener
-import com.mmfsin.whoami.utils.BEDROCK_BOOLEAN_ARGS
 import com.mmfsin.whoami.utils.BEDROCK_STR_ARGS
 import com.mmfsin.whoami.utils.DECK_ID
-import com.mmfsin.whoami.utils.checkNotNulls
 import com.mmfsin.whoami.utils.showErrorDialog
 import dagger.hilt.android.AndroidEntryPoint
 

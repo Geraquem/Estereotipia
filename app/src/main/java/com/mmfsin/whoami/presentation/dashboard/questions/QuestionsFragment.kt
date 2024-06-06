@@ -112,7 +112,7 @@ class QuestionsFragment(
             when (event) {
                 is QuestionsEvent.GetQuestions -> {
                     totalQuestions = event.questions
-                    binding.loading.root.visibility = View.GONE
+//                    binding.loading.root.visibility = View.GONE
                 }
 
                 is QuestionsEvent.SomethingWentWrong -> error()

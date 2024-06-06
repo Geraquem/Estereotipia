@@ -55,7 +55,10 @@ class CustomDecksFragment : BaseFragment<FragmentCustomDecksBinding, CustomDecks
     override fun setUI() {
         binding.apply {
             tvEmpty.visibility = View.GONE
-            (activity as BedRockActivity).setUpToolbar(getString(R.string.custom_decks_toolbar))
+            (activity as BedRockActivity).apply {
+                inDashboard = false
+                setUpToolbar(getString(R.string.custom_decks_toolbar))
+            }
         }
     }
 
@@ -89,7 +92,7 @@ class CustomDecksFragment : BaseFragment<FragmentCustomDecksBinding, CustomDecks
     }
 
     override fun onCustomDeckClick(id: String) {
-        activity?.showFragmentDialog(CustomDeckDialog.newInstance(id, this@CustomDecksFragment))
+        activity?.showFragmentDialog(CustomDeckDialog(id, this@CustomDecksFragment))
     }
 
     override fun playWithCustomDeck(id: String) =

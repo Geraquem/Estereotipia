@@ -43,7 +43,8 @@ class InstructionsFragment : BaseFragment<FragmentInstructionsBinding, Instructi
     override fun setListeners() {
         binding.apply {
             tvClose.setOnClickListener {
-                activity?.onBackPressedDispatcher?.onBackPressed()
+                if (activity is MainActivity) (activity as MainActivity).onBackPressed()
+                else activity?.onBackPressedDispatcher?.onBackPressed()
             }
         }
     }

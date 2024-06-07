@@ -32,19 +32,13 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/top_line" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_mini_help"
-        style="@style/scroll_no_effects"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+    <FrameLayout
+        android:id="@+id/separator"
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
         android:layout_marginTop="8dp"
-        android:paddingHorizontal="16dp"
-        android:paddingTop="16dp"
-        android:paddingBottom="32dp"
-        android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
+        android:alpha="0.5"
+        android:background="@color/black"
         app:layout_constraintTop_toBottomOf="@id/tv_top" />
 
     <androidx.core.widget.NestedScrollView
@@ -52,19 +46,20 @@
         style="@style/scroll_no_effects"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginTop="8dp"
         android:paddingHorizontal="16dp"
-        android:paddingTop="16dp"
-        android:paddingBottom="32dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_top">
+        app:layout_constraintTop_toBottomOf="@id/separator">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="16dp" />
 
             <LinearLayout
                 android:id="@+id/ll_what_now"
@@ -77,12 +72,13 @@
                 android:padding="16dp">
 
                 <TextView
+                    android:id="@+id/tv_what_now"
                     style="@style/MediumTextView"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:drawablePadding="8dp"
                     android:text="@string/questions_what_now"
-                    app:drawableStartCompat="@drawable/ic_shrug" />
+                    app:drawableEndCompat="@drawable/ic_arrow_down" />
 
                 <include
                     android:id="@+id/details_what_now"
@@ -107,12 +103,13 @@
                 android:padding="16dp">
 
                 <TextView
+                    android:id="@+id/tv_buttons"
                     style="@style/MediumTextView"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:drawablePadding="8dp"
                     android:text="@string/questions_help_buttons"
-                    app:drawableStartCompat="@drawable/ic_button" />
+                    app:drawableEndCompat="@drawable/ic_arrow_down" />
 
                 <include
                     android:id="@+id/details_buttons"
@@ -137,12 +134,13 @@
                 android:padding="16dp">
 
                 <TextView
+                    android:id="@+id/tv_weird_questions"
                     style="@style/MediumTextView"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:drawablePadding="8dp"
                     android:text="@string/questions_weird_questions"
-                    app:drawableStartCompat="@drawable/ic_error" />
+                    app:drawableEndCompat="@drawable/ic_arrow_down" />
 
                 <include
                     android:id="@+id/details_weird_questions"
@@ -167,12 +165,13 @@
                 android:padding="16dp">
 
                 <TextView
+                    android:id="@+id/tv_how_start"
                     style="@style/MediumTextView"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:drawablePadding="8dp"
                     android:text="@string/questions_how_start"
-                    app:drawableStartCompat="@drawable/ic_error" />
+                    app:drawableEndCompat="@drawable/ic_arrow_down" />
 
                 <include
                     android:id="@+id/details_how_start"
@@ -196,12 +195,13 @@
                 android:padding="16dp">
 
                 <TextView
+                    android:id="@+id/tv_when_ends"
                     style="@style/MediumTextView"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:drawablePadding="8dp"
                     android:text="@string/questions_when_ends"
-                    app:drawableStartCompat="@drawable/ic_finish" />
+                    app:drawableEndCompat="@drawable/ic_arrow_down" />
 
                 <include
                     android:id="@+id/details_when_ends"
@@ -212,6 +212,10 @@
                     android:visibility="gone" />
 
             </LinearLayout>
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="42dp" />
 
         </LinearLayout>
 

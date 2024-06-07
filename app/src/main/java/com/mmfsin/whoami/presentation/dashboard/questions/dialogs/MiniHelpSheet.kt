@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.core.content.ContextCompat.getDrawable
 import androidx.core.view.isVisible
 import androidx.fragment.app.DialogFragment
@@ -68,24 +69,34 @@ class MiniHelpSheet : BottomSheetDialogFragment() {
         binding.apply {
             llWhatNow.setOnClickListener {
                 detailsWhatNow.root.isVisible = !detailsWhatNow.root.isVisible
+                onItemClick(detailsWhatNow.root.isVisible, tvWhatNow)
             }
 
             llWeirdQuestions.setOnClickListener {
                 detailsWeirdQuestions.root.isVisible = !detailsWeirdQuestions.root.isVisible
+                onItemClick(detailsWeirdQuestions.root.isVisible, tvWeirdQuestions)
             }
 
             llHowStart.setOnClickListener {
                 detailsHowStart.root.isVisible = !detailsHowStart.root.isVisible
+                onItemClick(detailsHowStart.root.isVisible, tvHowStart)
             }
 
             llButtons.setOnClickListener {
                 detailsButtons.root.isVisible = !detailsButtons.root.isVisible
+                onItemClick(detailsButtons.root.isVisible, tvButtons)
             }
 
             llWhenEnds.setOnClickListener {
                 detailsWhenEnds.root.isVisible = !detailsWhenEnds.root.isVisible
+                onItemClick(detailsWhenEnds.root.isVisible, tvWhenEnds)
             }
         }
+    }
+
+    private fun onItemClick(opened: Boolean, textView: TextView) {
+        val arrow = if (opened) R.drawable.ic_arrow_up else R.drawable.ic_arrow_down
+        textView.setCompoundDrawablesWithIntrinsicBounds(0, 0, arrow, 0);
     }
 
     private fun error() = activity?.showErrorDialog(goBack = false)

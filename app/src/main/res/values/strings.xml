@@ -105,7 +105,7 @@
     <string name="new_question_cards">Ver cartas</string>
     <string name="new_question_close">Cerrar</string>
 
-    <!-- MY DECKS -->
+    <!-- CUSTOM DECKS -->
     <string name="custom_decks_toolbar">Mis barajas</string>
     <string name="custom_decks_view">Ver mis barajas</string>
     <string name="custom_decks_empty">Todavía no has creado ninguna baraja</string>
@@ -130,6 +130,15 @@
     <string name="custom_decks_dialog_delete_confirm">¿Quieres eliminar %s definitivamente?</string>
     <string name="custom_decks_dialog_delete_yes">Eliminar</string>
     <string name="custom_decks_dialog_delete_no">Volver</string>
+
+    <!--  SHARED DECK -->
+    <string name="shared_deck_question">¿Quieres añadir %s a tus barajas?</string>
+    <string name="shared_deck_cards">%s cartas</string>
+    <string name="shared_deck_add">Añadir</string>
+    <string name="shared_deck_cancel">Cancelar</string>
+
+    <string name="shared_deck_shared_text">¡Juguemos a Piripipollo con esta baraja!</string>
+    <string name="shared_deck_url">https://www.mmfsin.com/deck/%s</string>
 
     <!-- INSTRUCTIONS -->
     <string name="instructions_close">Cerrar</string>

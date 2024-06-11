@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import androidx.fragment.app.viewModels
 import com.mmfsin.whoami.base.BaseDialog
 import com.mmfsin.whoami.databinding.DialogCustomDeckBinding
+import com.mmfsin.whoami.domain.models.Deck
 import com.mmfsin.whoami.presentation.customdecks.customdecks.interfaces.ICustomDeckListener
 import com.mmfsin.whoami.utils.showErrorDialog
 import dagger.hilt.android.AndroidEntryPoint
@@ -15,6 +16,8 @@ class CustomDeckDialog(private val customDeckId: String, val listener: ICustomDe
     BaseDialog<DialogCustomDeckBinding>() {
 
     private val viewModel: CustomDeckViewModel by viewModels()
+
+    private var deck: Deck? = null
 
     override fun inflateView(inflater: LayoutInflater) = DialogCustomDeckBinding.inflate(inflater)
 
@@ -38,7 +41,7 @@ class CustomDeckDialog(private val customDeckId: String, val listener: ICustomDe
             tvEditName.setOnClickListener { actionAndDismiss { listener.editName(customDeckId) } }
             tvEditCards.setOnClickListener { actionAndDismiss { listener.editCards(customDeckId) } }
 
-            tvShare.setOnClickListener { }
+            tvShare.setOnClickListener { actionAndDismiss { shareDeck() } }
             tvDelete.setOnClickListener {
                 actionAndDismiss {
                     listener.confirmDeleteCustomDeck(
@@ -57,12 +60,20 @@ class CustomDeckDialog(private val customDeckId: String, val listener: ICustomDe
     private fun observe() {
         viewModel.event.observe(this) { event ->
             when (event) {
-                is CustomDeckEvent.GetDeck -> binding.tvTitle.text = event.deck.name
+                is CustomDeckEvent.GetDeck -> {
+                    deck = event.deck
+                    binding.tvTitle.text = event.deck.name
+                }
+
                 is CustomDeckEvent.EditedCompleted -> {}
                 is CustomDeckEvent.SomethingWentWrong -> error()
             }
         }
     }
+
+    private fun shareDeck() =
+        deck?.let { d -> listener.shareDeck(d.name, d.cards) } ?: run { error() }
+
 
     private fun error() = activity?.showErrorDialog(goBack = false)
 }

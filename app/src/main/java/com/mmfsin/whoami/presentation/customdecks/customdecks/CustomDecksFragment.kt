@@ -1,6 +1,7 @@
 package com.mmfsin.whoami.presentation.customdecks.customdecks
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -23,6 +24,7 @@ import com.mmfsin.whoami.presentation.customdecks.customdecks.dialogs.delete.Del
 import com.mmfsin.whoami.presentation.customdecks.customdecks.dialogs.edit.EditCustomDeckDialog
 import com.mmfsin.whoami.presentation.customdecks.customdecks.interfaces.ICustomDeckListener
 import com.mmfsin.whoami.utils.BEDROCK_BOOLEAN_ARGS
+import com.mmfsin.whoami.utils.encodeToBase64
 import com.mmfsin.whoami.utils.showErrorDialog
 import com.mmfsin.whoami.utils.showFragmentDialog
 import dagger.hilt.android.AndroidEntryPoint
@@ -107,6 +109,27 @@ class CustomDecksFragment : BaseFragment<FragmentCustomDecksBinding, CustomDecks
         findNavController().navigate(actionCustomDecksToEditCards(id))
 
     override fun editCompleted() = viewModel.getCustomDecks()
+
+    override fun shareDeck(name: String, cards: String) {
+        val encodedText = encodeToBase64("$name/$cards")
+
+        val sharedText = getString(R.string.shared_deck_shared_text)
+        val sharedUrl = getString(R.string.shared_deck_url, encodedText)
+
+        val text = """
+        $sharedText
+        
+        $sharedUrl
+        """.trimIndent()
+
+        val intent = Intent().apply {
+            action = Intent.ACTION_SEND
+            putExtra(Intent.EXTRA_TEXT, text)
+            type = "text/plain"
+        }
+        val shareIntent = Intent.createChooser(intent, null)
+        mContext.startActivity(shareIntent)
+    }
 
     override fun confirmDeleteCustomDeck(id: String) {
         activity?.showFragmentDialog(

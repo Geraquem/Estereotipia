@@ -9,6 +9,7 @@ interface ICustomDeckListener {
     fun editCards(id: String)
     fun editCompleted()
 
+    fun shareDeck(name: String, cards: String)
     fun confirmDeleteCustomDeck(id: String)
     fun deleteCustomDeck(id: String)
 }

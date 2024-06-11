@@ -16,6 +16,7 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.FragmentActivity
 import com.mmfsin.whoami.base.dialog.ErrorDialog
+import java.util.Base64
 
 fun FragmentActivity.showErrorDialog(goBack: Boolean = true) {
     val dialog = ErrorDialog(goBack)
@@ -86,6 +87,17 @@ fun String.getCards(): List<String> {
 
 fun List<String>.toCardList() =
     this.toString().replace("[", "").replace("]", "")
+
+
+fun encodeToBase64(input: String): String {
+    val bytes = input.toByteArray(Charsets.UTF_8)
+    return Base64.getEncoder().encodeToString(bytes)
+}
+
+fun decodeFromBase64(encoded: String): String {
+    val bytes = Base64.getDecoder().decode(encoded)
+    return String(bytes, Charsets.UTF_8)
+}
 
 //fun FragmentActivity.shouldShowInterstitial(position: Int) =
 //    (this as MainActivity).showInterstitial(position)

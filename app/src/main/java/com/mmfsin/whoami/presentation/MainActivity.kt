@@ -3,7 +3,6 @@ package com.mmfsin.whoami.presentation
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.window.OnBackInvokedDispatcher
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.view.WindowInsetsControllerCompat
@@ -11,6 +10,7 @@ import com.mmfsin.whoami.R
 import com.mmfsin.whoami.base.bedrock.BedRockActivity
 import com.mmfsin.whoami.databinding.ActivityMainBinding
 import com.mmfsin.whoami.presentation.instructions.InstructionsFragment
+import com.mmfsin.whoami.presentation.menu.dialogs.SharedDeckDialog
 import com.mmfsin.whoami.utils.BEDROCK_BOOLEAN_ARGS
 import com.mmfsin.whoami.utils.BEDROCK_STR_ARGS
 import com.mmfsin.whoami.utils.INSTRUCTIONS
@@ -32,7 +32,18 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         changeStatusBar(R.color.orange)
+    }
+
+    override fun onResume() {
+        super.onResume()
         uri = intent.data
+        uri?.let { openSharedDeckDialog(it) }
+    }
+
+    override fun onNewIntent(intent: Intent?) {
+        super.onNewIntent(intent)
+        uri = intent?.data
+        uri?.let { openSharedDeckDialog(it) }
     }
 
     fun changeStatusBar(color: Int) {
@@ -57,6 +68,10 @@ class MainActivity : AppCompatActivity() {
         booleanArgs?.let { intent.putExtra(BEDROCK_BOOLEAN_ARGS, booleanArgs) }
         intent.putExtra(ROOT_ACTIVITY_NAV_GRAPH, navGraph)
         startActivity(intent)
+    }
+
+    private fun openSharedDeckDialog(mUri: Uri) {
+        SharedDeckDialog.newInstance(mUri) { uri = null }.show(supportFragmentManager, "")
     }
 
     @Deprecated("Deprecated in Java")

@@ -55,10 +55,10 @@
                 android:layout_marginHorizontal="16dp"
                 android:layout_marginVertical="24dp"
                 android:contentDescription="@string/content_description"
-                android:src="@drawable/default_face"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tv_name" />
+                app:layout_constraintTop_toBottomOf="@id/tv_name"
+                tools:src="@drawable/default_face" />
 
             <TextView
                 style="@style/BigTextView"
@@ -106,9 +106,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:paddingHorizontal="24dp"
             android:layout_marginTop="8dp"
             android:gravity="center"
+            android:paddingHorizontal="24dp"
             android:text="@string/choice_dialog_winner_subtitle"
             android:textAllCaps="true" />
 
@@ -120,7 +120,6 @@
         android:visibility="gone"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-
         app:layout_constraintBottom_toBottomOf="@id/cl_card"
         app:layout_constraintLeft_toLeftOf="@id/cl_card"
         app:layout_constraintRight_toRightOf="@id/cl_card"
@@ -137,11 +136,11 @@
                 android:layout_height="220dp"
                 android:alpha="0.5"
                 android:contentDescription="@string/content_description"
-                android:src="@drawable/default_face"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                tools:src="@drawable/default_face" />
 
             <include
                 android:id="@+id/nope"

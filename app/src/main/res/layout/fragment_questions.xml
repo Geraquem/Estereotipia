@@ -110,14 +110,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:alpha="0.4"
-            android:drawablePadding="4dp"
             android:background="@drawable/click_effect"
+            android:drawablePadding="4dp"
             android:text="@string/questions_mini_help_btn"
             android:textAllCaps="true"
+            app:drawableStartCompat="@drawable/ic_lifeguard"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintRight_toRightOf="@id/gl_right2"
-            app:layout_constraintTop_toTopOf="parent"
-            app:drawableStartCompat="@drawable/ic_lifeguard" />
+            app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -5,7 +5,6 @@
     android:background="@drawable/bg_white_box"
     android:clipChildren="false"
     android:clipToPadding="false"
-    android:backgroundTint="@color/blue"
     android:padding="24dp">
 
 

@@ -93,7 +93,7 @@ class ChoiceDialog(
                         getString(R.string.choice_dialog_looser_zero_opportunities)
                 }
                 nope.root.alpha = 0f
-                card?.let { c -> Glide.with(requireContext()).load(c.name).into(ivImage) }
+                card?.let { c -> Glide.with(requireContext()).load(c.name).into(ivLooserCard) }
                 llFinalLooser.isVisible = true
                 nope.root.animate().alpha(1f).duration = 750
             }

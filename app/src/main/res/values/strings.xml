@@ -61,7 +61,7 @@
     <string name="choice_dialog_no">No</string>
     <string name="choice_dialog_back">Volver</string>
     <string name="choice_dialog_winner">¡Genial!</string>
-    <string name="choice_dialog_winner_subtitle">Has acertado el personaje de tu rival</string>
+    <string name="choice_dialog_winner_name">%s es el personaje de tu rival</string>
     <string name="choice_dialog_looser_title_1">No pasa nada</string>
     <string name="choice_dialog_looser_title_2">Menudo fracaso</string>
     <string name="choice_dialog_looser_opportunities">Todavía tienes otra oportunidad</string>

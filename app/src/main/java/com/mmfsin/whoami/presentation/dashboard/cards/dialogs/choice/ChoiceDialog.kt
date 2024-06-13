@@ -78,6 +78,10 @@ class ChoiceDialog(
             tvBack.visibility = View.VISIBLE
             if (winner) {
                 result = WINNER
+                card?.let { c ->
+                    Glide.with(requireContext()).load(c.image).into(ivWinnerCard)
+                    tvWinnerName.text = getString(R.string.choice_dialog_winner_name, c.name)
+                }
                 lottieWinner.setAnimation(R.raw.lottie_trophy)
                 llFinalWinner.isVisible = true
                 lottieWinner.playAnimation()

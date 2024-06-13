@@ -6,9 +6,11 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.view.WindowInsetsControllerCompat
+import com.google.android.material.snackbar.Snackbar
 import com.mmfsin.whoami.R
 import com.mmfsin.whoami.base.bedrock.BedRockActivity
 import com.mmfsin.whoami.databinding.ActivityMainBinding
+import com.mmfsin.whoami.presentation.customdecks.snackbar.CustomSnackbar
 import com.mmfsin.whoami.presentation.instructions.InstructionsFragment
 import com.mmfsin.whoami.presentation.menu.dialogs.SharedDeckDialog
 import com.mmfsin.whoami.utils.BEDROCK_BOOLEAN_ARGS
@@ -72,7 +74,10 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun openSharedDeckDialog(mUri: Uri) {
-        val sharedDeckDialog = SharedDeckDialog.newInstance(mUri) { uri = null }
+        val sharedDeckDialog = SharedDeckDialog.newInstance(mUri) { added ->
+            uri = null
+            if(added) CustomSnackbar.make(binding.clMain, Snackbar.LENGTH_SHORT).show()
+        }
         sharedDeckDialog.show(supportFragmentManager, "")
     }
 

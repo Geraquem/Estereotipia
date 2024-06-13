@@ -18,7 +18,7 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class SharedDeckDialog(
     private val uri: Uri,
-    val endDialog: () -> Unit
+    val endDialog: (added: Boolean) -> Unit
 ) : BaseDialog<DialogSharedDeckBinding>() {
 
     private val viewModel: SharedDeckViewModel by viewModels()
@@ -65,15 +65,15 @@ class SharedDeckDialog(
 
     override fun setListeners() {
         binding.apply {
-            btnCancel.setOnClickListener { closeDialog() }
+            btnCancel.setOnClickListener { closeDialog(added = false) }
             btnAdd.setOnClickListener {
                 checkNotNulls(name, cards) { n, c -> viewModel.addDeck(n, c) } ?: run { error() }
             }
         }
     }
 
-    private fun closeDialog() {
-        endDialog()
+    private fun closeDialog(added: Boolean) {
+        endDialog(added)
         dismiss()
     }
 
@@ -81,7 +81,7 @@ class SharedDeckDialog(
         viewModel.event.observe(this) { event ->
             when (event) {
                 is SharedDeckEvent.AddedCompleted -> {
-                    closeDialog()
+                    closeDialog(added = true)
                 }
 
                 is SharedDeckEvent.SomethingWentWrong -> error()
@@ -92,7 +92,7 @@ class SharedDeckDialog(
     private fun error() = activity?.showErrorDialog(goBack = false)
 
     companion object {
-        fun newInstance(uri: Uri, action: () -> Unit): SharedDeckDialog {
+        fun newInstance(uri: Uri, action: (added: Boolean) -> Unit): SharedDeckDialog {
             return SharedDeckDialog(uri, action)
         }
     }

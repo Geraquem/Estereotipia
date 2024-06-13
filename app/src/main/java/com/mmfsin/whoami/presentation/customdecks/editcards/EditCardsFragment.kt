@@ -126,7 +126,6 @@ class EditCardsFragment : BaseFragment<FragmentCreateDeckBinding, EditCardsViewM
     }
 
     override fun flowCompleted() {
-        CustomSnackbar.make(binding.clMain, Snackbar.LENGTH_SHORT).show()
         activity?.onBackPressedDispatcher?.onBackPressed()
     }
 

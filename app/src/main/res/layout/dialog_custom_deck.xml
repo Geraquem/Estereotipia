@@ -102,7 +102,7 @@
             android:paddingVertical="16dp"
             android:text="@string/custom_decks_dialog_play"
             android:textAllCaps="true"
-            android:textSize="20sp"
+            android:textSize="18sp"
             app:drawableStartCompat="@drawable/ic_play" />
 
         <TextView
@@ -116,7 +116,7 @@
             android:padding="12dp"
             android:text="@string/custom_decks_dialog_edit_name"
             android:textAllCaps="true"
-            android:textSize="20sp"
+            android:textSize="18sp"
             app:drawableStartCompat="@drawable/ic_pencil" />
 
         <TextView
@@ -130,7 +130,7 @@
             android:padding="12dp"
             android:text="@string/custom_decks_dialog_edit_cards"
             android:textAllCaps="true"
-            android:textSize="20sp"
+            android:textSize="18sp"
             app:drawableStartCompat="@drawable/ic_card" />
 
         <TextView
@@ -145,7 +145,7 @@
             android:text="@string/custom_decks_dialog_share"
             android:textAllCaps="true"
             android:textColor="@color/blue"
-            android:textSize="20sp"
+            android:textSize="18sp"
             app:drawableStartCompat="@drawable/ic_share"
             app:drawableTint="@color/blue" />
 
@@ -159,10 +159,10 @@
             android:padding="12dp"
             android:text="@string/custom_decks_dialog_delete"
             android:textAllCaps="true"
-            android:textColor="@color/red"
-            android:textSize="20sp"
+            android:textColor="@color/dark_red"
+            android:textSize="18sp"
             app:drawableStartCompat="@drawable/ic_trash"
-            app:drawableTint="@color/red" />
+            app:drawableTint="@color/dark_red" />
 
     </LinearLayout>
 

@@ -14,13 +14,16 @@
     <string name="exit_yes">SALIR</string>
     <string name="exit_no">QUEDARME</string>
 
+    <!-- WAIT -->
+    <string name="wait_text">Un momentito</string>
+
     <!-- VIEW PAGER -->
     <string name="vp_tab_cards">Cartas</string>
     <string name="vp_tab_questions">Preguntas</string>
 
     <!-- MENU -->
     <string name="menu_instructions">Instrucciones</string>
-    <string name="menu_instructions_description">Con las barajas predefinidas.</string>
+    <string name="menu_instructions_description">Juega con las barajas de cartas ya creadas.</string>
     <string name="menu_play">Jugar</string>
     <string name="menu_decks">Barajas</string>
     <string name="menu_custom_decks_description">Crea tus propias barajas con las cartas que más te gusten y compártelas.</string>

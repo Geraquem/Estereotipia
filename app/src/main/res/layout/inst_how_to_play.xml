@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/linear"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -9,6 +10,181 @@
         style="@style/MediumTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/instructions_how_to_play_details" />
+        android:layout_marginBottom="12dp"
+        android:text="@string/instructions_how_to_play_details_1" />
+
+    <TextView
+        style="@style/MediumTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="12dp"
+        android:text="@string/instructions_how_to_play_details_2" />
+
+    <TextView
+        style="@style/MediumTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="12dp"
+        android:text="@string/instructions_how_to_play_details_3" />
+
+    <TextView
+        style="@style/MediumTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="12dp"
+        android:text="@string/instructions_how_to_play_details_4" />
+
+    <TextView
+        style="@style/MediumTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="12dp"
+        android:text="@string/instructions_how_to_play_details_5" />
+
+    <include
+        layout="@layout/include_mobiles"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginBottom="12dp" />
+
+    <TextView
+        style="@style/MediumTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="12dp"
+        android:text="@string/instructions_how_to_play_details_6" />
+
+    <TextView
+        style="@style/MediumTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="12dp"
+        android:text="@string/instructions_how_to_play_details_7" />
+
+    <TextView
+        style="@style/MediumTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="12dp"
+        android:text="@string/instructions_how_to_play_details_8" />
+
+    <TextView
+        style="@style/MediumTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="12dp"
+        android:text="@string/instructions_how_to_play_details_9" />
+
+    <TextView
+        android:id="@+id/tv_new_question"
+        style="@style/MediumTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="12dp"
+        android:background="@drawable/click_effect"
+        android:drawablePadding="8dp"
+        android:elevation="3dp"
+        android:paddingHorizontal="12dp"
+        android:paddingVertical="16dp"
+        android:text="@string/questions_do_question"
+        app:drawableStartCompat="@drawable/ic_question" />
+
+    <TextView
+        style="@style/MediumTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="12dp"
+        android:text="@string/instructions_how_to_play_details_10" />
+
+    <TextView
+        style="@style/MediumTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="12dp"
+        android:text="@string/instructions_how_to_play_details_11" />
+
+    <ImageView
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        android:layout_gravity="center"
+        android:layout_marginBottom="12dp"
+        android:background="@drawable/bg_white_box"
+        android:contentDescription="@string/content_description"
+        android:elevation="6dp"
+        android:src="@drawable/ic_discard_cross"
+        app:tint="@color/red" />
+
+    <TextView
+        style="@style/MediumTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="12dp"
+        android:text="@string/instructions_how_to_play_details_12" />
+
+    <TextView
+        style="@style/MediumTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="12dp"
+        android:text="@string/instructions_how_to_play_details_13" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginBottom="12dp"
+        android:background="@drawable/bg_white_box"
+        android:elevation="6dp">
+
+        <ImageView
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:layout_gravity="center"
+            android:contentDescription="@string/content_description"
+            android:src="@drawable/ic_final_choice"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            style="@style/MediumTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="@string/instructions_how_many_opportunities_number"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <TextView
+        style="@style/MediumTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="12dp"
+        android:text="@string/instructions_how_to_play_details_14" />
+
+    <TextView
+        style="@style/MediumTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="12dp"
+        android:text="@string/instructions_how_to_play_details_15" />
+
+    <TextView
+        style="@style/MediumTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="12dp"
+        android:text="@string/instructions_how_to_play_details_16" />
+
+    <TextView
+        style="@style/MediumTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="12dp"
+        android:text="@string/instructions_how_to_play_details_17" />
 
 </LinearLayout>

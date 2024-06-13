@@ -148,23 +148,38 @@
     <string name="instructions_close">Cerrar</string>
 
     <string name="instructions_whats_about">¿De qué trata el juego?</string>
-    <string name="instructions_whats_about_detail">El juego es muy fácil, consiste en <b>adivinar</b> qué personaje le ha tocado a tu rival antes de que tu rival adivine qué personaje te ha tocado a ti.</string>
+    <string name="instructions_whats_about_details">El juego es muy fácil, consiste en <b>adivinar</b> qué personaje le ha tocado a tu rival antes de que tu rival adivine qué personaje te ha tocado a ti.</string>
 
     <string name="instructions_how_many_players">¿Cuántas personas pueden jugar?</string>
-    <string name="instructions_how_many_players_detail">Tienen que existir <b>dos equipos</b> y por lo tanto tiene que haber <b>dos móviles</b> en juego.\n\n<b>¿Cuántas personas puede haber por equipo?</b>\nLas que se quiera siempre y cuando existan 2 equipos. Puede ser <i>1vs1</i>, <i>2vs1</i>, <i>3vs2</i>…</string>
+    <string name="instructions_how_many_players_details">Tienen que existir <b>dos equipos</b> y por lo tanto tiene que haber <b>dos móviles</b> en juego.\n\n<b>¿Cuántas personas puede haber por equipo?</b>\nLas que se quiera siempre y cuando existan 2 equipos.\nPuede ser <i>1vs1</i>, <i>2vs1</i>, <i>3vs2</i>…</string>
 
     <string name="instructions_decks">¿Qué son las barajas?</string>
-    <string name="instructions_decks_detail_1">Las barajas son agrupaciones de cartas de personajes para jugar.</string>
-    <string name="instructions_decks_detail_2">Cuando vayas a jugar <b>asegúrate de escoger el mismo mazo que tu rival</b>, si no el juego no tendrá sentido y estarás intentando adivinar una carta que para ti no existe.</string>
+    <string name="instructions_decks_details">Las barajas son agrupaciones de cartas de personajes para jugar.\n\nCuando vayas a jugar <b>asegúrate de escoger el mismo mazo que tu rival</b>, si no el juego no tendrá sentido y estarás intentando adivinar una carta que para ti a lo mejor no existe.\n\nPuedes crear tus propias barajas con las cartas que más te gusten y compartirlas para jugar con ellas.</string>
 
     <string name="instructions_how_to_play">¿Cómo se juega?</string>
-    <string name="instructions_how_to_play_details">*************************************************</string>
+    <string name="instructions_how_to_play_details_1">Lo primero de todo es saber que <b>para ganar</b> hay que ser el primero en <b>adivinar el personaje del equipo rival</b>.</string>
+    <string name="instructions_how_to_play_details_2">Para adivinar el personaje de tu contrincante podrás hacer máximo <b>10 preguntas</b> y tendrás <b>2 oportunidades</b> para acertar.</string>
+    <string name="instructions_how_to_play_details_3"><i>Tendrás que exprimir al máximo tus prejuicios y tu intuición.</i></string>
+    <string name="instructions_how_to_play_details_4">Ahora bien, ¿cómo se juega?</string>
+    <string name="instructions_how_to_play_details_5">Necesitaréis <b>dos móviles y dos equipos</b> <i>(un móvil en cada equipo)</i></string>
+    <string name="instructions_how_to_play_details_6">En ambos móviles deberéis <b>seleccionar la misma baraja de cartas</b>, si no el juego no tendrá sentido.</string>
+    <string name="instructions_how_to_play_details_7">Al inicio de la partida <b>se seleccionará una carta aleatoriamente</b>, ese será tu personaje y la carta que tendrá que tratará de adivinar tu rival.</string>
+    <string name="instructions_how_to_play_details_8">Una vez ambos equipos tengan claro su personaje, decidid quién empieza a hacer las preguntas.</string>
+    <string name="instructions_how_to_play_details_9">Para hacer una pregunta múevete hasta la pestaña preguntas y selecciona el botón <i>Nueva pregunta</i></string>
+    <string name="instructions_how_to_play_details_10">Cada vez pregunta un equipo de <b>manera alterna</b>.</string>
+    <string name="instructions_how_to_play_details_11">Los personajes que creáis que no son los de vuestro rival pueden descartarse con el botón</string>
+    <string name="instructions_how_to_play_details_12">Pero no preocuparse, un personaje puede descartarse y volver a entrar en juego todas las veces que queráis.</string>
+    <string name="instructions_how_to_play_details_13"><b>En cualquier momento se puede hacer una apuesta para tratar de adivinar el personaje del rival</b> pulsando el botón</string>
+    <string name="instructions_how_to_play_details_14">El numerito indica las oportunidades que tienes disponibles.</string>
+    <string name="instructions_how_to_play_details_15">Una vez hagas la apuesta pregúntale a tu rival si es ese su personaje, tiene que responderte <b>con sinceridad</b>.</string>
+    <string name="instructions_how_to_play_details_16">Si te quedas sin oportunidades <b>perderás la partida</b> y no podrás ni preguntar ni apostar nuevos personajes, pero tendrás que seguir contestando las preguntas de tu rival hasta que finalice sus dos oportunidades o adivine tu personaje.</string>
+    <string name="instructions_how_to_play_details_17">Si eres el primero en adivinar el personaje de tu rival <b>ganas la partida</b>.</string>
 
     <string name="instructions_my_card">¿Qué carta me ha tocado?</string>
     <string name="instructions_my_card_details">Tu carta de personaje se elegirá automáticamente al inicio de cada partida.\n\nLamentablemente no se puede cambiar.\n\nSi quieres <b>recordar</b> cuál era tu personaje solo tienes que ir a la pestaña <i>Preguntas</i> y pulsar sobre el botón <i>¿Cuál era mi carta?</i></string>
 
     <string name="instructions_how_many_questions">¿Cuántas preguntas se pueden hacer?</string>
-    <string name="instructions_how_many_questions_details">Por partida puedes hacer hasta <b>10 preguntas diferentes.</b>\n\nTodas las preguntas son de carácter subjetivo, nunca irán referidas al físico de los personajes de las cartas.</string>
+    <string name="instructions_how_many_questions_details">Por partida puedes hacer hasta <b>10 preguntas diferentes.</b>\n\nTodas las preguntas son de carácter subjetivo, nunca irán referidas al físico de los personajes de las cartas.\n\nResponde siempre con total sinceridad.</string>
 
     <string name="instructions_how_many_opportunities">¿Cuántas oportunidades para acertar tengo?</string>
     <string name="instructions_how_many_opportunities_number">2</string>

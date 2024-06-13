@@ -18,14 +18,14 @@ class GetInstructionsUseCase @Inject constructor(@ApplicationContext val context
                 group = 1,
                 icon = R.drawable.ic_info,
                 title = getString(R.string.instructions_whats_about),
-                text = R.string.instructions_whats_about_detail,
+                text = R.string.instructions_whats_about_details,
                 background = R.drawable.bg_top_box
             ), Instruction(
                 order = 2,
                 group = 1,
                 icon = R.drawable.ic_players,
                 title = getString(R.string.instructions_how_many_players),
-                text = R.string.instructions_how_many_players_detail,
+                text = R.string.instructions_how_many_players_details,
                 background = R.drawable.bg_white_box
             ), Instruction(
                 order = 3,
@@ -49,7 +49,7 @@ class GetInstructionsUseCase @Inject constructor(@ApplicationContext val context
                 group = 2,
                 icon = R.drawable.ic_deck,
                 title = getString(R.string.instructions_decks),
-                layout = R.layout.inst_decks,
+                text = R.string.instructions_decks_details,
                 background = R.drawable.bg_bottom_box
             ),
 

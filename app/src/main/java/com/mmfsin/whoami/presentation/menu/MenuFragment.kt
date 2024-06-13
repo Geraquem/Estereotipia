@@ -110,7 +110,7 @@ class MenuFragment : BaseFragment<FragmentMenuBinding, MenuViewModel>(), IMenuLi
             loading.visibility = View.GONE
             tvTitle.animateX(-1000f, 10)
             clBottom.animateY(1500f, 10)
-            countDown(750) {
+            countDown(500) {
                 tvTitle.visibility = View.VISIBLE
                 tvTitle.animateX(0f, 750)
                 clBottom.visibility = View.VISIBLE

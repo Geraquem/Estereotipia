@@ -57,7 +57,7 @@ class SharedDeckDialog(
         binding.apply {
             isCancelable = true
             checkNotNulls(name, cards) { n, c ->
-                tvTitle.text = getString(R.string.shared_deck_question, n)
+                tvName.text = n
                 tvCards.text = getString(R.string.shared_deck_cards, c.size.toString())
             } ?: run { error() }
         }

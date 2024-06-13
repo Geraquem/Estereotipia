@@ -51,8 +51,8 @@
     <string name="select_card_loading_title">Preparándolo todo</string>
 
     <!-- CHOICE DIALOG -->
-    <string name="choice_dialog_title">Has apostado que %s es el personaje de tu rival.</string>
-    <string name="choice_dialog_subtitle">Pregúntale a ver qué te responde.</string>
+    <string name="choice_dialog_title">Has apostado que %s es el personaje de tu rival</string>
+    <string name="choice_dialog_subtitle">Pregúntale a ver qué te responde</string>
     <string name="choice_dialog_question">¿Has acertado?</string>
     <string name="choice_dialog_yes">¡Sí!</string>
     <string name="choice_dialog_no">No</string>
@@ -132,7 +132,8 @@
     <string name="custom_decks_dialog_delete_no">Volver</string>
 
     <!--  SHARED DECK -->
-    <string name="shared_deck_question">¿Quieres añadir %s a tus barajas?</string>
+    <string name="shared_deck_title">Añadir nueva baraja</string>
+    <string name="shared_deck_description">Vas a añadir una nueva baraja personalizada, para poder jugar con ella ve a la sección:</string>
     <string name="shared_deck_cards">%s cartas</string>
     <string name="shared_deck_add">Añadir</string>
     <string name="shared_deck_cancel">Cancelar</string>

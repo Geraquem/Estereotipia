@@ -32,9 +32,10 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         changeStatusBar(R.color.orange)
+        checkIfSharedDeck()
     }
 
-    override fun onResume() {
+    private fun checkIfSharedDeck() {
         super.onResume()
         uri = intent.data
         uri?.let { openSharedDeckDialog(it) }
@@ -71,7 +72,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun openSharedDeckDialog(mUri: Uri) {
-        SharedDeckDialog.newInstance(mUri) { uri = null }.show(supportFragmentManager, "")
+        val sharedDeckDialog = SharedDeckDialog.newInstance(mUri) { uri = null }
+        sharedDeckDialog.show(supportFragmentManager, "")
     }
 
     @Deprecated("Deprecated in Java")

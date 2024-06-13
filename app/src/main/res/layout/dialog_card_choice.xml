@@ -88,10 +88,6 @@
             android:layout_width="200dp"
             android:layout_height="200dp"
             android:layout_gravity="center"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/image"
             app:lottie_autoPlay="false"
             app:lottie_loop="false" />
 
@@ -110,6 +106,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:paddingHorizontal="24dp"
             android:layout_marginTop="8dp"
             android:gravity="center"
             android:text="@string/choice_dialog_winner_subtitle"
@@ -120,25 +117,43 @@
     <LinearLayout
         android:id="@+id/ll_final_looser"
         android:layout_width="match_parent"
+        android:visibility="gone"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:visibility="gone"
+
         app:layout_constraintBottom_toBottomOf="@id/cl_card"
         app:layout_constraintLeft_toLeftOf="@id/cl_card"
         app:layout_constraintRight_toRightOf="@id/cl_card"
         app:layout_constraintTop_toTopOf="@id/cl_card">
 
-        <com.airbnb.lottie.LottieAnimationView
-            android:id="@+id/lottie_looser"
-            android:layout_width="200dp"
-            android:layout_height="200dp"
-            android:layout_gravity="center"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/image"
-            app:lottie_autoPlay="false"
-            app:lottie_loop="false" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center">
+
+            <ImageView
+                android:id="@+id/iv_looser_card"
+                android:layout_width="220dp"
+                android:layout_height="220dp"
+                android:alpha="0.5"
+                android:contentDescription="@string/content_description"
+                android:src="@drawable/default_face"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <include
+                android:id="@+id/nope"
+                layout="@layout/include_nope"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <TextView
             android:id="@+id/tv_looser_title"

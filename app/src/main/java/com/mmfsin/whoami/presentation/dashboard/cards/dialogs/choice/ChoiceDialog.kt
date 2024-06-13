@@ -92,9 +92,10 @@ class ChoiceDialog(
                     tvLooserDescription.text =
                         getString(R.string.choice_dialog_looser_zero_opportunities)
                 }
-                lottieLooser.setAnimation(R.raw.lottie_sad_face)
+                nope.root.alpha = 0f
+                card?.let { c -> Glide.with(requireContext()).load(c.name).into(ivImage) }
                 llFinalLooser.isVisible = true
-                lottieLooser.playAnimation()
+                nope.root.animate().alpha(1f).duration = 750
             }
         }
         listener.choiceComplete(winner, cardId)

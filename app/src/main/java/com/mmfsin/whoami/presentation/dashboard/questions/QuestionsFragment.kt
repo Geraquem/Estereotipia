@@ -89,9 +89,8 @@ class QuestionsFragment(
                         if (cont < NUM_OF_QUESTIONS) {
                             tvNewQuestion.isEnabled = false
                             viewModel.saveGameQuestion(list[cont])
-                            if (cont >= NUM_OF_QUESTIONS) disableNewQuestionBtn()
                         }
-                    } //else viewModel.getQuestions()
+                    } else viewModel.getQuestions()
                 }
             }
 
@@ -121,11 +120,14 @@ class QuestionsFragment(
         activity?.showFragmentDialog(
             NewQuestionDialog.newInstance(gameQuestion, this@QuestionsFragment)
         )
-        cont++
         questionsDone.add(gameQuestion)
+        cont++
         countDown(500) {
-            binding.tvNewQuestion.isEnabled = true
-            setUpQuestionList() }
+            if (cont >= NUM_OF_QUESTIONS) disableNewQuestionBtn()
+            else binding.tvNewQuestion.isEnabled = true
+
+            setUpQuestionList()
+        }
     }
 
     private fun setUpQuestionList() {

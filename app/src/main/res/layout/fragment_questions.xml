@@ -23,72 +23,85 @@
         android:orientation="vertical"
         app:layout_constraintGuide_percent="0.95" />
 
-    <LinearLayout
-        android:id="@+id/ll_main"
+    <androidx.core.widget.NestedScrollView
+        style="@style/scroll_no_effects"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:clipChildren="false"
         android:clipToPadding="false"
         android:orientation="vertical"
         android:paddingTop="82dp"
+        android:paddingBottom="24dp"
+        app:layout_constraintBottom_toTopOf="@id/cl_help"
         app:layout_constraintLeft_toLeftOf="@id/gl_left"
         app:layout_constraintRight_toRightOf="@id/gl_right"
         app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
-            android:id="@+id/tv_my_card"
-            style="@style/MediumTextView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="12dp"
-            android:background="@drawable/click_effect"
-            android:drawablePadding="8dp"
-            android:elevation="3dp"
-            android:paddingHorizontal="12dp"
-            android:paddingVertical="16dp"
-            android:text="@string/questions_my_card"
-            app:drawableStartCompat="@drawable/ic_card" />
-
-        <TextView
-            android:id="@+id/tv_new_question"
-            style="@style/MediumTextView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="12dp"
-            android:background="@drawable/click_effect"
-            android:drawablePadding="8dp"
-            android:elevation="3dp"
-            android:paddingHorizontal="12dp"
-            android:paddingVertical="16dp"
-            android:text="@string/questions_do_question"
-            app:drawableStartCompat="@drawable/ic_question" />
-
         <LinearLayout
-            android:id="@+id/ll_questions"
+            android:id="@+id/ll_main"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/bg_white_box"
-            android:drawablePadding="8dp"
-            android:orientation="vertical"
-            android:paddingHorizontal="16dp"
-            android:paddingTop="16dp"
-            android:paddingBottom="8dp"
-            android:text="@string/questions_list_of"
-            tools:listitem="">
+            android:clipChildren="false"
+            android:clipToPadding="false"
+            android:orientation="vertical">
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rv_all_questions"
-                style="@style/scroll_no_effects"
+            <TextView
+                android:id="@+id/tv_my_card"
+                style="@style/MediumTextView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                tools:itemCount="5"
-                tools:listitem="@layout/item_question" />
+                android:layout_marginBottom="12dp"
+                android:background="@drawable/click_effect"
+                android:drawablePadding="8dp"
+                android:elevation="3dp"
+                android:paddingHorizontal="12dp"
+                android:paddingVertical="16dp"
+                android:text="@string/questions_my_card"
+                app:drawableStartCompat="@drawable/ic_card" />
+
+            <TextView
+                android:id="@+id/tv_new_question"
+                style="@style/MediumTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
+                android:background="@drawable/click_effect"
+                android:drawablePadding="8dp"
+                android:elevation="3dp"
+                android:paddingHorizontal="12dp"
+                android:paddingVertical="16dp"
+                android:text="@string/questions_do_question"
+                app:drawableStartCompat="@drawable/ic_question" />
+
+            <LinearLayout
+                android:id="@+id/ll_questions"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_white_box"
+                android:drawablePadding="8dp"
+                android:orientation="vertical"
+                android:paddingHorizontal="16dp"
+                android:paddingTop="16dp"
+                android:paddingBottom="8dp"
+                android:text="@string/questions_list_of"
+                tools:listitem="">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_all_questions"
+                    style="@style/scroll_no_effects"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    tools:itemCount="8"
+                    tools:listitem="@layout/item_question" />
+
+            </LinearLayout>
 
         </LinearLayout>
 
-    </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cl_help"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:background="@color/white"

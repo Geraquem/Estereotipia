@@ -1,7 +1,6 @@
 package com.mmfsin.whoami.domain.usecases
 
 import com.mmfsin.whoami.base.BaseUseCase
-import com.mmfsin.whoami.data.mappers.createCustomDeckDTO
 import com.mmfsin.whoami.domain.interfaces.IDeckRepository
 import javax.inject.Inject
 

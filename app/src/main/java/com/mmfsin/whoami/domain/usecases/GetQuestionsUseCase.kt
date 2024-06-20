@@ -11,7 +11,7 @@ class GetQuestionsUseCase @Inject constructor(private val repository: IQuestions
 
     override suspend fun execute(): List<Question>? {
         val questions = repository.getQuestions()
-        if (questions != null) {
+        if (!questions.isNullOrEmpty()) {
             return try {
                 val date = System.currentTimeMillis().toString()
                 val number = date.substring(date.length - 1, date.length)
@@ -23,7 +23,6 @@ class GetQuestionsUseCase @Inject constructor(private val repository: IQuestions
                     shuffled = questions.shuffled()
                 }
                 shuffled.take(NUM_OF_QUESTIONS)
-
             } catch (e: Exception) {
                 questions.shuffled().take(NUM_OF_QUESTIONS)
             }

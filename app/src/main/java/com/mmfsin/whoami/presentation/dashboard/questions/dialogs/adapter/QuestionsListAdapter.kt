@@ -7,16 +7,16 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.mmfsin.whoami.R
 import com.mmfsin.whoami.databinding.ItemQuestionBinding
-import com.mmfsin.whoami.domain.models.Question
+import com.mmfsin.whoami.domain.models.GameQuestion
 
 class QuestionsListAdapter(
-    private val questions: List<Question>,
+    private val questions: List<GameQuestion>,
 ) : RecyclerView.Adapter<QuestionsListAdapter.ViewHolder>() {
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val binding = ItemQuestionBinding.bind(view)
         val c: Context = binding.root.context
-        fun bind(question: Question, position: Int) {
+        fun bind(question: GameQuestion, position: Int) {
             binding.apply {
                 tvNumber.text = c.getString(R.string.questions_position, position.toString())
                 tvQuestion.text = question.question

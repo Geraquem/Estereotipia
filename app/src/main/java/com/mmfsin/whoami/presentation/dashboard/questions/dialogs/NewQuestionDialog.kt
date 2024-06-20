@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import com.mmfsin.whoami.base.BaseDialog
 import com.mmfsin.whoami.databinding.DialogNewQuestionBinding
 import com.mmfsin.whoami.domain.models.GameQuestion
-import com.mmfsin.whoami.domain.models.Question
 import com.mmfsin.whoami.presentation.dashboard.questions.dialogs.interfaces.INewQuestionListener
 import com.mmfsin.whoami.utils.animateDialog
 import dagger.hilt.android.AndroidEntryPoint
@@ -48,8 +47,8 @@ class NewQuestionDialog(
                 dismiss()
             }
 
-            rlYes.setOnClickListener {}
-            rlNo.setOnClickListener {}
+            rlYes.setOnClickListener { listener.answer(question, answer = true) }
+            rlNo.setOnClickListener { listener.answer(question, answer = false) }
         }
     }
 

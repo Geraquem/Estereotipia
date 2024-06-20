@@ -31,4 +31,8 @@ class QuestionsViewModel @Inject constructor(
             { _event.value = QuestionsEvent.SomethingWentWrong }
         )
     }
+
+    fun updateGameQuestion(gameQuestionId: String, answer: Boolean){
+
+    }
 }

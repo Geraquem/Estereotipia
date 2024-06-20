@@ -147,6 +147,10 @@ class QuestionsFragment(
 
     override fun viewCards() = listener.openCardsView()
 
+    override fun answer(question: GameQuestion, answer: Boolean) {
+        viewModel.saveGameQuestion()
+    }
+
     private fun error() = activity?.showErrorDialog()
 
     override fun onAttach(context: Context) {

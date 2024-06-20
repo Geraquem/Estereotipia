@@ -41,12 +41,4 @@ class CardsViewModel @Inject constructor(
             { _event.value = CardsEvent.SomethingWentWrong }
         )
     }
-
-    fun discardCard(cardId: String) {
-        executeUseCase(
-            { discardCardUseCase.execute(DiscardCardUseCase.Params(cardId)) },
-            { /** Flow do the rest */ },
-            { _event.value = CardsEvent.SomethingWentWrong }
-        )
-    }
 }

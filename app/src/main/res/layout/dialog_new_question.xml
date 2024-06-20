@@ -12,28 +12,120 @@
         android:layout_width="match_parent"
         android:layout_height="250dp"
         android:background="@drawable/bg_white_box"
-        android:padding="8dp"
+        android:padding="4dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
-            android:id="@+id/tv_question"
-            style="@style/MediumTextView"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:background="@drawable/bg_white_box_border"
-            android:gravity="center"
-            android:padding="12dp"
-            android:textAllCaps="true"
-            android:textSize="26sp"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:padding="8dp"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:text="¿Tiene cara de tener una hermana mayor que le odia?" />
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/iv_close"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:alpha="0.70"
+                android:contentDescription="@string/content_description"
+                android:foreground="?attr/selectableItemBackgroundBorderless"
+                android:src="@drawable/ic_discard_cross"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tv_question"
+                style="@style/MediumTextView"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:fontFamily="@font/mont_regular"
+                android:gravity="center"
+                android:padding="8dp"
+                android:textSize="24sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="¿Tiene cara de tener una hermana mayor que le odia?" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:clipChildren="false"
+        android:clipToPadding="false"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:paddingBottom="12dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/cl_question">
+
+        <TextView
+            style="@style/MediumTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:text="¿Qué ha respondido tu rival?"
+            android:textColor="@color/white"
+            tools:textColor="@color/black" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clipChildren="false"
+            android:clipToPadding="false"
+            android:orientation="horizontal">
+
+            <RelativeLayout
+                android:id="@+id/rl_yes"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/click_effect"
+                android:elevation="6dp"
+                android:paddingHorizontal="48dp"
+                android:paddingVertical="12dp">
+
+                <TextView
+                    style="@style/BigTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="SI" />
+
+            </RelativeLayout>
+
+            <Space
+                android:layout_width="16dp"
+                android:layout_height="match_parent" />
+
+            <RelativeLayout
+                android:id="@+id/rl_no"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/click_effect"
+                android:elevation="6dp"
+                android:paddingHorizontal="48dp"
+                android:paddingVertical="12dp">
+
+                <TextView
+                    style="@style/BigTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="NO" />
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
 
     <LinearLayout
         android:id="@+id/ll_buttons"
@@ -41,6 +133,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:orientation="horizontal"
+        android:visibility="gone"
         android:weightSum="1"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"

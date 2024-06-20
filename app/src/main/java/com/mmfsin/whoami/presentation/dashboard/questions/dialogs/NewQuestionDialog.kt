@@ -40,12 +40,15 @@ class NewQuestionDialog(
 
     override fun setListeners() {
         binding.apply {
-            tvClose.setOnClickListener { dismiss() }
+            ivClose.setOnClickListener { dismiss() }
 
             tvCards.setOnClickListener {
                 listener.viewCards()
                 dismiss()
             }
+
+            rlYes.setOnClickListener {}
+            rlNo.setOnClickListener {}
         }
     }
 

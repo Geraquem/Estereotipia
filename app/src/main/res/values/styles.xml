@@ -20,7 +20,7 @@
     </style>
 
     <style name="MediumTextView_Card">
-        <item name="android:fontFamily">@font/font_magical</item>
+        <item name="android:fontFamily">@font/font_names</item>
         <item name="android:textSize">18sp</item>
         <item name="android:textColor">@color/black</item>
     </style>

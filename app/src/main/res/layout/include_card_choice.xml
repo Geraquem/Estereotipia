@@ -14,7 +14,7 @@
         android:layout_gravity="center"
         android:background="@drawable/bg_white_box"
         android:gravity="center"
-        android:paddingHorizontal="12dp"
+        android:paddingHorizontal="24dp"
         android:paddingVertical="16dp"
         android:text="@string/discard_card_choice_title"
         android:textSize="20sp"

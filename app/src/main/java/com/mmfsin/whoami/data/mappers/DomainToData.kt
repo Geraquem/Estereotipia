@@ -1,7 +1,7 @@
 package com.mmfsin.whoami.data.mappers
 
 import com.mmfsin.whoami.data.models.DeckDTO
-import com.mmfsin.whoami.data.models.GameQuestionDTO
+import com.mmfsin.whoami.domain.models.GameQuestion
 import com.mmfsin.whoami.utils.toCardList
 import java.util.UUID
 
@@ -11,10 +11,4 @@ fun createCustomDeckDTO(name: String, cards: List<String>) = DeckDTO(
     cards = cards.toCardList(),
     order = System.currentTimeMillis(),
     isCustom = true
-)
-
-fun createGameQuestionDTO(question: String) = GameQuestionDTO(
-    id = UUID.randomUUID().toString(),
-    question = question,
-    answer = null
 )

@@ -47,9 +47,14 @@ class NewQuestionDialog(
                 dismiss()
             }
 
-            rlYes.setOnClickListener { listener.answer(question, answer = true) }
-            rlNo.setOnClickListener { listener.answer(question, answer = false) }
+            rlYes.setOnClickListener { answerQuestion(answer = true) }
+            rlNo.setOnClickListener { answerQuestion(answer = false) }
         }
+    }
+
+    private fun answerQuestion(answer: Boolean) {
+        listener.answer(question, answer)
+        dismiss()
     }
 
     companion object {

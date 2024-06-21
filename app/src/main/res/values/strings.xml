@@ -107,6 +107,9 @@
     <string name="new_question_empty">Se acabaron las preguntas</string>
     <string name="new_question_cards">Ver cartas</string>
     <string name="new_question_close">Cerrar</string>
+    <string name="new_question_question">¿Qué ha respondido tu rival?</string>
+    <string name="new_question_yes">Si</string>
+    <string name="new_question_no">No</string>
 
     <!-- CUSTOM DECKS -->
     <string name="custom_decks_toolbar">Mis barajas</string>

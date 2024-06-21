@@ -74,7 +74,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
-            android:text="¿Qué ha respondido tu rival?"
+            android:text="@string/new_question_question"
             android:textColor="@color/white"
             tools:textColor="@color/black" />
 
@@ -98,7 +98,8 @@
                     style="@style/BigTextView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="SI" />
+                    android:text="@string/new_question_yes"
+                    android:textAllCaps="true" />
 
             </RelativeLayout>
 
@@ -119,7 +120,8 @@
                     style="@style/BigTextView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="NO" />
+                    android:text="@string/new_question_no"
+                    android:textAllCaps="true" />
 
             </RelativeLayout>
 

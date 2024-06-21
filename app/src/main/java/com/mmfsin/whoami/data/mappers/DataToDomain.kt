@@ -2,11 +2,9 @@ package com.mmfsin.whoami.data.mappers
 
 import com.mmfsin.whoami.data.models.CardDTO
 import com.mmfsin.whoami.data.models.DeckDTO
-import com.mmfsin.whoami.data.models.GameQuestionDTO
 import com.mmfsin.whoami.data.models.QuestionDTO
 import com.mmfsin.whoami.domain.models.Card
 import com.mmfsin.whoami.domain.models.Deck
-import com.mmfsin.whoami.domain.models.GameQuestion
 import com.mmfsin.whoami.domain.models.Question
 
 /** DECK */
@@ -31,9 +29,3 @@ fun List<CardDTO>.toCardList() = this.map { it.toCard() }
 fun QuestionDTO.toQuestion() = Question(question = question)
 
 fun List<QuestionDTO>.toQuestionList() = this.map { it.toQuestion() }
-
-fun GameQuestionDTO.toGameQuestion() = GameQuestion(
-    id = id,
-    question = question,
-    answer = answer
-)

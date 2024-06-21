@@ -20,8 +20,44 @@ class QuestionsListAdapter(
             binding.apply {
                 tvNumber.text = c.getString(R.string.questions_position, position.toString())
                 tvQuestion.text = question.question
+
+                question.answer?.let { answer ->
+                    if (answer) selectAnswer(true)
+                    else selectAnswer(false)
+                } ?: run { selectAnswer(null) }
+
+                tvYes.setOnClickListener { selectAnswer(true) }
+                tvNo.setOnClickListener { selectAnswer(false) }
             }
         }
+
+        private fun selectAnswer(answer: Boolean?) {
+            binding.apply {
+                if (answer == null) {
+                    selectedYes.visibility = View.GONE
+                    selectedNo.visibility = View.GONE
+                } else {
+                    if (answer) {
+                        selectedYes.visibility = View.VISIBLE
+                        selectedNo.visibility = View.GONE
+                    } else {
+                        selectedYes.visibility = View.GONE
+                        selectedNo.visibility = View.VISIBLE
+                    }
+                }
+            }
+        }
+    }
+
+    fun updateQuestionAnswer(id: String, answer: Boolean) {
+        var position: Int? = null
+        questions.forEachIndexed() { i, question ->
+            if (question.id == id) {
+                question.answer = answer
+                position = i
+            }
+        }
+        position?.let { pos -> notifyItemChanged(pos) }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {

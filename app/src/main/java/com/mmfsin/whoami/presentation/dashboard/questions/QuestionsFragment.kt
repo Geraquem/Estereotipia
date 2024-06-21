@@ -12,7 +12,6 @@ import com.mmfsin.whoami.base.BaseFragment
 import com.mmfsin.whoami.base.bedrock.BedRockActivity
 import com.mmfsin.whoami.databinding.FragmentQuestionsBinding
 import com.mmfsin.whoami.domain.models.GameQuestion
-import com.mmfsin.whoami.domain.models.Question
 import com.mmfsin.whoami.presentation.dashboard.cards.dialogs.selected.SelectedCardDialog
 import com.mmfsin.whoami.presentation.dashboard.questions.dialogs.MiniHelpSheet
 import com.mmfsin.whoami.presentation.dashboard.questions.dialogs.NewQuestionDialog
@@ -33,7 +32,7 @@ class QuestionsFragment(
 
     override val viewModel: QuestionsViewModel by viewModels()
 
-    private var totalQuestions: List<Question>? = null
+    private var totalQuestions: List<GameQuestion>? = null
     private val questionsDone = mutableListOf<GameQuestion>()
     private var cont = 0
 
@@ -47,10 +46,10 @@ class QuestionsFragment(
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel.getQuestions()
     }
 
     override fun onResume() {
+        viewModel.getQuestions()
         checkIfGameFinished()
         super.onResume()
     }
@@ -88,7 +87,17 @@ class QuestionsFragment(
                     if (list.isNotEmpty()) {
                         if (cont < NUM_OF_QUESTIONS) {
                             tvNewQuestion.isEnabled = false
-                            viewModel.saveGameQuestion(list[cont])
+                            val question = list[cont]
+                            questionsDone.add(question)
+                            activity?.showFragmentDialog(
+                                NewQuestionDialog.newInstance(question, this@QuestionsFragment)
+                            )
+                            cont++
+                            countDown(500) {
+                                if (cont >= NUM_OF_QUESTIONS) disableNewQuestionBtn()
+                                else tvNewQuestion.isEnabled = true
+                                setUpQuestionList()
+                            }
                         }
                     } else viewModel.getQuestions()
                 }
@@ -110,23 +119,8 @@ class QuestionsFragment(
                     binding.loading.root.visibility = View.GONE
                 }
 
-                is QuestionsEvent.GameQuestionSaved -> gameQuestionSaved(event.gameQuestion)
                 is QuestionsEvent.SomethingWentWrong -> error()
             }
-        }
-    }
-
-    private fun gameQuestionSaved(gameQuestion: GameQuestion) {
-        activity?.showFragmentDialog(
-            NewQuestionDialog.newInstance(gameQuestion, this@QuestionsFragment)
-        )
-        questionsDone.add(gameQuestion)
-        cont++
-        countDown(500) {
-            if (cont >= NUM_OF_QUESTIONS) disableNewQuestionBtn()
-            else binding.tvNewQuestion.isEnabled = true
-
-            setUpQuestionList()
         }
     }
 
@@ -148,7 +142,7 @@ class QuestionsFragment(
     override fun viewCards() = listener.openCardsView()
 
     override fun answer(question: GameQuestion, answer: Boolean) {
-        viewModel.saveGameQuestion()
+        questionsAdapter?.updateQuestionAnswer(question.id, answer)
     }
 
     private fun error() = activity?.showErrorDialog()

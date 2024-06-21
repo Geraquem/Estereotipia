@@ -2,14 +2,16 @@ package com.mmfsin.whoami.domain.usecases
 
 import com.mmfsin.whoami.base.BaseUseCaseNoParams
 import com.mmfsin.whoami.domain.interfaces.IQuestionsRepository
+import com.mmfsin.whoami.domain.mappers.toGameQuestionList
+import com.mmfsin.whoami.domain.models.GameQuestion
 import com.mmfsin.whoami.domain.models.Question
 import com.mmfsin.whoami.utils.NUM_OF_QUESTIONS
 import javax.inject.Inject
 
 class GetQuestionsUseCase @Inject constructor(private val repository: IQuestionsRepository) :
-    BaseUseCaseNoParams<List<Question>?>() {
+    BaseUseCaseNoParams<List<GameQuestion>?>() {
 
-    override suspend fun execute(): List<Question>? {
+    override suspend fun execute(): List<GameQuestion>? {
         val questions = repository.getQuestions()
         if (!questions.isNullOrEmpty()) {
             return try {
@@ -22,9 +24,9 @@ class GetQuestionsUseCase @Inject constructor(private val repository: IQuestions
                 for (i in 1..intNumber) {
                     shuffled = questions.shuffled()
                 }
-                shuffled.take(NUM_OF_QUESTIONS)
+                shuffled.take(NUM_OF_QUESTIONS).toGameQuestionList()
             } catch (e: Exception) {
-                questions.shuffled().take(NUM_OF_QUESTIONS)
+                questions.shuffled().take(NUM_OF_QUESTIONS).toGameQuestionList()
             }
         } else return null
     }

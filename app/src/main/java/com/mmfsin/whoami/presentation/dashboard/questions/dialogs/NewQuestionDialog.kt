@@ -7,6 +7,7 @@ import com.mmfsin.whoami.databinding.DialogNewQuestionBinding
 import com.mmfsin.whoami.domain.models.GameQuestion
 import com.mmfsin.whoami.presentation.dashboard.questions.dialogs.interfaces.INewQuestionListener
 import com.mmfsin.whoami.utils.animateDialog
+import com.mmfsin.whoami.utils.countDown
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -47,8 +48,10 @@ class NewQuestionDialog(
                 dismiss()
             }
 
-            rlYes.setOnClickListener { answerQuestion(answer = true) }
-            rlNo.setOnClickListener { answerQuestion(answer = false) }
+            countDown(500) {
+                rlYes.setOnClickListener { answerQuestion(answer = true) }
+                rlNo.setOnClickListener { answerQuestion(answer = false) }
+            }
         }
     }
 

@@ -36,8 +36,7 @@ class SelectedCardDialog(private val cardId: String) : BaseDialog<DialogCardSele
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         observe()
-//        viewModel.getCardById(cardId)
-        dismiss()
+        viewModel.getCardById(cardId)
     }
 
     override fun setUI() {

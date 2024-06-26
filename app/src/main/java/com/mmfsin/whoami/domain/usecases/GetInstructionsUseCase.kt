@@ -26,7 +26,7 @@ class GetInstructionsUseCase @Inject constructor(@ApplicationContext val context
                 icon = R.drawable.ic_players,
                 title = getString(R.string.instructions_how_many_players),
                 text = R.string.instructions_how_many_players_details,
-                background = R.drawable.bg_white_box
+                background = R.drawable.bg_squared_box
             ), Instruction(
                 order = 3,
                 group = 1,
@@ -67,7 +67,7 @@ class GetInstructionsUseCase @Inject constructor(@ApplicationContext val context
                 icon = R.drawable.ic_dart,
                 title = getString(R.string.instructions_how_many_opportunities),
                 layout = R.layout.inst_how_many_opportunities,
-                background = R.drawable.bg_white_box
+                background = R.drawable.bg_squared_box
             ), Instruction(
                 order = 8,
                 group = 3,

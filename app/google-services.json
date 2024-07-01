@@ -10,7 +10,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:207625504922:android:3d79240c3b4b9655d7f723",
         "android_client_info": {
-          "package_name": "com.mmfsin.whoami"
+          "package_name": "com.mmfsin.estereotipia"
         }
       },
       "oauth_client": [
@@ -23,7 +23,7 @@
           }
         },
         {
-          "client_id": "207625504922-iar95o70tcalf9le68pb937reukcluum.apps.googleusercontent.com",
+          "client_id": "207625504922-8q14fiurlhgbre77v946qmp4bvr4tod9.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
@@ -36,7 +36,7 @@
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "207625504922-iar95o70tcalf9le68pb937reukcluum.apps.googleusercontent.com",
+              "client_id": "207625504922-8q14fiurlhgbre77v946qmp4bvr4tod9.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

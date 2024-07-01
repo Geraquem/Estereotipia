@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/customDecksFragment"
-        android:name="com.mmfsin.whoami.presentation.customdecks.customdecks.CustomDecksFragment"
+        android:name="com.mmfsin.estereotipia.presentation.customdecks.customdecks.CustomDecksFragment"
         android:label="customDecksFragment"
         tools:layout="@layout/fragment_custom_decks">
         <action
@@ -33,19 +33,19 @@
 
     <fragment
         android:id="@+id/viewPagerFragment"
-        android:name="com.mmfsin.whoami.presentation.dashboard.viepager.ViewPagerFragment"
+        android:name="com.mmfsin.estereotipia.presentation.dashboard.viepager.ViewPagerFragment"
         android:label="viewPagerFragment"
         tools:layout="@layout/fragment_view_pager" />
 
     <fragment
         android:id="@+id/createDeckFragment"
-        android:name="com.mmfsin.whoami.presentation.customdecks.create.CreateDeckFragment"
+        android:name="com.mmfsin.estereotipia.presentation.customdecks.create.CreateDeckFragment"
         android:label="createDeckFragment"
         tools:layout="@layout/fragment_create_deck" />
 
     <fragment
         android:id="@+id/editCardsFragment"
-        android:name="com.mmfsin.whoami.presentation.customdecks.editcards.EditCardsFragment"
+        android:name="com.mmfsin.estereotipia.presentation.customdecks.editcards.EditCardsFragment"
         android:label="editCardsFragment"
         tools:layout="@layout/fragment_create_deck" />
 

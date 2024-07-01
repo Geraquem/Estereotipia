@@ -10,11 +10,11 @@ plugins {
 }
 
 android {
-    namespace 'com.mmfsin.whoami'
+    namespace 'com.mmfsin.estereotipia'
     compileSdk 34
 
     defaultConfig {
-        applicationId "com.mmfsin.whoami"
+        applicationId "com.mmfsin.estereotipia"
         minSdk 26
         targetSdk 34
         versionCode 1

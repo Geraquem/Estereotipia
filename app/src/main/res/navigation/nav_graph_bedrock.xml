@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/blankFragment"
-        android:name="com.mmfsin.whoami.base.bedrock.BlankFragment"
+        android:name="com.mmfsin.estereotipia.base.bedrock.BlankFragment"
         android:label="blankFragment"
         tools:layout="@layout/fragment_blank" />
 

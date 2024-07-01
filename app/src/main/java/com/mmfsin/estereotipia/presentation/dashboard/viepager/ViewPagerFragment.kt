@@ -10,10 +10,12 @@ import com.mmfsin.estereotipia.R
 import com.mmfsin.estereotipia.base.BaseFragment
 import com.mmfsin.estereotipia.base.bedrock.BedRockActivity
 import com.mmfsin.estereotipia.databinding.FragmentViewPagerBinding
+import com.mmfsin.estereotipia.domain.models.GameQuestion
 import com.mmfsin.estereotipia.presentation.dashboard.viepager.adapter.ViewPagerAdapter
 import com.mmfsin.estereotipia.presentation.dashboard.viepager.interfaces.IViewPagerListener
 import com.mmfsin.estereotipia.utils.BEDROCK_STR_ARGS
 import com.mmfsin.estereotipia.utils.DECK_ID
+import com.mmfsin.estereotipia.utils.checkNotNulls
 import com.mmfsin.estereotipia.utils.showErrorDialog
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -24,6 +26,7 @@ class ViewPagerFragment : BaseFragment<FragmentViewPagerBinding, ViewPagerViewMo
     override val viewModel: ViewPagerViewModel by viewModels()
 
     private var deckId: String? = null
+    private var selectedCardId: String? = null
 
     override fun inflateView(
         inflater: LayoutInflater, container: ViewGroup?
@@ -55,7 +58,12 @@ class ViewPagerFragment : BaseFragment<FragmentViewPagerBinding, ViewPagerViewMo
                     viewModel.getRandomSelectedCard(event.deck.cards)
                 }
 
-                is ViewPagerEvent.SelectedCard -> setUpViewPager(event.selectedCardId)
+                is ViewPagerEvent.SelectedCard -> {
+                    selectedCardId = event.selectedCardId
+                    viewModel.getQuestions()
+                }
+
+                is ViewPagerEvent.GetQuestions -> setUpViewPager(event.questions)
                 is ViewPagerEvent.SomethingWentWrong -> error()
             }
         }
@@ -64,12 +72,18 @@ class ViewPagerFragment : BaseFragment<FragmentViewPagerBinding, ViewPagerViewMo
     private fun setUpToolbar(deckName: String) =
         (activity as BedRockActivity).setUpToolbar(deckName)
 
-    private fun setUpViewPager(selectedCardId: String) {
-        deckId?.let { id ->
+    private fun setUpViewPager(questions: List<GameQuestion>) {
+        checkNotNulls(deckId, selectedCardId) { deck, selectedCard ->
             binding.apply {
                 activity?.let {
                     viewPager.adapter =
-                        ViewPagerAdapter(it, id, selectedCardId, this@ViewPagerFragment)
+                        ViewPagerAdapter(
+                            fragmentActivity = it,
+                            deckId = deck,
+                            selectedCardId = selectedCard,
+                            questions = questions,
+                            listener = this@ViewPagerFragment
+                        )
                     TabLayoutMediator(tabLayout, viewPager) { tab, position ->
                         when (position) {
                             0 -> tab.text = getString(R.string.vp_tab_cards)

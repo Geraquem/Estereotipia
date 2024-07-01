@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Pipiripollo</string>
+    <string name="app_name">Estereotipia</string>
 
     <string name="content_description">image</string>
 
@@ -144,7 +144,7 @@
     <string name="shared_deck_add">Añadir</string>
     <string name="shared_deck_cancel">Cancelar</string>
 
-    <string name="shared_deck_shared_text">¡Juguemos a Piripipollo con esta baraja!</string>
+    <string name="shared_deck_shared_text">¡Juguemos a Estereotipia con esta baraja!</string>
     <string name="shared_deck_url">https://www.mmfsin.com/deck/%s</string>
 
     <!-- INSTRUCTIONS -->

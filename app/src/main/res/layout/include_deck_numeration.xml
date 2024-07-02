@@ -25,7 +25,7 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="4dp"
             android:fontFamily="@font/mont_bold"
-            android:text="Nº"
+            android:text="@string/decks_dialog_numeration"
             android:textColor="@color/white" />
 
         <TextView

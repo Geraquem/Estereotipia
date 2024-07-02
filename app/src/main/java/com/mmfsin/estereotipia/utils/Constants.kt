@@ -11,6 +11,7 @@ const val INSTRUCTIONS_DETAIL = "instructions_detail"
 const val ID = "id"
 const val DECK_ID = "deckId"
 const val IS_CUSTOM_DECK = "isCustom"
+
 /*************************************/
 
 const val VERSION = "version"
@@ -22,5 +23,6 @@ const val DECK_TYPE = "deckType"
 
 const val MY_SHARED_PREFS = "mSharedPrefs"
 const val SAVED_VERSION = "savedVersion"
+const val FIRST_TIME_APP = "firstTimeInApp"
 
 const val NUM_OF_QUESTIONS = 10

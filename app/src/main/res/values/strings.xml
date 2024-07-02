@@ -33,10 +33,18 @@
     <string name="menu_all_cards_description_one">Pulsa aquí para ver todas las cartas de personaje que contiene la aplicación.</string>
     <string name="menu_all_cards_description_two">Échales un vistazo para crear tus propias barajas de cartas.</string>
 
+    <!-- FIRST ACCESS DIALOG -->
+    <string name="first_access_wow">¡Vaya!</string>
+    <string name="first_access_first_time">Parece que esta es\ntu primera vez por aquí.</string>
+    <string name="first_access_description_one">¿Quieres abrir las instrucciones para <b>aprender a jugar</b> o eres de esas personas que van a lo loco?</string>
+    <string name="first_access_open_instructions">Abrir instrucciones</string>
+    <string name="first_access_close">Ciérrame esto ya</string>
+
     <!-- DECKS DIALOG -->
     <string name="decks_dialog_top_text">¿Con qué baraja quieres jugar?</string>
     <string name="decks_dialog_top_description">Elige la misma que la de tu rival</string>
     <string name="decks_dialog_cards">%s Cartas</string>
+    <string name="decks_dialog_numeration">Nº</string>
 
     <!-- DISCARD DIALOG -->
     <string name="discard_card_info_state_discard">Descartado</string>
@@ -160,15 +168,16 @@
     <string name="instructions_decks_details">Las barajas son agrupaciones de cartas de personajes para jugar.\n\nCuando vayas a jugar <b>asegúrate de escoger el mismo mazo que tu rival</b>, si no el juego no tendrá sentido y estarás intentando adivinar una carta que para ti a lo mejor no existe.\n\nPuedes crear tus propias barajas con las cartas que más te gusten y compartirlas para jugar con ellas.</string>
 
     <string name="instructions_how_to_play">¿Cómo se juega?</string>
+    <string name="instructions_how_to_play_first_of_all">El juego es una especie de <b>Quién es Quién</b> pero con <b>preguntas totalmente subjetivas.</b></string>
     <string name="instructions_how_to_play_details_1">Lo primero de todo es saber que <b>para ganar</b> hay que ser el primero en <b>adivinar el personaje del equipo rival</b>.</string>
     <string name="instructions_how_to_play_details_2">Para adivinar el personaje de tu contrincante podrás hacer máximo <b>10 preguntas</b> y tendrás <b>2 oportunidades</b> para acertar.</string>
-    <string name="instructions_how_to_play_details_3"><i>Tendrás que exprimir al máximo tus prejuicios y tu intuición.</i></string>
-    <string name="instructions_how_to_play_details_4">Ahora bien, ¿cómo se juega?</string>
+    <string name="instructions_how_to_play_details_3"><i>No existe una respuesta correcta, para responder las preguntas que te hará tú rival tendrás que exprimir al máximo tus prejuicios.</i></string>
+    <string name="instructions_how_to_play_details_4">Ahora bien, <u>¿cómo se juega?</u></string>
     <string name="instructions_how_to_play_details_5">Necesitaréis <b>dos móviles y dos equipos</b> <i>(un móvil en cada equipo)</i></string>
     <string name="instructions_how_to_play_details_6">En ambos móviles deberéis <b>seleccionar la misma baraja de cartas</b>, si no el juego no tendrá sentido.</string>
     <string name="instructions_how_to_play_details_7">Al inicio de la partida <b>se seleccionará una carta aleatoriamente</b>, ese será tu personaje y la carta que tendrá que tratará de adivinar tu rival.</string>
     <string name="instructions_how_to_play_details_8">Una vez ambos equipos tengan claro su personaje, decidid quién empieza a hacer las preguntas.</string>
-    <string name="instructions_how_to_play_details_9">Para hacer una pregunta múevete hasta la pestaña preguntas y selecciona el botón <i>Nueva pregunta</i></string>
+    <string name="instructions_how_to_play_details_9">Para hacer una pregunta múevete hasta la pestaña <i>preguntas</i> y selecciona el botón <i>Nueva pregunta</i></string>
     <string name="instructions_how_to_play_details_10">Cada vez pregunta un equipo de <b>manera alterna</b>.</string>
     <string name="instructions_how_to_play_details_11">Los personajes que creáis que <b>no</b> son los de vuestro rival pueden descartarse con el botón</string>
     <string name="instructions_how_to_play_details_12">Pero no preocuparse, un personaje puede descartarse y volver a entrar en juego todas las veces que queráis.</string>

@@ -11,6 +11,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="12dp"
+        android:text="@string/instructions_how_to_play_first_of_all" />
+
+    <TextView
+        style="@style/MediumTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="12dp"
         android:text="@string/instructions_how_to_play_details_1" />
 
     <TextView
@@ -19,13 +26,6 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="12dp"
         android:text="@string/instructions_how_to_play_details_2" />
-
-    <TextView
-        style="@style/MediumTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="12dp"
-        android:text="@string/instructions_how_to_play_details_3" />
 
     <TextView
         style="@style/MediumTextView"
@@ -96,6 +96,13 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="12dp"
         android:text="@string/instructions_how_to_play_details_10" />
+
+    <TextView
+        style="@style/MediumTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="12dp"
+        android:text="@string/instructions_how_to_play_details_3" />
 
     <TextView
         style="@style/MediumTextView"

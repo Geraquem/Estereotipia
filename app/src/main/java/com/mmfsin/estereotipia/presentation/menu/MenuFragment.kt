@@ -20,6 +20,8 @@ import com.mmfsin.estereotipia.base.BaseFragment
 import com.mmfsin.estereotipia.databinding.FragmentMenuBinding
 import com.mmfsin.estereotipia.domain.models.Card
 import com.mmfsin.estereotipia.presentation.MainActivity
+import com.mmfsin.estereotipia.presentation.firstaccess.FirstAccessDialog
+import com.mmfsin.estereotipia.presentation.firstaccess.interfaces.IFirstAccessListener
 import com.mmfsin.estereotipia.presentation.menu.adapter.MenuCardsAdapter
 import com.mmfsin.estereotipia.presentation.menu.decks.DecksSheet
 import com.mmfsin.estereotipia.presentation.menu.interfaces.IMenuCardsListener
@@ -33,7 +35,7 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class MenuFragment : BaseFragment<FragmentMenuBinding, MenuViewModel>(), IMenuListener,
-    IMenuCardsListener {
+    IMenuCardsListener, IFirstAccessListener {
 
     override val viewModel: MenuViewModel by viewModels()
     private lateinit var mContext: Context
@@ -62,15 +64,12 @@ class MenuFragment : BaseFragment<FragmentMenuBinding, MenuViewModel>(), IMenuLi
 
     override fun setListeners() {
         binding.apply {
-            ivInstructions.setOnClickListener {
-                (activity as MainActivity).apply {
-                    openInstructions()
-                    changeStatusBar(R.color.white)
-                }
-            }
+            ivInstructions.setOnClickListener { openInstructions() }
+
             llPlay.setOnClickListener { activity?.showFragmentDialog(DecksSheet(this@MenuFragment)) }
 
             menuDecks.tvCustomDecks.setOnClickListener { navigateTo(R.navigation.nav_graph_custom_decks) }
+
             menuDecks.tvCreateDeck.setOnClickListener {
                 navigateTo(
                     navGraph = R.navigation.nav_graph_custom_decks,
@@ -86,7 +85,19 @@ class MenuFragment : BaseFragment<FragmentMenuBinding, MenuViewModel>(), IMenuLi
         viewModel.event.observe(this) { event ->
             when (event) {
                 is MenuEvent.Completed -> viewModel.getMenuCards()
-                is MenuEvent.MenuCards -> setUpMenuCards(event.cards)
+                is MenuEvent.MenuCards -> {
+                    setUpMenuCards(event.cards)
+                    viewModel.checkIfFirstTimeInApp()
+                }
+
+                is MenuEvent.FirstTime -> {
+                    if (event.isFirstTime) {
+                        countDown(1250) {
+                            activity?.showFragmentDialog(FirstAccessDialog.newInstance(this@MenuFragment))
+                        }
+                    }
+                }
+
                 is MenuEvent.SomethingWentWrong -> error()
             }
         }
@@ -157,6 +168,15 @@ class MenuFragment : BaseFragment<FragmentMenuBinding, MenuViewModel>(), IMenuLi
             strArgs = strArgs,
             booleanArgs = booleanArgs
         )
+    }
+
+    override fun firstAccessOpenInstructions() = openInstructions()
+
+    private fun openInstructions() {
+        (activity as MainActivity).apply {
+            openInstructions()
+            changeStatusBar(R.color.white)
+        }
     }
 
     private fun error() = activity?.showErrorDialog()

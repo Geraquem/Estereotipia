@@ -9,7 +9,13 @@ import com.mmfsin.estereotipia.data.models.DeckDTO
 import com.mmfsin.estereotipia.data.models.QuestionDTO
 import com.mmfsin.estereotipia.domain.interfaces.IMainRepository
 import com.mmfsin.estereotipia.domain.interfaces.IRealmDatabase
-import com.mmfsin.estereotipia.utils.*
+import com.mmfsin.estereotipia.utils.CARDS
+import com.mmfsin.estereotipia.utils.DECKS
+import com.mmfsin.estereotipia.utils.FIRST_TIME_APP
+import com.mmfsin.estereotipia.utils.MY_SHARED_PREFS
+import com.mmfsin.estereotipia.utils.QUESTIONS
+import com.mmfsin.estereotipia.utils.SAVED_VERSION
+import com.mmfsin.estereotipia.utils.VERSION
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -86,4 +92,14 @@ class MainRepository @Inject constructor(
     private fun saveDeckInRealm(deck: DeckDTO) = realmDatabase.addObject { deck }
     private fun saveCardInRealm(card: CardDTO) = realmDatabase.addObject { card }
     private fun saveQuestionInRealm(question: QuestionDTO) = realmDatabase.addObject { question }
+
+    override suspend fun checkIfFirstTimeInApp(): Boolean {
+        val firstTime = getSharedPreferences().getBoolean(FIRST_TIME_APP, true)
+        if (firstTime) {
+//            val editor = getSharedPreferences().edit()
+//            editor.putBoolean(FIRST_TIME_APP, false)
+//            editor.apply()
+        }
+        return firstTime
+    }
 }

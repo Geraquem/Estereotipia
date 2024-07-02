@@ -4,6 +4,7 @@ interface ICustomDeckListener {
     fun onCustomDeckClick(id: String)
 
     fun playWithCustomDeck(id: String)
+    fun seeCards(id: String)
 
     fun editName(id: String)
     fun editCards(id: String)

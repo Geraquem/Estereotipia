@@ -135,11 +135,10 @@
     <string name="custom_decks_dialog_play">Jugar con esta baraja</string>
 
     <string name="custom_decks_dialog_edit_name">Cambiar nombre</string>
+    <string name="custom_decks_dialog_see_cards">Ver cartas</string>
     <string name="custom_decks_dialog_edit_cards">Editar cartas</string>
     <string name="custom_decks_dialog_edit">Editar</string>
-
     <string name="custom_decks_dialog_share">Compartir</string>
-
     <string name="custom_decks_dialog_delete">Eliminar baraja</string>
     <string name="custom_decks_dialog_delete_confirm">¿Quieres eliminar %s definitivamente?</string>
     <string name="custom_decks_dialog_delete_yes">Eliminar</string>

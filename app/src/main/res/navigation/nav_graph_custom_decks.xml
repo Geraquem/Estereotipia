@@ -23,6 +23,14 @@
             app:destination="@id/createDeckFragment" />
 
         <action
+            android:id="@+id/action_customDecks_to_seeCards"
+            app:destination="@id/seeCardsFragment">
+            <argument
+                android:name="deckId"
+                app:argType="string" />
+        </action>
+
+        <action
             android:id="@+id/action_customDecks_to_editCards"
             app:destination="@id/editCardsFragment">
             <argument
@@ -42,6 +50,12 @@
         android:name="com.mmfsin.estereotipia.presentation.customdecks.create.CreateDeckFragment"
         android:label="createDeckFragment"
         tools:layout="@layout/fragment_create_deck" />
+
+    <fragment
+        android:id="@+id/seeCardsFragment"
+        android:name="com.mmfsin.estereotipia.presentation.customdecks.seecards.SeeCardsFragment"
+        android:label="seeCardsFragment"
+        tools:layout="@layout/fragment_see_cards" />
 
     <fragment
         android:id="@+id/editCardsFragment"

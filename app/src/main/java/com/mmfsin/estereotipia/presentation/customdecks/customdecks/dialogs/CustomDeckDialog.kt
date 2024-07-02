@@ -38,6 +38,8 @@ class CustomDeckDialog(private val customDeckId: String, val listener: ICustomDe
             ivClose.setOnClickListener { dismiss() }
 
             tvPlay.setOnClickListener { actionAndDismiss { listener.playWithCustomDeck(customDeckId) } }
+            tvSeeCards.setOnClickListener { actionAndDismiss { listener.seeCards(customDeckId) } }
+
             tvEditName.setOnClickListener { actionAndDismiss { listener.editName(customDeckId) } }
             tvEditCards.setOnClickListener { actionAndDismiss { listener.editCards(customDeckId) } }
 

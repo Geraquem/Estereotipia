@@ -19,6 +19,7 @@ import com.mmfsin.estereotipia.domain.models.Deck
 import com.mmfsin.estereotipia.presentation.customdecks.customdecks.CustomDecksFragmentDirections.Companion.actionCustomDecksToCreateNewDeck
 import com.mmfsin.estereotipia.presentation.customdecks.customdecks.CustomDecksFragmentDirections.Companion.actionCustomDecksToDashboard
 import com.mmfsin.estereotipia.presentation.customdecks.customdecks.CustomDecksFragmentDirections.Companion.actionCustomDecksToEditCards
+import com.mmfsin.estereotipia.presentation.customdecks.customdecks.CustomDecksFragmentDirections.Companion.actionCustomDecksToSeeCards
 import com.mmfsin.estereotipia.presentation.customdecks.customdecks.adapter.CustomDecksAdapter
 import com.mmfsin.estereotipia.presentation.customdecks.customdecks.dialogs.CustomDeckDialog
 import com.mmfsin.estereotipia.presentation.customdecks.customdecks.dialogs.delete.DeleteCustomDeckDialog
@@ -102,6 +103,10 @@ class CustomDecksFragment : BaseFragment<FragmentCustomDecksBinding, CustomDecks
 
     override fun playWithCustomDeck(id: String) =
         findNavController().navigate(actionCustomDecksToDashboard(id))
+
+    override fun seeCards(id: String) {
+        findNavController().navigate(actionCustomDecksToSeeCards(id))
+    }
 
     override fun editName(id: String) {
         activity?.showFragmentDialog(EditCustomDeckDialog.newInstance(id, this@CustomDecksFragment))

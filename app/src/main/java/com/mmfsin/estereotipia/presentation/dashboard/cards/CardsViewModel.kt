@@ -2,7 +2,6 @@ package com.mmfsin.estereotipia.presentation.dashboard.cards
 
 import androidx.lifecycle.viewModelScope
 import com.mmfsin.estereotipia.base.BaseViewModel
-import com.mmfsin.estereotipia.domain.usecases.DiscardCardUseCase
 import com.mmfsin.estereotipia.domain.usecases.GetCardsByDeckIdUseCase
 import com.mmfsin.estereotipia.domain.usecases.ObserveFlowUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -13,7 +12,6 @@ import javax.inject.Inject
 @HiltViewModel
 class CardsViewModel @Inject constructor(
     private val getCardsByDeckIdUseCase: GetCardsByDeckIdUseCase,
-    private val discardCardUseCase: DiscardCardUseCase,
     private val observeFlowUseCase: ObserveFlowUseCase
 ) : BaseViewModel<CardsEvent>() {
 

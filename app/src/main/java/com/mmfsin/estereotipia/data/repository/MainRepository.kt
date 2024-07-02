@@ -96,9 +96,9 @@ class MainRepository @Inject constructor(
     override suspend fun checkIfFirstTimeInApp(): Boolean {
         val firstTime = getSharedPreferences().getBoolean(FIRST_TIME_APP, true)
         if (firstTime) {
-//            val editor = getSharedPreferences().edit()
-//            editor.putBoolean(FIRST_TIME_APP, false)
-//            editor.apply()
+            val editor = getSharedPreferences().edit()
+            editor.putBoolean(FIRST_TIME_APP, false)
+            editor.apply()
         }
         return firstTime
     }

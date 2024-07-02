@@ -2,6 +2,8 @@ package com.mmfsin.estereotipia.base
 
 import android.app.Application
 import android.util.Log
+import androidx.appcompat.app.AppCompatDelegate
+import androidx.appcompat.app.AppCompatDelegate.setDefaultNightMode
 import com.google.firebase.messaging.FirebaseMessaging
 import dagger.hilt.android.HiltAndroidApp
 import io.realm.Realm
@@ -15,6 +17,7 @@ class App : Application() {
 //        MobileAds.initialize(this) {}
 
 //        getFCMToken()
+        disableNightMode()
     }
 
     private fun getFCMToken() {
@@ -23,4 +26,6 @@ class App : Application() {
             else Log.i("FCM", "no token")
         }
     }
+
+    private fun disableNightMode() = setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
 }

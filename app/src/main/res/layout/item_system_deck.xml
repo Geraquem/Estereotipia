@@ -7,7 +7,7 @@
     android:layout_marginHorizontal="12dp"
     android:layout_marginBottom="8dp"
     android:background="@drawable/click_effect_border"
-    android:padding="120dp">
+    android:padding="12dp">
 
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/bg_number"

@@ -14,5 +14,5 @@ dependencyResolutionManagement {
         mavenCentral()
     }
 }
-rootProject.name = "Who Am I"
+rootProject.name = "Estereotipia"
 include ':app'

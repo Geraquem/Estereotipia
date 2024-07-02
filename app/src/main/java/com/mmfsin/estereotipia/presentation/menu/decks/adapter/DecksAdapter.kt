@@ -18,7 +18,7 @@ class DecksAdapter(
         private val c = binding.root.context
         fun bind(deck: Deck, position: Int) {
             binding.apply {
-                tvNumber.text = position.toString()
+                numeration.tvNumber.text = position.toString()
                 tvName.text = deck.name
                 tvCards.text = c.getString(R.string.decks_dialog_cards, deck.numOfCards.toString())
             }

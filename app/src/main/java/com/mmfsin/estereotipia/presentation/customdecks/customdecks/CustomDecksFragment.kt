@@ -10,6 +10,7 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.material.snackbar.Snackbar
 import com.mmfsin.estereotipia.R
 import com.mmfsin.estereotipia.base.BaseFragment
 import com.mmfsin.estereotipia.base.bedrock.BedRockActivity
@@ -23,6 +24,7 @@ import com.mmfsin.estereotipia.presentation.customdecks.customdecks.dialogs.Cust
 import com.mmfsin.estereotipia.presentation.customdecks.customdecks.dialogs.delete.DeleteCustomDeckDialog
 import com.mmfsin.estereotipia.presentation.customdecks.customdecks.dialogs.edit.EditCustomDeckDialog
 import com.mmfsin.estereotipia.presentation.customdecks.customdecks.interfaces.ICustomDeckListener
+import com.mmfsin.estereotipia.presentation.customdecks.snackbar.CustomSnackbar
 import com.mmfsin.estereotipia.utils.BEDROCK_BOOLEAN_ARGS
 import com.mmfsin.estereotipia.utils.encodeToBase64
 import com.mmfsin.estereotipia.utils.showErrorDialog
@@ -108,7 +110,10 @@ class CustomDecksFragment : BaseFragment<FragmentCustomDecksBinding, CustomDecks
     override fun editCards(id: String) =
         findNavController().navigate(actionCustomDecksToEditCards(id))
 
-    override fun editCompleted() = viewModel.getCustomDecks()
+    override fun editCompleted() {
+        CustomSnackbar.make(binding.clMain, Snackbar.LENGTH_SHORT).show()
+        viewModel.getCustomDecks()
+    }
 
     override fun shareDeck(name: String, cards: String) {
         val encodedText = encodeToBase64("$name/$cards")

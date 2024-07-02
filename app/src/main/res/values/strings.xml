@@ -130,7 +130,7 @@
     <string name="custom_decks_create_new_create">Crear baraja</string>
     <string name="custom_decks_create_new_hint">Nombre de la baraja</string>
     <string name="custom_decks_create_new_name_error">El nombre no puede estar vacío</string>
-    <string name="custom_decks_create_new_name_perfect">¡Baraja creada!</string>
+    <string name="custom_decks_create_new_name_perfect">¡Perfecto!</string>
 
     <string name="custom_decks_dialog_play">Jugar con esta baraja</string>
 

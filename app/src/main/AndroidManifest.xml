@@ -34,19 +34,20 @@
 
             <intent-filter
                 android:autoVerify="true"
-                android:label="mmfsin">
+                android:label="estereotipia">
                 <action android:name="android.intent.action.VIEW" />
 
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
 
                 <data
-                    android:host="www.mmfsin.com"
+                    android:host="www.estereotipia.com"
                     android:pathPrefix="/deck"
                     android:scheme="https" />
             </intent-filter>
 
         </activity>
+
     </application>
 
 </manifest>

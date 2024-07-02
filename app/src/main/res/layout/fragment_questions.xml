@@ -122,7 +122,7 @@
             style="@style/SmallTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:alpha="0.4"
+            android:alpha="0.6"
             android:background="@drawable/click_effect"
             android:drawablePadding="4dp"
             android:text="@string/questions_mini_help_btn"

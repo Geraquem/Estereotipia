@@ -25,9 +25,9 @@
     <string name="menu_instructions">Instrucciones</string>
     <string name="menu_instructions_description">Juega con barajas de cartas ya creadas.</string>
     <string name="menu_play">Jugar</string>
-    <string name="menu_decks">Barajas</string>
+    <string name="menu_decks">Mis barajas</string>
     <string name="menu_custom_decks_description">Crea tus propias barajas con las cartas que más te gusten y compártelas.</string>
-    <string name="menu_custom_decks">Mis barajas</string>
+    <string name="menu_custom_decks">Ver mis barajas</string>
     <string name="menu_custom_decks_create">Crear baraja</string>
     <string name="menu_all_cards">Las cartas</string>
     <string name="menu_all_cards_description_one">Pulsa aquí para ver todas las cartas de personaje que contiene la aplicación.</string>
@@ -153,7 +153,7 @@
     <string name="shared_deck_cancel">Cancelar</string>
 
     <string name="shared_deck_shared_text">¡Juguemos a Estereotipia con esta baraja!</string>
-    <string name="shared_deck_url">https://www.mmfsin.com/deck/%s</string>
+    <string name="shared_deck_url">https://www.estereotipia.com/deck/%s</string>
 
     <!-- INSTRUCTIONS -->
     <string name="instructions_close">Cerrar</string>

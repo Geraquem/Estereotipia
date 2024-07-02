@@ -38,7 +38,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun checkIfSharedDeck() {
-        super.onResume()
         uri = intent.data
         uri?.let { openSharedDeckDialog(it) }
     }

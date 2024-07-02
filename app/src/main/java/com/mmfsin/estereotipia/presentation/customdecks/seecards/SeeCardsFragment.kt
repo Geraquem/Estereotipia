@@ -58,7 +58,7 @@ class SeeCardsFragment : BaseFragment<FragmentSeeCardsBinding, SeeCardsViewModel
     private fun setUpToolbar(deckName: String) =
         (activity as BedRockActivity).apply {
             inDashboard = false
-            setUpToolbar(deckName)
+            setUpToolbar(deckName, instructionsVisible = false)
         }
 
 

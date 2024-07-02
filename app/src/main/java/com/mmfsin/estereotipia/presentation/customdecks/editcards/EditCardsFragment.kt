@@ -52,7 +52,10 @@ class EditCardsFragment : BaseFragment<FragmentCreateDeckBinding, EditCardsViewM
 
     override fun setUI() {
         binding.apply {
-            (activity as BedRockActivity).setUpToolbar(getString(R.string.custom_decks_dialog_edit_cards))
+            (activity as BedRockActivity).setUpToolbar(
+                getString(R.string.custom_decks_dialog_edit_cards),
+                instructionsVisible = false
+            )
             btnAccept.text = getString(R.string.custom_decks_dialog_edit)
             checkBtnVisibility()
         }

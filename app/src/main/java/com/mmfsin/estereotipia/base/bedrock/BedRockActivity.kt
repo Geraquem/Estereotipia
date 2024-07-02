@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.view.WindowInsetsControllerCompat
+import androidx.core.view.isVisible
 import androidx.navigation.fragment.NavHostFragment
 import com.mmfsin.estereotipia.R
 import com.mmfsin.estereotipia.databinding.ActivityBedrockBinding
@@ -45,10 +46,11 @@ class BedRockActivity : AppCompatActivity() {
         navController.apply { if (navGraph != -1) setGraph(navGraph) else error() }
     }
 
-    fun setUpToolbar(title: String? = "") {
+    fun setUpToolbar(title: String? = "", instructionsVisible: Boolean = true) {
         binding.toolbar.apply {
             ivBack.setOnClickListener { onBackPressedDispatcher.onBackPressed() }
             tvTitle.text = title
+            ivInstructions.isVisible = instructionsVisible
             ivInstructions.setOnClickListener { openInstructions() }
         }
     }

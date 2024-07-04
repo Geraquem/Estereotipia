@@ -1,4 +1,4 @@
-package com.mmfsin.estereotipia.presentation.menu.dialogs
+package com.mmfsin.estereotipia.presentation.customdecks.shared
 
 sealed class SharedDeckEvent {
     object AddedCompleted : SharedDeckEvent()

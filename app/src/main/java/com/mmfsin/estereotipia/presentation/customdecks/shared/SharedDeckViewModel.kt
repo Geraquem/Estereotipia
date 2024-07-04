@@ -1,4 +1,4 @@
-package com.mmfsin.estereotipia.presentation.menu.dialogs
+package com.mmfsin.estereotipia.presentation.customdecks.shared
 
 import com.mmfsin.estereotipia.base.BaseViewModel
 import com.mmfsin.estereotipia.domain.usecases.CreateCustomDeckUseCase

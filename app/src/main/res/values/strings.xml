@@ -145,7 +145,7 @@
     <string name="custom_decks_dialog_delete_no">Volver</string>
 
     <!--  SHARED DECK -->
-    <string name="shared_deck_title">Añadir nueva baraja</string>
+    <string name="shared_deck_title">Añadir baraja</string>
     <string name="shared_deck_description">Vas a añadir una nueva baraja personalizada, para poder jugar con ella ve a la sección:</string>
     <string name="shared_deck_cards">%s cartas</string>
     <string name="shared_deck_add">Añadir</string>

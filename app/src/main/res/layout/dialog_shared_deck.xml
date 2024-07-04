@@ -8,27 +8,6 @@
     android:clipChildren="false"
     android:clipToPadding="false">
 
-    <RelativeLayout
-        android:id="@+id/rl_top"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/bg_top_box"
-        android:backgroundTint="@color/grey"
-        android:paddingVertical="16dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <TextView
-            style="@style/MediumTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:text="@string/shared_deck_title"
-            android:textAllCaps="true"
-            android:textStyle="bold" />
-
-    </RelativeLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -40,7 +19,7 @@
         android:padding="16dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/rl_top">
+        app:layout_constraintTop_toTopOf="parent">
 
         <TextView
             android:id="@+id/tv_name"
@@ -49,11 +28,12 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="4dp"
             android:gravity="center"
+            android:textSize="28sp"
             tools:text="Baraja1" />
 
         <TextView
             android:id="@+id/tv_cards"
-            style="@style/SmallTextView"
+            style="@style/MediumTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"

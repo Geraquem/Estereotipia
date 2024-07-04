@@ -1,18 +1,14 @@
 package com.mmfsin.estereotipia.presentation
 
 import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.view.WindowInsetsControllerCompat
-import com.google.android.material.snackbar.Snackbar
 import com.mmfsin.estereotipia.R
 import com.mmfsin.estereotipia.base.bedrock.BedRockActivity
 import com.mmfsin.estereotipia.databinding.ActivityMainBinding
-import com.mmfsin.estereotipia.presentation.customdecks.snackbar.CustomSnackbar
 import com.mmfsin.estereotipia.presentation.instructions.InstructionsFragment
-import com.mmfsin.estereotipia.presentation.menu.dialogs.SharedDeckDialog
 import com.mmfsin.estereotipia.utils.BEDROCK_BOOLEAN_ARGS
 import com.mmfsin.estereotipia.utils.BEDROCK_STR_ARGS
 import com.mmfsin.estereotipia.utils.INSTRUCTIONS
@@ -26,26 +22,12 @@ class MainActivity : AppCompatActivity() {
 
     var checkVersion = true
 
-    private var uri: Uri? = null
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         changeStatusBar(R.color.orange)
-        checkIfSharedDeck()
-    }
-
-    private fun checkIfSharedDeck() {
-        uri = intent.data
-        uri?.let { openSharedDeckDialog(it) }
-    }
-
-    override fun onNewIntent(intent: Intent?) {
-        super.onNewIntent(intent)
-        uri = intent?.data
-        uri?.let { openSharedDeckDialog(it) }
     }
 
     fun changeStatusBar(color: Int) {
@@ -70,14 +52,6 @@ class MainActivity : AppCompatActivity() {
         booleanArgs?.let { intent.putExtra(BEDROCK_BOOLEAN_ARGS, booleanArgs) }
         intent.putExtra(ROOT_ACTIVITY_NAV_GRAPH, navGraph)
         startActivity(intent)
-    }
-
-    private fun openSharedDeckDialog(mUri: Uri) {
-        val sharedDeckDialog = SharedDeckDialog.newInstance(mUri) { added ->
-            uri = null
-            if(added) CustomSnackbar.make(binding.clMain, Snackbar.LENGTH_SHORT).show()
-        }
-        sharedDeckDialog.show(supportFragmentManager, "")
     }
 
     @Deprecated("Deprecated in Java")

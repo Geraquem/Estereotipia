@@ -33,7 +33,7 @@
         android:layout_marginHorizontal="16dp"
         android:clipChildren="false"
         android:clipToPadding="false"
-        android:paddingTop="16dp"
+        android:paddingTop="8dp"
         android:paddingBottom="38dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"

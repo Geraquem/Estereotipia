@@ -7,6 +7,7 @@ import androidx.core.content.ContextCompat
 import androidx.core.view.WindowInsetsControllerCompat
 import androidx.core.view.isVisible
 import androidx.navigation.fragment.NavHostFragment
+import com.google.android.gms.ads.AdRequest
 import com.mmfsin.estereotipia.R
 import com.mmfsin.estereotipia.databinding.ActivityBedrockBinding
 import com.mmfsin.estereotipia.presentation.exit.ExitDialog
@@ -33,6 +34,7 @@ class BedRockActivity : AppCompatActivity() {
 
         changeStatusBar()
         setUpNavGraph()
+        setAds()
     }
 
     private fun changeStatusBar() {
@@ -74,6 +76,16 @@ class BedRockActivity : AppCompatActivity() {
         booleanArgs?.let { intent.putExtra(BEDROCK_BOOLEAN_ARGS, booleanArgs) }
         intent.putExtra(ROOT_ACTIVITY_NAV_GRAPH, navGraph)
         startActivity(intent)
+    }
+
+    private fun setAds() {
+        val adRequest = AdRequest.Builder().build()
+        binding.adView.loadAd(adRequest)
+        showBanner(visible = true)
+    }
+
+    fun showBanner(visible: Boolean) {
+        binding.adView.isVisible = visible
     }
 
     private fun error() = showErrorDialog(goBack = true)

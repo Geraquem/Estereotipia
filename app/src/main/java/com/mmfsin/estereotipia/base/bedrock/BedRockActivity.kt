@@ -81,10 +81,10 @@ class BedRockActivity : AppCompatActivity() {
     private fun setAds() {
         val adRequest = AdRequest.Builder().build()
         binding.adView.loadAd(adRequest)
-        showBanner(visible = true)
+        showBanner(visible = false)
     }
 
-    fun showBanner(visible: Boolean) {
+    fun showBanner(visible: Boolean = false) {
         binding.adView.isVisible = visible
     }
 

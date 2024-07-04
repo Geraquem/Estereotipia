@@ -70,7 +70,10 @@ class ViewPagerFragment : BaseFragment<FragmentViewPagerBinding, ViewPagerViewMo
     }
 
     private fun setUpToolbar(deckName: String) =
-        (activity as BedRockActivity).setUpToolbar(deckName)
+        (activity as BedRockActivity).apply {
+            setUpToolbar(deckName)
+            showBanner(visible = true)
+        }
 
     private fun setUpViewPager(questions: List<GameQuestion>) {
         checkNotNulls(deckId, selectedCardId) { deck, selectedCard ->

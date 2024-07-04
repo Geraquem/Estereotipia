@@ -12,6 +12,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Estereotipia">
 
+        <meta-data
+            android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:value="ca-app-pub-4515698012373396~2833484538" />
+
         <activity
             android:name=".base.bedrock.BedRockActivity"
             android:exported="true"

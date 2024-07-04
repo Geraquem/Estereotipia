@@ -48,8 +48,6 @@ class CustomDeckSheet(private val customDeckId: String, val listener: ICustomDec
 
     private fun setListeners() {
         binding.apply {
-            ivClose.setOnClickListener { dismiss() }
-
             tvPlay.setOnClickListener { actionAndDismiss { listener.playWithCustomDeck(customDeckId) } }
             tvSeeCards.setOnClickListener { actionAndDismiss { listener.seeCards(customDeckId) } }
 

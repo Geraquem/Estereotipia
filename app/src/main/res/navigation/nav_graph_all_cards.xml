@@ -9,6 +9,6 @@
         android:id="@+id/allCardsFragment"
         android:name="com.mmfsin.estereotipia.presentation.allcards.AllCardsFragment"
         android:label="allCardsFragment"
-        tools:layout="@layout/fragment_all_cards" />
+        tools:layout="@layout/fragment_cards" />
 
 </navigation>

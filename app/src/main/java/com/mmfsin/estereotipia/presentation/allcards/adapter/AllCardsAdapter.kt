@@ -11,17 +11,37 @@ import com.mmfsin.estereotipia.domain.models.Card
 import com.mmfsin.estereotipia.presentation.allcards.interfaces.IAllCardsListener
 
 class AllCardsAdapter(
+    private var columns: Int,
     private val cards: List<Card>,
     private val listener: IAllCardsListener
 ) : RecyclerView.Adapter<AllCardsAdapter.ViewHolder>() {
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val binding = ItemAllCardBinding.bind(view)
-        fun bind(card: Card) {
+        private val c = binding.root.context
+
+        fun bind(card: Card, columns: Int) {
             binding.apply {
                 Glide.with(binding.root.context).load(card.image).into(ivImage)
                 tvName.text = card.name
+
+                /** change image dp */
+                if (columns == 3) setImageSize(110)
+                else setImageSize(156)
             }
+        }
+
+        private fun setImageSize(size: Int) {
+            val image = binding.ivImage
+
+            val scale = c.resources.displayMetrics.density
+            val newWidthInPx = (size * scale + 0.5f).toInt()
+            val newHeightInPx = (size * scale + 0.5f).toInt()
+
+            val layoutParams = image.layoutParams
+            layoutParams.width = newWidthInPx
+            layoutParams.height = newHeightInPx
+            image.layoutParams = layoutParams
         }
     }
 
@@ -32,7 +52,7 @@ class AllCardsAdapter(
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bind(cards[position])
+        holder.bind(cards[position], columns)
         holder.itemView.setOnClickListener { listener.onCardClick(cards[position].id) }
     }
 

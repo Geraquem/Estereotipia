@@ -11,14 +11,6 @@
         android:label="customDecksFragment"
         tools:layout="@layout/fragment_custom_decks">
         <action
-            android:id="@+id/action_customDecks_to_dashboard"
-            app:destination="@id/viewPagerFragment">
-            <argument
-                android:name="deckId"
-                app:argType="string" />
-        </action>
-
-        <action
             android:id="@+id/action_customDecks_to_createNewDeck"
             app:destination="@id/createDeckFragment" />
 
@@ -40,12 +32,6 @@
     </fragment>
 
     <fragment
-        android:id="@+id/viewPagerFragment"
-        android:name="com.mmfsin.estereotipia.presentation.dashboard.viepager.ViewPagerFragment"
-        android:label="viewPagerFragment"
-        tools:layout="@layout/fragment_view_pager" />
-
-    <fragment
         android:id="@+id/createDeckFragment"
         android:name="com.mmfsin.estereotipia.presentation.customdecks.create.CreateDeckFragment"
         android:label="createDeckFragment"
@@ -55,7 +41,7 @@
         android:id="@+id/seeCardsFragment"
         android:name="com.mmfsin.estereotipia.presentation.customdecks.seecards.SeeCardsFragment"
         android:label="seeCardsFragment"
-        tools:layout="@layout/fragment_see_cards" />
+        tools:layout="@layout/fragment_cards" />
 
     <fragment
         android:id="@+id/editCardsFragment"

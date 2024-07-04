@@ -25,8 +25,10 @@ class AllCardsFragment : BaseFragment<FragmentCardsBinding, AllCardsViewModel>()
     IAllCardsListener {
 
     override val viewModel: AllCardsViewModel by viewModels()
-
     private lateinit var mContext: Context
+
+    private var mCards = listOf<Card>()
+    private var columns = 2
 
     override fun inflateView(
         inflater: LayoutInflater, container: ViewGroup?
@@ -44,21 +46,34 @@ class AllCardsFragment : BaseFragment<FragmentCardsBinding, AllCardsViewModel>()
         }
     }
 
-    override fun setListeners() {}
+    override fun setListeners() {
+        binding.apply {
+            rlZoom.setOnClickListener {
+                columns = if (columns == 3) 2 else 3
+                val zoom = if (columns == 3) R.drawable.ic_zoom_in else R.drawable.ic_zoom_out
+                ivZoom.setImageResource(zoom)
+                setUpCards(columns, mCards)
+            }
+        }
+    }
 
     override fun observe() {
         viewModel.event.observe(this) { event ->
             when (event) {
-                is AllCardsEvent.GetCards -> setUpAllCards(event.cards)
+                is AllCardsEvent.GetCards -> {
+                    mCards = event.cards
+                    setUpCards(2, event.cards)
+                }
+
                 is AllCardsEvent.SomethingWentWrong -> activity?.showErrorDialog()
             }
         }
     }
 
-    private fun setUpAllCards(cards: List<Card>) {
+    private fun setUpCards(columns: Int, cards: List<Card>) {
         binding.rvCards.apply {
-            layoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
-            adapter = AllCardsAdapter(cards, this@AllCardsFragment)
+            layoutManager = StaggeredGridLayoutManager(columns, StaggeredGridLayoutManager.VERTICAL)
+            adapter = AllCardsAdapter(columns, cards, this@AllCardsFragment)
         }
     }
 

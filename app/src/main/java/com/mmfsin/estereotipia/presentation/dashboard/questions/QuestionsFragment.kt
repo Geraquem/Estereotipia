@@ -87,7 +87,7 @@ class QuestionsFragment(
                             setUpQuestionList()
                         }
                     }
-                } else error()
+                }
             }
 
             tvMyCard.setOnClickListener {

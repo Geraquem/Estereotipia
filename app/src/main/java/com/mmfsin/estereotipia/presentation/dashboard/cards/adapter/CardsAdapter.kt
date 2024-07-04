@@ -1,5 +1,6 @@
 package com.mmfsin.estereotipia.presentation.dashboard.cards.adapter
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,14 +14,16 @@ import com.mmfsin.estereotipia.domain.models.Card
 import com.mmfsin.estereotipia.presentation.dashboard.cards.interfaces.ICardsListener
 
 class CardsAdapter(
-    private val cards: List<Card>, private val listener: ICardsListener
+    private var columns: Int,
+    private val cards: List<Card>,
+    private val listener: ICardsListener
 ) : RecyclerView.Adapter<CardsAdapter.ViewHolder>() {
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val binding = ItemCardBinding.bind(view)
         private val c = binding.root.context
 
-        fun bind(card: Card) {
+        fun bind(card: Card, columns: Int) {
             binding.apply {
                 ivDiscard.isVisible = card.discarded
                 Glide.with(c).load(card.image).into(ivImage)
@@ -32,7 +35,24 @@ class CardsAdapter(
                     )
                     clBackground.background = golden
                 }
+
+                /** change image dp */
+                if (columns == 3) setImageSize(110)
+                else setImageSize(156)
             }
+        }
+
+        private fun setImageSize(size: Int) {
+            val image = binding.ivImage
+
+            val scale = c.resources.displayMetrics.density
+            val newWidthInPx = (size * scale + 0.5f).toInt()
+            val newHeightInPx = (size * scale + 0.5f).toInt()
+
+            val layoutParams = image.layoutParams
+            layoutParams.width = newWidthInPx
+            layoutParams.height = newHeightInPx
+            image.layoutParams = layoutParams
         }
     }
 
@@ -66,7 +86,7 @@ class CardsAdapter(
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bind(cards[position])
+        holder.bind(cards[position], columns)
         holder.itemView.setOnClickListener { listener.onCardClick(cards[position].id) }
     }
 

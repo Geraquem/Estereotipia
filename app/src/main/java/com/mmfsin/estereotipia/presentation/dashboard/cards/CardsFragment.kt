@@ -9,6 +9,7 @@ import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.SimpleItemAnimator
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import androidx.recyclerview.widget.StaggeredGridLayoutManager.VERTICAL
+import com.mmfsin.estereotipia.R
 import com.mmfsin.estereotipia.base.BaseFragment
 import com.mmfsin.estereotipia.base.bedrock.BedRockActivity
 import com.mmfsin.estereotipia.databinding.FragmentCardsBinding
@@ -30,9 +31,11 @@ class CardsFragment(val deckId: String, private val selectedCardId: String) :
     override val viewModel: CardsViewModel by viewModels()
     private lateinit var mContext: Context
 
-    private var cardsAdapter: CardsAdapter? = null
+    private var mCards = listOf<Card>()
+    private var columns = 2
 
     private var opportunities = 2
+    private var cardsAdapter: CardsAdapter? = null
 
     override fun inflateView(
         inflater: LayoutInflater, container: ViewGroup?
@@ -43,14 +46,31 @@ class CardsFragment(val deckId: String, private val selectedCardId: String) :
         viewModel.getCards(deckId)
     }
 
-    override fun setUI() {}
+    override fun setUI() {
+        binding.apply {
+            ivZoom.setImageResource(R.drawable.ic_zoom_out)
+        }
+    }
 
-    override fun setListeners() {}
+    override fun setListeners() {
+        binding.apply {
+            rlZoom.setOnClickListener {
+                columns = if (columns == 3) 2 else 3
+                val zoom = if (columns == 3) R.drawable.ic_zoom_in else R.drawable.ic_zoom_out
+                ivZoom.setImageResource(zoom)
+                buildAdapter(columns, mCards)
+            }
+        }
+    }
 
     override fun observe() {
         viewModel.event.observe(this) { event ->
             when (event) {
-                is CardsEvent.GetCards -> setUpCards(event.cards)
+                is CardsEvent.GetCards -> {
+                    mCards = event.cards
+                    setUpCards(event.cards)
+                }
+
                 is CardsEvent.UpdateCard -> cardsAdapter?.updateDiscardedCards(event.cardId)
                 is CardsEvent.SomethingWentWrong -> error()
             }
@@ -58,15 +78,19 @@ class CardsFragment(val deckId: String, private val selectedCardId: String) :
     }
 
     private fun setUpCards(cards: List<Card>) {
-        binding.rvCards.apply {
-            (this.itemAnimator as SimpleItemAnimator).supportsChangeAnimations = false
-            layoutManager = StaggeredGridLayoutManager(2, VERTICAL)
-            cardsAdapter = CardsAdapter(cards, this@CardsFragment)
-            adapter = cardsAdapter
-        }
+        buildAdapter(2, cards)
         activity?.showFragmentDialog(WaitSelectDialog {
             activity?.showFragmentDialog(SelectedCardDialog.newInstance(selectedCardId))
         })
+    }
+
+    private fun buildAdapter(columns: Int, cards: List<Card>) {
+        binding.rvCards.apply {
+            (this.itemAnimator as SimpleItemAnimator).supportsChangeAnimations = false
+            layoutManager = StaggeredGridLayoutManager(columns, VERTICAL)
+            cardsAdapter = CardsAdapter(columns, cards, this@CardsFragment)
+            adapter = cardsAdapter
+        }
     }
 
     override fun onCardClick(cardId: String) {

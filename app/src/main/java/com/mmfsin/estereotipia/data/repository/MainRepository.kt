@@ -12,11 +12,14 @@ import com.mmfsin.estereotipia.domain.interfaces.IRealmDatabase
 import com.mmfsin.estereotipia.utils.CARDS
 import com.mmfsin.estereotipia.utils.DECKS
 import com.mmfsin.estereotipia.utils.FIRST_TIME_APP
+import com.mmfsin.estereotipia.utils.ID
+import com.mmfsin.estereotipia.utils.IS_CUSTOM_DECK
 import com.mmfsin.estereotipia.utils.MY_SHARED_PREFS
 import com.mmfsin.estereotipia.utils.QUESTIONS
 import com.mmfsin.estereotipia.utils.SAVED_VERSION
 import com.mmfsin.estereotipia.utils.VERSION
 import dagger.hilt.android.qualifiers.ApplicationContext
+import io.realm.kotlin.where
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import java.util.concurrent.CountDownLatch
@@ -42,6 +45,7 @@ class MainRepository @Inject constructor(
                 latch.countDown()
             } else {
                 saveVersion(newVersion = version)
+                deleteAllSystemData()
 
                 val fbDecks = it.child(DECKS)
                 for (child in fbDecks.children) {
@@ -83,6 +87,16 @@ class MainRepository @Inject constructor(
         val editor = getSharedPreferences().edit()
         editor.putLong(SAVED_VERSION, newVersion)
         editor.apply()
+    }
+
+    private fun deleteAllSystemData() {
+        val systemDecks = realmDatabase.getObjectsFromRealm {
+            where<DeckDTO>().equalTo(IS_CUSTOM_DECK, false).findAll()
+        }
+
+        systemDecks.forEach { deck -> realmDatabase.deleteObject(DeckDTO::class.java, ID, deck.id) }
+        realmDatabase.deleteAllObjects(CardDTO::class.java)
+        realmDatabase.deleteAllObjects(QuestionDTO::class.java)
     }
 
     private fun getSavedVersion(): Long = getSharedPreferences().getLong(SAVED_VERSION, -1)

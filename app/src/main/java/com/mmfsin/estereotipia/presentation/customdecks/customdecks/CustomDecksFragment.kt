@@ -17,7 +17,6 @@ import com.mmfsin.estereotipia.base.bedrock.BedRockActivity
 import com.mmfsin.estereotipia.databinding.FragmentCustomDecksBinding
 import com.mmfsin.estereotipia.domain.models.Deck
 import com.mmfsin.estereotipia.presentation.customdecks.customdecks.CustomDecksFragmentDirections.Companion.actionCustomDecksToCreateNewDeck
-import com.mmfsin.estereotipia.presentation.customdecks.customdecks.CustomDecksFragmentDirections.Companion.actionCustomDecksToDashboard
 import com.mmfsin.estereotipia.presentation.customdecks.customdecks.CustomDecksFragmentDirections.Companion.actionCustomDecksToEditCards
 import com.mmfsin.estereotipia.presentation.customdecks.customdecks.CustomDecksFragmentDirections.Companion.actionCustomDecksToSeeCards
 import com.mmfsin.estereotipia.presentation.customdecks.customdecks.adapter.CustomDecksAdapter
@@ -101,8 +100,12 @@ class CustomDecksFragment : BaseFragment<FragmentCustomDecksBinding, CustomDecks
         activity?.showFragmentDialog(CustomDeckDialog(id, this@CustomDecksFragment))
     }
 
-    override fun playWithCustomDeck(id: String) =
-        findNavController().navigate(actionCustomDecksToDashboard(id))
+    override fun playWithCustomDeck(id: String) {
+        (activity as BedRockActivity).openBedRockActivity(
+            navGraph = R.navigation.nav_graph_dashboard,
+            strArgs = id
+        )
+    }
 
     override fun seeCards(id: String) {
         findNavController().navigate(actionCustomDecksToSeeCards(id))

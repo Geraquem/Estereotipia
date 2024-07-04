@@ -1,5 +1,6 @@
 package com.mmfsin.estereotipia.base.bedrock
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
@@ -10,6 +11,8 @@ import com.mmfsin.estereotipia.R
 import com.mmfsin.estereotipia.databinding.ActivityBedrockBinding
 import com.mmfsin.estereotipia.presentation.exit.ExitDialog
 import com.mmfsin.estereotipia.presentation.instructions.InstructionsFragment
+import com.mmfsin.estereotipia.utils.BEDROCK_BOOLEAN_ARGS
+import com.mmfsin.estereotipia.utils.BEDROCK_STR_ARGS
 import com.mmfsin.estereotipia.utils.INSTRUCTIONS
 import com.mmfsin.estereotipia.utils.ROOT_ACTIVITY_NAV_GRAPH
 import com.mmfsin.estereotipia.utils.showErrorDialog
@@ -59,6 +62,18 @@ class BedRockActivity : AppCompatActivity() {
         supportFragmentManager.beginTransaction().addToBackStack(INSTRUCTIONS)
             .setCustomAnimations(R.anim.fragment_up, 0, 0, R.anim.fragment_down)
             .add(R.id.fc_instructions, InstructionsFragment()).commit()
+    }
+
+    fun openBedRockActivity(
+        navGraph: Int,
+        strArgs: String? = null,
+        booleanArgs: Boolean? = null
+    ) {
+        val intent = Intent(this, BedRockActivity::class.java)
+        strArgs?.let { intent.putExtra(BEDROCK_STR_ARGS, strArgs) }
+        booleanArgs?.let { intent.putExtra(BEDROCK_BOOLEAN_ARGS, booleanArgs) }
+        intent.putExtra(ROOT_ACTIVITY_NAV_GRAPH, navGraph)
+        startActivity(intent)
     }
 
     private fun error() = showErrorDialog(goBack = true)

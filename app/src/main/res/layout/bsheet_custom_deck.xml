@@ -6,7 +6,8 @@
     android:layout_height="wrap_content"
     android:background="@drawable/bg_top_box"
     android:clipChildren="false"
-    android:clipToPadding="false">
+    android:clipToPadding="false"
+    app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/rl_top"

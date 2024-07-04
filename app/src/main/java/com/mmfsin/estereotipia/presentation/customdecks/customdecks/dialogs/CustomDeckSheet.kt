@@ -1,4 +1,4 @@
-package com.mmfsin.estereotipia.presentation.menu.decks
+package com.mmfsin.estereotipia.presentation.customdecks.customdecks.dialogs
 
 import android.app.Dialog
 import android.content.res.Resources
@@ -6,35 +6,35 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.content.ContextCompat.getDrawable
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.viewModels
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.mmfsin.estereotipia.R
-import com.mmfsin.estereotipia.databinding.BsheetDecksBinding
+import com.mmfsin.estereotipia.databinding.BsheetCustomDeckBinding
 import com.mmfsin.estereotipia.domain.models.Deck
-import com.mmfsin.estereotipia.presentation.menu.decks.adapter.DecksAdapter
-import com.mmfsin.estereotipia.presentation.menu.decks.interfaces.IDeckListener
-import com.mmfsin.estereotipia.presentation.menu.interfaces.IMenuListener
+import com.mmfsin.estereotipia.presentation.customdecks.customdecks.interfaces.ICustomDeckListener
 import com.mmfsin.estereotipia.utils.showErrorDialog
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class DecksSheet(val listener: IMenuListener) : BottomSheetDialogFragment(), IDeckListener {
+class CustomDeckSheet(private val customDeckId: String, val listener: ICustomDeckListener) :
+    BottomSheetDialogFragment() {
 
-    private val viewModel: DecksViewModel by viewModels()
+    private lateinit var binding: BsheetCustomDeckBinding
 
-    private lateinit var binding: BsheetDecksBinding
+    private val viewModel: CustomDeckViewModel by viewModels()
+
+    private var deck: Deck? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = BsheetDecksBinding.inflate(inflater, container, false)
+        binding = BsheetCustomDeckBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -60,7 +60,7 @@ class DecksSheet(val listener: IMenuListener) : BottomSheetDialogFragment(), IDe
                 behavior.peekHeight = maxHeight
                 it.requestLayout()
 
-                it.background = getDrawable(requireContext(), R.drawable.bg_top_box)
+                it.background = ContextCompat.getDrawable(requireContext(), R.drawable.bg_top_box)
             }
         }
         return dialog
@@ -71,31 +71,51 @@ class DecksSheet(val listener: IMenuListener) : BottomSheetDialogFragment(), IDe
         observe()
         setListeners()
 
-        viewModel.getDecks()
+        viewModel.getCustomDeck(customDeckId)
     }
 
-    private fun setListeners() {}
+    private fun setListeners() {
+        binding.apply {
+            ivClose.setOnClickListener { dismiss() }
 
-    private fun observe() {
-        viewModel.event.observe(this) { event ->
-            when (event) {
-                is DecksEvent.GetDecks -> setUpDecks(event.decks)
-                is DecksEvent.SomethingWentWrong -> error()
+            tvPlay.setOnClickListener { actionAndDismiss { listener.playWithCustomDeck(customDeckId) } }
+            tvSeeCards.setOnClickListener { actionAndDismiss { listener.seeCards(customDeckId) } }
+
+            tvEditName.setOnClickListener { actionAndDismiss { listener.editName(customDeckId) } }
+            tvEditCards.setOnClickListener { actionAndDismiss { listener.editCards(customDeckId) } }
+
+            tvShare.setOnClickListener { actionAndDismiss { shareDeck() } }
+            tvDelete.setOnClickListener {
+                actionAndDismiss {
+                    listener.confirmDeleteCustomDeck(
+                        customDeckId
+                    )
+                }
             }
         }
     }
 
-    private fun setUpDecks(decks: List<Deck>) {
-        binding.rvDecks.apply {
-            layoutManager = LinearLayoutManager(context)
-            adapter = DecksAdapter(decks, this@DecksSheet)
+    private fun observe() {
+        viewModel.event.observe(this) { event ->
+            when (event) {
+                is CustomDeckEvent.GetDeck -> {
+                    deck = event.deck
+                    binding.tvTitle.text = event.deck.name
+                }
+
+                is CustomDeckEvent.EditedCompleted -> {}
+                is CustomDeckEvent.SomethingWentWrong -> error()
+            }
         }
     }
 
-    override fun onDeckClick(deckId: String) {
-        listener.startGame(deckId)
+    private fun actionAndDismiss(action: () -> Unit) {
+        action()
         dismiss()
     }
+
+    private fun shareDeck() =
+        deck?.let { d -> listener.shareDeck(d.name, d.cards) } ?: run { error() }
 
     private fun error() = activity?.showErrorDialog(goBack = false)
 }

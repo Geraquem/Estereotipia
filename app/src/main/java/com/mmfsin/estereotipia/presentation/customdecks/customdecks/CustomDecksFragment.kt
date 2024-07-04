@@ -20,7 +20,7 @@ import com.mmfsin.estereotipia.presentation.customdecks.customdecks.CustomDecksF
 import com.mmfsin.estereotipia.presentation.customdecks.customdecks.CustomDecksFragmentDirections.Companion.actionCustomDecksToEditCards
 import com.mmfsin.estereotipia.presentation.customdecks.customdecks.CustomDecksFragmentDirections.Companion.actionCustomDecksToSeeCards
 import com.mmfsin.estereotipia.presentation.customdecks.customdecks.adapter.CustomDecksAdapter
-import com.mmfsin.estereotipia.presentation.customdecks.customdecks.dialogs.CustomDeckDialog
+import com.mmfsin.estereotipia.presentation.customdecks.customdecks.dialogs.CustomDeckSheet
 import com.mmfsin.estereotipia.presentation.customdecks.customdecks.dialogs.delete.DeleteCustomDeckDialog
 import com.mmfsin.estereotipia.presentation.customdecks.customdecks.dialogs.edit.EditCustomDeckDialog
 import com.mmfsin.estereotipia.presentation.customdecks.customdecks.interfaces.ICustomDeckListener
@@ -97,7 +97,7 @@ class CustomDecksFragment : BaseFragment<FragmentCustomDecksBinding, CustomDecks
     }
 
     override fun onCustomDeckClick(id: String) {
-        activity?.showFragmentDialog(CustomDeckDialog(id, this@CustomDecksFragment))
+        activity?.showFragmentDialog(CustomDeckSheet(id, this@CustomDecksFragment))
     }
 
     override fun playWithCustomDeck(id: String) {

@@ -9,6 +9,7 @@ import androidx.core.view.WindowInsetsControllerCompat
 import androidx.core.view.isVisible
 import com.mmfsin.estereotipia.R
 import com.mmfsin.estereotipia.databinding.ActivitySharedDeckBinding
+import com.mmfsin.estereotipia.presentation.MainActivity
 import com.mmfsin.estereotipia.utils.countDown
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -56,7 +57,10 @@ class SharedDeckActivity : AppCompatActivity() {
     }
 
     private fun openSharedDeckDialog(mUri: Uri) {
-        val sharedDeckDialog = SharedDeckDialog.newInstance(mUri) { finish() }
+        val sharedDeckDialog = SharedDeckDialog.newInstance(mUri) {
+            startActivity(Intent(this, MainActivity::class.java))
+            finish()
+        }
         countDown(500) { sharedDeckDialog.show(supportFragmentManager, "") }
     }
 }

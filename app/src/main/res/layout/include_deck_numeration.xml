@@ -21,6 +21,7 @@
 
         <TextView
             style="@style/MediumTextView"
+            android:textSize="16sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="4dp"
@@ -35,7 +36,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/mont_bold"
             android:textColor="@color/white"
-            android:textSize="28sp"
+            android:textSize="22sp"
             tools:text="7" />
 
     </LinearLayout>

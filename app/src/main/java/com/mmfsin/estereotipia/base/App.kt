@@ -1,6 +1,7 @@
 package com.mmfsin.estereotipia.base
 
 import android.app.Application
+import android.util.Log
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.appcompat.app.AppCompatDelegate.setDefaultNightMode
 import com.google.android.gms.ads.MobileAds
@@ -22,8 +23,10 @@ class App : Application() {
 
     private fun getFCMToken() {
         FirebaseMessaging.getInstance().token.addOnCompleteListener {
-            if (it.isSuccessful) println("**** FCM **** ${it.result}")
-            else println("FCM -> no token")
+            if (it.isSuccessful) {
+                Log.i("**** FCM **** -> ", it.result)
+                println("**** FCM **** ${it.result}")
+            } else Log.e("FCM ->", "no token")
         }
     }
 

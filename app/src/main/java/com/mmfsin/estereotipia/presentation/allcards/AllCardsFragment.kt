@@ -28,7 +28,7 @@ class AllCardsFragment : BaseFragment<FragmentCardsBinding, AllCardsViewModel>()
     private lateinit var mContext: Context
 
     private var mCards = listOf<Card>()
-    private var columns = 2
+    private var columns = 3
 
     override fun inflateView(
         inflater: LayoutInflater, container: ViewGroup?
@@ -62,7 +62,7 @@ class AllCardsFragment : BaseFragment<FragmentCardsBinding, AllCardsViewModel>()
             when (event) {
                 is AllCardsEvent.GetCards -> {
                     mCards = event.cards
-                    setUpCards(2, event.cards)
+                    setUpCards(3, event.cards)
                 }
 
                 is AllCardsEvent.SomethingWentWrong -> activity?.showErrorDialog()

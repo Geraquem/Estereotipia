@@ -32,7 +32,7 @@ class CardsFragment(val deckId: String, private val selectedCardId: String) :
     private lateinit var mContext: Context
 
     private var mCards = listOf<Card>()
-    private var columns = 2
+    private var columns = 3
 
     private var opportunities = 2
     private var cardsAdapter: CardsAdapter? = null
@@ -44,12 +44,6 @@ class CardsFragment(val deckId: String, private val selectedCardId: String) :
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel.getCards(deckId)
-    }
-
-    override fun setUI() {
-        binding.apply {
-            ivZoom.setImageResource(R.drawable.ic_zoom_out)
-        }
     }
 
     override fun setListeners() {
@@ -78,7 +72,7 @@ class CardsFragment(val deckId: String, private val selectedCardId: String) :
     }
 
     private fun setUpCards(cards: List<Card>) {
-        buildAdapter(2, cards)
+        buildAdapter(3, cards)
         activity?.showFragmentDialog(WaitSelectDialog {
             activity?.showFragmentDialog(SelectedCardDialog.newInstance(selectedCardId))
         })

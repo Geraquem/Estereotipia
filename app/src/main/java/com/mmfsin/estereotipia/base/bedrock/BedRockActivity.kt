@@ -53,7 +53,7 @@ class BedRockActivity : AppCompatActivity() {
 
     fun setUpToolbar(title: String? = "", instructionsVisible: Boolean = true) {
         binding.toolbar.apply {
-            ivBack.setOnClickListener { onBackPressedDispatcher.onBackPressed() }
+            ivBack.setOnClickListener { onBackPressed() }
             tvTitle.text = title
             ivInstructions.isVisible = instructionsVisible
             ivInstructions.setOnClickListener { openInstructions() }

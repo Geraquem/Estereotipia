@@ -30,7 +30,7 @@ class SeeCardsFragment : BaseFragment<FragmentCardsBinding, SeeCardsViewModel>()
 
     private var deckId: String? = null
     private var mCards = listOf<Card>()
-    private var columns = 2
+    private var columns = 3
 
     override fun inflateView(
         inflater: LayoutInflater, container: ViewGroup?
@@ -72,7 +72,7 @@ class SeeCardsFragment : BaseFragment<FragmentCardsBinding, SeeCardsViewModel>()
 
                 is SeeCardsEvent.DeckCards -> {
                     mCards = event.cards
-                    setUpCards(2, event.cards)
+                    setUpCards(3, event.cards)
                 }
 
                 is SeeCardsEvent.SomethingWentWrong -> error()

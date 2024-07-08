@@ -77,12 +77,21 @@ class DiscardDialog(
 
     override fun setListeners() {
         binding.apply {
-            buttons.ivDiscard.setOnClickListener { viewModel.discardCard(cardId) }
-            buttons.ivFinalAnswer.setOnClickListener {
-                actionType = SECOND_BUTTONS
-                buttons.root.visibility = View.GONE
-                choice.root.visibility = View.VISIBLE
+            buttons.apply {
+                ivFinalAnswer.setOnClickListener {
+                    actionType = SECOND_BUTTONS
+                    buttons.root.visibility = View.GONE
+                    choice.root.visibility = View.VISIBLE
+                }
+
+                ivSuspicious.setOnClickListener {
+                    listener.markSuspicious(cardId)
+                    dismiss()
+                }
+
+                ivDiscard.setOnClickListener { viewModel.discardCard(cardId) }
             }
+
             choice.btnNo.setOnClickListener {
                 actionType = FIRST_BUTTONS
                 choice.root.visibility = View.GONE

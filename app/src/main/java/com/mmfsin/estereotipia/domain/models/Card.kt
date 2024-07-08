@@ -5,5 +5,6 @@ open class Card(
     val image: String,
     val name: String,
     var discarded: Boolean,
+    var suspicious: Boolean = false,
     var rivalCard: Boolean = false,
 )

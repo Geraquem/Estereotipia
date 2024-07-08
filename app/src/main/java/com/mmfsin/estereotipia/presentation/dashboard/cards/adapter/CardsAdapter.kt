@@ -25,6 +25,8 @@ class CardsAdapter(
         fun bind(card: Card, columns: Int) {
             binding.apply {
                 ivDiscard.isVisible = card.discarded
+                ivQuestion.isVisible = card.suspicious
+
                 Glide.with(c).load(card.image).into(ivImage)
                 tvName.text = card.name
 
@@ -57,9 +59,26 @@ class CardsAdapter(
 
     fun updateDiscardedCards(id: String) {
         var position: Int? = null
-        cards.forEachIndexed() { i, card ->
+        cards.forEachIndexed { i, card ->
             if (card.id == id) {
                 card.discarded = !card.discarded
+                if (card.discarded) {
+                    card.suspicious = false
+                }
+                position = i
+            }
+        }
+        position?.let { pos -> notifyItemChanged(pos) }
+    }
+
+    fun updateSuspiciousCard(id: String) {
+        var position: Int? = null
+        cards.forEachIndexed { i, card ->
+            if (card.id == id) {
+                card.suspicious = !card.suspicious
+                if (card.suspicious) {
+                    card.discarded = false
+                }
                 position = i
             }
         }
@@ -70,6 +89,7 @@ class CardsAdapter(
         var position: Int? = null
         cards.forEachIndexed() { i, card ->
             if (card.id == id) {
+                card.suspicious = false
                 card.discarded = false
                 card.rivalCard = true
                 position = i

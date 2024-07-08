@@ -97,6 +97,10 @@ class CardsFragment(val deckId: String, private val selectedCardId: String) :
         )
     }
 
+    override fun markSuspicious(cardId: String) {
+        cardsAdapter?.updateSuspiciousCard(cardId)
+    }
+
     override fun makeChoice(cardId: String) {
         activity?.showFragmentDialog(
             ChoiceDialog.newInstance(cardId, opportunities, this@CardsFragment)

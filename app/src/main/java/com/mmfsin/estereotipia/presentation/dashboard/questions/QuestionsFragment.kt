@@ -2,10 +2,12 @@ package com.mmfsin.estereotipia.presentation.dashboard.questions
 
 import android.content.Context
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.isVisible
+import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.mmfsin.estereotipia.base.BaseFragmentNoVM
+import com.mmfsin.estereotipia.base.BaseFragment
 import com.mmfsin.estereotipia.base.bedrock.BedRockActivity
 import com.mmfsin.estereotipia.databinding.FragmentQuestionsBinding
 import com.mmfsin.estereotipia.domain.models.GameQuestion
@@ -14,7 +16,7 @@ import com.mmfsin.estereotipia.presentation.dashboard.questions.dialogs.MiniHelp
 import com.mmfsin.estereotipia.presentation.dashboard.questions.dialogs.NewQuestionDialog
 import com.mmfsin.estereotipia.presentation.dashboard.questions.dialogs.adapter.QuestionsListAdapter
 import com.mmfsin.estereotipia.presentation.dashboard.questions.dialogs.interfaces.INewQuestionListener
-import com.mmfsin.estereotipia.presentation.dashboard.viepager.interfaces.IViewPagerListener
+import com.mmfsin.estereotipia.presentation.dashboard.viewpager.interfaces.IViewPagerListener
 import com.mmfsin.estereotipia.utils.NUM_OF_QUESTIONS
 import com.mmfsin.estereotipia.utils.countDown
 import com.mmfsin.estereotipia.utils.showErrorDialog
@@ -24,10 +26,12 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class QuestionsFragment(
     private val selectedCardId: String,
-    private val questions: List<GameQuestion>,
     private val listener: IViewPagerListener
-) : BaseFragmentNoVM<FragmentQuestionsBinding>(), INewQuestionListener {
+) : BaseFragment<FragmentQuestionsBinding, QuestionsViewModel>(), INewQuestionListener {
 
+    override val viewModel: QuestionsViewModel by viewModels()
+
+    private var totalQuestions: List<GameQuestion>? = null
     private val questionsDone = mutableListOf<GameQuestion>()
     private var cont = 0
 
@@ -40,12 +44,14 @@ class QuestionsFragment(
     ) = FragmentQuestionsBinding.inflate(inflater, container, false)
 
     override fun onResume() {
+        viewModel.getQuestions()
         checkIfGameFinished()
         super.onResume()
     }
 
     override fun setUI() {
         binding.apply {
+            loading.root.visibility = View.VISIBLE
             llQuestions.isVisible = false
         }
     }
@@ -72,21 +78,23 @@ class QuestionsFragment(
     override fun setListeners() {
         binding.apply {
             tvNewQuestion.setOnClickListener {
-                if (questions.isNotEmpty()) {
-                    if (cont < NUM_OF_QUESTIONS) {
-                        tvNewQuestion.isEnabled = false
-                        val question = questions[cont]
-                        questionsDone.add(question)
-                        activity?.showFragmentDialog(
-                            NewQuestionDialog.newInstance(question, this@QuestionsFragment)
-                        )
-                        cont++
-                        countDown(500) {
-                            if (cont >= NUM_OF_QUESTIONS) disableNewQuestionBtn()
-                            else tvNewQuestion.isEnabled = true
-                            setUpQuestionList()
+                totalQuestions?.let { list ->
+                    if (list.isNotEmpty()) {
+                        if (cont < NUM_OF_QUESTIONS) {
+                            tvNewQuestion.isEnabled = false
+                            val question = list[cont]
+                            questionsDone.add(question)
+                            activity?.showFragmentDialog(
+                                NewQuestionDialog.newInstance(question, this@QuestionsFragment)
+                            )
+                            cont++
+                            countDown(500) {
+                                if (cont >= NUM_OF_QUESTIONS) disableNewQuestionBtn()
+                                else tvNewQuestion.isEnabled = true
+                                setUpQuestionList()
+                            }
                         }
-                    }
+                    } else viewModel.getQuestions()
                 }
             }
 
@@ -95,6 +103,19 @@ class QuestionsFragment(
             }
 
             tvMiniHelp.setOnClickListener { activity?.showFragmentDialog(MiniHelpSheet()) }
+        }
+    }
+
+    override fun observe() {
+        viewModel.event.observe(this) { event ->
+            when (event) {
+                is QuestionsEvent.GetQuestions -> {
+                    totalQuestions = event.questions
+                    binding.loading.root.visibility = View.GONE
+                }
+
+                is QuestionsEvent.SomethingWentWrong -> error()
+            }
         }
     }
 

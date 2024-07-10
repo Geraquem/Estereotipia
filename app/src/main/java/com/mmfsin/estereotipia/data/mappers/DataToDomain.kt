@@ -21,7 +21,7 @@ private fun numOfCards(cards: String): Int = cards.split(",").size
 fun List<DeckDTO>.toDeckList() = this.map { it.toDeck() }
 
 /** CARD */
-fun CardDTO.toCard() = Card(id, image, name, discard)
+fun CardDTO.toCard() = Card(id, image, name)
 
 fun List<CardDTO>.toCardList() = this.map { it.toCard() }
 

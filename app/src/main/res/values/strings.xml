@@ -51,6 +51,7 @@
     <string name="decks_dialog_numeration">Nº</string>
 
     <!-- DISCARD DIALOG -->
+    <string name="discard_card_info_state_suspicious">Sospechoso</string>
     <string name="discard_card_info_state_discard">Descartado</string>
     <string name="discard_card_choice_title">¿Crees que esta es la carta de tu rival?</string>
     <string name="discard_card_choice_two_try">2</string>

@@ -1,11 +1,10 @@
 package com.mmfsin.estereotipia.presentation.dashboard.cards.dialogs.discard
 
 import android.app.Dialog
-import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import androidx.core.content.ContextCompat.getColor
-import androidx.fragment.app.viewModels
+import androidx.core.view.isVisible
 import com.bumptech.glide.Glide
 import com.mmfsin.estereotipia.R
 import com.mmfsin.estereotipia.base.BaseDialog
@@ -14,21 +13,16 @@ import com.mmfsin.estereotipia.domain.models.Card
 import com.mmfsin.estereotipia.presentation.dashboard.cards.dialogs.discard.DiscardDialog.ActionType.FIRST_BUTTONS
 import com.mmfsin.estereotipia.presentation.dashboard.cards.dialogs.discard.DiscardDialog.ActionType.SECOND_BUTTONS
 import com.mmfsin.estereotipia.presentation.dashboard.cards.interfaces.ICardsListener
-import com.mmfsin.estereotipia.presentation.models.CardState
-import com.mmfsin.estereotipia.presentation.models.CardState.DISCARDED
-import com.mmfsin.estereotipia.presentation.models.CardState.NONE
 import com.mmfsin.estereotipia.utils.animateDialog
-import com.mmfsin.estereotipia.utils.showErrorDialog
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class DiscardDialog(
-    private val cardId: String, private val opportunities: Int, val listener: ICardsListener
+    private val card: Card,
+    private val opportunities: Int,
+    val listener: ICardsListener
 ) : BaseDialog<DialogCardDiscardBinding>() {
 
-    private val viewModel: DiscardDialogViewModel by viewModels()
-
-    private var card: Card? = null
 
     private var firstAccess = true
     private var actionType = FIRST_BUTTONS
@@ -45,15 +39,14 @@ class DiscardDialog(
         }
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        observe()
-        viewModel.getCardById(cardId)
-    }
-
     override fun setUI() {
         isCancelable = true
         binding.apply {
+            Glide.with(requireContext()).load(card.image).into(ivImage)
+            tvName.text = card.name
+            if (card.discarded) setDiscardedCard() else setNotDiscardedCard()
+            if (card.suspicious) setSuspiciousCard() else setNotSuspiciousCard()
+
             when (actionType) {
                 FIRST_BUTTONS -> {
                     if (opportunities == 0) buttons.root.visibility = View.GONE
@@ -85,11 +78,14 @@ class DiscardDialog(
                 }
 
                 ivSuspicious.setOnClickListener {
-                    listener.markSuspicious(cardId)
+                    listener.markSuspicious(card.id)
                     dismiss()
                 }
 
-                ivDiscard.setOnClickListener { viewModel.discardCard(cardId) }
+                ivDiscard.setOnClickListener {
+                    listener.markDiscarded(card.id)
+                    dismiss()
+                }
             }
 
             choice.btnNo.setOnClickListener {
@@ -98,45 +94,15 @@ class DiscardDialog(
                 buttons.root.visibility = View.VISIBLE
             }
             choice.btnYes.setOnClickListener {
-                listener.makeChoice(cardId)
+                listener.makeChoice(card.id)
                 dismiss()
             }
         }
     }
 
-    private fun observe() {
-        viewModel.event.observe(this) { event ->
-            when (event) {
-                is DiscardDialogEvent.GetCard -> {
-                    this.card = event.card
-                    setCardInfo()
-                }
-
-                is DiscardDialogEvent.DiscardCard -> {
-                    event.discarded?.let {
-                        if (it) dismiss()
-                        else setNotDiscardedCard()
-                    } ?: run { error() }
-                }
-
-                is DiscardDialogEvent.SomethingWentWrong -> error()
-            }
-        }
-    }
-
-    private fun setCardInfo() {
-        binding.apply {
-            card?.let {
-                Glide.with(requireContext()).load(it.image).into(ivImage)
-                tvName.text = it.name
-                if (it.discarded) setDiscardedCard() else setNotDiscardedCard()
-            }
-        }
-    }
-
     private fun setDiscardedCard() {
-        setState(DISCARDED)
         binding.apply {
+            tvDiscarded.isVisible = true
             buttons.apply {
                 ivDiscard.setImageResource(R.drawable.ic_redo)
                 var color: Int? = null
@@ -147,11 +113,10 @@ class DiscardDialog(
     }
 
     private fun setNotDiscardedCard() {
-        setState(NONE)
         binding.apply {
+            tvDiscarded.isVisible = false
             buttons.apply {
                 ivDiscard.setImageResource(R.drawable.ic_discard_cross)
-
                 var color: Int? = null
                 activity?.let { a -> color = getColor(a.applicationContext, R.color.red) }
                 color?.let { c -> buttons.ivDiscard.setColorFilter(c) }
@@ -159,25 +124,35 @@ class DiscardDialog(
         }
     }
 
-    private fun setState(state: CardState) {
+    private fun setSuspiciousCard() {
         binding.apply {
-
-            when (state) {
-                NONE -> cvState.visibility = View.GONE
-                DISCARDED -> {
-                    tvState.text = getString(R.string.discard_card_info_state_discard)
-                }
+            tvSuspicious.isVisible = true
+            buttons.apply {
+                ivSuspicious.setImageResource(R.drawable.ic_suspicious_not)
+                var color: Int? = null
+                activity?.let { a -> color = getColor(a.applicationContext, R.color.black) }
+                color?.let { c -> buttons.ivSuspicious.setColorFilter(c) }
             }
         }
     }
 
-    private fun error() = activity?.showErrorDialog(goBack = false)
+    private fun setNotSuspiciousCard() {
+        binding.apply {
+            tvSuspicious.isVisible = false
+            buttons.apply {
+                ivSuspicious.setImageResource(R.drawable.ic_suspicious)
+                var color: Int? = null
+                activity?.let { a -> color = getColor(a.applicationContext, R.color.orange) }
+                color?.let { c -> buttons.ivSuspicious.setColorFilter(c) }
+            }
+        }
+    }
 
     companion object {
         fun newInstance(
-            cardId: String, opportunities: Int, listener: ICardsListener
+            card: Card, opportunities: Int, listener: ICardsListener
         ): DiscardDialog {
-            return DiscardDialog(cardId, opportunities, listener)
+            return DiscardDialog(card, opportunities, listener)
         }
     }
 

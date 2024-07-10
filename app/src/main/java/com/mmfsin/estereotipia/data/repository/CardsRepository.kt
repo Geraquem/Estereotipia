@@ -19,15 +19,11 @@ class CardsRepository @Inject constructor(
     private val realmDatabase: IRealmDatabase
 ) : ICardsRepository {
 
-    companion object {
-        private var flowValue = MutableStateFlow(Pair(false, ""))
-    }
-
     override fun getAllCards(): List<Card>? {
         val cards = realmDatabase.getObjectsFromRealm {
             where<CardDTO>().findAll()
         }
-        return if (cards.isEmpty()) null else setNonDiscardedCards(cards).toCardList()
+        return if (cards.isEmpty()) null else cards.toCardList()
             .sortedBy { it.name }
     }
 
@@ -49,15 +45,7 @@ class CardsRepository @Inject constructor(
             val card = getCardDTO(id)
             card?.let { cards.add(it) }
         }
-        return setNonDiscardedCards(cards).toCardList()
-    }
-
-    private fun setNonDiscardedCards(cards: List<CardDTO>): List<CardDTO> {
-        cards.forEach { card ->
-            card.discard = false
-            saveCardInRealm(card)
-        }
-        return cards
+        return cards.toCardList()
     }
 
     private fun getCardDTO(id: String): CardDTO? {
@@ -70,28 +58,5 @@ class CardsRepository @Inject constructor(
     override fun getCardById(id: String): Card? {
         val card = getCardDTO(id)
         return card?.toCard()
-    }
-
-    override fun discardCard(id: String): Boolean? {
-        val card = getCardDTO(id)
-        card?.let {
-            card.discard = !card.discard
-            saveCardInRealm(card)
-            flowValue.value = Pair(!flowValue.value.first, it.id)
-            return card.discard
-        } ?: run { return null }
-    }
-
-    override fun selectCard(id: String) {
-        val card = getCardDTO(id)
-        card?.let {
-            flowValue.value = Pair(!flowValue.value.first, it.id)
-        }
-    }
-
-    private fun saveCardInRealm(card: CardDTO) = realmDatabase.addObject { card }
-
-    override fun observeFlow(): StateFlow<Pair<Boolean, String>> {
-        return flowValue.asStateFlow()
     }
 }

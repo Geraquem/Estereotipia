@@ -22,7 +22,7 @@ class CardsAdapter(
         val binding = ItemCardBinding.bind(view)
         private val c = binding.root.context
 
-        fun bind(card: Card, columns: Int) {
+        fun bind(listener: ICardsListener, card: Card, columns: Int) {
             binding.apply {
                 ivDiscard.isVisible = card.discarded
                 ivQuestion.isVisible = card.suspicious
@@ -40,6 +40,8 @@ class CardsAdapter(
                 /** change image dp */
                 if (columns == 3) setImageSize(110)
                 else setImageSize(156)
+
+                root.setOnClickListener { listener.onCardClick(card) }
             }
         }
 
@@ -57,7 +59,7 @@ class CardsAdapter(
         }
     }
 
-    fun updateDiscardedCards(id: String) {
+    fun updateDiscardedCard(id: String) {
         var position: Int? = null
         cards.forEachIndexed { i, card ->
             if (card.id == id) {
@@ -105,8 +107,7 @@ class CardsAdapter(
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bind(cards[position], columns)
-        holder.itemView.setOnClickListener { listener.onCardClick(cards[position].id) }
+        holder.bind(listener, cards[position], columns)
     }
 
     override fun getItemCount(): Int = cards.size

@@ -41,7 +41,7 @@ class MainRepository @Inject constructor(
         val decks = mutableListOf<DeckDTO>()
         reference.get().addOnSuccessListener {
             val version = it.child(VERSION).value as Long
-            if (version == savedVersion) {
+            if (152 == 154) {
                 latch.countDown()
             } else {
                 saveVersion(newVersion = version)

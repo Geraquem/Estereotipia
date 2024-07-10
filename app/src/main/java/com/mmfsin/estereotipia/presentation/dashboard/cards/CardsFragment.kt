@@ -65,7 +65,6 @@ class CardsFragment(val deckId: String, private val selectedCardId: String) :
                     setUpCards(event.cards)
                 }
 
-                is CardsEvent.UpdateCard -> cardsAdapter?.updateDiscardedCards(event.cardId)
                 is CardsEvent.SomethingWentWrong -> error()
             }
         }
@@ -87,10 +86,14 @@ class CardsFragment(val deckId: String, private val selectedCardId: String) :
         }
     }
 
-    override fun onCardClick(cardId: String) {
+    override fun onCardClick(card: Card) {
+
+        val a = card
+        val b = 2
+
         activity?.showFragmentDialog(
             DiscardDialog.newInstance(
-                cardId,
+                card,
                 opportunities,
                 this@CardsFragment
             )
@@ -99,6 +102,10 @@ class CardsFragment(val deckId: String, private val selectedCardId: String) :
 
     override fun markSuspicious(cardId: String) {
         cardsAdapter?.updateSuspiciousCard(cardId)
+    }
+
+    override fun markDiscarded(cardId: String) {
+        cardsAdapter?.updateDiscardedCard(cardId)
     }
 
     override fun makeChoice(cardId: String) {

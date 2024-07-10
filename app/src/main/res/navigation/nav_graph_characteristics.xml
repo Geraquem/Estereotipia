@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph_characteristics"
+    app:startDestination="@id/charsFragment">
+
+    <fragment
+        android:id="@+id/charsFragment"
+        android:name="com.mmfsin.estereotipia.presentation.characteristics.CharsFragment"
+        android:label="charsFragment"
+        tools:layout="@layout/fragment_chars" />
+
+</navigation>

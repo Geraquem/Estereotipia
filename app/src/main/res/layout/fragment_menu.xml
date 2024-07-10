@@ -180,6 +180,34 @@
 
                     </LinearLayout>
 
+                    <LinearLayout
+                        android:id="@+id/ll_chars"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="12dp"
+                        android:backgroundTint="@color/green"
+                        android:background="@drawable/click_effect"
+                        android:orientation="vertical"
+                        android:padding="16dp">
+
+                        <TextView
+                            style="@style/MediumTextView"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="8dp"
+                            android:text="CARACTERISTICAS"
+                            android:textAllCaps="true"
+                            android:textSize="24sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            style="@style/MediumTextView"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/menu_instructions_description" />
+
+                    </LinearLayout>
+
                     <include
                         android:id="@+id/menu_decks"
                         layout="@layout/include_menu_decks"

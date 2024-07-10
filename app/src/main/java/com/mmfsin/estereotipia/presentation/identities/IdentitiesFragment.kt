@@ -1,4 +1,4 @@
-package com.mmfsin.estereotipia.presentation.characteristics
+package com.mmfsin.estereotipia.presentation.identities
 
 import android.content.Context
 import android.os.Bundle
@@ -8,19 +8,19 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import com.mmfsin.estereotipia.base.BaseFragment
 import com.mmfsin.estereotipia.base.bedrock.BedRockActivity
-import com.mmfsin.estereotipia.databinding.FragmentCharsBinding
+import com.mmfsin.estereotipia.databinding.FragmentIdentitiesBinding
 import com.mmfsin.estereotipia.utils.showErrorDialog
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class CharsFragment : BaseFragment<FragmentCharsBinding, CharsViewModel>() {
+class IdentitiesFragment : BaseFragment<FragmentIdentitiesBinding, IdentitiesViewModel>() {
 
-    override val viewModel: CharsViewModel by viewModels()
+    override val viewModel: IdentitiesViewModel by viewModels()
     private lateinit var mContext: Context
 
     override fun inflateView(
         inflater: LayoutInflater, container: ViewGroup?
-    ) = FragmentCharsBinding.inflate(inflater, container, false)
+    ) = FragmentIdentitiesBinding.inflate(inflater, container, false)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -31,8 +31,9 @@ class CharsFragment : BaseFragment<FragmentCharsBinding, CharsViewModel>() {
         (activity as BedRockActivity).apply {
             inDashboard = false
 //            setUpToolbar(getString(R.string.custom_decks_toolbar))
-            setUpToolbar("modo asignaciones" +
-                    "")
+            setUpToolbar(
+                "modo asignaciones"
+            )
         }
     }
 
@@ -44,7 +45,7 @@ class CharsFragment : BaseFragment<FragmentCharsBinding, CharsViewModel>() {
     override fun observe() {
         viewModel.event.observe(this) { event ->
             when (event) {
-                is CharsEvent.SomethingWentWrong -> error()
+                is IdentitiesEvent.SomethingWentWrong -> error()
             }
         }
     }

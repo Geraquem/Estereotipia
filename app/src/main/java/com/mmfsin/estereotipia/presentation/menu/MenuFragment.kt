@@ -67,7 +67,7 @@ class MenuFragment : BaseFragment<FragmentMenuBinding, MenuViewModel>(), IMenuLi
             ivInstructions.setOnClickListener { openInstructions() }
 
             llPlay.setOnClickListener { activity?.showFragmentDialog(DecksSheet(this@MenuFragment)) }
-            llChars.setOnClickListener { navigateTo(R.navigation.nav_graph_characteristics) }
+            llChars.setOnClickListener { navigateTo(R.navigation.nav_graph_identities) }
 
             menuDecks.tvCustomDecks.setOnClickListener { navigateTo(R.navigation.nav_graph_custom_decks) }
             menuDecks.tvCreateDeck.setOnClickListener {

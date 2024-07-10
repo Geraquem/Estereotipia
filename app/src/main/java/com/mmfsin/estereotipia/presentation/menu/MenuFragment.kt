@@ -172,11 +172,11 @@ class MenuFragment : BaseFragment<FragmentMenuBinding, MenuViewModel>(), IMenuLi
         )
     }
 
-    override fun firstAccessOpenInstructions() = openInstructions()
+    override fun firstAccessOpenInstructions() = openInstructions(openHTP = true)
 
-    private fun openInstructions() {
+    private fun openInstructions(openHTP: Boolean = false) {
         (activity as MainActivity).apply {
-            openInstructions()
+            openInstructions(openHTP)
             changeStatusBar(R.color.white)
         }
     }

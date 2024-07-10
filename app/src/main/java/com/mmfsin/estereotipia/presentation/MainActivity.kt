@@ -36,10 +36,10 @@ class MainActivity : AppCompatActivity() {
         controller.isAppearanceLightStatusBars = true
     }
 
-    fun openInstructions() {
+    fun openInstructions(openHTP: Boolean = false) {
         supportFragmentManager.beginTransaction().addToBackStack(INSTRUCTIONS)
             .setCustomAnimations(R.anim.fragment_up, 0, 0, R.anim.fragment_down)
-            .add(R.id.fc_instructions, InstructionsFragment()).commit()
+            .add(R.id.fc_instructions, InstructionsFragment(openHTP)).commit()
     }
 
     fun openBedRockActivity(

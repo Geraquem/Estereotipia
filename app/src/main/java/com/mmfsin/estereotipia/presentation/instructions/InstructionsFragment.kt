@@ -20,9 +20,9 @@ import com.mmfsin.estereotipia.utils.INSTRUCTIONS_DETAIL
 import com.mmfsin.estereotipia.utils.showErrorDialog
 import dagger.hilt.android.AndroidEntryPoint
 
-
 @AndroidEntryPoint
-class InstructionsFragment : BaseFragment<FragmentInstructionsBinding, InstructionsViewModel>(),
+class InstructionsFragment(val openHTP: Boolean = false) :
+    BaseFragment<FragmentInstructionsBinding, InstructionsViewModel>(),
     IInstructionsListener {
 
     override val viewModel: InstructionsViewModel by viewModels()
@@ -81,6 +81,14 @@ class InstructionsFragment : BaseFragment<FragmentInstructionsBinding, Instructi
             (this.itemAnimator as SimpleItemAnimator).supportsChangeAnimations = false
             layoutManager = LinearLayoutManager(mContext)
             adapter = InstructionsAdapter(instructions, this@InstructionsFragment)
+        }
+
+        if (openHTP) {
+            instructions.forEach { inst ->
+                if (inst is Instruction && inst.layout == R.layout.inst_how_to_play) {
+                    onInstructionClick(inst)
+                }
+            }
         }
     }
 

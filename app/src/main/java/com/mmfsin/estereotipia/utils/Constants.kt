@@ -19,6 +19,7 @@ const val DECKS = "decks"
 const val CARDS = "cards"
 
 const val QUESTIONS = "questions"
+const val IDENTITIES = "identities"
 const val DECK_TYPE = "deckType"
 
 const val MY_SHARED_PREFS = "mSharedPrefs"

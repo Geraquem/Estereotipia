@@ -6,6 +6,7 @@ import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import com.mmfsin.estereotipia.data.models.CardDTO
 import com.mmfsin.estereotipia.data.models.DeckDTO
+import com.mmfsin.estereotipia.data.models.IdentityDTO
 import com.mmfsin.estereotipia.data.models.QuestionDTO
 import com.mmfsin.estereotipia.domain.interfaces.IMainRepository
 import com.mmfsin.estereotipia.domain.interfaces.IRealmDatabase
@@ -13,6 +14,7 @@ import com.mmfsin.estereotipia.utils.CARDS
 import com.mmfsin.estereotipia.utils.DECKS
 import com.mmfsin.estereotipia.utils.FIRST_TIME_APP
 import com.mmfsin.estereotipia.utils.ID
+import com.mmfsin.estereotipia.utils.IDENTITIES
 import com.mmfsin.estereotipia.utils.IS_CUSTOM_DECK
 import com.mmfsin.estereotipia.utils.MY_SHARED_PREFS
 import com.mmfsin.estereotipia.utils.QUESTIONS
@@ -41,7 +43,7 @@ class MainRepository @Inject constructor(
         val decks = mutableListOf<DeckDTO>()
         reference.get().addOnSuccessListener {
             val version = it.child(VERSION).value as Long
-            if (152 == 154) {
+            if (version == savedVersion) {
                 latch.countDown()
             } else {
                 saveVersion(newVersion = version)
@@ -67,6 +69,12 @@ class MainRepository @Inject constructor(
                         question = child.value.toString()
                     )
                     saveQuestionInRealm(question)
+                }
+
+                val fbIdentities = it.child(IDENTITIES)
+                for (child in fbIdentities.children) {
+                    child.getValue(IdentityDTO::class.java)
+                        ?.let { identity -> saveIdentityInRealm(identity) }
                 }
 
                 latch.countDown()
@@ -106,6 +114,7 @@ class MainRepository @Inject constructor(
     private fun saveDeckInRealm(deck: DeckDTO) = realmDatabase.addObject { deck }
     private fun saveCardInRealm(card: CardDTO) = realmDatabase.addObject { card }
     private fun saveQuestionInRealm(question: QuestionDTO) = realmDatabase.addObject { question }
+    private fun saveIdentityInRealm(identity: IdentityDTO) = realmDatabase.addObject { identity }
 
     override suspend fun checkIfFirstTimeInApp(): Boolean {
         val firstTime = getSharedPreferences().getBoolean(FIRST_TIME_APP, true)

@@ -44,6 +44,9 @@
     <string name="first_access_open_instructions">Aprender</string>
     <string name="first_access_close">¡Ciérrame esto ya!</string>
 
+    <!-- IDENTITIES -->
+    <string name="identities_toolbar">Identidades</string>
+
     <!-- DECKS DIALOG -->
     <string name="decks_dialog_top_text">¿Con qué baraja quieres jugar?</string>
     <string name="decks_dialog_top_description">Elige la misma que la de tu rival</string>

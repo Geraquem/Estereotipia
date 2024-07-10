@@ -10,9 +10,6 @@ import com.mmfsin.estereotipia.domain.models.Card
 import com.mmfsin.estereotipia.utils.ID
 import com.mmfsin.estereotipia.utils.getCards
 import io.realm.kotlin.where
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.asStateFlow
 import javax.inject.Inject
 
 class CardsRepository @Inject constructor(
@@ -25,6 +22,10 @@ class CardsRepository @Inject constructor(
         }
         return if (cards.isEmpty()) null else cards.toCardList()
             .sortedBy { it.name }
+    }
+
+    override fun getThreeRandomCards(): List<Card>? {
+        return getAllCards()?.shuffled()?.take(3)
     }
 
     override fun getCardsByDeckId(deckId: String): List<Card>? {

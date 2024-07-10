@@ -64,12 +64,14 @@
 
     <ImageView
         android:id="@+id/iv_question"
-        android:layout_width="42dp"
-        android:layout_height="42sp"
-        android:layout_margin="8dp"
+        android:layout_width="36dp"
+        android:layout_height="36sp"
+        android:layout_marginHorizontal="8dp"
+        android:layout_marginBottom="2dp"
+        android:alpha="0.80"
         android:contentDescription="@string/content_description"
         android:elevation="8dp"
-        android:src="@color/black"
+        android:src="@drawable/ic_eye"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"

@@ -91,10 +91,8 @@ class MenuFragment : BaseFragment<FragmentMenuBinding, MenuViewModel>(), IMenuLi
                 }
 
                 is MenuEvent.FirstTime -> {
-//                    if (event.isFirstTime) {
-                    if (true) {
-//                        countDown(1250) {
-                        countDown(50) {
+                    if (event.isFirstTime) {
+                        countDown(1250) {
                             activity?.showFragmentDialog(FirstAccessDialog.newInstance(this@MenuFragment))
                         }
                     }

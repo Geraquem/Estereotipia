@@ -102,6 +102,7 @@
     <string name="questions_help_buttons">¿Qué significan los botones?</string>
     <string name="questions_help_buttons_1">La cruz sirve para descartar un personaje que creas que no se corresponde con las respuestas que te está dando tu rival.\nDescartar un personaje no es definitivo, puede volver a entrar en juego y ser descartado de nuevo tantas veces como quieras.</string>
     <string name="questions_help_buttons_2">Cuando tengas claro cuál es personaje de tu rival pulsa este botón.\nEl numerito indica las oportunidades que te quedan para acertar.</string>
+    <string name="questions_help_buttons_3">Si piensas de un personaje puede ser el de tu rival puedes marcarlo con este botón para que sea <i>sospechoso</i>. Esto simplemente sirve para aclarar tus ideas, no es nada definitivo.</string>
 
     <string name="questions_how_start">¿Cómo se empieza?</string>
     <string name="questions_how_start_1">Echad a suertes quién empieza a hacer las preguntas.</string>

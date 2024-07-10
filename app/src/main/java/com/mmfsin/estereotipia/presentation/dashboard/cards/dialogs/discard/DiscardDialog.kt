@@ -128,7 +128,7 @@ class DiscardDialog(
         binding.apply {
             tvSuspicious.isVisible = true
             buttons.apply {
-                ivSuspicious.setImageResource(R.drawable.ic_suspicious_not)
+                ivSuspicious.setImageResource(R.drawable.ic_eye_hidden)
                 var color: Int? = null
                 activity?.let { a -> color = getColor(a.applicationContext, R.color.black) }
                 color?.let { c -> buttons.ivSuspicious.setColorFilter(c) }
@@ -140,7 +140,7 @@ class DiscardDialog(
         binding.apply {
             tvSuspicious.isVisible = false
             buttons.apply {
-                ivSuspicious.setImageResource(R.drawable.ic_suspicious)
+                ivSuspicious.setImageResource(R.drawable.ic_eye)
                 var color: Int? = null
                 activity?.let { a -> color = getColor(a.applicationContext, R.color.orange) }
                 color?.let { c -> buttons.ivSuspicious.setColorFilter(c) }

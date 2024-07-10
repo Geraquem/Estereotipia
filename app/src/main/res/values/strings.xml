@@ -5,7 +5,7 @@
 
     <!-- ADS -->
     <string name="banner">ca-app-pub-3940256099942544/6300978111</string>
-<!--        <string name="banner">ca-app-pub-4515698012373396/4573656208</string>-->
+    <!--        <string name="banner">ca-app-pub-4515698012373396/4573656208</string>-->
 
     <!-- ERROR -->
     <string name="error_title">Ha ocurrido un problema</string>
@@ -186,6 +186,8 @@
     <string name="instructions_how_to_play_details_10">Cada vez pregunta un equipo de <b>manera alterna</b>.</string>
     <string name="instructions_how_to_play_details_11">Los personajes que creáis que <b>no</b> son los de vuestro rival pueden descartarse con el botón</string>
     <string name="instructions_how_to_play_details_12">Pero no preocuparse, un personaje puede descartarse y volver a entrar en juego todas las veces que queráis.</string>
+    <string name="instructions_how_to_play_details_12_1">Si crees que un personaje puede ser el de tu rival <b>pero no estás del todo seguro</b> pulsa este botón para marcarlo como <i>sospechoso</i>.</string>
+    <string name="instructions_how_to_play_details_12_2">Esto no es nada definitivo, simplemente sirve para aclarar tus ideas.</string>
     <string name="instructions_how_to_play_details_13"><b>En cualquier momento se puede hacer una apuesta para tratar de adivinar el personaje del rival</b> pulsando el botón</string>
     <string name="instructions_how_to_play_details_14">El numerito indica las oportunidades que tienes disponibles.</string>
     <string name="instructions_how_to_play_details_15">Una vez hagas la apuesta pregúntale a tu rival si es ese su personaje, tiene que responderte <b>con sinceridad</b>.</string>

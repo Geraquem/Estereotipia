@@ -99,20 +99,20 @@ class IdentitiesFragment : BaseFragment<FragmentIdentitiesBinding, IdentitiesVie
             image2.setOnClickListener { showCardExpanded(1) }
             image3.setOnClickListener { showCardExpanded(2) }
 
-            llImage1.setOnDragListener(dragListener)
-            llImage2.setOnDragListener(dragListener)
-            llImage3.setOnDragListener(dragListener)
+            llImage1.setOnDragListener(dragListenerImages)
+            llImage2.setOnDragListener(dragListenerImages)
+            llImage3.setOnDragListener(dragListenerImages)
         }
     }
 
     private fun setDragSettings(v: View) {
-        val clipText = "pummmmm"
         val mimeTypes = arrayOf(ClipDescription.MIMETYPE_TEXT_PLAIN)
-        val item = ClipData.Item(clipText)
-        val data = ClipData(clipText, mimeTypes, item)
+        val item = ClipData.Item("")
+        val data = ClipData("", mimeTypes, item)
 
         val dragShadowBuilder = View.DragShadowBuilder(v)
         v.startDragAndDrop(data, dragShadowBuilder, v, 0)
+        v.visibility = View.INVISIBLE
     }
 
     private fun showCardExpanded(pos: Int) {
@@ -201,7 +201,7 @@ class IdentitiesFragment : BaseFragment<FragmentIdentitiesBinding, IdentitiesVie
         }).into(view)
     }
 
-    private val dragListener = View.OnDragListener { view, event ->
+    private val dragListenerImages = View.OnDragListener { view, event ->
         when (event.action) {
             ACTION_DRAG_STARTED -> {
                 event.clipDescription.hasMimeType(ClipDescription.MIMETYPE_TEXT_PLAIN)

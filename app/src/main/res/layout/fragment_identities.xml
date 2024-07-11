@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools"
     android:background="@color/background">
 
     <androidx.constraintlayout.widget.Guideline
@@ -21,6 +21,7 @@
         app:layout_constraintGuide_percent="0.05" />
 
     <LinearLayout
+        android:id="@+id/ll_texts"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
@@ -30,7 +31,16 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
-            android:id="@+id/id_text1"
+            android:id="@+id/tv_title"
+            style="@style/MediumTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
+            android:paddingHorizontal="8dp"
+            tools:text="Referente al tabaco" />
+
+        <TextView
+            android:id="@+id/tv_text1"
             style="@style/MediumTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -38,10 +48,10 @@
             android:background="@drawable/bg_white_box"
             android:backgroundTint="@color/orange"
             android:padding="12dp"
-            android:text="Fuma como un carreter@" />
+            tools:text="Fuma como un carreter@" />
 
         <TextView
-            android:id="@+id/id_text2"
+            android:id="@+id/tv_text2"
             style="@style/MediumTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -49,17 +59,17 @@
             android:background="@drawable/bg_white_box"
             android:backgroundTint="@color/orange"
             android:padding="12dp"
-            android:text="No ha fumado en su vida" />
+            tools:text="No ha fumado en su vida" />
 
         <TextView
-            android:id="@+id/id_text3"
+            android:id="@+id/tv_text3"
             style="@style/MediumTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/bg_white_box"
             android:backgroundTint="@color/orange"
             android:padding="12dp"
-            android:text="Fuma solamente cuando sale de fiesta" />
+            tools:text="Fuma solamente cuando sale de fiesta" />
 
     </LinearLayout>
 

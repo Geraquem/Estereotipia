@@ -21,10 +21,12 @@ import com.mmfsin.estereotipia.base.bedrock.BedRockActivity
 import com.mmfsin.estereotipia.databinding.FragmentIdentitiesBinding
 import com.mmfsin.estereotipia.domain.models.Card
 import com.mmfsin.estereotipia.domain.models.Identity
+import com.mmfsin.estereotipia.presentation.allcards.dialogs.AllCardDialog
 import com.mmfsin.estereotipia.utils.animateX
 import com.mmfsin.estereotipia.utils.animateY
 import com.mmfsin.estereotipia.utils.countDown
 import com.mmfsin.estereotipia.utils.showErrorDialog
+import com.mmfsin.estereotipia.utils.showFragmentDialog
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -34,6 +36,7 @@ class IdentitiesFragment : BaseFragment<FragmentIdentitiesBinding, IdentitiesVie
     private lateinit var mContext: Context
 
     private var identities = listOf<Identity>()
+    private var cards = listOf<Card>()
     private var pos = 0
 
     override fun inflateView(
@@ -68,9 +71,15 @@ class IdentitiesFragment : BaseFragment<FragmentIdentitiesBinding, IdentitiesVie
 
     override fun setListeners() {
         binding.apply {
-            image1.setOnClickListener { }
-            image2.setOnClickListener { }
-            image3.setOnClickListener { }
+            image1.setOnClickListener { showCardExpanded(0) }
+            image2.setOnClickListener { showCardExpanded(1) }
+            image3.setOnClickListener { showCardExpanded(2) }
+        }
+    }
+
+    private fun showCardExpanded(pos: Int) {
+        if (cards.isNotEmpty() && cards.size == 3) {
+            activity?.showFragmentDialog(AllCardDialog.newInstance(cards[pos].id))
         }
     }
 
@@ -83,7 +92,11 @@ class IdentitiesFragment : BaseFragment<FragmentIdentitiesBinding, IdentitiesVie
                     viewModel.getThreeRandomCards()
                 }
 
-                is IdentitiesEvent.GetThreeCards -> textsAnimations(event.cards)
+                is IdentitiesEvent.GetThreeCards -> {
+                    cards = event.cards
+                    textsAnimations(event.cards)
+                }
+
                 is IdentitiesEvent.SomethingWentWrong -> error()
             }
         }

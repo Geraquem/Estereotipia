@@ -44,28 +44,37 @@
             style="@style/MediumTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="12dp"
+            android:layout_gravity="center"
             android:background="@drawable/bg_white_box"
             android:backgroundTint="@color/orange"
             android:padding="12dp"
             tools:text="Fuma como un carreter@" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="12dp" />
 
         <TextView
             android:id="@+id/tv_text2"
             style="@style/MediumTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="12dp"
+            android:layout_gravity="center"
             android:background="@drawable/bg_white_box"
             android:backgroundTint="@color/orange"
             android:padding="12dp"
             tools:text="No ha fumado en su vida" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="12dp" />
 
         <TextView
             android:id="@+id/tv_text3"
             style="@style/MediumTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:background="@drawable/bg_white_box"
             android:backgroundTint="@color/orange"
             android:padding="12dp"
@@ -80,7 +89,7 @@
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="@id/gl_left"
-        app:layout_constraintRight_toRightOf="parent">
+        app:layout_constraintRight_toRightOf="@id/gl_right">
 
         <LinearLayout
             android:id="@+id/ll_image1"
@@ -93,7 +102,7 @@
                 android:id="@+id/image1"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
-                android:layout_marginEnd="12dp"
+                android:layout_marginEnd="6dp"
                 android:contentDescription="@string/content_description"
                 tools:src="@drawable/default_face" />
 
@@ -110,7 +119,7 @@
                 android:id="@+id/image2"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
-                android:layout_marginEnd="12dp"
+                android:layout_marginEnd="6dp"
                 android:contentDescription="@string/content_description"
                 tools:src="@drawable/default_face" />
 
@@ -126,7 +135,7 @@
                 android:id="@+id/image3"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
-                android:layout_marginEnd="12dp"
+                android:layout_marginEnd="6dp"
                 android:contentDescription="@string/content_description"
                 tools:src="@drawable/default_face" />
 

@@ -1,14 +1,25 @@
 package com.mmfsin.estereotipia.presentation.identities
 
+import android.content.ClipData
+import android.content.ClipDescription
 import android.content.Context
 import android.graphics.drawable.Drawable
 import android.os.Bundle
+import android.view.DragEvent.ACTION_DRAG_ENDED
+import android.view.DragEvent.ACTION_DRAG_ENTERED
+import android.view.DragEvent.ACTION_DRAG_EXITED
+import android.view.DragEvent.ACTION_DRAG_LOCATION
+import android.view.DragEvent.ACTION_DRAG_STARTED
+import android.view.DragEvent.ACTION_DROP
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.Toast
+import androidx.core.view.get
 import androidx.core.view.isVisible
+import androidx.core.view.size
 import androidx.fragment.app.viewModels
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.DataSource
@@ -71,10 +82,37 @@ class IdentitiesFragment : BaseFragment<FragmentIdentitiesBinding, IdentitiesVie
 
     override fun setListeners() {
         binding.apply {
+            tvText1.setOnLongClickListener {
+                setDragSettings(it)
+                true
+            }
+            tvText2.setOnLongClickListener {
+                setDragSettings(it)
+                true
+            }
+            tvText3.setOnLongClickListener {
+                setDragSettings(it)
+                true
+            }
+
             image1.setOnClickListener { showCardExpanded(0) }
             image2.setOnClickListener { showCardExpanded(1) }
             image3.setOnClickListener { showCardExpanded(2) }
+
+            llImage1.setOnDragListener(dragListener)
+            llImage2.setOnDragListener(dragListener)
+            llImage3.setOnDragListener(dragListener)
         }
+    }
+
+    private fun setDragSettings(v: View) {
+        val clipText = "pummmmm"
+        val mimeTypes = arrayOf(ClipDescription.MIMETYPE_TEXT_PLAIN)
+        val item = ClipData.Item(clipText)
+        val data = ClipData(clipText, mimeTypes, item)
+
+        val dragShadowBuilder = View.DragShadowBuilder(v)
+        v.startDragAndDrop(data, dragShadowBuilder, v, 0)
     }
 
     private fun showCardExpanded(pos: Int) {
@@ -161,6 +199,50 @@ class IdentitiesFragment : BaseFragment<FragmentIdentitiesBinding, IdentitiesVie
                 return false
             }
         }).into(view)
+    }
+
+    private val dragListener = View.OnDragListener { view, event ->
+        when (event.action) {
+            ACTION_DRAG_STARTED -> {
+                event.clipDescription.hasMimeType(ClipDescription.MIMETYPE_TEXT_PLAIN)
+            }
+
+            ACTION_DRAG_ENTERED, ACTION_DRAG_EXITED -> {
+                view.invalidate()
+                true
+            }
+
+            ACTION_DRAG_LOCATION -> true
+            ACTION_DROP -> {
+                view.invalidate()
+
+                val v = event.localState as View
+                val owner = v.parent as ViewGroup
+                val destination = view as LinearLayout
+
+                if (destination.size == 1) {
+                    owner.removeView(v)
+                    destination.addView(v)
+                } else {
+                    owner.removeView(v)
+                    destination.addView(v)
+
+                    val oldText = destination[1]
+                    destination.removeView(oldText)
+                    owner.addView(oldText)
+                }
+                true
+            }
+
+            ACTION_DRAG_ENDED -> {
+                val v = event.localState as View
+                v.visibility = View.VISIBLE
+                view.invalidate()
+                true
+            }
+
+            else -> false
+        }
     }
 
     private fun error() = activity?.showErrorDialog()

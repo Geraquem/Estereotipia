@@ -5,7 +5,7 @@
 
     <!-- ADS -->
     <string name="banner">ca-app-pub-3940256099942544/6300978111</string>
-<!--            <string name="banner">ca-app-pub-4515698012373396/4573656208</string>-->
+    <!--            <string name="banner">ca-app-pub-4515698012373396/4573656208</string>-->
 
     <!-- ERROR -->
     <string name="error_title">Ha ocurrido un problema</string>
@@ -46,6 +46,7 @@
 
     <!-- IDENTITIES -->
     <string name="identities_toolbar">Identidades</string>
+    <string name="identities_continue">Continuar</string>
 
     <!-- DECKS DIALOG -->
     <string name="decks_dialog_top_text">¿Con qué baraja quieres jugar?</string>

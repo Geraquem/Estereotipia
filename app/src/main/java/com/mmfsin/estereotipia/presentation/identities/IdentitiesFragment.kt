@@ -77,6 +77,10 @@ class IdentitiesFragment : BaseFragment<FragmentIdentitiesBinding, IdentitiesVie
             image2.animateX(-500f, 10)
             image3.visibility = View.INVISIBLE
             image3.animateX(-500f, 10)
+
+            btn.text = getString(R.string.identities_continue)
+            btn.isEnabled = false
+            btn.alpha = 0.4f
         }
     }
 
@@ -231,6 +235,8 @@ class IdentitiesFragment : BaseFragment<FragmentIdentitiesBinding, IdentitiesVie
                     destination.removeView(oldText)
                     owner.addView(oldText)
                 }
+
+                checkIfReady()
                 true
             }
 
@@ -242,6 +248,15 @@ class IdentitiesFragment : BaseFragment<FragmentIdentitiesBinding, IdentitiesVie
             }
 
             else -> false
+        }
+    }
+
+    private fun checkIfReady() {
+        binding.apply {
+            if (llImage1.size == 2 && llImage2.size == 2 && llImage3.size == 2) {
+                btn.alpha = 1f
+                btn.isEnabled = true
+            }
         }
     }
 

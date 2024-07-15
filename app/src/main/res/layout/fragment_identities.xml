@@ -45,10 +45,12 @@
 
                 <TextView
                     android:id="@+id/tv_title"
-                    style="@style/MediumTextView"
-                    android:layout_width="match_parent"
+                    style="@style/MediumTextView_Bold"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center"
                     android:layout_marginBottom="12dp"
+                    android:gravity="center"
                     android:paddingHorizontal="8dp"
                     tools:text="Referente al tabaco" />
 
@@ -59,7 +61,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:background="@drawable/bg_white_box"
-                    android:backgroundTint="@color/orange"
+                    android:backgroundTint="@color/soft_orange"
                     android:padding="12dp"
                     tools:text="Fuma como un carreter@" />
 
@@ -74,7 +76,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:background="@drawable/bg_white_box"
-                    android:backgroundTint="@color/orange"
+                    android:backgroundTint="@color/soft_orange"
                     android:padding="12dp"
                     tools:text="No ha fumado en su vida" />
 
@@ -89,7 +91,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:background="@drawable/bg_white_box"
-                    android:backgroundTint="@color/orange"
+                    android:backgroundTint="@color/soft_orange"
                     android:padding="12dp"
                     tools:text="Fuma solamente cuando sale de fiesta" />
 

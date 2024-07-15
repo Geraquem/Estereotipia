@@ -79,8 +79,8 @@ class IdentitiesFragment : BaseFragment<FragmentIdentitiesBinding, IdentitiesVie
             image3.animateX(-500f, 10)
 
             btn.text = getString(R.string.identities_continue)
-            btn.isEnabled = false
-            btn.alpha = 0.4f
+            clBtn.isVisible = false
+            clBtn.animateY(500f, 10)
         }
     }
 
@@ -254,8 +254,8 @@ class IdentitiesFragment : BaseFragment<FragmentIdentitiesBinding, IdentitiesVie
     private fun checkIfReady() {
         binding.apply {
             if (llImage1.size == 2 && llImage2.size == 2 && llImage3.size == 2) {
-                btn.alpha = 1f
-                btn.isEnabled = true
+                clBtn.isVisible = true
+                clBtn.animateY(0f, 500)
             }
         }
     }

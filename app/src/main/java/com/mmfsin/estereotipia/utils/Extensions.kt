@@ -1,5 +1,7 @@
 package com.mmfsin.estereotipia.utils
 
+import android.animation.Animator
+import android.animation.AnimatorListenerAdapter
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
 import android.app.Activity
@@ -53,6 +55,15 @@ fun View.animateY(pos: Float, duration: Long) =
 
 fun View.animateX(pos: Float, duration: Long) =
     this.animate().translationX(pos).setDuration(duration)
+
+fun View.hideAlpha(duration: Long, onEnd: () -> Unit = {}) =
+    this.animate().alpha(0f).setDuration(duration).setListener(object : AnimatorListenerAdapter() {
+        override fun onAnimationEnd(animation: Animator) {
+            onEnd()
+        }
+    })
+
+fun View.showAlpha(duration: Long) = this.animate().alpha(1f).setDuration(duration)
 
 fun Dialog.animateDialog() {
     val dialogView = this.window?.decorView

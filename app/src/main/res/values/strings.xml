@@ -47,6 +47,12 @@
     <!-- IDENTITIES -->
     <string name="identities_toolbar">Identidades</string>
     <string name="identities_continue">Continuar</string>
+    <string name="identities_one">1</string>
+    <string name="identities_two">2</string>
+    <string name="identities_three">3</string>
+    <string name="identities_card_one">1.</string>
+    <string name="identities_card_two">2.</string>
+    <string name="identities_card_three">3.</string>
 
     <!-- DECKS DIALOG -->
     <string name="decks_dialog_top_text">¿Con qué baraja quieres jugar?</string>

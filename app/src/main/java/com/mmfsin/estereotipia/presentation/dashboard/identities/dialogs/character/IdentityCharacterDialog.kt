@@ -1,4 +1,4 @@
-package com.mmfsin.estereotipia.presentation.dashboard.identities.dialogs
+package com.mmfsin.estereotipia.presentation.dashboard.identities.dialogs.character
 
 import android.app.Dialog
 import android.os.Bundle
@@ -6,7 +6,6 @@ import android.view.LayoutInflater
 import androidx.fragment.app.viewModels
 import com.bumptech.glide.Glide
 import com.mmfsin.estereotipia.base.BaseDialog
-import com.mmfsin.estereotipia.databinding.DialogAllCardInfoBinding
 import com.mmfsin.estereotipia.databinding.DialogIdentityCardBinding
 import com.mmfsin.estereotipia.domain.models.Card
 import com.mmfsin.estereotipia.utils.animateDialog
@@ -14,9 +13,9 @@ import com.mmfsin.estereotipia.utils.showErrorDialog
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class IdentityCardDialog(private val cardId: String) : BaseDialog<DialogIdentityCardBinding>() {
+class IdentityCharacterDialog(private val cardId: String) : BaseDialog<DialogIdentityCardBinding>() {
 
-    private val viewModel: IdentityCardDialogViewModel by viewModels()
+    private val viewModel: IdentityCharacterDialogViewModel by viewModels()
 
     private var card: Card? = null
     private var firstAccess = true
@@ -49,12 +48,12 @@ class IdentityCardDialog(private val cardId: String) : BaseDialog<DialogIdentity
     private fun observe() {
         viewModel.event.observe(this) { event ->
             when (event) {
-                is IdentityCardDialogEvent.GetCard -> {
+                is IdentityCharacterDialogEvent.GetCharacter -> {
                     this.card = event.card
                     setUI()
                 }
 
-                is IdentityCardDialogEvent.SomethingWentWrong -> error()
+                is IdentityCharacterDialogEvent.SomethingWentWrong -> error()
             }
         }
     }
@@ -62,8 +61,8 @@ class IdentityCardDialog(private val cardId: String) : BaseDialog<DialogIdentity
     private fun error() = activity?.showErrorDialog()
 
     companion object {
-        fun newInstance(cardId: String): IdentityCardDialog {
-            return IdentityCardDialog(cardId)
+        fun newInstance(cardId: String): IdentityCharacterDialog {
+            return IdentityCharacterDialog(cardId)
         }
     }
 }

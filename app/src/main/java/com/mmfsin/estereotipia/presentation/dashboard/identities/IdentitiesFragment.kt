@@ -16,7 +16,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.LinearLayout
-import android.widget.Toast
 import androidx.core.view.get
 import androidx.core.view.isVisible
 import androidx.core.view.size
@@ -31,9 +30,13 @@ import com.mmfsin.estereotipia.base.BaseFragment
 import com.mmfsin.estereotipia.databinding.FragmentIdentitiesBinding
 import com.mmfsin.estereotipia.domain.models.Card
 import com.mmfsin.estereotipia.domain.models.Identity
-import com.mmfsin.estereotipia.presentation.dashboard.identities.dialogs.IdentityCardDialog
+import com.mmfsin.estereotipia.presentation.dashboard.identities.dialogs.card.IdentitiesCardSheet
+import com.mmfsin.estereotipia.presentation.dashboard.identities.dialogs.character.IdentityCharacterDialog
+import com.mmfsin.estereotipia.utils.animateX
 import com.mmfsin.estereotipia.utils.animateY
 import com.mmfsin.estereotipia.utils.countDown
+import com.mmfsin.estereotipia.utils.hideAlpha
+import com.mmfsin.estereotipia.utils.showAlpha
 import com.mmfsin.estereotipia.utils.showErrorDialog
 import com.mmfsin.estereotipia.utils.showFragmentDialog
 import dagger.hilt.android.AndroidEntryPoint
@@ -45,6 +48,7 @@ class IdentitiesFragment : BaseFragment<FragmentIdentitiesBinding, IdentitiesVie
     private lateinit var mContext: Context
 
     private var identities = listOf<Identity>()
+    private var actualIdentity: Identity? = null
     private var cards = listOf<Card>()
     private var pos = 0
 
@@ -58,23 +62,25 @@ class IdentitiesFragment : BaseFragment<FragmentIdentitiesBinding, IdentitiesVie
     }
 
     override fun setUI() {
+        binding.apply {
+            loading.root.isVisible = true
+        }
+        continueBtnVisibility(false)
         restartAnimations()
     }
 
     private fun restartAnimations() {
         binding.apply {
-//            llTexts.isVisible = false
-//            llTexts.animateY(-500f, 10)
-            image1.visibility = View.INVISIBLE
-            image1.animateY(-500f, 10)
-            image2.visibility = View.INVISIBLE
-            image2.animateY(-500f, 10)
-            image3.visibility = View.INVISIBLE
-            image3.animateY(-500f, 10)
+            image1.hideAlpha(ANIMATION_FAST_TIME)
+            image1.animateX(-500f, 10)
+            image2.hideAlpha(ANIMATION_FAST_TIME)
+            image2.animateX(-500f, 10)
+            image3.hideAlpha(ANIMATION_FAST_TIME)
+            image3.animateX(-500f, 10)
 
-            btn.text = getString(R.string.identities_continue)
-            clBtn.isVisible = false
-            clBtn.animateY(500f, 10)
+            llChips.hideAlpha(ANIMATION_FAST_TIME)
+
+            btnContinue.text = getString(R.string.identities_continue)
         }
     }
 
@@ -97,11 +103,16 @@ class IdentitiesFragment : BaseFragment<FragmentIdentitiesBinding, IdentitiesVie
             image2.setOnClickListener { showCardExpanded(1) }
             image3.setOnClickListener { showCardExpanded(2) }
 
+            btnShowCard.setOnClickListener { showIdentitiesCard() }
+
             llImage1.setOnDragListener(dragListenerImages)
             llImage2.setOnDragListener(dragListenerImages)
             llImage3.setOnDragListener(dragListenerImages)
         }
     }
+
+    private fun showIdentitiesCard() =
+        actualIdentity?.let { activity?.showFragmentDialog(IdentitiesCardSheet(it)) }
 
     private fun setDragSettings(v: View) {
         val mimeTypes = arrayOf(ClipDescription.MIMETYPE_TEXT_PLAIN)
@@ -115,7 +126,7 @@ class IdentitiesFragment : BaseFragment<FragmentIdentitiesBinding, IdentitiesVie
 
     private fun showCardExpanded(pos: Int) {
         if (cards.isNotEmpty() && cards.size == 3) {
-            activity?.showFragmentDialog(IdentityCardDialog.newInstance(cards[pos].id))
+            activity?.showFragmentDialog(IdentityCharacterDialog.newInstance(cards[pos].id))
         }
     }
 
@@ -124,13 +135,14 @@ class IdentitiesFragment : BaseFragment<FragmentIdentitiesBinding, IdentitiesVie
             when (event) {
                 is IdentitiesEvent.GetIdentities -> {
                     identities = event.identities
-                    setUpTexts()
+                    setActualIdentity()
                     viewModel.getThreeRandomCards()
                 }
 
                 is IdentitiesEvent.GetThreeCards -> {
                     cards = event.cards
-                    textsAnimations(event.cards)
+                    setInitialPhase()
+
                 }
 
                 is IdentitiesEvent.SomethingWentWrong -> error()
@@ -138,32 +150,18 @@ class IdentitiesFragment : BaseFragment<FragmentIdentitiesBinding, IdentitiesVie
         }
     }
 
-    private fun setUpTexts() {
-        binding.apply {
-            if (identities.isNotEmpty()) {
-                if (pos < identities.size) {
-                    val identity = identities[pos]
-//                    identity.text?.let { title ->
-//                        tvTitle.text = title
-//                        tvTitle.isVisible = true
-//                    } ?: run { tvTitle.isVisible = false }
-//                    tvText1.text = identity.text1
-//                    tvText2.text = identity.text2
-//                    tvText3.text = identity.text3
-                }
-            } else {
-                Toast.makeText(mContext, "identities emptyyy", Toast.LENGTH_SHORT).show()
-            }
-        }
+    private fun setActualIdentity() {
+        if (identities.isNotEmpty()) actualIdentity = identities[pos]
+        else error()
     }
 
-    private fun textsAnimations(cards: List<Card>) {
+    private fun setInitialPhase() {
         binding.apply {
             countDown(750) {
-//                llTexts.isVisible = true
-//                llTexts.animateY(0f, 500)
+                imagesAnimations(cards)
+                llChips.showAlpha(ANIMATION_TIME)
             }
-            countDown(1000) { imagesAnimations(cards) }
+            loading.root.isVisible = false
         }
     }
 
@@ -192,8 +190,8 @@ class IdentitiesFragment : BaseFragment<FragmentIdentitiesBinding, IdentitiesVie
                 dataSource: DataSource?,
                 isFirstResource: Boolean
             ): Boolean {
-                view.visibility = View.VISIBLE
-                view.animateY(0f, 500)
+                view.showAlpha(ANIMATION_TIME)
+                view.animateX(0f, ANIMATION_TIME)
                 return false
             }
         }).into(view)
@@ -248,8 +246,27 @@ class IdentitiesFragment : BaseFragment<FragmentIdentitiesBinding, IdentitiesVie
     private fun checkIfReady() {
         binding.apply {
             if (llImage1.size == 2 && llImage2.size == 2 && llImage3.size == 2) {
-                clBtn.isVisible = true
-                clBtn.animateY(0f, 500)
+                continueBtnVisibility(show = true)
+            }
+        }
+    }
+
+    private fun continueBtnVisibility(show: Boolean) {
+        binding.apply {
+            clBtn.post {
+                val btnHeight = clBtn.height.toFloat()
+                if (show) {
+                    clBtn.isEnabled = true
+                    clBtn.showAlpha(ANIMATION_TIME)
+                    clBtn.animateY(0f, ANIMATION_TIME)
+                    btnShowCard.animateY(0f, ANIMATION_TIME)
+
+                } else {
+                    btnShowCard.animateY(btnHeight, ANIMATION_FAST_TIME)
+                    clBtn.animateY(btnHeight, ANIMATION_FAST_TIME)
+                    clBtn.hideAlpha(ANIMATION_FAST_TIME)
+                    clBtn.isEnabled = false
+                }
             }
         }
     }
@@ -259,5 +276,10 @@ class IdentitiesFragment : BaseFragment<FragmentIdentitiesBinding, IdentitiesVie
     override fun onAttach(context: Context) {
         super.onAttach(context)
         mContext = context
+    }
+
+    companion object {
+        const val ANIMATION_TIME = 500L
+        const val ANIMATION_FAST_TIME = 250L
     }
 }

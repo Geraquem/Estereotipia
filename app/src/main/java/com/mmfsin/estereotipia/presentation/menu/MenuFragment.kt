@@ -51,6 +51,8 @@ class MenuFragment : BaseFragment<FragmentMenuBinding, MenuViewModel>(), IMenuLi
             (activity as MainActivity).checkVersion = false
             viewModel.checkVersion()
         }
+
+        countDown(256) { (activity as MainActivity).openIdentitiesActivity() }
     }
 
     override fun setUI() {

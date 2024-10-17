@@ -1,4 +1,4 @@
-package com.mmfsin.estereotipia.presentation.identities
+package com.mmfsin.estereotipia.presentation.dashboard.identities
 
 import com.mmfsin.estereotipia.domain.models.Card
 import com.mmfsin.estereotipia.domain.models.Identity

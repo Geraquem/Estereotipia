@@ -18,6 +18,5 @@ class IdentitiesRepository @Inject constructor(
     override suspend fun getIdentities(): List<Identity>? {
         val identities = realmDatabase.getObjectsFromRealm { where<IdentityDTO>().findAll() }
         return if (identities.isEmpty()) null else identities.toIdentityList()
-
     }
 }

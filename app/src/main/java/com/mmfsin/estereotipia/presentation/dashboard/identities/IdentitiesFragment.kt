@@ -1,4 +1,4 @@
-package com.mmfsin.estereotipia.presentation.identities
+package com.mmfsin.estereotipia.presentation.dashboard.identities
 
 import android.content.ClipData
 import android.content.ClipDescription
@@ -28,12 +28,10 @@ import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.Target
 import com.mmfsin.estereotipia.R
 import com.mmfsin.estereotipia.base.BaseFragment
-import com.mmfsin.estereotipia.base.bedrock.BedRockActivity
 import com.mmfsin.estereotipia.databinding.FragmentIdentitiesBinding
 import com.mmfsin.estereotipia.domain.models.Card
 import com.mmfsin.estereotipia.domain.models.Identity
-import com.mmfsin.estereotipia.presentation.allcards.dialogs.AllCardDialog
-import com.mmfsin.estereotipia.utils.animateX
+import com.mmfsin.estereotipia.presentation.dashboard.identities.dialogs.IdentityCardDialog
 import com.mmfsin.estereotipia.utils.animateY
 import com.mmfsin.estereotipia.utils.countDown
 import com.mmfsin.estereotipia.utils.showErrorDialog
@@ -60,23 +58,19 @@ class IdentitiesFragment : BaseFragment<FragmentIdentitiesBinding, IdentitiesVie
     }
 
     override fun setUI() {
-        (activity as BedRockActivity).apply {
-            inDashboard = false
-            setUpToolbar(getString(R.string.identities_toolbar))
-        }
         restartAnimations()
     }
 
     private fun restartAnimations() {
         binding.apply {
-            llTexts.isVisible = false
-            llTexts.animateY(-500f, 10)
+//            llTexts.isVisible = false
+//            llTexts.animateY(-500f, 10)
             image1.visibility = View.INVISIBLE
-            image1.animateX(-500f, 10)
+            image1.animateY(-500f, 10)
             image2.visibility = View.INVISIBLE
-            image2.animateX(-500f, 10)
+            image2.animateY(-500f, 10)
             image3.visibility = View.INVISIBLE
-            image3.animateX(-500f, 10)
+            image3.animateY(-500f, 10)
 
             btn.text = getString(R.string.identities_continue)
             clBtn.isVisible = false
@@ -86,18 +80,18 @@ class IdentitiesFragment : BaseFragment<FragmentIdentitiesBinding, IdentitiesVie
 
     override fun setListeners() {
         binding.apply {
-            tvText1.setOnLongClickListener {
-                setDragSettings(it)
-                true
-            }
-            tvText2.setOnLongClickListener {
-                setDragSettings(it)
-                true
-            }
-            tvText3.setOnLongClickListener {
-                setDragSettings(it)
-                true
-            }
+//            tvText1.setOnLongClickListener {
+//                setDragSettings(it)
+//                true
+//            }
+//            tvText2.setOnLongClickListener {
+//                setDragSettings(it)
+//                true
+//            }
+//            tvText3.setOnLongClickListener {
+//                setDragSettings(it)
+//                true
+//            }
 
             image1.setOnClickListener { showCardExpanded(0) }
             image2.setOnClickListener { showCardExpanded(1) }
@@ -121,7 +115,7 @@ class IdentitiesFragment : BaseFragment<FragmentIdentitiesBinding, IdentitiesVie
 
     private fun showCardExpanded(pos: Int) {
         if (cards.isNotEmpty() && cards.size == 3) {
-            activity?.showFragmentDialog(AllCardDialog.newInstance(cards[pos].id))
+            activity?.showFragmentDialog(IdentityCardDialog.newInstance(cards[pos].id))
         }
     }
 
@@ -149,13 +143,13 @@ class IdentitiesFragment : BaseFragment<FragmentIdentitiesBinding, IdentitiesVie
             if (identities.isNotEmpty()) {
                 if (pos < identities.size) {
                     val identity = identities[pos]
-                    identity.text?.let { title ->
-                        tvTitle.text = title
-                        tvTitle.isVisible = true
-                    } ?: run { tvTitle.isVisible = false }
-                    tvText1.text = identity.text1
-                    tvText2.text = identity.text2
-                    tvText3.text = identity.text3
+//                    identity.text?.let { title ->
+//                        tvTitle.text = title
+//                        tvTitle.isVisible = true
+//                    } ?: run { tvTitle.isVisible = false }
+//                    tvText1.text = identity.text1
+//                    tvText2.text = identity.text2
+//                    tvText3.text = identity.text3
                 }
             } else {
                 Toast.makeText(mContext, "identities emptyyy", Toast.LENGTH_SHORT).show()
@@ -166,8 +160,8 @@ class IdentitiesFragment : BaseFragment<FragmentIdentitiesBinding, IdentitiesVie
     private fun textsAnimations(cards: List<Card>) {
         binding.apply {
             countDown(750) {
-                llTexts.isVisible = true
-                llTexts.animateY(0f, 500)
+//                llTexts.isVisible = true
+//                llTexts.animateY(0f, 500)
             }
             countDown(1000) { imagesAnimations(cards) }
         }
@@ -199,7 +193,7 @@ class IdentitiesFragment : BaseFragment<FragmentIdentitiesBinding, IdentitiesVie
                 isFirstResource: Boolean
             ): Boolean {
                 view.visibility = View.VISIBLE
-                view.animateX(0f, 500)
+                view.animateY(0f, 500)
                 return false
             }
         }).into(view)

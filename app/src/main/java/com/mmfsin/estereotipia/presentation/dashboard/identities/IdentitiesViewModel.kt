@@ -1,4 +1,4 @@
-package com.mmfsin.estereotipia.presentation.identities
+package com.mmfsin.estereotipia.presentation.dashboard.identities
 
 import com.mmfsin.estereotipia.base.BaseViewModel
 import com.mmfsin.estereotipia.domain.usecases.GetIdentitiesUseCase

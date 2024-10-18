@@ -16,6 +16,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.LinearLayout
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.view.get
 import androidx.core.view.isVisible
 import androidx.core.view.size
@@ -25,14 +26,15 @@ import com.bumptech.glide.load.DataSource
 import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.Target
-import com.mmfsin.estereotipia.R
+import com.google.android.material.bottomsheet.BottomSheetBehavior
+import com.google.android.material.bottomsheet.BottomSheetBehavior.STATE_COLLAPSED
+import com.google.android.material.bottomsheet.BottomSheetBehavior.STATE_EXPANDED
+import com.google.android.material.bottomsheet.BottomSheetBehavior.from
 import com.mmfsin.estereotipia.base.BaseFragment
 import com.mmfsin.estereotipia.databinding.FragmentIdentitiesBinding
 import com.mmfsin.estereotipia.domain.models.Card
 import com.mmfsin.estereotipia.domain.models.Identity
-import com.mmfsin.estereotipia.presentation.dashboard.identities.dialogs.card.IdentitiesCardSheet
 import com.mmfsin.estereotipia.presentation.dashboard.identities.dialogs.character.IdentityCharacterDialog
-import com.mmfsin.estereotipia.utils.animateX
 import com.mmfsin.estereotipia.utils.animateY
 import com.mmfsin.estereotipia.utils.countDown
 import com.mmfsin.estereotipia.utils.hideAlpha
@@ -52,6 +54,8 @@ class IdentitiesFragment : BaseFragment<FragmentIdentitiesBinding, IdentitiesVie
     private var cards = listOf<Card>()
     private var pos = 0
 
+    private var cardBehavior: BottomSheetBehavior<ConstraintLayout>? = null
+
     override fun inflateView(
         inflater: LayoutInflater, container: ViewGroup?
     ) = FragmentIdentitiesBinding.inflate(inflater, container, false)
@@ -65,54 +69,59 @@ class IdentitiesFragment : BaseFragment<FragmentIdentitiesBinding, IdentitiesVie
         binding.apply {
             loading.root.isVisible = true
         }
-        continueBtnVisibility(false)
+        setCardSheet()
         restartAnimations()
+    }
+
+    private fun setCardSheet() {
+        cardBehavior = from(binding.card.mainContainer)
+        cardBehavior?.state = STATE_COLLAPSED
+        cardBehavior?.peekHeight = 0
     }
 
     private fun restartAnimations() {
         binding.apply {
             image1.hideAlpha(ANIMATION_FAST_TIME)
-            image1.animateX(-500f, 10)
+            image1.animateY(-500f, 10)
             image2.hideAlpha(ANIMATION_FAST_TIME)
-            image2.animateX(-500f, 10)
+            image2.animateY(-500f, 10)
             image3.hideAlpha(ANIMATION_FAST_TIME)
-            image3.animateX(-500f, 10)
+            image3.animateY(-500f, 10)
 
-            llChips.hideAlpha(ANIMATION_FAST_TIME)
-
-            btnContinue.text = getString(R.string.identities_continue)
+            llChips.hideAlpha(10)
         }
     }
 
     override fun setListeners() {
         binding.apply {
-//            tvText1.setOnLongClickListener {
-//                setDragSettings(it)
-//                true
-//            }
-//            tvText2.setOnLongClickListener {
-//                setDragSettings(it)
-//                true
-//            }
-//            tvText3.setOnLongClickListener {
-//                setDragSettings(it)
-//                true
-//            }
-
             image1.setOnClickListener { showCardExpanded(0) }
             image2.setOnClickListener { showCardExpanded(1) }
             image3.setOnClickListener { showCardExpanded(2) }
 
-            btnShowCard.setOnClickListener { showIdentitiesCard() }
+            card.ivClose.setOnClickListener { cardBehavior?.state = STATE_COLLAPSED }
+
+            tvOne.setOnLongClickListener {
+                setDragSettings(it)
+                true
+            }
+            tvTwo.setOnLongClickListener {
+                setDragSettings(it)
+                true
+            }
+            tvThree.setOnLongClickListener {
+                setDragSettings(it)
+                true
+            }
+
+            btnShowCard.setOnClickListener {
+                cardBehavior?.state = STATE_EXPANDED
+            }
 
             llImage1.setOnDragListener(dragListenerImages)
             llImage2.setOnDragListener(dragListenerImages)
             llImage3.setOnDragListener(dragListenerImages)
         }
     }
-
-    private fun showIdentitiesCard() =
-        actualIdentity?.let { activity?.showFragmentDialog(IdentitiesCardSheet(it)) }
 
     private fun setDragSettings(v: View) {
         val mimeTypes = arrayOf(ClipDescription.MIMETYPE_TEXT_PLAIN)
@@ -151,8 +160,21 @@ class IdentitiesFragment : BaseFragment<FragmentIdentitiesBinding, IdentitiesVie
     }
 
     private fun setActualIdentity() {
-        if (identities.isNotEmpty()) actualIdentity = identities[pos]
-        else error()
+        binding.apply {
+            if (identities.isNotEmpty()) {
+                actualIdentity = identities[pos]
+                actualIdentity?.let {
+                    it.text?.let { topText ->
+                        card.tvTopText.text = topText
+                        card.tvTopText.isVisible = true
+                    } ?: run { card.tvTopText.isVisible = false }
+
+                    card.tvOptionOne.text = it.text1
+                    card.tvOptionTwo.text = it.text2
+                    card.tvOptionThree.text = it.text3
+                }
+            } else error()
+        }
     }
 
     private fun setInitialPhase() {
@@ -191,7 +213,7 @@ class IdentitiesFragment : BaseFragment<FragmentIdentitiesBinding, IdentitiesVie
                 isFirstResource: Boolean
             ): Boolean {
                 view.showAlpha(ANIMATION_TIME)
-                view.animateX(0f, ANIMATION_TIME)
+                view.animateY(0f, ANIMATION_TIME)
                 return false
             }
         }).into(view)
@@ -246,30 +268,11 @@ class IdentitiesFragment : BaseFragment<FragmentIdentitiesBinding, IdentitiesVie
     private fun checkIfReady() {
         binding.apply {
             if (llImage1.size == 2 && llImage2.size == 2 && llImage3.size == 2) {
-                continueBtnVisibility(show = true)
+//                continueBtnVisibility(show = true)
             }
         }
     }
 
-    private fun continueBtnVisibility(show: Boolean) {
-        binding.apply {
-            clBtn.post {
-                val btnHeight = clBtn.height.toFloat()
-                if (show) {
-                    clBtn.isEnabled = true
-                    clBtn.showAlpha(ANIMATION_TIME)
-                    clBtn.animateY(0f, ANIMATION_TIME)
-                    btnShowCard.animateY(0f, ANIMATION_TIME)
-
-                } else {
-                    btnShowCard.animateY(btnHeight, ANIMATION_FAST_TIME)
-                    clBtn.animateY(btnHeight, ANIMATION_FAST_TIME)
-                    clBtn.hideAlpha(ANIMATION_FAST_TIME)
-                    clBtn.isEnabled = false
-                }
-            }
-        }
-    }
 
     private fun error() = activity?.showErrorDialog()
 

@@ -26,6 +26,7 @@
         <activity
             android:name=".presentation.dashboard.identities.IdentitiesActivity"
             android:exported="true"
+            android:screenOrientation="landscape"
             android:windowSoftInputMode="stateHidden|adjustPan" />
 
         <activity

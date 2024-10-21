@@ -196,6 +196,26 @@
 
         </RelativeLayout>
 
+        <RelativeLayout
+            android:id="@+id/btn_continue"
+            android:visibility="gone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:background="@drawable/click_effect"
+            android:elevation="4dp"
+            android:padding="16dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toRightOf="@id/gl_right">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/content_description"
+                android:src="@drawable/ic_ident_card" />
+
+        </RelativeLayout>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <include

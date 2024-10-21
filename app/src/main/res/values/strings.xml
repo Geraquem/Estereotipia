@@ -45,6 +45,9 @@
     <string name="first_access_close">¡Ciérrame esto ya!</string>
 
     <!-- IDENTITIES -->
+    <string name="identities_initial_dialog">A este modo se juega con el teléfono en <b>horizontal</b></string>
+    <string name="identities_initial_continue">Continuar</string>
+    <string name="identities_initial_instructions">¿Cómo se juega?</string>
     <string name="identities_toolbar">Identidades</string>
     <string name="identities_continue">Continuar</string>
     <string name="identities_one">1</string>

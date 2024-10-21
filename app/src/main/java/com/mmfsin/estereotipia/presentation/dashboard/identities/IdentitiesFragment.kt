@@ -4,7 +4,6 @@ import android.content.ClipData
 import android.content.ClipDescription
 import android.content.Context
 import android.graphics.drawable.Drawable
-import android.os.Bundle
 import android.view.DragEvent.ACTION_DRAG_ENDED
 import android.view.DragEvent.ACTION_DRAG_ENTERED
 import android.view.DragEvent.ACTION_DRAG_EXITED
@@ -35,6 +34,8 @@ import com.mmfsin.estereotipia.databinding.FragmentIdentitiesBinding
 import com.mmfsin.estereotipia.domain.models.Card
 import com.mmfsin.estereotipia.domain.models.Identity
 import com.mmfsin.estereotipia.presentation.dashboard.identities.dialogs.character.IdentityCharacterDialog
+import com.mmfsin.estereotipia.presentation.dashboard.identities.dialogs.initial.IInitialListener
+import com.mmfsin.estereotipia.presentation.dashboard.identities.dialogs.initial.InitialIdentitiesDialog
 import com.mmfsin.estereotipia.utils.animateY
 import com.mmfsin.estereotipia.utils.countDown
 import com.mmfsin.estereotipia.utils.hideAlpha
@@ -44,7 +45,8 @@ import com.mmfsin.estereotipia.utils.showFragmentDialog
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class IdentitiesFragment : BaseFragment<FragmentIdentitiesBinding, IdentitiesViewModel>() {
+class IdentitiesFragment : BaseFragment<FragmentIdentitiesBinding, IdentitiesViewModel>(),
+    IInitialListener {
 
     override val viewModel: IdentitiesViewModel by viewModels()
     private lateinit var mContext: Context
@@ -60,18 +62,24 @@ class IdentitiesFragment : BaseFragment<FragmentIdentitiesBinding, IdentitiesVie
         inflater: LayoutInflater, container: ViewGroup?
     ) = FragmentIdentitiesBinding.inflate(inflater, container, false)
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        viewModel.getIdentities()
-    }
-
     override fun setUI() {
         binding.apply {
             loading.root.isVisible = true
         }
         setCardSheet()
         restartAnimations()
+        showInitialDialog()
     }
+
+    private fun showInitialDialog() {
+        activity?.let { InitialIdentitiesDialog(this).show(it.supportFragmentManager, "") }
+    }
+
+    override fun openInstructions() {
+
+    }
+
+    override fun startGame() = viewModel.getIdentities()
 
     private fun setCardSheet() {
         cardBehavior = from(binding.card.mainContainer)
@@ -179,10 +187,12 @@ class IdentitiesFragment : BaseFragment<FragmentIdentitiesBinding, IdentitiesVie
 
     private fun setInitialPhase() {
         binding.apply {
-            countDown(750) {
+            countDown(500) {
                 imagesAnimations(cards)
                 llChips.showAlpha(ANIMATION_TIME)
             }
+
+            countDown(2000) { cardBehavior?.state = STATE_EXPANDED }
             loading.root.isVisible = false
         }
     }

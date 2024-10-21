@@ -53,6 +53,7 @@ class IdentitiesFragment : BaseFragment<FragmentIdentitiesBinding, IdentitiesVie
     private var cards = listOf<Card>()
     private var pos = 0
 
+    private var cardDialog: IdentitiesCardSheet? = null
 
     override fun inflateView(
         inflater: LayoutInflater, container: ViewGroup?
@@ -113,7 +114,11 @@ class IdentitiesFragment : BaseFragment<FragmentIdentitiesBinding, IdentitiesVie
                 true
             }
 
-            btnShowCard.setOnClickListener { openCardDialog() }
+            btnShowCard.setOnClickListener {
+                it.isEnabled = false
+                openCardDialog()
+                countDown(1000) { it.isEnabled = true }
+            }
 
             llImage1.setOnDragListener(dragListenerImages)
             llImage2.setOnDragListener(dragListenerImages)
@@ -121,8 +126,12 @@ class IdentitiesFragment : BaseFragment<FragmentIdentitiesBinding, IdentitiesVie
         }
     }
 
-    private fun openCardDialog() =
-        actualIdentity?.let { activity?.showFragmentDialog(IdentitiesCardSheet(it)) }
+    private fun openCardDialog() {
+        actualIdentity?.let {
+            cardDialog = IdentitiesCardSheet(it)
+            activity?.showFragmentDialog(IdentitiesCardSheet(it))
+        }
+    }
 
     private fun setDragSettings(v: View) {
         val mimeTypes = arrayOf(ClipDescription.MIMETYPE_TEXT_PLAIN)
@@ -176,7 +185,7 @@ class IdentitiesFragment : BaseFragment<FragmentIdentitiesBinding, IdentitiesVie
                 llTxtThree.showAlpha(ANIMATION_TIME)
             }
 
-            countDown(2000) { openCardDialog() }
+            countDown(2000) { if (cardDialog == null) openCardDialog() }
             loading.root.isVisible = false
         }
     }

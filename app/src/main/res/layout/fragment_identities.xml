@@ -29,6 +29,19 @@
             android:orientation="vertical"
             app:layout_constraintGuide_percent="0.05" />
 
+        <ImageView
+            android:id="@+id/iv_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:background="@drawable/bg_white_circle"
+            android:contentDescription="@string/content_description"
+            android:foreground="?attr/selectableItemBackgroundBorderless"
+            android:padding="6dp"
+            android:src="@drawable/ic_arrow_back"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <LinearLayout
             android:id="@+id/ll_images"
             android:layout_width="wrap_content"
@@ -140,9 +153,9 @@
                 android:id="@+id/tv_one"
                 style="@style/BigTextView_Bold"
                 android:layout_width="50dp"
-                android:layout_marginHorizontal="16dp"
                 android:layout_height="50dp"
                 android:layout_gravity="center"
+                android:layout_marginHorizontal="16dp"
                 android:background="@drawable/bg_identities_number"
                 android:elevation="2dp"
                 android:gravity="center"
@@ -152,10 +165,10 @@
             <TextView
                 android:id="@+id/tv_two"
                 style="@style/BigTextView_Bold"
-                android:layout_marginHorizontal="16dp"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_gravity="center"
+                android:layout_marginHorizontal="16dp"
                 android:background="@drawable/bg_identities_number"
                 android:elevation="2dp"
                 android:gravity="center"
@@ -165,10 +178,10 @@
             <TextView
                 android:id="@+id/tv_three"
                 style="@style/BigTextView_Bold"
-                android:layout_marginHorizontal="16dp"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_gravity="center"
+                android:layout_marginHorizontal="16dp"
                 android:background="@drawable/bg_identities_number"
                 android:elevation="2dp"
                 android:gravity="center"
@@ -198,21 +211,20 @@
 
         <RelativeLayout
             android:id="@+id/btn_continue"
-            android:visibility="gone"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
             android:background="@drawable/click_effect"
             android:elevation="4dp"
             android:padding="16dp"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/btn_show_card"
             app:layout_constraintRight_toRightOf="@id/gl_right">
 
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:contentDescription="@string/content_description"
-                android:src="@drawable/ic_ident_card" />
+                android:src="@drawable/ic_simple_check" />
 
         </RelativeLayout>
 

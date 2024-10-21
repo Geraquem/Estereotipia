@@ -36,6 +36,7 @@ import com.mmfsin.estereotipia.domain.models.Identity
 import com.mmfsin.estereotipia.presentation.dashboard.identities.dialogs.character.IdentityCharacterDialog
 import com.mmfsin.estereotipia.presentation.dashboard.identities.dialogs.initial.IInitialListener
 import com.mmfsin.estereotipia.presentation.dashboard.identities.dialogs.initial.InitialIdentitiesDialog
+import com.mmfsin.estereotipia.utils.animateX
 import com.mmfsin.estereotipia.utils.animateY
 import com.mmfsin.estereotipia.utils.countDown
 import com.mmfsin.estereotipia.utils.hideAlpha
@@ -65,6 +66,7 @@ class IdentitiesFragment : BaseFragment<FragmentIdentitiesBinding, IdentitiesVie
     override fun setUI() {
         binding.apply {
             loading.root.isVisible = true
+            btnContinue.animateX(500f, 10)
         }
         setCardSheet()
         restartAnimations()
@@ -102,6 +104,8 @@ class IdentitiesFragment : BaseFragment<FragmentIdentitiesBinding, IdentitiesVie
 
     override fun setListeners() {
         binding.apply {
+            ivBack.setOnClickListener { activity?.onBackPressedDispatcher?.onBackPressed() }
+
             image1.setOnClickListener { showCardExpanded(0) }
             image2.setOnClickListener { showCardExpanded(1) }
             image3.setOnClickListener { showCardExpanded(2) }
@@ -278,7 +282,7 @@ class IdentitiesFragment : BaseFragment<FragmentIdentitiesBinding, IdentitiesVie
     private fun checkIfReady() {
         binding.apply {
             if (llImage1.size == 2 && llImage2.size == 2 && llImage3.size == 2) {
-//                continueBtnVisibility(show = true)
+                btnContinue.animateX(0f, ANIMATION_TIME)
             }
         }
     }

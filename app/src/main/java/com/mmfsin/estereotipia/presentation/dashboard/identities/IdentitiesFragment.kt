@@ -15,7 +15,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.LinearLayout
-import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.view.get
 import androidx.core.view.isVisible
 import androidx.core.view.size
@@ -25,14 +24,11 @@ import com.bumptech.glide.load.DataSource
 import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.Target
-import com.google.android.material.bottomsheet.BottomSheetBehavior
-import com.google.android.material.bottomsheet.BottomSheetBehavior.STATE_COLLAPSED
-import com.google.android.material.bottomsheet.BottomSheetBehavior.STATE_EXPANDED
-import com.google.android.material.bottomsheet.BottomSheetBehavior.from
 import com.mmfsin.estereotipia.base.BaseFragment
 import com.mmfsin.estereotipia.databinding.FragmentIdentitiesBinding
 import com.mmfsin.estereotipia.domain.models.Card
 import com.mmfsin.estereotipia.domain.models.Identity
+import com.mmfsin.estereotipia.presentation.dashboard.identities.dialogs.card.IdentitiesCardSheet
 import com.mmfsin.estereotipia.presentation.dashboard.identities.dialogs.character.IdentityCharacterDialog
 import com.mmfsin.estereotipia.presentation.dashboard.identities.dialogs.initial.IInitialListener
 import com.mmfsin.estereotipia.presentation.dashboard.identities.dialogs.initial.InitialIdentitiesDialog
@@ -57,7 +53,6 @@ class IdentitiesFragment : BaseFragment<FragmentIdentitiesBinding, IdentitiesVie
     private var cards = listOf<Card>()
     private var pos = 0
 
-    private var cardBehavior: BottomSheetBehavior<ConstraintLayout>? = null
 
     override fun inflateView(
         inflater: LayoutInflater, container: ViewGroup?
@@ -68,7 +63,6 @@ class IdentitiesFragment : BaseFragment<FragmentIdentitiesBinding, IdentitiesVie
             loading.root.isVisible = true
             btnContinue.animateX(500f, 10)
         }
-        setCardSheet()
         restartAnimations()
         showInitialDialog()
     }
@@ -83,12 +77,6 @@ class IdentitiesFragment : BaseFragment<FragmentIdentitiesBinding, IdentitiesVie
 
     override fun startGame() = viewModel.getIdentities()
 
-    private fun setCardSheet() {
-        cardBehavior = from(binding.card.mainContainer)
-        cardBehavior?.state = STATE_COLLAPSED
-        cardBehavior?.peekHeight = 0
-    }
-
     private fun restartAnimations() {
         binding.apply {
             image1.hideAlpha(ANIMATION_FAST_TIME)
@@ -98,7 +86,9 @@ class IdentitiesFragment : BaseFragment<FragmentIdentitiesBinding, IdentitiesVie
             image3.hideAlpha(ANIMATION_FAST_TIME)
             image3.animateY(-500f, 10)
 
-            llChips.hideAlpha(10)
+            llTxtOne.hideAlpha(10)
+            llTxtTwo.hideAlpha(10)
+            llTxtThree.hideAlpha(10)
         }
     }
 
@@ -109,8 +99,6 @@ class IdentitiesFragment : BaseFragment<FragmentIdentitiesBinding, IdentitiesVie
             image1.setOnClickListener { showCardExpanded(0) }
             image2.setOnClickListener { showCardExpanded(1) }
             image3.setOnClickListener { showCardExpanded(2) }
-
-            card.ivClose.setOnClickListener { cardBehavior?.state = STATE_COLLAPSED }
 
             tvOne.setOnLongClickListener {
                 setDragSettings(it)
@@ -125,15 +113,16 @@ class IdentitiesFragment : BaseFragment<FragmentIdentitiesBinding, IdentitiesVie
                 true
             }
 
-            btnShowCard.setOnClickListener {
-                cardBehavior?.state = STATE_EXPANDED
-            }
+            btnShowCard.setOnClickListener { openCardDialog() }
 
             llImage1.setOnDragListener(dragListenerImages)
             llImage2.setOnDragListener(dragListenerImages)
             llImage3.setOnDragListener(dragListenerImages)
         }
     }
+
+    private fun openCardDialog() =
+        actualIdentity?.let { activity?.showFragmentDialog(IdentitiesCardSheet(it)) }
 
     private fun setDragSettings(v: View) {
         val mimeTypes = arrayOf(ClipDescription.MIMETYPE_TEXT_PLAIN)
@@ -173,19 +162,8 @@ class IdentitiesFragment : BaseFragment<FragmentIdentitiesBinding, IdentitiesVie
 
     private fun setActualIdentity() {
         binding.apply {
-            if (identities.isNotEmpty()) {
-                actualIdentity = identities[pos]
-                actualIdentity?.let {
-                    it.text?.let { topText ->
-                        card.tvTopText.text = topText
-                        card.tvTopText.isVisible = true
-                    } ?: run { card.tvTopText.isVisible = false }
-
-                    card.tvOptionOne.text = it.text1
-                    card.tvOptionTwo.text = it.text2
-                    card.tvOptionThree.text = it.text3
-                }
-            } else error()
+            if (identities.isNotEmpty()) actualIdentity = identities[pos]
+            else error()
         }
     }
 
@@ -193,10 +171,12 @@ class IdentitiesFragment : BaseFragment<FragmentIdentitiesBinding, IdentitiesVie
         binding.apply {
             countDown(500) {
                 imagesAnimations(cards)
-                llChips.showAlpha(ANIMATION_TIME)
+                llTxtOne.showAlpha(ANIMATION_TIME)
+                llTxtTwo.showAlpha(ANIMATION_TIME)
+                llTxtThree.showAlpha(ANIMATION_TIME)
             }
 
-            countDown(2000) { cardBehavior?.state = STATE_EXPANDED }
+            countDown(2000) { openCardDialog() }
             loading.root.isVisible = false
         }
     }

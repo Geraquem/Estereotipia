@@ -270,11 +270,11 @@
         app:layout_constraintRight_toRightOf="@id/gl_right">
 
         <ImageView
+            android:id="@+id/iv_phase"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:contentDescription="@string/content_description"
-            android:src="@drawable/ic_circle_check"
-            app:tint="@color/dark_green" />
+            android:src="@drawable/ic_circle_check" />
 
     </RelativeLayout>
 

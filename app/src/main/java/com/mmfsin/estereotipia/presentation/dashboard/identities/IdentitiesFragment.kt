@@ -15,6 +15,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.LinearLayout
+import android.widget.Toast
 import androidx.core.view.get
 import androidx.core.view.isVisible
 import androidx.core.view.size
@@ -24,9 +25,13 @@ import com.bumptech.glide.load.DataSource
 import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.Target
+import com.mmfsin.estereotipia.R
 import com.mmfsin.estereotipia.base.BaseFragment
 import com.mmfsin.estereotipia.databinding.FragmentIdentitiesBinding
 import com.mmfsin.estereotipia.domain.models.Card
+import com.mmfsin.estereotipia.domain.models.IdentitiesPhase
+import com.mmfsin.estereotipia.domain.models.IdentitiesPhase.PHASE_ONE
+import com.mmfsin.estereotipia.domain.models.IdentitiesPhase.PHASE_TWO
 import com.mmfsin.estereotipia.domain.models.Identity
 import com.mmfsin.estereotipia.presentation.dashboard.identities.dialogs.card.IdentitiesCardSheet
 import com.mmfsin.estereotipia.presentation.dashboard.identities.dialogs.character.IdentityCharacterDialog
@@ -54,6 +59,8 @@ class IdentitiesFragment : BaseFragment<FragmentIdentitiesBinding, IdentitiesVie
     private var pos = 0
 
     private var cardDialog: IdentitiesCardSheet? = null
+
+    private var phase: IdentitiesPhase = PHASE_ONE
 
     override fun inflateView(
         inflater: LayoutInflater, container: ViewGroup?
@@ -114,15 +121,22 @@ class IdentitiesFragment : BaseFragment<FragmentIdentitiesBinding, IdentitiesVie
                 true
             }
 
+            llImage1.setOnDragListener(dragListenerImages)
+            llImage2.setOnDragListener(dragListenerImages)
+            llImage3.setOnDragListener(dragListenerImages)
+
             btnShowCard.setOnClickListener {
                 it.isEnabled = false
                 openCardDialog()
                 countDown(1000) { it.isEnabled = true }
             }
 
-            llImage1.setOnDragListener(dragListenerImages)
-            llImage2.setOnDragListener(dragListenerImages)
-            llImage3.setOnDragListener(dragListenerImages)
+            btnContinue.setOnClickListener {
+                when (phase) {
+                    PHASE_ONE -> setSecondPhase()
+                    PHASE_TWO -> checkSolutions()
+                }
+            }
         }
     }
 
@@ -160,7 +174,7 @@ class IdentitiesFragment : BaseFragment<FragmentIdentitiesBinding, IdentitiesVie
 
                 is IdentitiesEvent.GetThreeCards -> {
                     cards = event.cards
-                    setInitialPhase()
+                    setPhaseOne()
 
                 }
 
@@ -176,8 +190,10 @@ class IdentitiesFragment : BaseFragment<FragmentIdentitiesBinding, IdentitiesVie
         }
     }
 
-    private fun setInitialPhase() {
+    private fun setPhaseOne() {
         binding.apply {
+            phase = PHASE_ONE
+            ivPhase.setImageResource(R.drawable.ic_circle_check)
             countDown(500) {
                 imagesAnimations(cards)
                 llTxtOne.showAlpha(ANIMATION_TIME)
@@ -276,6 +292,33 @@ class IdentitiesFragment : BaseFragment<FragmentIdentitiesBinding, IdentitiesVie
         }
     }
 
+    private fun setSecondPhase() {
+        binding.apply {
+            phase = PHASE_TWO
+            btnContinue.animateX(500f, 10)
+            countDown(500) { ivPhase.setImageResource(R.drawable.ic_question) }
+            if (llImage1.size == 2 && llImage2.size == 2 && llImage3.size == 2) {
+                val txt1 = llImage1.getChildAt(1)
+                llImage1.removeViewAt(1)
+                llTxtOne.addView(txt1)
+
+                val txt2 = llImage2.getChildAt(1)
+                llImage2.removeViewAt(1)
+                llTxtTwo.addView(txt2)
+
+                val txt3 = llImage3.getChildAt(1)
+                llImage3.removeViewAt(1)
+                llTxtThree.addView(txt3)
+            }
+        }
+    }
+
+    private fun checkSolutions() {
+        binding.apply {
+            btnContinue.isEnabled = false
+        }
+        Toast.makeText(mContext, "fjnsd,mnfldkz", Toast.LENGTH_SHORT).show()
+    }
 
     private fun error() = activity?.showErrorDialog()
 

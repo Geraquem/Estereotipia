@@ -15,7 +15,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.LinearLayout
-import android.widget.Toast
 import androidx.core.view.get
 import androidx.core.view.isVisible
 import androidx.core.view.size
@@ -43,6 +42,8 @@ import com.mmfsin.estereotipia.utils.animateX
 import com.mmfsin.estereotipia.utils.animateY
 import com.mmfsin.estereotipia.utils.countDown
 import com.mmfsin.estereotipia.utils.hideAlpha
+import com.mmfsin.estereotipia.utils.setSecondPhaseLinear
+import com.mmfsin.estereotipia.utils.setSolution
 import com.mmfsin.estereotipia.utils.showAlpha
 import com.mmfsin.estereotipia.utils.showErrorDialog
 import com.mmfsin.estereotipia.utils.showFragmentDialog
@@ -208,7 +209,7 @@ class IdentitiesFragment : BaseFragment<FragmentIdentitiesBinding, IdentitiesVie
                 llTxtThree.showAlpha(ANIMATION_TIME)
             }
 
-            countDown(2000) { if (cardDialog == null) openCardDialog() }
+//            countDown(2000) { if (cardDialog == null) openCardDialog() }
             loading.root.isVisible = false
         }
     }
@@ -318,26 +319,32 @@ class IdentitiesFragment : BaseFragment<FragmentIdentitiesBinding, IdentitiesVie
             btnContinue.animateX(500f, 10)
             countDown(500) { ivPhase.setImageResource(R.drawable.ic_question) }
             if (llImage1.size == 2 && llImage2.size == 2 && llImage3.size == 2) {
-                val txt1 = llImage1.getChildAt(1)
-                llImage1.removeViewAt(1)
-                llTxtOne.addView(txt1)
-
-                val txt2 = llImage2.getChildAt(1)
-                llImage2.removeViewAt(1)
-                llTxtTwo.addView(txt2)
-
-                val txt3 = llImage3.getChildAt(1)
-                llImage3.removeViewAt(1)
-                llTxtThree.addView(txt3)
-            }
+                mContext.setSecondPhaseLinear(llImage1, llTxtOne, llTxtTwo, llTxtThree)
+                mContext.setSecondPhaseLinear(llImage2, llTxtOne, llTxtTwo, llTxtThree)
+                mContext.setSecondPhaseLinear(llImage3, llTxtOne, llTxtTwo, llTxtThree)
+            } else error()
         }
     }
 
     private fun checkSolutions() {
         binding.apply {
             btnContinue.isEnabled = false
+            if (llImage1.size == 2 && llImage2.size == 2 && llImage3.size == 2) {
+                solution?.let {
+                    val solution1 = mContext.setSolution(it.solution1, llImage1)
+                    llImage1.addView(solution1.first)
+                    llImage1.addView(solution1.second)
+
+                    val solution2 = mContext.setSolution(it.solution2, llImage2)
+                    llImage2.addView(solution2.first)
+                    llImage2.addView(solution2.second)
+
+                    val solution3 = mContext.setSolution(it.solution3, llImage3)
+                    llImage3.addView(solution3.first)
+                    llImage3.addView(solution3.second)
+                } ?: run { error() }
+            } else error()
         }
-        Toast.makeText(mContext, "fjnsd,mnfldkz", Toast.LENGTH_SHORT).show()
     }
 
     private fun error() = activity?.showErrorDialog()

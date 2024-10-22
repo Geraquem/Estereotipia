@@ -25,6 +25,7 @@ import com.bumptech.glide.load.DataSource
 import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.Target
+import com.google.android.material.textview.MaterialTextView
 import com.mmfsin.estereotipia.R
 import com.mmfsin.estereotipia.base.BaseFragment
 import com.mmfsin.estereotipia.databinding.FragmentIdentitiesBinding
@@ -32,6 +33,7 @@ import com.mmfsin.estereotipia.domain.models.Card
 import com.mmfsin.estereotipia.domain.models.IdentitiesPhase
 import com.mmfsin.estereotipia.domain.models.IdentitiesPhase.PHASE_ONE
 import com.mmfsin.estereotipia.domain.models.IdentitiesPhase.PHASE_TWO
+import com.mmfsin.estereotipia.domain.models.IdentitiesSolution
 import com.mmfsin.estereotipia.domain.models.Identity
 import com.mmfsin.estereotipia.presentation.dashboard.identities.dialogs.card.IdentitiesCardSheet
 import com.mmfsin.estereotipia.presentation.dashboard.identities.dialogs.character.IdentityCharacterDialog
@@ -61,6 +63,7 @@ class IdentitiesFragment : BaseFragment<FragmentIdentitiesBinding, IdentitiesVie
     private var cardDialog: IdentitiesCardSheet? = null
 
     private var phase: IdentitiesPhase = PHASE_ONE
+    private var solution: IdentitiesSolution? = null
 
     override fun inflateView(
         inflater: LayoutInflater, container: ViewGroup?
@@ -133,7 +136,11 @@ class IdentitiesFragment : BaseFragment<FragmentIdentitiesBinding, IdentitiesVie
 
             btnContinue.setOnClickListener {
                 when (phase) {
-                    PHASE_ONE -> setSecondPhase()
+                    PHASE_ONE -> {
+                        setSolutionData()
+                        setSecondPhase()
+                    }
+
                     PHASE_TWO -> checkSolutions()
                 }
             }
@@ -288,6 +295,19 @@ class IdentitiesFragment : BaseFragment<FragmentIdentitiesBinding, IdentitiesVie
         binding.apply {
             if (llImage1.size == 2 && llImage2.size == 2 && llImage3.size == 2) {
                 btnContinue.animateX(0f, ANIMATION_TIME)
+            }
+        }
+    }
+
+    private fun setSolutionData() {
+        binding.apply {
+            phase = PHASE_TWO
+            if (llImage1.size == 2 && llImage2.size == 2 && llImage3.size == 2) {
+                solution = IdentitiesSolution(
+                    solution1 = (llImage1.getChildAt(1) as MaterialTextView).text.toString(),
+                    solution2 = (llImage2.getChildAt(1) as MaterialTextView).text.toString(),
+                    solution3 = (llImage3.getChildAt(1) as MaterialTextView).text.toString()
+                )
             }
         }
     }

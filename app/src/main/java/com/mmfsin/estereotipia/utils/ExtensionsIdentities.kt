@@ -2,10 +2,15 @@ package com.mmfsin.estereotipia.utils
 
 import android.content.Context
 import android.content.res.ColorStateList.valueOf
+import android.graphics.PorterDuff.Mode.SRC_IN
+import android.graphics.Typeface
+import android.util.TypedValue.COMPLEX_UNIT_PX
+import android.view.Gravity
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.core.content.ContextCompat.getColor
+import androidx.core.content.ContextCompat.getDrawable
 import com.google.android.material.textview.MaterialTextView
 import com.mmfsin.estereotipia.R
 
@@ -30,10 +35,22 @@ fun Context.setSolution(correct: String, answer: LinearLayout): Pair<ImageView, 
     val color = if (answerText == correct) R.color.dark_green else R.color.red
     val imageView = ImageView(this).apply {
         setImageResource(icon)
-        backgroundTintList = valueOf(getColor(this@setSolution, color))
+        setColorFilter(getColor(this@setSolution, color), SRC_IN)
     }
+
+    val scale = resources.displayMetrics.density
+    val sizeDp = 40
+    val sizePx = (sizeDp * scale + 0.5f).toInt()
+    val params = LinearLayout.LayoutParams(sizePx, sizePx)
+    params.topMargin = 24
     val textView = MaterialTextView(this).apply {
+        layoutParams = params
+        gravity = Gravity.CENTER
         text = correct
+        setTypeface(null, Typeface.BOLD)
+        setTextSize(COMPLEX_UNIT_PX, resources.getDimension(R.dimen.dimen_result_identity))
+        background = getDrawable(this@setSolution, R.drawable.bg_identities_number)
+
     }
 
     return Pair(imageView, textView)

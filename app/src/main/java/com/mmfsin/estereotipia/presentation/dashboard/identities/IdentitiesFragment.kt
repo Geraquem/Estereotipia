@@ -15,6 +15,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.LinearLayout
+import android.widget.Toast
 import androidx.core.view.get
 import androidx.core.view.isVisible
 import androidx.core.view.size
@@ -32,6 +33,7 @@ import com.mmfsin.estereotipia.domain.models.Card
 import com.mmfsin.estereotipia.domain.models.IdentitiesPhase
 import com.mmfsin.estereotipia.domain.models.IdentitiesPhase.PHASE_ONE
 import com.mmfsin.estereotipia.domain.models.IdentitiesPhase.PHASE_TWO
+import com.mmfsin.estereotipia.domain.models.IdentitiesPhase.RESTART
 import com.mmfsin.estereotipia.domain.models.IdentitiesSolution
 import com.mmfsin.estereotipia.domain.models.Identity
 import com.mmfsin.estereotipia.presentation.dashboard.identities.dialogs.card.IdentitiesCardSheet
@@ -75,7 +77,7 @@ class IdentitiesFragment : BaseFragment<FragmentIdentitiesBinding, IdentitiesVie
             loading.root.isVisible = true
             btnContinue.animateX(500f, 10)
         }
-        restartAnimations()
+        initialAnimations()
         showInitialDialog()
     }
 
@@ -89,7 +91,7 @@ class IdentitiesFragment : BaseFragment<FragmentIdentitiesBinding, IdentitiesVie
 
     override fun startGame() = viewModel.getIdentities()
 
-    private fun restartAnimations() {
+    private fun initialAnimations() {
         binding.apply {
             image1.hideAlpha(ANIMATION_FAST_TIME)
             image1.animateY(-500f, 10)
@@ -143,6 +145,10 @@ class IdentitiesFragment : BaseFragment<FragmentIdentitiesBinding, IdentitiesVie
                     }
 
                     PHASE_TWO -> checkSolutions()
+
+                    RESTART -> {
+                        Toast.makeText(mContext, "restart", Toast.LENGTH_SHORT).show()
+                    }
                 }
             }
         }
@@ -329,6 +335,7 @@ class IdentitiesFragment : BaseFragment<FragmentIdentitiesBinding, IdentitiesVie
     private fun checkSolutions() {
         binding.apply {
             btnContinue.isEnabled = false
+            btnContinue.animateX(500f, ANIMATION_TIME)
             if (llImage1.size == 2 && llImage2.size == 2 && llImage3.size == 2) {
                 solution?.let {
                     val solution1 = mContext.setSolution(it.solution1, llImage1)
@@ -344,6 +351,12 @@ class IdentitiesFragment : BaseFragment<FragmentIdentitiesBinding, IdentitiesVie
                     llImage3.addView(solution3.second)
                 } ?: run { error() }
             } else error()
+            countDown(1000) {
+                phase = RESTART
+                ivPhase.setImageResource(R.drawable.ic_redo)
+                btnContinue.animateX(0f, ANIMATION_TIME)
+                btnContinue.isEnabled = true
+            }
         }
     }
 

@@ -15,7 +15,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.LinearLayout
-import android.widget.Toast
+import androidx.core.content.ContextCompat.getColor
 import androidx.core.view.get
 import androidx.core.view.isVisible
 import androidx.core.view.size
@@ -25,6 +25,7 @@ import com.bumptech.glide.load.DataSource
 import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.Target
+import com.google.android.material.textview.MaterialTextView
 import com.mmfsin.estereotipia.R
 import com.mmfsin.estereotipia.base.BaseFragment
 import com.mmfsin.estereotipia.databinding.FragmentIdentitiesBinding
@@ -32,6 +33,7 @@ import com.mmfsin.estereotipia.domain.models.Card
 import com.mmfsin.estereotipia.domain.models.IdentitiesPhase
 import com.mmfsin.estereotipia.domain.models.IdentitiesPhase.PHASE_ONE
 import com.mmfsin.estereotipia.domain.models.IdentitiesPhase.PHASE_TWO
+import com.mmfsin.estereotipia.domain.models.IdentitiesSolution
 import com.mmfsin.estereotipia.domain.models.Identity
 import com.mmfsin.estereotipia.presentation.dashboard.identities.dialogs.card.IdentitiesCardSheet
 import com.mmfsin.estereotipia.presentation.dashboard.identities.dialogs.character.IdentityCharacterDialog
@@ -61,6 +63,7 @@ class IdentitiesFragment : BaseFragment<FragmentIdentitiesBinding, IdentitiesVie
     private var cardDialog: IdentitiesCardSheet? = null
 
     private var phase: IdentitiesPhase = PHASE_ONE
+    private var solution: IdentitiesSolution? = null
 
     override fun inflateView(
         inflater: LayoutInflater, container: ViewGroup?
@@ -102,7 +105,7 @@ class IdentitiesFragment : BaseFragment<FragmentIdentitiesBinding, IdentitiesVie
 
     override fun setListeners() {
         binding.apply {
-            ivBack.setOnClickListener { activity?.onBackPressedDispatcher?.onBackPressed() }
+//            ivBack.setOnClickListener { activity?.onBackPressedDispatcher?.onBackPressed() }
 
             image1.setOnClickListener { showCardExpanded(0) }
             image2.setOnClickListener { showCardExpanded(1) }
@@ -132,6 +135,7 @@ class IdentitiesFragment : BaseFragment<FragmentIdentitiesBinding, IdentitiesVie
             }
 
             btnContinue.setOnClickListener {
+                setDecision()
                 when (phase) {
                     PHASE_ONE -> setSecondPhase()
                     PHASE_TWO -> checkSolutions()
@@ -292,6 +296,21 @@ class IdentitiesFragment : BaseFragment<FragmentIdentitiesBinding, IdentitiesVie
         }
     }
 
+    private fun setDecision() {
+        binding.apply {
+            if (llImage1.size == 2 && llImage2.size == 2 && llImage3.size == 2) {
+                val image1solution = llImage1.getChildAt(1) as MaterialTextView
+                val image2solution = llImage2.getChildAt(1) as MaterialTextView
+                val image3solution = llImage3.getChildAt(1) as MaterialTextView
+                solution = IdentitiesSolution(
+                    solution1 = image1solution.text.toString(),
+                    solution2 = image2solution.text.toString(),
+                    solution3 = image3solution.text.toString()
+                )
+            }
+        }
+    }
+
     private fun setSecondPhase() {
         binding.apply {
             phase = PHASE_TWO
@@ -316,8 +335,29 @@ class IdentitiesFragment : BaseFragment<FragmentIdentitiesBinding, IdentitiesVie
     private fun checkSolutions() {
         binding.apply {
             btnContinue.isEnabled = false
+            solution?.let { sol ->
+                if (llImage1.size == 2 && llImage2.size == 2 && llImage3.size == 2) {
+                    val image1solution = llImage1.getChildAt(1) as MaterialTextView
+                    val image2solution = llImage2.getChildAt(1) as MaterialTextView
+                    val image3solution = llImage3.getChildAt(1) as MaterialTextView
+
+                    if (sol.solution1 == image1solution.text) {
+
+                        val clonedTextView = MaterialTextView(mContext)
+                        clonedTextView.layoutParams = image1solution.layoutParams
+                        clonedTextView.text = image1solution.text
+                        clonedTextView.textSize = image1solution.textSize
+                        clonedTextView.setTextColor(image1solution.currentTextColor)
+
+                        clonedTextView.background = image1solution.background
+
+                        llImage1.addView(clonedTextView)
+
+                    } else {
+                    }
+                }
+            }
         }
-        Toast.makeText(mContext, "fjnsd,mnfldkz", Toast.LENGTH_SHORT).show()
     }
 
     private fun error() = activity?.showErrorDialog()

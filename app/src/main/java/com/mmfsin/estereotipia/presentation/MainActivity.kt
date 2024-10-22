@@ -8,7 +8,6 @@ import androidx.core.view.WindowInsetsControllerCompat
 import com.mmfsin.estereotipia.R
 import com.mmfsin.estereotipia.base.bedrock.BedRockActivity
 import com.mmfsin.estereotipia.databinding.ActivityMainBinding
-import com.mmfsin.estereotipia.presentation.dashboard.identities.IdentitiesActivity
 import com.mmfsin.estereotipia.presentation.instructions.InstructionsFragment
 import com.mmfsin.estereotipia.utils.BEDROCK_BOOLEAN_ARGS
 import com.mmfsin.estereotipia.utils.BEDROCK_STR_ARGS
@@ -56,8 +55,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun openIdentitiesActivity() {
-        val intent = Intent(this, IdentitiesActivity::class.java)
-        startActivity(intent)
+        openBedRockActivity(R.navigation.nav_graph_identities)
     }
 
     @Deprecated("Deprecated in Java")

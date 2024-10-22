@@ -22,222 +22,174 @@
         android:orientation="vertical"
         app:layout_constraintGuide_percent="0.05" />
 
-    <androidx.core.widget.NestedScrollView
-        android:id="@+id/scrollView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:clipChildren="false"
-        android:clipToPadding="false"
-        android:fillViewport="true">
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/gl_medium"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.5" />
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:clipChildren="false"
-            android:clipToPadding="false">
-
-            <androidx.constraintlayout.widget.Guideline
-                android:id="@+id/gl2_right"
-                android:layout_width="wrap_content"
-                android:layout_height="0dp"
-                android:orientation="vertical"
-                app:layout_constraintGuide_percent="0.95" />
-
-            <androidx.constraintlayout.widget.Guideline
-                android:id="@+id/gl2_left"
-                android:layout_width="wrap_content"
-                android:layout_height="0dp"
-                android:orientation="vertical"
-                app:layout_constraintGuide_percent="0.05" />
-
-            <androidx.constraintlayout.widget.Guideline
-                android:id="@+id/gl_medium"
-                android:layout_width="wrap_content"
-                android:layout_height="0dp"
-                android:orientation="vertical"
-                app:layout_constraintGuide_percent="0.5" />
-
-            <LinearLayout
-                android:id="@+id/ll_images"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:baselineAligned="false"
-                android:gravity="center"
-                android:orientation="horizontal"
-                android:paddingTop="12dp"
-                app:layout_constraintLeft_toLeftOf="@id/gl2_left"
-                app:layout_constraintRight_toRightOf="@id/gl2_right"
-                app:layout_constraintTop_toTopOf="parent">
-
-                <LinearLayout
-                    android:id="@+id/ll_image1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="top"
-                    android:layout_weight="0.33"
-                    android:clipChildren="false"
-                    android:clipToPadding="false"
-                    android:orientation="vertical"
-                    android:paddingBottom="42dp"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintTop_toTopOf="parent">
-
-                    <ImageView
-                        android:id="@+id/image1"
-                        android:layout_width="120dp"
-                        android:layout_height="120dp"
-                        android:layout_gravity="top"
-                        android:layout_marginBottom="8dp"
-                        android:background="@drawable/bg_white_box"
-                        android:contentDescription="@string/content_description"
-                        android:padding="8dp"
-                        tools:src="@drawable/default_face" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/ll_image2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="top"
-                    android:layout_marginHorizontal="24dp"
-                    android:layout_weight="0.33"
-                    android:clipChildren="false"
-                    android:clipToPadding="false"
-                    android:orientation="vertical"
-                    android:paddingBottom="42dp"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/ll_image1">
-
-                    <ImageView
-                        android:id="@+id/image2"
-                        android:layout_width="120dp"
-                        android:layout_height="120dp"
-                        android:layout_gravity="top"
-                        android:layout_marginBottom="8dp"
-                        android:background="@drawable/bg_white_box"
-                        android:contentDescription="@string/content_description"
-                        android:padding="6dp"
-                        tools:src="@drawable/default_face" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/ll_image3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="top"
-                    android:layout_weight="0.33"
-                    android:clipChildren="false"
-                    android:clipToPadding="false"
-                    android:orientation="vertical"
-                    android:paddingBottom="42dp"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/ll_image2">
-
-                    <ImageView
-                        android:id="@+id/image3"
-                        android:layout_width="120dp"
-                        android:layout_height="120dp"
-                        android:layout_gravity="top"
-                        android:layout_marginBottom="8dp"
-                        android:background="@drawable/bg_white_box"
-                        android:contentDescription="@string/content_description"
-                        android:padding="8dp"
-                        tools:src="@drawable/default_face" />
-
-                </LinearLayout>
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/ll_txt_one"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="42dp"
-                android:layout_marginBottom="8dp"
-                android:orientation="horizontal"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintRight_toRightOf="@id/gl_medium">
-
-                <TextView
-                    android:id="@+id/tv_one"
-                    style="@style/BigTextView_Bold"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:layout_gravity="center"
-                    android:background="@drawable/bg_identities_number"
-                    android:elevation="2dp"
-                    android:gravity="center"
-                    android:text="@string/identities_one"
-                    android:textColor="@color/soft_black" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/ll_txt_two"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
-                android:orientation="horizontal"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintLeft_toLeftOf="@id/gl_medium"
-                app:layout_constraintRight_toRightOf="@id/gl_medium">
-
-                <TextView
-                    android:id="@+id/tv_two"
-                    style="@style/BigTextView_Bold"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:layout_gravity="center"
-                    android:background="@drawable/bg_identities_number"
-                    android:elevation="2dp"
-                    android:gravity="center"
-                    android:text="@string/identities_two"
-                    android:textColor="@color/soft_black" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/ll_txt_three"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="42dp"
-                android:layout_marginBottom="8dp"
-                android:orientation="horizontal"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintLeft_toLeftOf="@id/gl_medium">
-
-                <TextView
-                    android:id="@+id/tv_three"
-                    style="@style/BigTextView_Bold"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:layout_gravity="center"
-                    android:background="@drawable/bg_identities_number"
-                    android:elevation="2dp"
-                    android:gravity="center"
-                    android:text="@string/identities_three"
-                    android:textColor="@color/soft_black" />
-
-            </LinearLayout>
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-    </androidx.core.widget.NestedScrollView>
-
-    <ImageView
-        android:id="@+id/iv_back"
+    <LinearLayout
+        android:id="@+id/ll_image1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        android:background="@drawable/bg_white_circle"
-        android:contentDescription="@string/content_description"
-        android:foreground="?attr/selectableItemBackgroundBorderless"
-        android:padding="6dp"
-        android:src="@drawable/ic_arrow_back"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_gravity="top"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="12dp"
+        android:layout_weight="0.33"
+        android:clipChildren="false"
+        android:clipToPadding="false"
+        android:orientation="vertical"
+        android:paddingBottom="42dp"
+        app:layout_constraintRight_toLeftOf="@id/ll_image2"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/image1"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_gravity="top"
+            android:layout_marginBottom="8dp"
+            android:background="@drawable/bg_white_box"
+            android:contentDescription="@string/content_description"
+            android:padding="8dp"
+            tools:src="@drawable/default_face" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_image2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top"
+        android:layout_marginTop="24dp"
+        android:layout_weight="0.33"
+        android:clipChildren="false"
+        android:clipToPadding="false"
+        android:orientation="vertical"
+        android:paddingBottom="42dp"
+        app:layout_constraintLeft_toLeftOf="@id/gl_medium"
+        app:layout_constraintRight_toRightOf="@id/gl_medium"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/image2"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_gravity="top"
+            android:layout_marginBottom="8dp"
+            android:background="@drawable/bg_white_box"
+            android:contentDescription="@string/content_description"
+            android:padding="6dp"
+            tools:src="@drawable/default_face" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_image3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="24dp"
+        android:layout_weight="0.33"
+        android:clipChildren="false"
+        android:clipToPadding="false"
+        android:orientation="vertical"
+        android:paddingBottom="42dp"
+        app:layout_constraintLeft_toRightOf="@id/ll_image2"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/image3"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_gravity="top"
+            android:layout_marginBottom="8dp"
+            android:background="@drawable/bg_white_box"
+            android:contentDescription="@string/content_description"
+            android:padding="8dp"
+            tools:src="@drawable/default_face" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_txt_one"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="42dp"
+        android:layout_marginTop="64dp"
+        android:layout_marginBottom="8dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toRightOf="@id/gl_medium"
+        app:layout_constraintTop_toBottomOf="@id/ll_image2">
+
+        <TextView
+            android:id="@+id/tv_one"
+            style="@style/BigTextView_Bold"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:background="@drawable/bg_identities_number"
+            android:elevation="2dp"
+            android:gravity="center"
+            android:text="@string/identities_one"
+            android:textColor="@color/soft_black" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_txt_two"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="64dp"
+        android:layout_marginBottom="8dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="@id/gl_medium"
+        app:layout_constraintRight_toRightOf="@id/gl_medium"
+        app:layout_constraintTop_toBottomOf="@id/ll_image2">
+
+        <TextView
+            android:id="@+id/tv_two"
+            style="@style/BigTextView_Bold"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:background="@drawable/bg_identities_number"
+            android:elevation="2dp"
+            android:gravity="center"
+            android:text="@string/identities_two"
+            android:textColor="@color/soft_black" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_txt_three"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="42dp"
+        android:layout_marginTop="64dp"
+        android:layout_marginBottom="8dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="@id/gl_medium"
+        app:layout_constraintTop_toBottomOf="@id/ll_image2">
+
+        <TextView
+            android:id="@+id/tv_three"
+            style="@style/BigTextView_Bold"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:background="@drawable/bg_identities_number"
+            android:elevation="2dp"
+            android:gravity="center"
+            android:text="@string/identities_three"
+            android:textColor="@color/soft_black" />
+
+    </LinearLayout>
 
     <RelativeLayout
         android:id="@+id/btn_show_card"

@@ -26,8 +26,9 @@
         <activity
             android:name=".presentation.dashboard.identities.IdentitiesActivity"
             android:exported="true"
-            android:screenOrientation="landscape"
-            android:windowSoftInputMode="stateHidden|adjustPan" />
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustPan"
+            tools:ignore="LockedOrientationActivity"  />
 
         <activity
             android:name=".presentation.customdecks.shared.SharedDeckActivity"

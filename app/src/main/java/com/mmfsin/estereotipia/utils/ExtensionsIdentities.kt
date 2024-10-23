@@ -42,7 +42,7 @@ fun Context.setSolution(correct: String, answer: LinearLayout): Pair<ImageView, 
     val sizeDp = 40
     val sizePx = (sizeDp * scale + 0.5f).toInt()
     val params = LinearLayout.LayoutParams(sizePx, sizePx)
-    params.topMargin = 24
+    params.topMargin = 18
     val textView = MaterialTextView(this).apply {
         layoutParams = params
         gravity = Gravity.CENTER

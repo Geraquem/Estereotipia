@@ -48,6 +48,7 @@ import com.mmfsin.estereotipia.utils.setFirstPhaseLinear
 import com.mmfsin.estereotipia.utils.setSecondPhaseLinear
 import com.mmfsin.estereotipia.utils.setSolution
 import com.mmfsin.estereotipia.utils.showAlpha
+import com.mmfsin.estereotipia.utils.showCustomAlpha
 import com.mmfsin.estereotipia.utils.showErrorDialog
 import com.mmfsin.estereotipia.utils.showFragmentDialog
 import dagger.hilt.android.AndroidEntryPoint
@@ -94,6 +95,8 @@ class IdentitiesFragment : BaseFragment<FragmentIdentitiesBinding, IdentitiesVie
 
     private fun initialAnimations() {
         binding.apply {
+            llTextsHelper.hideAlpha(ANIMATION_FAST_TIME)
+
             image1.hideAlpha(ANIMATION_FAST_TIME)
             image1.animateY(-500f, ANIMATION_TIME)
             image2.hideAlpha(ANIMATION_FAST_TIME)
@@ -200,8 +203,14 @@ class IdentitiesFragment : BaseFragment<FragmentIdentitiesBinding, IdentitiesVie
 
     private fun setActualIdentity() {
         binding.apply {
-            if (identities.isNotEmpty()) actualIdentity = identities[pos]
-            else error()
+            if (identities.isNotEmpty()) {
+                actualIdentity = identities[pos]
+                tvTopText.text = actualIdentity?.text
+                tvOptionOne.text = actualIdentity?.text1
+                tvOptionTwo.text = actualIdentity?.text2
+                tvOptionThree.text = actualIdentity?.text3
+
+            } else error()
         }
     }
 
@@ -219,6 +228,8 @@ class IdentitiesFragment : BaseFragment<FragmentIdentitiesBinding, IdentitiesVie
                     llTxtTwo.animateY(0f, ANIMATION_TIME)
                     llTxtThree.showAlpha(ANIMATION_TIME)
                     llTxtThree.animateY(0f, ANIMATION_TIME)
+
+                    llTextsHelper.showCustomAlpha(0.3f, ANIMATION_TIME)
                 }
                 countDown(2000) { if (cardDialog == null) openCardDialog() }
             }

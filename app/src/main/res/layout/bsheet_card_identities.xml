@@ -26,9 +26,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="12dp"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toLeftOf="@id/iv_close"
-            app:layout_constraintTop_toTopOf="parent"
             tools:text="Ey texto explicativo" />
 
         <LinearLayout
@@ -108,10 +105,10 @@
         android:id="@+id/iv_close"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_margin="16dp"
         android:background="?attr/selectableItemBackgroundBorderless"
         android:contentDescription="@string/content_description"
         android:src="@drawable/ic_arrow_down"
-        android:layout_margin="16dp"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

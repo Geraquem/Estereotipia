@@ -64,6 +64,8 @@ fun View.hideAlpha(duration: Long, onEnd: () -> Unit = {}) =
     })
 
 fun View.showAlpha(duration: Long) = this.animate().alpha(1f).setDuration(duration)
+fun View.showCustomAlpha(alpha: Float, duration: Long) =
+    this.animate().alpha(alpha).setDuration(duration)
 
 fun Dialog.animateDialog() {
     val dialogView = this.window?.decorView

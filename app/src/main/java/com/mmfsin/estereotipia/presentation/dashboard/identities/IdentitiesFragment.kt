@@ -44,6 +44,7 @@ import com.mmfsin.estereotipia.utils.animateX
 import com.mmfsin.estereotipia.utils.animateY
 import com.mmfsin.estereotipia.utils.countDown
 import com.mmfsin.estereotipia.utils.hideAlpha
+import com.mmfsin.estereotipia.utils.setFirstPhaseLinear
 import com.mmfsin.estereotipia.utils.setSecondPhaseLinear
 import com.mmfsin.estereotipia.utils.setSolution
 import com.mmfsin.estereotipia.utils.showAlpha
@@ -94,11 +95,11 @@ class IdentitiesFragment : BaseFragment<FragmentIdentitiesBinding, IdentitiesVie
     private fun initialAnimations() {
         binding.apply {
             image1.hideAlpha(ANIMATION_FAST_TIME)
-            image1.animateY(-500f, 10)
+            image1.animateY(-500f, ANIMATION_TIME)
             image2.hideAlpha(ANIMATION_FAST_TIME)
-            image2.animateY(-500f, 10)
+            image2.animateY(-500f, ANIMATION_TIME)
             image3.hideAlpha(ANIMATION_FAST_TIME)
-            image3.animateY(-500f, 10)
+            image3.animateY(-500f, ANIMATION_TIME)
 
             llTxtOne.hideAlpha(10)
             llTxtTwo.hideAlpha(10)
@@ -145,10 +146,7 @@ class IdentitiesFragment : BaseFragment<FragmentIdentitiesBinding, IdentitiesVie
                     }
 
                     PHASE_TWO -> checkSolutions()
-
-                    RESTART -> {
-                        Toast.makeText(mContext, "restart", Toast.LENGTH_SHORT).show()
-                    }
+                    RESTART -> endGame()
                 }
             }
         }
@@ -207,16 +205,17 @@ class IdentitiesFragment : BaseFragment<FragmentIdentitiesBinding, IdentitiesVie
     private fun setPhaseOne() {
         binding.apply {
             phase = PHASE_ONE
-            ivPhase.setImageResource(R.drawable.ic_circle_check)
-            countDown(500) {
-                imagesAnimations(cards)
-                llTxtOne.showAlpha(ANIMATION_TIME)
-                llTxtTwo.showAlpha(ANIMATION_TIME)
-                llTxtThree.showAlpha(ANIMATION_TIME)
+            ivPhase.setImageResource(R.drawable.ic_check)
+            countDown(750) {
+                loading.root.isVisible = false
+                countDown(500) { imagesAnimations(cards) }
+                countDown(1000) {
+                    llTxtOne.showAlpha(ANIMATION_TIME)
+                    llTxtTwo.showAlpha(ANIMATION_TIME)
+                    llTxtThree.showAlpha(ANIMATION_TIME)
+                }
+                countDown(2000) { if (cardDialog == null) openCardDialog() }
             }
-
-//            countDown(2000) { if (cardDialog == null) openCardDialog() }
-            loading.root.isVisible = false
         }
     }
 
@@ -302,6 +301,7 @@ class IdentitiesFragment : BaseFragment<FragmentIdentitiesBinding, IdentitiesVie
         binding.apply {
             if (llImage1.size == 2 && llImage2.size == 2 && llImage3.size == 2) {
                 btnContinue.animateX(0f, ANIMATION_TIME)
+                btnContinue.isEnabled = true
             }
         }
     }
@@ -323,7 +323,7 @@ class IdentitiesFragment : BaseFragment<FragmentIdentitiesBinding, IdentitiesVie
         binding.apply {
             phase = PHASE_TWO
             btnContinue.animateX(500f, 10)
-            countDown(500) { ivPhase.setImageResource(R.drawable.ic_question) }
+            countDown(500) { ivPhase.setImageResource(R.drawable.ic_bullseye) }
             if (llImage1.size == 2 && llImage2.size == 2 && llImage3.size == 2) {
                 mContext.setSecondPhaseLinear(llImage1, llTxtOne, llTxtTwo, llTxtThree)
                 mContext.setSecondPhaseLinear(llImage2, llTxtOne, llTxtTwo, llTxtThree)
@@ -351,11 +351,38 @@ class IdentitiesFragment : BaseFragment<FragmentIdentitiesBinding, IdentitiesVie
                     llImage3.addView(solution3.second)
                 } ?: run { error() }
             } else error()
-            countDown(1000) {
+
+            countDown(750) {
                 phase = RESTART
-                ivPhase.setImageResource(R.drawable.ic_redo)
+                ivPhase.setImageResource(R.drawable.ic_rematch)
                 btnContinue.animateX(0f, ANIMATION_TIME)
                 btnContinue.isEnabled = true
+            }
+        }
+    }
+
+    private fun endGame() {
+        pos++
+        if (pos < identities.size - 1) {
+            binding.loading.root.isVisible = true
+            cardDialog = null
+            setActualIdentity()
+            initialAnimations()
+            setLinearToRestart()
+            countDown(750) { viewModel.getThreeRandomCards() }
+        } else {
+            Toast.makeText(mContext, "no hay mas", Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    private fun setLinearToRestart() {
+        binding.apply {
+            btnContinue.animateX(500f, 10)
+            btnContinue.isEnabled = false
+            if (llImage1.size == 4 && llImage2.size == 4 && llImage3.size == 4) {
+                mContext.setFirstPhaseLinear(llImage1, llTxtOne, llTxtTwo, llTxtThree)
+                mContext.setFirstPhaseLinear(llImage2, llTxtOne, llTxtTwo, llTxtThree)
+                mContext.setFirstPhaseLinear(llImage3, llTxtOne, llTxtTwo, llTxtThree)
             }
         }
     }

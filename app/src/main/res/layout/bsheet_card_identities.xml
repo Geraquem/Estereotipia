@@ -26,6 +26,7 @@
 
             <TextView
                 android:id="@+id/tv_top_text"
+                android:visibility="gone"
                 style="@style/MediumTextView"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"

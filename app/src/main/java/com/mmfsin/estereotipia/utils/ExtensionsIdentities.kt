@@ -55,3 +55,19 @@ fun Context.setSolution(correct: String, answer: LinearLayout): Pair<ImageView, 
 
     return Pair(imageView, textView)
 }
+
+fun Context.setFirstPhaseLinear(
+    imageLinear: LinearLayout,
+    l1: LinearLayout,
+    l2: LinearLayout,
+    l3: LinearLayout
+) {
+    val textView = imageLinear.getChildAt(1) as MaterialTextView
+    val text = textView.text.toString()
+    imageLinear.removeViews(1, 3)
+    textView.backgroundTintList = valueOf(getColor(this, R.color.orange))
+    if (text == "1") l1.addView(textView)
+    if (text == "2") l2.addView(textView)
+    if (text == "3") l3.addView(textView)
+}
+

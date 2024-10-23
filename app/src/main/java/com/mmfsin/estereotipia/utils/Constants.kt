@@ -24,6 +24,5 @@ const val DECK_TYPE = "deckType"
 
 const val MY_SHARED_PREFS = "mSharedPrefs"
 const val SAVED_VERSION = "savedVersion"
-const val FIRST_TIME_APP = "firstTimeInApp"
 
 const val NUM_OF_QUESTIONS = 10

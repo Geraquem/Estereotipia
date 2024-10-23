@@ -12,7 +12,6 @@ import com.mmfsin.estereotipia.domain.interfaces.IMainRepository
 import com.mmfsin.estereotipia.domain.interfaces.IRealmDatabase
 import com.mmfsin.estereotipia.utils.CARDS
 import com.mmfsin.estereotipia.utils.DECKS
-import com.mmfsin.estereotipia.utils.FIRST_TIME_APP
 import com.mmfsin.estereotipia.utils.ID
 import com.mmfsin.estereotipia.utils.IDENTITIES
 import com.mmfsin.estereotipia.utils.IS_CUSTOM_DECK
@@ -115,14 +114,4 @@ class MainRepository @Inject constructor(
     private fun saveCardInRealm(card: CardDTO) = realmDatabase.addObject { card }
     private fun saveQuestionInRealm(question: QuestionDTO) = realmDatabase.addObject { question }
     private fun saveIdentityInRealm(identity: IdentityDTO) = realmDatabase.addObject { identity }
-
-    override suspend fun checkIfFirstTimeInApp(): Boolean {
-        val firstTime = getSharedPreferences().getBoolean(FIRST_TIME_APP, true)
-        if (firstTime) {
-            val editor = getSharedPreferences().edit()
-            editor.putBoolean(FIRST_TIME_APP, false)
-            editor.apply()
-        }
-        return firstTime
-    }
 }

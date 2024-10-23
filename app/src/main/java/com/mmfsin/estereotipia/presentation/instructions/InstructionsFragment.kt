@@ -21,7 +21,7 @@ import com.mmfsin.estereotipia.utils.showErrorDialog
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class InstructionsFragment(val openHTP: Boolean = false) :
+class InstructionsFragment(private val openHTP: Boolean = false) :
     BaseFragment<FragmentInstructionsBinding, InstructionsViewModel>(),
     IInstructionsListener {
 

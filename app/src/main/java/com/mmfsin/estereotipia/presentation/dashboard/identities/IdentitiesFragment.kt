@@ -87,9 +87,7 @@ class IdentitiesFragment : BaseFragment<FragmentIdentitiesBinding, IdentitiesVie
         activity?.let { InitialIdentitiesDialog(this).show(it.supportFragmentManager, "") }
     }
 
-    override fun openInstructions() {
-
-    }
+    override fun openInstructions() = (activity as IdentitiesActivity).openInstructions()
 
     override fun startGame() = viewModel.getIdentities()
 
@@ -116,6 +114,7 @@ class IdentitiesFragment : BaseFragment<FragmentIdentitiesBinding, IdentitiesVie
     override fun setListeners() {
         binding.apply {
             ivBack.setOnClickListener { activity?.onBackPressedDispatcher?.onBackPressed() }
+            ivInstructions.setOnClickListener { openInstructions() }
 
             image1.setOnClickListener { showCardExpanded(0) }
             image2.setOnClickListener { showCardExpanded(1) }

@@ -1,4 +1,4 @@
-package com.mmfsin.estereotipia.presentation.instructions.adapter
+package com.mmfsin.estereotipia.presentation.instructions.whoiswho.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -6,9 +6,9 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.mmfsin.estereotipia.R
 import com.mmfsin.estereotipia.domain.models.Instruction
-import com.mmfsin.estereotipia.presentation.instructions.adapter.viewholders.InstructionSpaceViewHolder
-import com.mmfsin.estereotipia.presentation.instructions.adapter.viewholders.InstructionViewHolder
-import com.mmfsin.estereotipia.presentation.instructions.interfaces.IInstructionsListener
+import com.mmfsin.estereotipia.presentation.instructions.whoiswho.adapter.viewholders.InstructionSpaceViewHolder
+import com.mmfsin.estereotipia.presentation.instructions.whoiswho.adapter.viewholders.InstructionViewHolder
+import com.mmfsin.estereotipia.presentation.instructions.whoiswho.interfaces.IInstructionsListener
 
 class InstructionsAdapter(
     private val instructions: List<Any>,

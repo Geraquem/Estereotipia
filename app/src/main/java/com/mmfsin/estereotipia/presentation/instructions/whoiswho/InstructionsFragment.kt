@@ -1,4 +1,4 @@
-package com.mmfsin.estereotipia.presentation.instructions
+package com.mmfsin.estereotipia.presentation.instructions.whoiswho
 
 import android.content.Context
 import android.os.Bundle
@@ -13,9 +13,9 @@ import com.mmfsin.estereotipia.base.BaseFragment
 import com.mmfsin.estereotipia.databinding.FragmentInstructionsBinding
 import com.mmfsin.estereotipia.domain.models.Instruction
 import com.mmfsin.estereotipia.presentation.MainActivity
-import com.mmfsin.estereotipia.presentation.instructions.adapter.InstructionsAdapter
-import com.mmfsin.estereotipia.presentation.instructions.detail.DetailInstFragment
-import com.mmfsin.estereotipia.presentation.instructions.interfaces.IInstructionsListener
+import com.mmfsin.estereotipia.presentation.instructions.whoiswho.adapter.InstructionsAdapter
+import com.mmfsin.estereotipia.presentation.instructions.whoiswho.detail.DetailInstFragment
+import com.mmfsin.estereotipia.presentation.instructions.whoiswho.interfaces.IInstructionsListener
 import com.mmfsin.estereotipia.utils.INSTRUCTIONS_DETAIL
 import com.mmfsin.estereotipia.utils.showErrorDialog
 import dagger.hilt.android.AndroidEntryPoint

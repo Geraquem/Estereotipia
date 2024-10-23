@@ -1,4 +1,4 @@
-package com.mmfsin.estereotipia.presentation.instructions.adapter.viewholders
+package com.mmfsin.estereotipia.presentation.instructions.whoiswho.adapter.viewholders
 
 import android.view.View
 import androidx.core.view.isVisible

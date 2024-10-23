@@ -1,14 +1,15 @@
 package com.mmfsin.estereotipia.presentation.dashboard.identities
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.view.WindowInsetsControllerCompat
 import androidx.navigation.fragment.NavHostFragment
 import com.mmfsin.estereotipia.R
+import com.mmfsin.estereotipia.base.bedrock.BedRockActivity
 import com.mmfsin.estereotipia.databinding.ActivityIdentitiesBinding
-import com.mmfsin.estereotipia.presentation.instructions.InstructionsFragment
-import com.mmfsin.estereotipia.utils.INSTRUCTIONS
+import com.mmfsin.estereotipia.utils.ROOT_ACTIVITY_NAV_GRAPH
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -37,20 +38,9 @@ class IdentitiesActivity : AppCompatActivity() {
         navHostFragment.navController.setGraph(R.navigation.nav_graph_identities)
     }
 
-    private fun openInstructions() {
-        supportFragmentManager.beginTransaction().addToBackStack(INSTRUCTIONS)
-            .setCustomAnimations(R.anim.fragment_up, 0, 0, R.anim.fragment_down)
-            .add(R.id.fc_instructions, InstructionsFragment()).commit()
+    fun openInstructions() {
+        val intent = Intent(this, BedRockActivity::class.java)
+        intent.putExtra(ROOT_ACTIVITY_NAV_GRAPH, R.navigation.nav_graph_identities_instructions)
+        startActivity(intent)
     }
-
-//    @Deprecated("Deprecated in Java")
-//    override fun onBackPressed() {
-//        val count = supportFragmentManager.backStackEntryCount
-//        if (count == 0) {
-//            if (inDashboard) {
-//                val dialog = ExitDialog() { super.onBackPressed() }
-//                dialog.show(supportFragmentManager, "")
-//            } else super.onBackPressed()
-//        } else super.onBackPressed()
-//    }
 }

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph_identities_instructions"
+    app:startDestination="@id/identitiesInstructionsFragment">
+
+    <fragment
+        android:id="@+id/identitiesInstructionsFragment"
+        android:name="com.mmfsin.estereotipia.presentation.instructions.identities.IdentitiesInstructionsFragment"
+        android:label="identitiesInstructionsFragment"
+        tools:layout="@layout/fragment_identities_instructions" />
+
+</navigation>

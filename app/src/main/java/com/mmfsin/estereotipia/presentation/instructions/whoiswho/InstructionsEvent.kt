@@ -1,4 +1,4 @@
-package com.mmfsin.estereotipia.presentation.instructions
+package com.mmfsin.estereotipia.presentation.instructions.whoiswho
 
 import com.mmfsin.estereotipia.domain.models.Instruction
 

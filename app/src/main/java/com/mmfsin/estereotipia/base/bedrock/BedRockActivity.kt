@@ -11,7 +11,7 @@ import com.google.android.gms.ads.AdRequest
 import com.mmfsin.estereotipia.R
 import com.mmfsin.estereotipia.databinding.ActivityBedrockBinding
 import com.mmfsin.estereotipia.presentation.exit.ExitDialog
-import com.mmfsin.estereotipia.presentation.instructions.InstructionsFragment
+import com.mmfsin.estereotipia.presentation.instructions.whoiswho.InstructionsFragment
 import com.mmfsin.estereotipia.utils.BEDROCK_BOOLEAN_ARGS
 import com.mmfsin.estereotipia.utils.BEDROCK_STR_ARGS
 import com.mmfsin.estereotipia.utils.INSTRUCTIONS

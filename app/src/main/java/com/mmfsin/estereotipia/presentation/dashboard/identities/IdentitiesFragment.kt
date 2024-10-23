@@ -101,9 +101,12 @@ class IdentitiesFragment : BaseFragment<FragmentIdentitiesBinding, IdentitiesVie
             image3.hideAlpha(ANIMATION_FAST_TIME)
             image3.animateY(-500f, ANIMATION_TIME)
 
-            llTxtOne.hideAlpha(10)
-            llTxtTwo.hideAlpha(10)
-            llTxtThree.hideAlpha(10)
+            llTxtOne.hideAlpha(ANIMATION_FAST_TIME)
+            llTxtOne.animateY(500f, ANIMATION_TIME)
+            llTxtTwo.hideAlpha(ANIMATION_FAST_TIME)
+            llTxtTwo.animateY(500f, ANIMATION_TIME)
+            llTxtThree.hideAlpha(ANIMATION_FAST_TIME)
+            llTxtThree.animateY(500f, ANIMATION_TIME)
         }
     }
 
@@ -211,8 +214,11 @@ class IdentitiesFragment : BaseFragment<FragmentIdentitiesBinding, IdentitiesVie
                 countDown(500) { imagesAnimations(cards) }
                 countDown(1000) {
                     llTxtOne.showAlpha(ANIMATION_TIME)
+                    llTxtOne.animateY(0f, ANIMATION_TIME)
                     llTxtTwo.showAlpha(ANIMATION_TIME)
+                    llTxtTwo.animateY(0f, ANIMATION_TIME)
                     llTxtThree.showAlpha(ANIMATION_TIME)
+                    llTxtThree.animateY(0f, ANIMATION_TIME)
                 }
                 countDown(2000) { if (cardDialog == null) openCardDialog() }
             }

@@ -20,6 +20,12 @@ class IdentitiesInstructionsFragment : BaseFragmentNoVM<FragmentIdentitiesInstru
 
     override fun setUI() {
         setUpToolbar()
+        binding.apply {
+            tvTopText.text = getText(R.string.identities_card_example_title)
+            tvOptionOne.text = getText(R.string.identities_card_example_option1)
+            tvOptionTwo.text = getText(R.string.identities_card_example_option2)
+            tvOptionThree.text = getText(R.string.identities_card_example_option3)
+        }
     }
 
     private fun setUpToolbar() {

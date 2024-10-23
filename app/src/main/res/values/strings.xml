@@ -57,8 +57,30 @@
     <string name="identities_card_two">2.</string>
     <string name="identities_card_three">3.</string>
 
+    <string name="identities_card_example_title">Ha sido detenido por…</string>
+    <string name="identities_card_example_option1">Hacer nudismo</string>
+    <string name="identities_card_example_option2">Irse sin pagar de un restaurante</string>
+    <string name="identities_card_example_option3">Meterse en una pelea</string>
+
     <string name="identities_instructions_title">Cómo jugar</string>
-    <string name="identities_instructions_1">aaaaaaa</string>
+    <string name="identities_instructions_1">Lo primero es girar el móvil porque a este modo se juega con el móvil en <b>horizontal</b></string>
+    <string name="identities_instructions_2">Para este modo de juego se necesitan <b>mínimo dos personas</b></string>
+    <string name="identities_instructions_3">¿Qué hay que hacer?</string>
+    <string name="identities_instructions_4">Aparecerán tres personajes y tres fichas numeradas del 1 al 3</string>
+    <string name="identities_instructions_5">También se mostrará una carta con tres características, identidades, profesiones o lo que sea, como esta:</string>
+    <string name="identities_instructions_6">(El contenido de la carta también se muestra en la pantalla inferior izquierda)</string>
+    <string name="identities_instructions_7">Una persona, <b>en secreto</b>, tiene que asigar cada ficha naranja a un personaje distinto. Las características de la carta van numeradas del 1 al 3, <b>coincidiendo</b> con los numeros de las fichas</string>
+    <string name="identities_instructions_8">Para asignar una ficha <b>mantén pulsado la ficha y arrástrala</b> hacia la cara del personaje</string>
+    <string name="identities_instructions_9">Asigna las fichas según <b>tu propio criterio</b>, no hay una asignación correcta. Según tus propias ideas o sensaciones.</string>
+    <string name="identities_instructions_10">Cuando estén las tres fichas naranjas asignadas, aparecerá este botón:</string>
+    <string name="identities_instructions_11">Cuando lo pulses, las fichas se volverán azules y le tocará <b>al resto de jugadores adivinar cuál fue la previa asignación secreta</b> de las fichas naranjas</string>
+    <string name="identities_instructions_12">Cuando el resto de jugadores tenga las tres fichas azules asignadas, se mostrará el siguiente botón:</string>
+    <string name="identities_instructions_13">Así se mostrarán los aciertos y los fallos entre las tres asignaciones.</string>
+    <string name="identities_instructions_14"><i>Los números naranjas son las asignaciones que se hicieron en secreto y los azules los que trataron de adivinarla.</i></string>
+    <string name="identities_instructions_15">Para <b>volver a jugar</b> con tres nuevos personajes y tres nuevas características pulsa el botón:</string>
+    <string name="identities_instructions_16">aaaaaaa</string>
+    <string name="identities_instructions_17">aaaaaaa</string>
+    <string name="identities_instructions_18">aaaaaaa</string>
 
     <!-- DECKS DIALOG -->
     <string name="decks_dialog_top_text">¿Con qué baraja quieres jugar?</string>
@@ -179,8 +201,8 @@
     <!-- INSTRUCTIONS -->
     <string name="instructions_close">Cerrar</string>
 
-    <string name="instructions_whats_about">¿De qué trata el juego?</string>
-    <string name="instructions_whats_about_details">El juego es muy fácil, consiste en <b>adivinar</b> qué personaje le ha tocado a tu rival antes de que tu rival adivine qué personaje te ha tocado a ti.</string>
+    <string name="instructions_whats_about">¿De qué trata este modo?</string>
+    <string name="instructions_whats_about_details">Es muy fácil, consiste en <b>adivinar</b> qué personaje le ha tocado a tu rival antes de que tu rival adivine qué personaje te ha tocado a ti.</string>
 
     <string name="instructions_how_many_players">¿Cuántas personas pueden jugar?</string>
     <string name="instructions_how_many_players_details">Tienen que existir <b>dos equipos</b> y por lo tanto tiene que haber <b>dos móviles</b> en juego.\n\n<b>¿Cuántas personas puede haber por equipo?</b>\nLas que se quiera siempre y cuando existan 2 equipos.\nPuede ser <i>1vs1</i>, <i>2vs1</i>, <i>3vs2</i>…</string>
@@ -189,7 +211,7 @@
     <string name="instructions_decks_details">Las barajas son agrupaciones de cartas de personajes para jugar.\n\nCuando vayas a jugar <b>asegúrate de escoger el mismo mazo que tu rival</b>, si no el juego no tendrá sentido y estarás intentando adivinar una carta que para ti a lo mejor no existe.\n\nPuedes crear tus propias barajas con las cartas que más te gusten y compartirlas para jugar con ellas.</string>
 
     <string name="instructions_how_to_play">¿Cómo se juega?</string>
-    <string name="instructions_how_to_play_first_of_all">El juego es una especie de <b>Quién es Quién</b> pero con <b>preguntas totalmente subjetivas.</b></string>
+    <string name="instructions_how_to_play_first_of_all">Este modo es una especie de <b>Quién es Quién</b> pero con <b>preguntas totalmente subjetivas.</b></string>
     <string name="instructions_how_to_play_details_1">Lo primero de todo es saber que <b>para ganar</b> hay que ser el primero en <b>adivinar el personaje del equipo rival</b>.</string>
     <string name="instructions_how_to_play_details_2">Para adivinar el personaje de tu contrincante podrás hacer máximo <b>10 preguntas</b> y tendrás <b>2 oportunidades</b> para acertar.</string>
     <string name="instructions_how_to_play_details_3"><i>No existe una respuesta correcta, para responder las preguntas que te hará tú rival tendrás que exprimir al máximo tus prejuicios.</i></string>

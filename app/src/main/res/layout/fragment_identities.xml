@@ -358,18 +358,18 @@
 
     <RelativeLayout
         android:id="@+id/btn_show_card"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
         android:layout_marginBottom="16dp"
         android:background="@drawable/click_effect"
         android:elevation="4dp"
-        android:padding="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintRight_toRightOf="@id/gl_right">
 
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
             android:contentDescription="@string/content_description"
             android:src="@drawable/ic_ident_card" />
 
@@ -377,12 +377,11 @@
 
     <RelativeLayout
         android:id="@+id/btn_continue"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
         android:layout_marginBottom="16dp"
         android:background="@drawable/click_effect"
         android:elevation="4dp"
-        android:padding="16dp"
         app:layout_constraintBottom_toTopOf="@id/btn_show_card"
         app:layout_constraintRight_toRightOf="@id/gl_right">
 
@@ -390,8 +389,9 @@
             android:id="@+id/iv_phase"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
             android:contentDescription="@string/content_description"
-            android:src="@drawable/ic_circle_check" />
+            android:src="@drawable/ic_check" />
 
     </RelativeLayout>
 

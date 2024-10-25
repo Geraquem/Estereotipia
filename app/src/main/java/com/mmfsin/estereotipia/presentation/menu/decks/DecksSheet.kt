@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.mmfsin.estereotipia.base.BaseBottomSheet
 import com.mmfsin.estereotipia.databinding.BsheetDecksBinding
+import com.mmfsin.estereotipia.domain.models.AllDecks
 import com.mmfsin.estereotipia.domain.models.Deck
 import com.mmfsin.estereotipia.presentation.menu.decks.adapter.DecksAdapter
 import com.mmfsin.estereotipia.presentation.menu.decks.interfaces.IDeckListener
@@ -49,7 +50,7 @@ class DecksSheet(val listener: IMenuListener) : BaseBottomSheet<BsheetDecksBindi
         }
     }
 
-    private fun setUpDecks(decks: List<Deck>) {
+    private fun setUpDecks(decks: AllDecks) {
         binding.rvDecks.apply {
             layoutManager = LinearLayoutManager(context)
             adapter = DecksAdapter(decks, this@DecksSheet)

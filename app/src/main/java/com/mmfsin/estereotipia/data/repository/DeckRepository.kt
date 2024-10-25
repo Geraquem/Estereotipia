@@ -7,6 +7,7 @@ import com.mmfsin.estereotipia.data.mappers.toDeckList
 import com.mmfsin.estereotipia.data.models.DeckDTO
 import com.mmfsin.estereotipia.domain.interfaces.IDeckRepository
 import com.mmfsin.estereotipia.domain.interfaces.IRealmDatabase
+import com.mmfsin.estereotipia.domain.models.AllDecks
 import com.mmfsin.estereotipia.domain.models.Deck
 import com.mmfsin.estereotipia.utils.ID
 import com.mmfsin.estereotipia.utils.IS_CUSTOM_DECK
@@ -19,11 +20,14 @@ class DeckRepository @Inject constructor(
     @ApplicationContext val context: Context, private val realmDatabase: IRealmDatabase
 ) : IDeckRepository {
 
-    override fun getSystemDecks(): List<Deck> {
-        val decks = realmDatabase.getObjectsFromRealm {
+    override fun getAllDecks(): AllDecks {
+        val systemDecks = realmDatabase.getObjectsFromRealm {
             where<DeckDTO>().equalTo(IS_CUSTOM_DECK, false).findAll()
         }
-        return decks.toDeckList()
+        return AllDecks(
+            systemDecks = systemDecks.toDeckList(),
+            customDecks = getCustomDecks()
+        )
     }
 
     override fun getDeckById(id: String): Deck? {

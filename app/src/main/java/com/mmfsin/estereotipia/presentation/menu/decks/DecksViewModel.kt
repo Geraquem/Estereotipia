@@ -1,18 +1,18 @@
 package com.mmfsin.estereotipia.presentation.menu.decks
 
 import com.mmfsin.estereotipia.base.BaseViewModel
-import com.mmfsin.estereotipia.domain.usecases.GetSystemDecksUseCase
+import com.mmfsin.estereotipia.domain.usecases.GetAllDecksUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
 @HiltViewModel
 class DecksViewModel @Inject constructor(
-    private val getSystemDecksUseCase: GetSystemDecksUseCase
+    private val getAllDecksUseCase: GetAllDecksUseCase
 ) : BaseViewModel<DecksEvent>() {
 
     fun getDecks() {
         executeUseCase(
-            { getSystemDecksUseCase.execute() },
+            { getAllDecksUseCase.execute() },
             { result -> _event.value = DecksEvent.GetDecks(result) },
             { _event.value = DecksEvent.SomethingWentWrong }
         )

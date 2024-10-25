@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph_instructions_who_is_who"
+    app:startDestination="@id/WhoIsWhoInstructionsFragment">
+
+    <fragment
+        android:id="@+id/WhoIsWhoInstructionsFragment"
+        android:name="com.mmfsin.estereotipia.presentation.instructions.whoiswho.WiWInstructionsFragment"
+        android:label="whoIsWhoInstructionsFragment"
+        tools:layout="@layout/fragment_instructions_who_is_who" />
+
+</navigation>

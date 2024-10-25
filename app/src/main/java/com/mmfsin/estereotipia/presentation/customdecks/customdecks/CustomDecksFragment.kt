@@ -62,7 +62,11 @@ class CustomDecksFragment : BaseFragment<FragmentCustomDecksBinding, CustomDecks
             tvEmpty.visibility = View.GONE
             (activity as BedRockActivity).apply {
                 inDashboard = false
-                setUpToolbar(getString(R.string.custom_decks_toolbar))
+                setUpToolbar(
+                    title = getString(R.string.custom_decks_toolbar),
+                    instructionsVisible = false,
+                    instructionsNavGraph = R.navigation.nav_graph_instructions_who_is_who
+                )
             }
         }
     }

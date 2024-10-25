@@ -67,7 +67,7 @@
     <string name="identities_card_example_option2">Irse sin pagar de un restaurante</string>
     <string name="identities_card_example_option3">Meterse en una pelea</string>
 
-    <string name="identities_instructions_title">Cómo jugar</string>
+    <string name="identities_instructions_title">Modo identidades</string>
     <string name="identities_instructions_1">Lo primero es girar el móvil porque a este modo se juega con el móvil en <b>horizontal</b></string>
     <string name="identities_instructions_2">Para este modo de juego se necesitan <b>mínimo dos personas</b></string>
     <string name="identities_instructions_3">¿Qué hay que hacer?</string>
@@ -119,6 +119,9 @@
     <string name="choice_dialog_looser_title_2">Menudo fracaso</string>
     <string name="choice_dialog_looser_opportunities">Todavía tienes otra oportunidad</string>
     <string name="choice_dialog_looser_zero_opportunities">Has acabado con todas tus oportunidades</string>
+
+    <!-- WHO IS WHO-->
+    <string name="who_is_who_instructions_title">Modo Quién es quién</string>
 
     <!-- QUESTIONS -->
     <string name="questions_do_question">Nueva pregunta</string>

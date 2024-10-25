@@ -40,7 +40,11 @@ class AllCardsFragment : BaseFragment<FragmentCardsBinding, AllCardsViewModel>()
     }
 
     override fun setUI() {
-        (activity as BedRockActivity).setUpToolbar(getString(R.string.menu_all_cards))
+        (activity as BedRockActivity).setUpToolbar(
+            title = getString(R.string.menu_all_cards),
+            instructionsVisible = false,
+            instructionsNavGraph = R.navigation.nav_graph_instructions_who_is_who
+        )
         binding.apply {
             topSpace.isVisible = false
         }

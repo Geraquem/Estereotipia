@@ -9,10 +9,8 @@ import com.mmfsin.estereotipia.R
 import com.mmfsin.estereotipia.base.bedrock.BedRockActivity
 import com.mmfsin.estereotipia.databinding.ActivityMainBinding
 import com.mmfsin.estereotipia.presentation.dashboard.identities.IdentitiesActivity
-import com.mmfsin.estereotipia.presentation.instructions.whoiswho.InstructionsFragment
 import com.mmfsin.estereotipia.utils.BEDROCK_BOOLEAN_ARGS
 import com.mmfsin.estereotipia.utils.BEDROCK_STR_ARGS
-import com.mmfsin.estereotipia.utils.INSTRUCTIONS
 import com.mmfsin.estereotipia.utils.ROOT_ACTIVITY_NAV_GRAPH
 import dagger.hilt.android.AndroidEntryPoint
 

@@ -63,10 +63,10 @@ class MenuFragment : BaseFragment<FragmentMenuBinding, MenuViewModel>(), IMenuLi
     override fun setListeners() {
         binding.apply {
             btnPlayWiw.setOnClickListener { activity?.showFragmentDialog(DecksSheet(this@MenuFragment)) }
-            btnInstWiw.setOnClickListener { }
+            btnInstWiw.setOnClickListener { navigateTo(R.navigation.nav_graph_instructions_who_is_who) }
 
             btnPlayIdentities.setOnClickListener { (activity as MainActivity).openIdentitiesActivity() }
-            btnInstIdentities.setOnClickListener { navigateTo(R.navigation.nav_graph_identities_instructions) }
+            btnInstIdentities.setOnClickListener { navigateTo(R.navigation.nav_graph_instructions_identities) }
 
             menuDecks.tvCustomDecks.setOnClickListener { navigateTo(R.navigation.nav_graph_custom_decks) }
             menuDecks.tvCreateDeck.setOnClickListener {

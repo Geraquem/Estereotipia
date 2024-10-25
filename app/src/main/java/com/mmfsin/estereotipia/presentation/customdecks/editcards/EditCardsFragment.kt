@@ -54,7 +54,8 @@ class EditCardsFragment : BaseFragment<FragmentCreateDeckBinding, EditCardsViewM
         binding.apply {
             (activity as BedRockActivity).setUpToolbar(
                 getString(R.string.custom_decks_dialog_edit_cards),
-                instructionsVisible = false
+                instructionsVisible = false,
+                instructionsNavGraph = R.navigation.nav_graph_instructions_who_is_who
             )
             btnAccept.text = getString(R.string.custom_decks_dialog_edit)
             checkBtnVisibility()

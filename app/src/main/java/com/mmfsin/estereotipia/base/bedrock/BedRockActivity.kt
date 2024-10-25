@@ -11,10 +11,8 @@ import com.google.android.gms.ads.AdRequest
 import com.mmfsin.estereotipia.R
 import com.mmfsin.estereotipia.databinding.ActivityBedrockBinding
 import com.mmfsin.estereotipia.presentation.exit.ExitDialog
-import com.mmfsin.estereotipia.presentation.instructions.whoiswho.InstructionsFragment
 import com.mmfsin.estereotipia.utils.BEDROCK_BOOLEAN_ARGS
 import com.mmfsin.estereotipia.utils.BEDROCK_STR_ARGS
-import com.mmfsin.estereotipia.utils.INSTRUCTIONS
 import com.mmfsin.estereotipia.utils.ROOT_ACTIVITY_NAV_GRAPH
 import com.mmfsin.estereotipia.utils.showErrorDialog
 import dagger.hilt.android.AndroidEntryPoint
@@ -51,19 +49,17 @@ class BedRockActivity : AppCompatActivity() {
         navController.apply { if (navGraph != -1) setGraph(navGraph) else error() }
     }
 
-    fun setUpToolbar(title: String? = "", instructionsVisible: Boolean = true) {
+    fun setUpToolbar(
+        title: String? = "",
+        instructionsVisible: Boolean = true,
+        instructionsNavGraph: Int
+    ) {
         binding.toolbar.apply {
             ivBack.setOnClickListener { onBackPressed() }
             tvTitle.text = title
             ivInstructions.isVisible = instructionsVisible
-            ivInstructions.setOnClickListener { openInstructions() }
+            ivInstructions.setOnClickListener { openBedRockActivity(navGraph = instructionsNavGraph) }
         }
-    }
-
-    private fun openInstructions() {
-        supportFragmentManager.beginTransaction().addToBackStack(INSTRUCTIONS)
-            .setCustomAnimations(R.anim.fragment_up, 0, 0, R.anim.fragment_down)
-            .add(R.id.fc_instructions, InstructionsFragment()).commit()
     }
 
     fun openBedRockActivity(

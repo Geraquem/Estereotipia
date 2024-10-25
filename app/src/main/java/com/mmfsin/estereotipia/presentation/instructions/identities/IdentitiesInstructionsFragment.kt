@@ -6,17 +6,17 @@ import android.view.ViewGroup
 import com.mmfsin.estereotipia.R
 import com.mmfsin.estereotipia.base.BaseFragmentNoVM
 import com.mmfsin.estereotipia.base.bedrock.BedRockActivity
-import com.mmfsin.estereotipia.databinding.FragmentIdentitiesInstructionsBinding
+import com.mmfsin.estereotipia.databinding.FragmentInstructionsIdentitiesBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class IdentitiesInstructionsFragment : BaseFragmentNoVM<FragmentIdentitiesInstructionsBinding>() {
+class IdentitiesInstructionsFragment : BaseFragmentNoVM<FragmentInstructionsIdentitiesBinding>() {
 
     private lateinit var mContext: Context
 
     override fun inflateView(
         inflater: LayoutInflater, container: ViewGroup?
-    ) = FragmentIdentitiesInstructionsBinding.inflate(inflater, container, false)
+    ) = FragmentInstructionsIdentitiesBinding.inflate(inflater, container, false)
 
     override fun setUI() {
         setUpToolbar()
@@ -33,7 +33,8 @@ class IdentitiesInstructionsFragment : BaseFragmentNoVM<FragmentIdentitiesInstru
             inDashboard = false
             setUpToolbar(
                 getString(R.string.identities_instructions_title),
-                instructionsVisible = false
+                instructionsVisible = false,
+                instructionsNavGraph = R.navigation.nav_graph_instructions_identities
             )
         }
     }

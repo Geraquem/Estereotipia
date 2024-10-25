@@ -41,7 +41,7 @@ class IdentitiesActivity : AppCompatActivity() {
 
     fun openInstructions() {
         val intent = Intent(this, BedRockActivity::class.java)
-        intent.putExtra(ROOT_ACTIVITY_NAV_GRAPH, R.navigation.nav_graph_identities_instructions)
+        intent.putExtra(ROOT_ACTIVITY_NAV_GRAPH, R.navigation.nav_graph_instructions_identities)
         startActivity(intent)
     }
 

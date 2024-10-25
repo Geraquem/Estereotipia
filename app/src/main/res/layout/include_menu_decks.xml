@@ -25,7 +25,7 @@
             android:layout_marginBottom="8dp"
             android:text="@string/menu_decks"
             android:textAllCaps="true"
-            android:textSize="24sp"
+            android:textSize="20sp"
             android:textStyle="bold" />
 
         <TextView
@@ -34,7 +34,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="12dp"
             android:text="@string/menu_custom_decks_description"
-            android:textSize="18sp" />
+            android:textSize="16sp" />
 
         <TextView
             android:id="@+id/tv_custom_decks"
@@ -48,7 +48,6 @@
             android:paddingVertical="12dp"
             android:text="@string/menu_custom_decks"
             android:textAllCaps="true"
-            android:textSize="20sp"
             app:drawableStartCompat="@drawable/ic_deck" />
 
         <TextView
@@ -61,7 +60,6 @@
             android:paddingVertical="12dp"
             android:text="@string/menu_custom_decks_create"
             android:textAllCaps="true"
-            android:textSize="20sp"
             app:drawableStartCompat="@drawable/ic_add" />
 
     </LinearLayout>

@@ -27,8 +27,11 @@
 
     <!-- MENU -->
     <string name="menu_instructions">Instrucciones</string>
-    <string name="menu_instructions_description">Juega con barajas de cartas ya creadas.</string>
-    <string name="menu_play">Jugar</string>
+    <string name="menu_mode">Modo</string>
+    <string name="menu_who_is_who">- Modo Quién es quién</string>
+    <string name="menu_who_is_who_description">Clásico quién es quién, pero con preguntas que te romperán los esquemas. Analiza la mente de tu rival y descubre el personaje de tu enemigo.</string>
+    <string name="menu_identities">- Modo Identidades</string>
+    <string name="menu_identities_description">Una persona asigna en secreto tres identidades a tres personajes distintos. El resto de jugadores tratará de adivinar cuál ha sido dicha asignación.</string>
     <string name="menu_decks">Mis barajas</string>
     <string name="menu_custom_decks_description">Crea tus propias barajas con las cartas que más te gusten y compártelas.</string>
     <string name="menu_custom_decks">Ver mis barajas</string>
@@ -78,9 +81,6 @@
     <string name="identities_instructions_13">Así se mostrarán los aciertos y los fallos entre las tres asignaciones.</string>
     <string name="identities_instructions_14"><i>Los números naranjas son las asignaciones que se hicieron en secreto y los azules los que trataron de adivinarla.</i></string>
     <string name="identities_instructions_15">Para <b>volver a jugar</b> con tres nuevos personajes y tres nuevas características pulsa el botón:</string>
-    <string name="identities_instructions_16">aaaaaaa</string>
-    <string name="identities_instructions_17">aaaaaaa</string>
-    <string name="identities_instructions_18">aaaaaaa</string>
 
     <!-- DECKS DIALOG -->
     <string name="decks_dialog_top_text">¿Con qué baraja quieres jugar?</string>

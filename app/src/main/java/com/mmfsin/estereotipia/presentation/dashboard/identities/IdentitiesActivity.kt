@@ -9,6 +9,7 @@ import androidx.navigation.fragment.NavHostFragment
 import com.mmfsin.estereotipia.R
 import com.mmfsin.estereotipia.base.bedrock.BedRockActivity
 import com.mmfsin.estereotipia.databinding.ActivityIdentitiesBinding
+import com.mmfsin.estereotipia.presentation.exit.ExitDialog
 import com.mmfsin.estereotipia.utils.ROOT_ACTIVITY_NAV_GRAPH
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -42,5 +43,11 @@ class IdentitiesActivity : AppCompatActivity() {
         val intent = Intent(this, BedRockActivity::class.java)
         intent.putExtra(ROOT_ACTIVITY_NAV_GRAPH, R.navigation.nav_graph_identities_instructions)
         startActivity(intent)
+    }
+
+    @Deprecated("Deprecated in Java")
+    override fun onBackPressed() {
+        val dialog = ExitDialog { super.onBackPressed() }
+        dialog.show(supportFragmentManager, "")
     }
 }

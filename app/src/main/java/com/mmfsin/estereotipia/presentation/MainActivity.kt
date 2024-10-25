@@ -31,16 +31,10 @@ class MainActivity : AppCompatActivity() {
         changeStatusBar(R.color.orange)
     }
 
-    fun changeStatusBar(color: Int) {
+    private fun changeStatusBar(color: Int) {
         window.statusBarColor = ContextCompat.getColor(this, color)
         val controller = WindowInsetsControllerCompat(window, window.decorView)
         controller.isAppearanceLightStatusBars = true
-    }
-
-    fun openInstructions(openHTP: Boolean = false) {
-        supportFragmentManager.beginTransaction().addToBackStack(INSTRUCTIONS)
-            .setCustomAnimations(R.anim.fragment_up, 0, 0, R.anim.fragment_down)
-            .add(R.id.fc_instructions, InstructionsFragment(openHTP)).commit()
     }
 
     fun openBedRockActivity(

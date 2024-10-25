@@ -15,17 +15,9 @@ class InitialIdentitiesDialog(val listener: IInitialListener) :
 
     override fun setCustomViewDialog(dialog: Dialog) = centerCustomViewDialog(dialog)
 
-    override fun setUI() {
-        listener.startGame()
-        dismiss()
-    }
-
     override fun setListeners() {
         binding.apply {
-            tvInstructions.setOnClickListener {
-                listener.openInstructions()
-                dismiss()
-            }
+            tvInstructions.setOnClickListener { listener.openInstructions() }
             tvContinue.setOnClickListener {
                 listener.startGame()
                 dismiss()

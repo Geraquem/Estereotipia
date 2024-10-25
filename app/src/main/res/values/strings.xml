@@ -35,7 +35,7 @@
     <string name="menu_play">Jugar</string>
     <string name="menu_identities_description">Una persona asigna en secreto tres identidades a tres personajes distintos. El resto de jugadores tratará de adivinar cuál ha sido dicha asignación.</string>
     <string name="menu_decks">Mis barajas</string>
-    <string name="menu_custom_decks_description">Crea tus propias barajas con las cartas que más te gusten para jugar en el modo <i>quién es quién</i> y compártelas para jugar con tus amigos.</string>
+    <string name="menu_custom_decks_description">Crea tus propias barajas con las cartas que más te gusten para jugar en el modo <i>Quién es Quién</i> y compártelas para jugar con tus amigos.</string>
     <string name="menu_custom_decks">Ver mis barajas</string>
     <string name="menu_custom_decks_create">Crear baraja</string>
     <string name="menu_all_cards">Las cartas</string>
@@ -153,7 +153,7 @@
 
     <string name="questions_weird_questions">No entiendo las preguntas</string>
     <string name="questions_weird_questions_1">Las preguntas están hechas para que sean completamente subjetivas y la respuesta dependa de cada persona.</string>
-    <string name="questions_weird_questions_2"><b>No existe una respuesta correcta</b>, simplemente tienes que contestar lo que tú creas, depende únicamente de ti.</string>
+    <string name="questions_weird_questions_2"><b>No existe una respuesta correcta</b>, simplemente tienes que contestar lo que tú creas. Depende únicamente de ti.</string>
     <string name="questions_weird_questions_3">Puede que tengas otra idea distinta y pienses diferente al resto, pero de eso trata esto, de <b>adivinar cómo interpreta las cartas tu rival</b>.</string>
 
     <string name="questions_when_ends">¿Cuándo acaba la partida?</string>

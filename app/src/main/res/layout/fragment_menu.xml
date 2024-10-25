@@ -63,7 +63,7 @@
                     android:id="@+id/tv_title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="24dp"
+                    android:layout_marginTop="42dp"
                     android:elevation="6dp"
                     android:fontFamily="@font/font_app_name"
                     android:gravity="center"
@@ -180,11 +180,12 @@
                             <ImageView
                                 style="@style/BigTextView_Bold"
                                 android:layout_width="22dp"
+                                android:visibility="gone"
                                 android:layout_height="22dp"
                                 android:layout_marginStart="8dp"
                                 android:contentDescription="@string/content_description"
                                 android:gravity="center"
-                                android:src="@drawable/ic_cardd"
+                                android:src="@drawable/ic_card"
                                 app:tint="@color/orange" />
 
                             <ImageView
@@ -192,9 +193,10 @@
                                 android:layout_width="22dp"
                                 android:layout_height="22dp"
                                 android:layout_marginStart="2dp"
+                                android:visibility="gone"
                                 android:contentDescription="@string/content_description"
                                 android:gravity="center"
-                                android:src="@drawable/ic_cardd"
+                                android:src="@drawable/ic_card"
                                 app:tint="@color/orange" />
 
                         </LinearLayout>
@@ -285,6 +287,7 @@
                                 android:layout_marginStart="8dp"
                                 android:background="@drawable/bg_identities_number"
                                 android:contentDescription="@string/content_description"
+                                android:visibility="gone"
                                 android:gravity="center" />
 
                             <ImageView
@@ -293,11 +296,13 @@
                                 android:layout_marginHorizontal="4dp"
                                 android:background="@drawable/bg_identities_number"
                                 android:contentDescription="@string/content_description"
+                                android:visibility="gone"
                                 android:gravity="center" />
 
                             <ImageView
                                 android:layout_width="12dp"
                                 android:layout_height="12dp"
+                                android:visibility="gone"
                                 android:background="@drawable/bg_identities_number"
                                 android:contentDescription="@string/content_description"
                                 android:gravity="center" />

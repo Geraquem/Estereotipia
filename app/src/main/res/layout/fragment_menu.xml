@@ -150,15 +150,52 @@
                         android:orientation="vertical"
                         android:padding="16dp">
 
-                        <TextView
-                            style="@style/BigTextView"
-                            android:layout_width="match_parent"
+                        <LinearLayout
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="8dp"
-                            android:text="@string/menu_who_is_who"
-                            android:textAllCaps="true"
-                            android:textSize="20sp"
-                            android:textStyle="bold" />
+                            android:gravity="start|center"
+                            android:orientation="horizontal">
+
+                            <ImageView
+                                style="@style/BigTextView_Bold"
+                                android:layout_width="6dp"
+                                android:layout_height="6dp"
+                                android:layout_marginEnd="8dp"
+                                android:contentDescription="@string/content_description"
+                                android:gravity="center"
+                                android:src="@drawable/ic_circle" />
+
+                            <TextView
+                                style="@style/BigTextView"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/menu_who_is_who"
+                                android:textAllCaps="true"
+                                android:textSize="20sp"
+                                android:textStyle="bold" />
+
+                            <ImageView
+                                style="@style/BigTextView_Bold"
+                                android:layout_width="22dp"
+                                android:layout_height="22dp"
+                                android:layout_marginStart="8dp"
+                                android:contentDescription="@string/content_description"
+                                android:gravity="center"
+                                android:src="@drawable/ic_cardd"
+                                app:tint="@color/orange" />
+
+                            <ImageView
+                                style="@style/BigTextView_Bold"
+                                android:layout_width="22dp"
+                                android:layout_height="22dp"
+                                android:layout_marginStart="2dp"
+                                android:contentDescription="@string/content_description"
+                                android:gravity="center"
+                                android:src="@drawable/ic_cardd"
+                                app:tint="@color/orange" />
+
+                        </LinearLayout>
 
                         <TextView
                             style="@style/SmallTextView"
@@ -182,8 +219,17 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="8dp"
-                            android:gravity="center"
+                            android:gravity="start|center"
                             android:orientation="horizontal">
+
+                            <ImageView
+                                style="@style/BigTextView_Bold"
+                                android:layout_width="6dp"
+                                android:layout_height="6dp"
+                                android:layout_marginEnd="8dp"
+                                android:contentDescription="@string/content_description"
+                                android:gravity="center"
+                                android:src="@drawable/ic_circle" />
 
                             <TextView
                                 style="@style/BigTextView"
@@ -196,26 +242,26 @@
 
                             <ImageView
                                 style="@style/BigTextView_Bold"
-                                android:layout_width="20dp"
-                                android:layout_height="20dp"
-                                android:layout_marginStart="6dp"
+                                android:layout_width="12dp"
+                                android:layout_height="12dp"
+                                android:layout_marginStart="8dp"
                                 android:background="@drawable/bg_identities_number"
                                 android:contentDescription="@string/content_description"
                                 android:gravity="center" />
 
                             <ImageView
                                 style="@style/BigTextView_Bold"
-                                android:layout_width="20dp"
-                                android:layout_height="20dp"
-                                android:layout_marginHorizontal="2dp"
+                                android:layout_width="12dp"
+                                android:layout_height="12dp"
+                                android:layout_marginHorizontal="4dp"
                                 android:background="@drawable/bg_identities_number"
                                 android:contentDescription="@string/content_description"
                                 android:gravity="center" />
 
                             <ImageView
                                 style="@style/BigTextView_Bold"
-                                android:layout_width="20dp"
-                                android:layout_height="20dp"
+                                android:layout_width="12dp"
+                                android:layout_height="12dp"
                                 android:background="@drawable/bg_identities_number"
                                 android:contentDescription="@string/content_description"
                                 android:gravity="center" />

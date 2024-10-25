@@ -142,13 +142,15 @@
                     app:layout_constraintTop_toTopOf="parent">
 
                     <LinearLayout
-                        android:id="@+id/ll_play"
+                        android:id="@+id/ll_who_is_who"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="12dp"
-                        android:background="@drawable/click_effect"
+                        android:background="@drawable/bg_white_box"
                         android:orientation="vertical"
-                        android:padding="16dp">
+                        android:paddingHorizontal="16dp"
+                        android:paddingTop="16dp"
+                        android:paddingBottom="12dp">
 
                         <LinearLayout
                             android:layout_width="wrap_content"
@@ -201,8 +203,43 @@
                             style="@style/SmallTextView"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:layout_marginBottom="8dp"
                             android:alpha="0.75"
                             android:text="@string/menu_who_is_who_description" />
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <TextView
+                                android:id="@+id/btn_inst_wiw"
+                                style="@style/SmallTextView"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:background="@drawable/click_effect"
+                                android:padding="4dp"
+                                android:text="@string/menu_how_to_play"
+                                android:textAllCaps="true"
+                                android:textColor="@color/blue"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintLeft_toLeftOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <TextView
+                                android:id="@+id/btn_play_wiw"
+                                style="@style/SmallTextView_Bold"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:background="@drawable/click_effect"
+                                android:padding="4dp"
+                                android:text="@string/menu_play"
+                                android:textAllCaps="true"
+                                android:textColor="@color/dark_orange"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintRight_toRightOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
 
                     </LinearLayout>
 
@@ -211,9 +248,11 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="32dp"
-                        android:background="@drawable/click_effect"
+                        android:background="@drawable/bg_white_box"
                         android:orientation="vertical"
-                        android:padding="16dp">
+                        android:paddingHorizontal="16dp"
+                        android:paddingTop="16dp"
+                        android:paddingBottom="12dp">
 
                         <LinearLayout
                             android:layout_width="wrap_content"
@@ -241,7 +280,6 @@
                                 android:textStyle="bold" />
 
                             <ImageView
-                                style="@style/BigTextView_Bold"
                                 android:layout_width="12dp"
                                 android:layout_height="12dp"
                                 android:layout_marginStart="8dp"
@@ -250,7 +288,6 @@
                                 android:gravity="center" />
 
                             <ImageView
-                                style="@style/BigTextView_Bold"
                                 android:layout_width="12dp"
                                 android:layout_height="12dp"
                                 android:layout_marginHorizontal="4dp"
@@ -259,13 +296,11 @@
                                 android:gravity="center" />
 
                             <ImageView
-                                style="@style/BigTextView_Bold"
                                 android:layout_width="12dp"
                                 android:layout_height="12dp"
                                 android:background="@drawable/bg_identities_number"
                                 android:contentDescription="@string/content_description"
                                 android:gravity="center" />
-
 
                         </LinearLayout>
 
@@ -273,8 +308,43 @@
                             style="@style/SmallTextView"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:layout_marginBottom="8dp"
                             android:alpha="0.75"
                             android:text="@string/menu_identities_description" />
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <TextView
+                                android:id="@+id/btn_inst_identities"
+                                style="@style/SmallTextView"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:background="@drawable/click_effect"
+                                android:padding="4dp"
+                                android:text="@string/menu_how_to_play"
+                                android:textAllCaps="true"
+                                android:textColor="@color/blue"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintLeft_toLeftOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <TextView
+                                android:id="@+id/btn_play_identities"
+                                style="@style/SmallTextView_Bold"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:background="@drawable/click_effect"
+                                android:padding="4dp"
+                                android:text="@string/menu_play"
+                                android:textAllCaps="true"
+                                android:textColor="@color/dark_orange"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintRight_toRightOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
 
                     </LinearLayout>
 

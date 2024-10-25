@@ -53,16 +53,4 @@ class MainActivity : AppCompatActivity() {
         val intent = Intent(this, IdentitiesActivity::class.java)
         startActivity(intent)
     }
-
-    @Deprecated("Deprecated in Java")
-    override fun onBackPressed() {
-        val count = supportFragmentManager.backStackEntryCount
-        if (count == 0) super.onBackPressed()
-        else {
-            when (supportFragmentManager.getBackStackEntryAt(count - 1).name) {
-                INSTRUCTIONS -> changeStatusBar(R.color.orange)
-            }
-            super.onBackPressed()
-        }
-    }
 }

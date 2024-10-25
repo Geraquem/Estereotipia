@@ -28,9 +28,11 @@
     <!-- MENU -->
     <string name="menu_instructions">Instrucciones</string>
     <string name="menu_mode">Modo</string>
-    <string name="menu_who_is_who">Modo Quién es quién</string>
-    <string name="menu_who_is_who_description">Clásico quién es quién, pero con preguntas que te romperán los esquemas. Analiza la mente de tu rival y descubre el personaje de tu enemigo.</string>
-    <string name="menu_identities">Modo Identidades</string>
+    <string name="menu_who_is_who">Quién es quién</string>
+    <string name="menu_who_is_who_description">Clásico juego de <i>Quién es Quién</i>, pero con preguntas que te romperán los esquemas. Analiza la mente de tu rival y descubre su personaje.</string>
+    <string name="menu_identities">Identidades</string>
+    <string name="menu_how_to_play">Cómo jugar</string>
+    <string name="menu_play">Jugar</string>
     <string name="menu_identities_description">Una persona asigna en secreto tres identidades a tres personajes distintos. El resto de jugadores tratará de adivinar cuál ha sido dicha asignación.</string>
     <string name="menu_decks">Mis barajas</string>
     <string name="menu_custom_decks_description">Crea tus propias barajas con las cartas que más te gusten para jugar en el modo <i>quién es quién</i> y compártelas para jugar con tus amigos.</string>

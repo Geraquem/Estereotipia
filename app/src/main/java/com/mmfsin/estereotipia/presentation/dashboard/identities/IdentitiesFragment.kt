@@ -77,7 +77,9 @@ class IdentitiesFragment : BaseFragment<FragmentIdentitiesBinding, IdentitiesVie
     override fun setUI() {
         binding.apply {
             loading.root.isVisible = true
+            ivInstructions.isEnabled = false
             btnContinue.animateX(500f, 10)
+            countDown(2500) { ivInstructions.isEnabled = true }
         }
         initialAnimations()
         showInitialDialog()

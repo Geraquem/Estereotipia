@@ -22,6 +22,104 @@
         android:orientation="vertical"
         app:layout_constraintGuide_percent="0.05" />
 
+    <LinearLayout
+        android:id="@+id/ll_texts_helper"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:alpha="0.3"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent">
+
+        <TextView
+            android:id="@+id/tv_top_text"
+            style="@style/SmallTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="2dp"
+            android:textSize="14sp"
+            tools:text="Ey texto explicativo" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:layout_marginBottom="2dp"
+            android:orientation="horizontal">
+
+            <TextView
+                style="@style/SmallTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="4dp"
+                android:text="@string/identities_card_one"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/tv_option_one"
+                style="@style/SmallTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="start"
+                android:textSize="14sp"
+                tools:text="Identidad uno" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:layout_marginBottom="2dp"
+            android:orientation="horizontal">
+
+            <TextView
+                style="@style/SmallTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="4dp"
+                android:text="@string/identities_card_two"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/tv_option_two"
+                style="@style/SmallTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="start"
+                android:textSize="14sp"
+                tools:text="Identidad dos" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:orientation="horizontal">
+
+            <TextView
+                style="@style/SmallTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="4dp"
+                android:text="@string/identities_card_three"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/tv_option_three"
+                style="@style/SmallTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="start"
+                android:textSize="14sp"
+                tools:text="Identidad tres" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
     <androidx.core.widget.NestedScrollView
         android:id="@+id/scrollView"
         style="@style/scroll_no_effects"
@@ -57,104 +155,6 @@
                 android:layout_height="0dp"
                 android:orientation="vertical"
                 app:layout_constraintGuide_percent="0.5" />
-
-            <LinearLayout
-                android:id="@+id/ll_texts_helper"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="16dp"
-                android:alpha="0.3"
-                android:orientation="vertical"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintLeft_toLeftOf="parent">
-
-                <TextView
-                    android:id="@+id/tv_top_text"
-                    style="@style/SmallTextView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="2dp"
-                    android:textSize="14sp"
-                    tools:text="Ey texto explicativo" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="start"
-                    android:layout_marginBottom="2dp"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        style="@style/SmallTextView"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="4dp"
-                        android:text="@string/identities_card_one"
-                        android:textSize="14sp" />
-
-                    <TextView
-                        android:id="@+id/tv_option_one"
-                        style="@style/SmallTextView"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:gravity="start"
-                        android:textSize="14sp"
-                        tools:text="Identidad uno" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="start"
-                    android:layout_marginBottom="2dp"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        style="@style/SmallTextView"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="4dp"
-                        android:text="@string/identities_card_two"
-                        android:textSize="14sp" />
-
-                    <TextView
-                        android:id="@+id/tv_option_two"
-                        style="@style/SmallTextView"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:gravity="start"
-                        android:textSize="14sp"
-                        tools:text="Identidad dos" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="start"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        style="@style/SmallTextView"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="4dp"
-                        android:text="@string/identities_card_three"
-                        android:textSize="14sp" />
-
-                    <TextView
-                        android:id="@+id/tv_option_three"
-                        style="@style/SmallTextView"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:gravity="start"
-                        android:textSize="14sp"
-                        tools:text="Identidad tres" />
-
-                </LinearLayout>
-
-            </LinearLayout>
 
             <LinearLayout
                 android:id="@+id/ll_images"

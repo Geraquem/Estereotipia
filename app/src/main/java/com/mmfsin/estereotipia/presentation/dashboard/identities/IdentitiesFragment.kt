@@ -1,5 +1,6 @@
 package com.mmfsin.estereotipia.presentation.dashboard.identities
 
+import android.annotation.SuppressLint
 import android.content.ClipData
 import android.content.ClipDescription
 import android.content.Context
@@ -11,6 +12,7 @@ import android.view.DragEvent.ACTION_DRAG_LOCATION
 import android.view.DragEvent.ACTION_DRAG_STARTED
 import android.view.DragEvent.ACTION_DROP
 import android.view.LayoutInflater
+import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
@@ -124,18 +126,7 @@ class IdentitiesFragment : BaseFragment<FragmentIdentitiesBinding, IdentitiesVie
             image2.setOnClickListener { showCardExpanded(1) }
             image3.setOnClickListener { showCardExpanded(2) }
 
-            tvOne.setOnLongClickListener {
-                setDragSettings(it)
-                true
-            }
-            tvTwo.setOnLongClickListener {
-                setDragSettings(it)
-                true
-            }
-            tvThree.setOnLongClickListener {
-                setDragSettings(it)
-                true
-            }
+            activateDragTexts()
 
             llImage1.setOnDragListener(dragListenerImages)
             llImage2.setOnDragListener(dragListenerImages)
@@ -157,6 +148,41 @@ class IdentitiesFragment : BaseFragment<FragmentIdentitiesBinding, IdentitiesVie
                     PHASE_TWO -> checkSolutions()
                     RESTART -> endGame()
                 }
+            }
+        }
+    }
+
+    private fun activateDragTexts() {
+        binding.apply {
+            touchOptions(tvOne)
+            touchOptions(tvTwo)
+            touchOptions(tvThree)
+        }
+    }
+
+    @SuppressLint("ClickableViewAccessibility")
+    private fun disableDragTexts() {
+        binding.apply {
+            tvOne.setOnTouchListener(null)
+            tvTwo.setOnTouchListener(null)
+            tvThree.setOnTouchListener(null)
+        }
+    }
+
+    @SuppressLint("ClickableViewAccessibility")
+    private fun touchOptions(myView: View) {
+        myView.setOnTouchListener { view, event ->
+            when (event.action) {
+                MotionEvent.ACTION_DOWN -> {
+                    true
+                }
+
+                MotionEvent.ACTION_MOVE -> {
+                    setDragSettings(view)
+                    true
+                }
+
+                else -> false
             }
         }
     }
@@ -231,6 +257,7 @@ class IdentitiesFragment : BaseFragment<FragmentIdentitiesBinding, IdentitiesVie
                     llTxtTwo.animateY(0f, ANIMATION_TIME)
                     llTxtThree.showAlpha(ANIMATION_TIME)
                     llTxtThree.animateY(0f, ANIMATION_TIME)
+                    activateDragTexts()
 
                     llTextsHelper.showCustomAlpha(0.3f, ANIMATION_TIME)
                 }
@@ -358,6 +385,7 @@ class IdentitiesFragment : BaseFragment<FragmentIdentitiesBinding, IdentitiesVie
 
     private fun checkSolutions() {
         binding.apply {
+            disableDragTexts()
             btnContinue.isEnabled = false
             btnContinue.animateX(500f, ANIMATION_TIME)
             if (llImage1.size == 2 && llImage2.size == 2 && llImage3.size == 2) {

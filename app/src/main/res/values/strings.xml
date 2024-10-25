@@ -75,7 +75,7 @@
     <string name="identities_instructions_5">También se mostrará una carta con tres características, identidades, profesiones o lo que sea, como esta:</string>
     <string name="identities_instructions_6">(El contenido de la carta también se muestra en la pantalla inferior izquierda)</string>
     <string name="identities_instructions_7">Una persona, <b>en secreto</b>, tiene que asigar cada ficha naranja a un personaje distinto. Las características de la carta van numeradas del 1 al 3, <b>coincidiendo</b> con los numeros de las fichas</string>
-    <string name="identities_instructions_8">Para asignar una ficha <b>mantén pulsado la ficha y arrástrala</b> hacia la cara del personaje</string>
+    <string name="identities_instructions_8">Para asignar una ficha simplemente<b>arrastra la ficha</b> hacia la cara del personaje</string>
     <string name="identities_instructions_9">Asigna las fichas según <b>tu propio criterio</b>, no hay una asignación correcta. Según tus propias ideas o sensaciones.</string>
     <string name="identities_instructions_10">Cuando estén las tres fichas naranjas asignadas, aparecerá este botón:</string>
     <string name="identities_instructions_11">Cuando lo pulses, las fichas se volverán azules y le tocará <b>al resto de jugadores adivinar cuál fue la previa asignación secreta</b> de las fichas naranjas</string>

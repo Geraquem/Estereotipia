@@ -13,6 +13,7 @@ import androidx.core.content.ContextCompat.getColor
 import androidx.core.content.ContextCompat.getDrawable
 import com.google.android.material.textview.MaterialTextView
 import com.mmfsin.estereotipia.R
+import com.mmfsin.estereotipia.presentation.dashboard.identities.IdentitiesFragment.Companion.ANIMATION_TIME
 
 fun Context.setSecondPhaseLinear(
     imageLl: LinearLayout,
@@ -71,3 +72,14 @@ fun Context.setFirstPhaseLinear(
     if (text == "3") l3.addView(textView)
 }
 
+fun hideAllTextLinears(l1: LinearLayout,l2: LinearLayout,l3: LinearLayout){
+    l1.animateY(500f, 10)
+    l2.animateY(500f, 10)
+    l3.animateY(500f, 10)
+}
+
+fun showAllTextLinears(l1: LinearLayout,l2: LinearLayout,l3: LinearLayout){
+    l1.animateY(0f, ANIMATION_TIME)
+    l2.animateY(0f, ANIMATION_TIME)
+    l3.animateY(0f, ANIMATION_TIME)
+}

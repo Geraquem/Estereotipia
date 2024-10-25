@@ -43,10 +43,12 @@ import com.mmfsin.estereotipia.presentation.dashboard.identities.dialogs.initial
 import com.mmfsin.estereotipia.utils.animateX
 import com.mmfsin.estereotipia.utils.animateY
 import com.mmfsin.estereotipia.utils.countDown
+import com.mmfsin.estereotipia.utils.hideAllTextLinears
 import com.mmfsin.estereotipia.utils.hideAlpha
 import com.mmfsin.estereotipia.utils.setFirstPhaseLinear
 import com.mmfsin.estereotipia.utils.setSecondPhaseLinear
 import com.mmfsin.estereotipia.utils.setSolution
+import com.mmfsin.estereotipia.utils.showAllTextLinears
 import com.mmfsin.estereotipia.utils.showAlpha
 import com.mmfsin.estereotipia.utils.showCustomAlpha
 import com.mmfsin.estereotipia.utils.showErrorDialog
@@ -341,12 +343,16 @@ class IdentitiesFragment : BaseFragment<FragmentIdentitiesBinding, IdentitiesVie
         binding.apply {
             phase = PHASE_TWO
             btnContinue.animateX(500f, 10)
-            countDown(500) { ivPhase.setImageResource(R.drawable.ic_bullseye) }
-            if (llImage1.size == 2 && llImage2.size == 2 && llImage3.size == 2) {
-                mContext.setSecondPhaseLinear(llImage1, llTxtOne, llTxtTwo, llTxtThree)
-                mContext.setSecondPhaseLinear(llImage2, llTxtOne, llTxtTwo, llTxtThree)
-                mContext.setSecondPhaseLinear(llImage3, llTxtOne, llTxtTwo, llTxtThree)
-            } else error()
+            hideAllTextLinears(llTxtOne, llTxtTwo, llTxtThree)
+            countDown(250) {
+                ivPhase.setImageResource(R.drawable.ic_bullseye)
+                if (llImage1.size == 2 && llImage2.size == 2 && llImage3.size == 2) {
+                    mContext.setSecondPhaseLinear(llImage1, llTxtOne, llTxtTwo, llTxtThree)
+                    mContext.setSecondPhaseLinear(llImage2, llTxtOne, llTxtTwo, llTxtThree)
+                    mContext.setSecondPhaseLinear(llImage3, llTxtOne, llTxtTwo, llTxtThree)
+                } else error()
+            }
+            countDown(350) { showAllTextLinears(llTxtOne, llTxtTwo, llTxtThree) }
         }
     }
 

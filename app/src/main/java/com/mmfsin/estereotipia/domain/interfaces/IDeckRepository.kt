@@ -4,7 +4,7 @@ import com.mmfsin.estereotipia.domain.models.AllDecks
 import com.mmfsin.estereotipia.domain.models.Deck
 
 interface IDeckRepository {
-    fun getAllDecks(): AllDecks
+    suspend fun getAllDecks(): AllDecks
 
     /** Custom decks */
     fun getCustomDecks(): List<Deck>

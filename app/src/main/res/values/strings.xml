@@ -4,8 +4,8 @@
     <string name="content_description">image</string>
 
     <!-- ADS -->
-    <string name="banner">ca-app-pub-3940256099942544/6300978111</string>
-    <!--            <string name="banner">ca-app-pub-4515698012373396/4573656208</string>-->
+<!--    <string name="banner">ca-app-pub-3940256099942544/6300978111</string>-->
+                <string name="banner">ca-app-pub-4515698012373396/4573656208</string>
 
     <!-- ERROR -->
     <string name="error_title">Ha ocurrido un problema</string>

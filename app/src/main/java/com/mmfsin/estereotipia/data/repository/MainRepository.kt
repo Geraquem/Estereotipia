@@ -62,7 +62,6 @@ class MainRepository @Inject constructor(
         return decks
     }
 
-
     private fun saveVersion(newVersion: Long) {
         val editor = getSharedPreferences().edit()
         editor.putLong(SAVED_VERSION, newVersion)

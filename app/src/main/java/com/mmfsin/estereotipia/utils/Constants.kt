@@ -12,8 +12,6 @@ const val ID = "id"
 const val DECK_ID = "deckId"
 const val IS_CUSTOM_DECK = "isCustom"
 
-/*************************************/
-
 const val VERSION = "version"
 const val DECKS = "decks"
 const val CARDS = "cards"
@@ -26,3 +24,8 @@ const val MY_SHARED_PREFS = "mSharedPrefs"
 const val SAVED_VERSION = "savedVersion"
 
 const val NUM_OF_QUESTIONS = 10
+
+/** SHARED PREFS */
+const val SHARED_MAIN = "sharedMain"
+const val SERVER_QUESTIONS = "sharedQuestions"
+const val SERVER_IDENTITIES = "sharedIdentities"

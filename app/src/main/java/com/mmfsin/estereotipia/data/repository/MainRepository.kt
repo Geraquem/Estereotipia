@@ -69,13 +69,6 @@ class MainRepository @Inject constructor(
                     )
                     saveQuestionInRealm(question)
                 }
-
-                val fbIdentities = it.child(IDENTITIES)
-                for (child in fbIdentities.children) {
-                    child.getValue(IdentityDTO::class.java)
-                        ?.let { identity -> saveIdentityInRealm(identity) }
-                }
-
                 latch.countDown()
             }
 
@@ -113,5 +106,4 @@ class MainRepository @Inject constructor(
     private fun saveDeckInRealm(deck: DeckDTO) = realmDatabase.addObject { deck }
     private fun saveCardInRealm(card: CardDTO) = realmDatabase.addObject { card }
     private fun saveQuestionInRealm(question: QuestionDTO) = realmDatabase.addObject { question }
-    private fun saveIdentityInRealm(identity: IdentityDTO) = realmDatabase.addObject { identity }
 }

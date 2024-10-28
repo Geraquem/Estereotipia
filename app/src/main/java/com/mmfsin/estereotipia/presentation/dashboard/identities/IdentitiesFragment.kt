@@ -17,7 +17,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.LinearLayout
-import android.widget.Toast
 import androidx.core.view.get
 import androidx.core.view.isVisible
 import androidx.core.view.size
@@ -42,6 +41,7 @@ import com.mmfsin.estereotipia.presentation.dashboard.identities.dialogs.card.Id
 import com.mmfsin.estereotipia.presentation.dashboard.identities.dialogs.character.IdentityCharacterDialog
 import com.mmfsin.estereotipia.presentation.dashboard.identities.dialogs.initial.IInitialListener
 import com.mmfsin.estereotipia.presentation.dashboard.identities.dialogs.initial.InitialIdentitiesDialog
+import com.mmfsin.estereotipia.presentation.dashboard.identities.dialogs.nomore.NoMoreDialog
 import com.mmfsin.estereotipia.utils.animateX
 import com.mmfsin.estereotipia.utils.animateY
 import com.mmfsin.estereotipia.utils.countDown
@@ -423,7 +423,8 @@ class IdentitiesFragment : BaseFragment<FragmentIdentitiesBinding, IdentitiesVie
             setLinearToRestart()
             countDown(750) { viewModel.getThreeRandomCards() }
         } else {
-            Toast.makeText(mContext, "no hay mas", Toast.LENGTH_SHORT).show()
+            val dialog = NoMoreDialog { activity?.finish() }
+            activity?.let { dialog.show(it.supportFragmentManager, "") }
         }
     }
 

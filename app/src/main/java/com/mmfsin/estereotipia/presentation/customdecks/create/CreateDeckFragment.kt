@@ -63,9 +63,11 @@ class CreateDeckFragment : BaseFragment<FragmentCreateDeckBinding, CreateDeckVie
     override fun setListeners() {
         binding.apply {
             btnAccept.setOnClickListener {
-                activity?.showFragmentDialog(
-                    DeckNameDialog.newInstance(cardList, this@CreateDeckFragment)
-                )
+                if (cardList.size > 1) {
+                    activity?.showFragmentDialog(
+                        DeckNameDialog.newInstance(cardList, this@CreateDeckFragment)
+                    )
+                }
             }
         }
     }

@@ -54,7 +54,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginBottom="8dp"
+                android:layout_marginBottom="16dp"
                 android:orientation="horizontal">
 
                 <ImageView
@@ -63,7 +63,6 @@
                     android:contentDescription="@string/content_description"
                     android:rotation="90"
                     android:src="@drawable/ic_phone_landscape" />
-
 
                 <ImageView
                     android:layout_width="24dp"
@@ -270,21 +269,33 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
+                    android:gravity="center"
                     android:orientation="horizontal">
 
-                    <ImageView
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:contentDescription="@string/content_description"
-                        android:src="@drawable/ic_hold_tap" />
+                    <TextView
+                        android:id="@+id/tv_two"
+                        style="@style/BigTextView_Bold"
+                        android:layout_width="46dp"
+                        android:layout_height="46dp"
+                        android:layout_gravity="center"
+                        android:background="@drawable/bg_identities_number"
+                        android:elevation="2dp"
+                        android:gravity="center"
+                        android:text="@string/identities_two"
+                        android:textColor="@color/soft_black" />
 
                     <ImageView
                         android:layout_width="42dp"
                         android:layout_height="42dp"
-                        android:layout_gravity="center"
+                        android:layout_marginHorizontal="8dp"
                         android:contentDescription="@string/content_description"
-                        android:rotation="180"
-                        android:src="@drawable/ic_chip_drag" />
+                        android:src="@drawable/ic_arrow_right_long" />
+
+                    <ImageView
+                        android:layout_width="52dp"
+                        android:layout_height="52dp"
+                        android:contentDescription="@string/content_description"
+                        android:src="@drawable/ic_face_smile" />
 
                 </LinearLayout>
 

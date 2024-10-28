@@ -4,8 +4,8 @@
     <string name="content_description">image</string>
 
     <!-- ADS -->
-<!--    <string name="banner">ca-app-pub-3940256099942544/6300978111</string>-->
-                <string name="banner">ca-app-pub-4515698012373396/4573656208</string>
+    <!--    <string name="banner">ca-app-pub-3940256099942544/6300978111</string>-->
+    <string name="banner">ca-app-pub-4515698012373396/4573656208</string>
 
     <!-- ERROR -->
     <string name="error_title">Ha ocurrido un problema</string>
@@ -69,20 +69,24 @@
 
     <string name="identities_instructions_title">Modo identidades</string>
     <string name="identities_instructions_1">Lo primero es girar el móvil porque a este modo se juega con el móvil en <b>horizontal</b></string>
-    <string name="identities_instructions_2">Para este modo de juego se necesitan <b>mínimo dos personas</b></string>
+    <string name="identities_instructions_2">Para este modo de juego se necesita <b>un solo móvil</b> y mínimo <b>dos personas</b></string>
     <string name="identities_instructions_3">¿Qué hay que hacer?</string>
-    <string name="identities_instructions_4">Aparecerán tres personajes y tres fichas numeradas del 1 al 3</string>
+    <string name="identities_instructions_4">Aparecerán tres personajes y tres fichas numeradas del <b>1 al 3</b></string>
     <string name="identities_instructions_5">También se mostrará una carta con tres características, identidades, profesiones o lo que sea, como esta:</string>
     <string name="identities_instructions_6">(El contenido de la carta también se muestra en la pantalla inferior izquierda)</string>
     <string name="identities_instructions_7">Una persona, <b>en secreto</b>, tiene que asigar cada ficha naranja a un personaje distinto. Las características de la carta van numeradas del 1 al 3, <b>coincidiendo</b> con los numeros de las fichas</string>
-    <string name="identities_instructions_8">Para asignar una ficha simplemente<b>arrastra la ficha</b> hacia la cara del personaje</string>
-    <string name="identities_instructions_9">Asigna las fichas según <b>tu propio criterio</b>, no hay una asignación correcta. Según tus propias ideas o sensaciones.</string>
+    <string name="identities_instructions_8">Para asignar una ficha simplemente <b>arrastra la ficha</b> hacia la cara del personaje</string>
+    <string name="identities_instructions_9">Asigna las fichas según <b>tu propio criterio</b>, no hay una asignación correcta. Sigue tus propias ideas o sensaciones.</string>
     <string name="identities_instructions_10">Cuando estén las tres fichas naranjas asignadas, aparecerá este botón:</string>
     <string name="identities_instructions_11">Cuando lo pulses, las fichas se volverán azules y le tocará <b>al resto de jugadores adivinar cuál fue la previa asignación secreta</b> de las fichas naranjas</string>
     <string name="identities_instructions_12">Cuando el resto de jugadores tenga las tres fichas azules asignadas, se mostrará el siguiente botón:</string>
     <string name="identities_instructions_13">Así se mostrarán los aciertos y los fallos entre las tres asignaciones.</string>
     <string name="identities_instructions_14"><i>Los números naranjas son las asignaciones que se hicieron en secreto y los azules los que trataron de adivinarla.</i></string>
     <string name="identities_instructions_15">Para <b>volver a jugar</b> con tres nuevos personajes y tres nuevas características pulsa el botón:</string>
+
+    <string name="identities_no_more_title">Se nos han agotado las ideas</string>
+    <string name="identities_no_more_subtitle">No hay más identidades que asignar</string>
+    <string name="identities_no_more_close">Salir</string>
 
     <!-- DECKS DIALOG -->
     <string name="decks_dialog_top_text">¿Con qué baraja quieres jugar?</string>

@@ -8,5 +8,5 @@ import javax.inject.Inject
 class GetIdentitiesUseCase @Inject constructor(private val repository: IIdentitiesRepository) :
     BaseUseCaseNoParams<List<Identity>?>() {
 
-    override suspend fun execute(): List<Identity>? = repository.getIdentities()?.shuffled()?.take(1)
+    override suspend fun execute(): List<Identity>? = repository.getIdentities()?.shuffled()
 }

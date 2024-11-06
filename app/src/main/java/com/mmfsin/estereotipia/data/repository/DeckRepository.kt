@@ -26,7 +26,8 @@ import java.util.concurrent.CountDownLatch
 import javax.inject.Inject
 
 class DeckRepository @Inject constructor(
-    @ApplicationContext val context: Context, private val realmDatabase: IRealmDatabase
+    @ApplicationContext val context: Context,
+    private val realmDatabase: IRealmDatabase
 ) : IDeckRepository {
 
     override suspend fun getAllDecks(): AllDecks {

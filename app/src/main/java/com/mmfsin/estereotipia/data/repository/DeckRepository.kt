@@ -65,7 +65,9 @@ class DeckRepository @Inject constructor(
             return decks.toDeckList()
 
         } else {
-            val decks = realmDatabase.getObjectsFromRealm { where<DeckDTO>().findAll() }
+            val decks = realmDatabase.getObjectsFromRealm {
+                where<DeckDTO>().equalTo(IS_CUSTOM_DECK, false).findAll()
+            }
             return decks.toDeckList()
         }
     }

@@ -415,7 +415,7 @@ class IdentitiesFragment : BaseFragment<FragmentIdentitiesBinding, IdentitiesVie
 
     private fun endGame() {
         pos++
-        if (pos % 3 == 0) showInterstitial()
+        if (pos % 10 == 0) showInterstitial()
         if (pos < identities.size - 1) {
             binding.loading.root.isVisible = true
             cardDialog = null

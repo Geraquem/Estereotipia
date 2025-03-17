@@ -4,10 +4,10 @@
     <string name="content_description">image</string>
 
     <!-- ADS -->
-        <string name="banner">ca-app-pub-3940256099942544/6300978111</string>
-<!--    <string name="banner">ca-app-pub-4515698012373396/4573656208</string>-->
+    <string name="banner">ca-app-pub-3940256099942544/6300978111</string>
+    <!--    <string name="banner">ca-app-pub-4515698012373396/4573656208</string>-->
     <string name="interstitial">ca-app-pub-3940256099942544/1033173712</string>
-<!--    <string name="interstitial">ca-app-pub-4515698012373396/5631649980</string>-->
+    <!--    <string name="interstitial">ca-app-pub-4515698012373396/5631649980</string>-->
 
     <!-- ERROR -->
     <string name="error_title">Ha ocurrido un problema</string>
@@ -183,6 +183,7 @@
     <string name="custom_decks_create_new">Crear nueva baraja</string>
     <string name="custom_decks_create_new_accept">Aceptar</string>
     <string name="custom_decks_create_new_create">Crear baraja</string>
+    <string name="custom_decks_create_deep_links_erros">Pulsa aquí si estás teniendo problemas para recibir barajas compartidas.</string>
     <string name="custom_decks_create_new_hint">Nombre de la baraja</string>
     <string name="custom_decks_create_new_name_error">El nombre no puede estar vacío</string>
     <string name="custom_decks_create_new_name_perfect">¡Perfecto!</string>
@@ -198,6 +199,16 @@
     <string name="custom_decks_dialog_delete_confirm">¿Quieres eliminar %s definitivamente?</string>
     <string name="custom_decks_dialog_delete_yes">Eliminar</string>
     <string name="custom_decks_dialog_delete_no">Volver</string>
+
+    <!-- SHARE DECK ERROR -->
+    <string name="shared_deck_error_toolbar">Configuración</string>
+    <string name="shared_deck_error_first">Para poder recibir barajas a través de un enlace, la app necesita poder abrir enlaces de tipo <i>www.estereotipia.com</i></string>
+    <string name="shared_deck_error_">Para poder recibir barajas a través de un enlace, la app necesita poder abrir enlaces de tipo</string>
+    <string name="shared_deck_error_url">www.estereotipia.com</string>
+    <string name="shared_deck_error_btn">Pulsa aquí para ir a ajustes</string>
+    <string name="shared_deck_error_options">Los ajustes tienen que estar así:</string>
+    <string name="shared_deck_open_deep_links">Abrir enlaces compatibles</string>
+    <string name="shared_deck_open_deep_links_to_open">Enlaces que abrir en esta aplicación</string>
 
     <!--  SHARED DECK -->
     <string name="shared_deck_title">Añadir baraja</string>

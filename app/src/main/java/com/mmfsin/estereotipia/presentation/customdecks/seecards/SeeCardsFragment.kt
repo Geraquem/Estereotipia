@@ -85,8 +85,7 @@ class SeeCardsFragment : BaseFragment<FragmentCardsBinding, SeeCardsViewModel>()
             inDashboard = false
             setUpToolbar(
                 title = deckName,
-                instructionsVisible = false,
-                instructionsNavGraph = R.navigation.nav_graph_instructions_who_is_who
+                instructionsVisible = false
             )
         }
 

@@ -55,8 +55,7 @@ class CreateDeckFragment : BaseFragment<FragmentCreateDeckBinding, CreateDeckVie
     private fun setToolbar() {
         (activity as BedRockActivity).setUpToolbar(
             title = getString(R.string.custom_decks_create_new_toolbar),
-            instructionsVisible = false,
-            instructionsNavGraph = R.navigation.nav_graph_instructions_who_is_who
+            instructionsVisible = false
         )
     }
 

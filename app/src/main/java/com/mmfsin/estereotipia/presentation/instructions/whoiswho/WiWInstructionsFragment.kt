@@ -42,8 +42,7 @@ class WiWInstructionsFragment(private val openHTP: Boolean = false) :
     override fun setUI() {
         (activity as BedRockActivity).setUpToolbar(
             title = getString(R.string.who_is_who_instructions_title),
-            instructionsVisible = false,
-            instructionsNavGraph = R.navigation.nav_graph_instructions_who_is_who
+            instructionsVisible = false
         )
     }
 

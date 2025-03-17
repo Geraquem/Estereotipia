@@ -64,8 +64,7 @@ class CustomDecksFragment : BaseFragment<FragmentCustomDecksBinding, CustomDecks
                 inDashboard = false
                 setUpToolbar(
                     title = getString(R.string.custom_decks_toolbar),
-                    instructionsVisible = false,
-                    instructionsNavGraph = R.navigation.nav_graph_instructions_who_is_who
+                    instructionsVisible = false
                 )
             }
         }
@@ -73,6 +72,11 @@ class CustomDecksFragment : BaseFragment<FragmentCustomDecksBinding, CustomDecks
 
     override fun setListeners() {
         binding.apply {
+            clShareError.setOnClickListener {
+                (activity as BedRockActivity).openBedRockActivity(
+                    navGraph = R.navigation.nav_graph_share_deck_error,
+                )
+            }
             btnCreateDeck.setOnClickListener { createNewDeck() }
         }
     }

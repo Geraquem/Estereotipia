@@ -52,13 +52,15 @@ class BedRockActivity : AppCompatActivity() {
     fun setUpToolbar(
         title: String? = "",
         instructionsVisible: Boolean = true,
-        instructionsNavGraph: Int
+        instructionsNavGraph: Int? = null
     ) {
         binding.toolbar.apply {
             ivBack.setOnClickListener { onBackPressed() }
             tvTitle.text = title
             ivInstructions.isVisible = instructionsVisible
-            ivInstructions.setOnClickListener { openBedRockActivity(navGraph = instructionsNavGraph) }
+            instructionsNavGraph?.let { navGraph ->
+                ivInstructions.setOnClickListener { openBedRockActivity(navGraph = navGraph) }
+            }
         }
     }
 

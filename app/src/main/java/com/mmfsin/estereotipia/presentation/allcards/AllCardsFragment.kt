@@ -16,6 +16,7 @@ import com.mmfsin.estereotipia.domain.models.Card
 import com.mmfsin.estereotipia.presentation.allcards.adapter.AllCardsAdapter
 import com.mmfsin.estereotipia.presentation.allcards.dialogs.AllCardDialog
 import com.mmfsin.estereotipia.presentation.allcards.interfaces.IAllCardsListener
+import com.mmfsin.estereotipia.utils.BEDROCK_STR_ARGS
 import com.mmfsin.estereotipia.utils.showErrorDialog
 import com.mmfsin.estereotipia.utils.showFragmentDialog
 import dagger.hilt.android.AndroidEntryPoint
@@ -33,6 +34,11 @@ class AllCardsFragment : BaseFragment<FragmentCardsBinding, AllCardsViewModel>()
     override fun inflateView(
         inflater: LayoutInflater, container: ViewGroup?
     ) = FragmentCardsBinding.inflate(inflater, container, false)
+
+    override fun getBundleArgs() {
+        val cardId = activity?.intent?.getStringExtra(BEDROCK_STR_ARGS)
+        cardId?.let { id -> onCardClick(id) }
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -75,7 +81,8 @@ class AllCardsFragment : BaseFragment<FragmentCardsBinding, AllCardsViewModel>()
 
     private fun setUpCards(columns: Int, cards: List<Card>) {
         binding.rvCards.apply {
-            layoutManager = StaggeredGridLayoutManager(columns, StaggeredGridLayoutManager.VERTICAL)
+            layoutManager =
+                StaggeredGridLayoutManager(columns, StaggeredGridLayoutManager.VERTICAL)
             adapter = AllCardsAdapter(columns, cards, this@AllCardsFragment)
         }
     }

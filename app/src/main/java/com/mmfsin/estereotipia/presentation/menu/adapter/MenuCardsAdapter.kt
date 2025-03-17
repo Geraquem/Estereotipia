@@ -32,8 +32,9 @@ class MenuCardsAdapter(
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bind(cards[position])
-        holder.itemView.setOnClickListener { listener.onMenuCardClick() }
+        val card = cards[position]
+        holder.bind(card)
+        holder.itemView.setOnClickListener { listener.onMenuCardClick(cardId = card.id) }
     }
 
     override fun getItemCount(): Int = cards.size

@@ -117,7 +117,9 @@ class MenuFragment : BaseFragment<FragmentMenuBinding, MenuViewModel>(), IMenuLi
         }
     }
 
-    override fun onMenuCardClick() = navigateTo(R.navigation.nav_graph_all_cards)
+    override fun onMenuCardClick(cardId: String?) {
+        navigateTo(R.navigation.nav_graph_all_cards, strArgs = cardId)
+    }
 
     private fun setTopCardMenu(topCardUrl: String) {
         binding.apply {

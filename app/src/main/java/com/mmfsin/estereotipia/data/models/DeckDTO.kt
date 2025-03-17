@@ -9,5 +9,6 @@ open class DeckDTO(
     var name: String = "",
     var cards: String = "",
     var order: Long = 0,
+    var icon: String = "",
     var isCustom: Boolean = false
 ) : RealmObject()

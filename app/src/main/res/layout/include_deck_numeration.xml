@@ -39,7 +39,16 @@
             android:gravity="center"
             android:textColor="@color/white"
             android:textSize="22sp"
+            android:visibility="gone"
             tools:text="7" />
+
+        <ImageView
+            android:id="@+id/icon"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:contentDescription="@string/content_description"
+            tools:src="@drawable/ic_question_circle"
+            app:tint="@color/white" />
 
     </LinearLayout>
 

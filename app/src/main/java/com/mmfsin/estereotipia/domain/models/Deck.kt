@@ -5,5 +5,6 @@ open class Deck(
     val name: String,
     val cards: String,
     val numOfCards: Int,
+    val icon: String,
     val isCustom: Boolean
 )

@@ -15,6 +15,7 @@ fun DeckDTO.toDeck() = Deck(
     name = name,
     cards = cards,
     numOfCards = numOfCards(cards),
+    icon = icon,
     isCustom = isCustom
 )
 

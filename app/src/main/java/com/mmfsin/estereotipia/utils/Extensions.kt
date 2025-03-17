@@ -120,12 +120,12 @@ fun decodeFromBase64(encoded: String): String {
     return String(bytes, Charsets.UTF_8)
 }
 
-fun Context.setGlideImage(image: String, view: ImageView, loading: ImageView) {
+fun Context.setGlideImage(image: String, view: ImageView, loading: ImageView? = null) {
     Glide.with(this).load(image).listener(object : RequestListener<Drawable> {
         override fun onLoadFailed(
             e: GlideException?, model: Any?, target: Target<Drawable>?, isFirstResource: Boolean
         ): Boolean {
-            loading.setImageResource(R.drawable.ic_loading_error)
+            loading?.setImageResource(R.drawable.ic_loading_error)
             return false
         }
 
@@ -136,7 +136,7 @@ fun Context.setGlideImage(image: String, view: ImageView, loading: ImageView) {
             dataSource: DataSource?,
             isFirstResource: Boolean
         ): Boolean {
-            loading.visibility = View.INVISIBLE
+            loading?.visibility = View.INVISIBLE
             return false
         }
     }).into(view)

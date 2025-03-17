@@ -9,6 +9,7 @@ import com.mmfsin.estereotipia.base.BaseDialog
 import com.mmfsin.estereotipia.databinding.DialogAllCardInfoBinding
 import com.mmfsin.estereotipia.domain.models.Card
 import com.mmfsin.estereotipia.utils.animateDialog
+import com.mmfsin.estereotipia.utils.setGlideImage
 import com.mmfsin.estereotipia.utils.showErrorDialog
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -42,7 +43,7 @@ class AllCardDialog(private val cardId: String) : BaseDialog<DialogAllCardInfoBi
         isCancelable = true
         binding.apply {
             card?.let {
-                Glide.with(requireContext()).load(it.image).into(ivImage)
+                requireContext().setGlideImage(it.image, ivImage, loading.image)
                 tvName.text = it.name
             }
         }

@@ -11,6 +11,7 @@ import com.mmfsin.estereotipia.R
 import com.mmfsin.estereotipia.databinding.ItemCardBinding
 import com.mmfsin.estereotipia.domain.models.Card
 import com.mmfsin.estereotipia.presentation.dashboard.whoiswho.cards.interfaces.ICardsListener
+import com.mmfsin.estereotipia.utils.setGlideImage
 
 class CardsAdapter(
     private var columns: Int,
@@ -27,7 +28,7 @@ class CardsAdapter(
                 ivDiscard.isVisible = card.discarded
                 ivQuestion.isVisible = card.suspicious
 
-                Glide.with(c).load(card.image).into(ivImage)
+                c.setGlideImage(card.image, ivImage, loading.image)
                 tvName.text = card.name
 
                 if (card.rivalCard) {

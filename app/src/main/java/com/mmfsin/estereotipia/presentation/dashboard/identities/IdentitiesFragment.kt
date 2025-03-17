@@ -83,7 +83,6 @@ class IdentitiesFragment : BaseFragment<FragmentIdentitiesBinding, IdentitiesVie
             loading.root.isVisible = true
             ivInstructions.isEnabled = false
             btnContinue.animateX(500f, 10)
-            countDown(2500) { ivInstructions.isEnabled = true }
         }
         initialAnimations()
         showInitialDialog()
@@ -119,7 +118,7 @@ class IdentitiesFragment : BaseFragment<FragmentIdentitiesBinding, IdentitiesVie
 
     override fun setListeners() {
         binding.apply {
-            ivBack.setOnClickListener { activity?.onBackPressedDispatcher?.onBackPressed() }
+            ivBack.setOnClickListener { activity?.onBackPressed() }
             ivInstructions.setOnClickListener { openInstructions() }
 
             image1.setOnClickListener { showCardExpanded(0) }
@@ -192,6 +191,7 @@ class IdentitiesFragment : BaseFragment<FragmentIdentitiesBinding, IdentitiesVie
             cardDialog = IdentitiesCardSheet(it)
             activity?.showFragmentDialog(IdentitiesCardSheet(it))
         }
+        binding.ivInstructions.isEnabled = true
     }
 
     private fun setDragSettings(v: View) {
@@ -222,7 +222,6 @@ class IdentitiesFragment : BaseFragment<FragmentIdentitiesBinding, IdentitiesVie
                 is IdentitiesEvent.GetThreeCards -> {
                     cards = event.cards
                     setPhaseOne()
-
                 }
 
                 is IdentitiesEvent.SomethingWentWrong -> error()
@@ -238,7 +237,6 @@ class IdentitiesFragment : BaseFragment<FragmentIdentitiesBinding, IdentitiesVie
                 tvOptionOne.text = actualIdentity?.text1
                 tvOptionTwo.text = actualIdentity?.text2
                 tvOptionThree.text = actualIdentity?.text3
-
             } else error()
         }
     }
@@ -415,7 +413,7 @@ class IdentitiesFragment : BaseFragment<FragmentIdentitiesBinding, IdentitiesVie
 
     private fun endGame() {
         pos++
-        if (pos % 10 == 0) showInterstitial()
+        if (pos % 7 == 0) showInterstitial()
         if (pos < identities.size - 1) {
             binding.loading.root.isVisible = true
             cardDialog = null

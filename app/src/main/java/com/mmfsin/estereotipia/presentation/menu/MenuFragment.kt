@@ -105,7 +105,7 @@ class MenuFragment : BaseFragment<FragmentMenuBinding, MenuViewModel>(), IMenuLi
 
     private fun menuFlowCompleted() {
         binding.apply {
-            loading.visibility = View.GONE
+            (activity as MainActivity).handleLoading(show = false)
             tvTitle.animateX(-1000f, 10)
             clBottom.animateY(1500f, 10)
             countDown(500) {
@@ -140,7 +140,8 @@ class MenuFragment : BaseFragment<FragmentMenuBinding, MenuViewModel>(), IMenuLi
                         dataSource: DataSource?,
                         isFirstResource: Boolean
                     ): Boolean {
-                        countDown(200) { ivTop.animate().alpha(1f).duration = 1500 }
+                        loading.visibility = View.GONE
+                        ivTop.animate().alpha(1f).duration = 1500
                         return false
                     }
                 }).into(ivTop)

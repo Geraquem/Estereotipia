@@ -4,11 +4,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 import com.mmfsin.estereotipia.R
 import com.mmfsin.estereotipia.databinding.ItemMenuCardBinding
 import com.mmfsin.estereotipia.domain.models.Card
 import com.mmfsin.estereotipia.presentation.menu.interfaces.IMenuCardsListener
+import com.mmfsin.estereotipia.utils.setGlideImage
 
 class MenuCardsAdapter(
     private val cards: List<Card>,
@@ -17,9 +17,10 @@ class MenuCardsAdapter(
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val binding = ItemMenuCardBinding.bind(view)
+        val c = binding.root.context
         fun bind(card: Card) {
             binding.apply {
-                Glide.with(binding.root.context).load(card.image).into(ivImage)
+                c.setGlideImage(card.image, ivImage, loading.image)
             }
         }
     }

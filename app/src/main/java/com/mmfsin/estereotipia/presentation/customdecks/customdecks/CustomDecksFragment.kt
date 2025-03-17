@@ -59,7 +59,7 @@ class CustomDecksFragment : BaseFragment<FragmentCustomDecksBinding, CustomDecks
 
     override fun setUI() {
         binding.apply {
-            tvEmpty.visibility = View.GONE
+            llEmpty.visibility = View.GONE
             (activity as BedRockActivity).apply {
                 inDashboard = false
                 setUpToolbar(
@@ -95,7 +95,7 @@ class CustomDecksFragment : BaseFragment<FragmentCustomDecksBinding, CustomDecks
                 layoutManager = LinearLayoutManager(mContext)
                 adapter = CustomDecksAdapter(decks, this@CustomDecksFragment)
             }
-            tvEmpty.isVisible = decks.isEmpty()
+            llEmpty.isVisible = decks.isEmpty()
             rvCustomDecks.isVisible = decks.isNotEmpty()
         }
     }

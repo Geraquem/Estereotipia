@@ -5,6 +5,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.view.WindowInsetsControllerCompat
+import androidx.core.view.isVisible
 import com.mmfsin.estereotipia.R
 import com.mmfsin.estereotipia.base.bedrock.BedRockActivity
 import com.mmfsin.estereotipia.databinding.ActivityMainBinding
@@ -26,7 +27,7 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        changeStatusBar(R.color.orange)
+        handleLoading(show = true)
     }
 
     private fun changeStatusBar(color: Int) {
@@ -50,5 +51,11 @@ class MainActivity : AppCompatActivity() {
     fun openIdentitiesActivity() {
         val intent = Intent(this, IdentitiesActivity::class.java)
         startActivity(intent)
+    }
+
+    fun handleLoading(show: Boolean) {
+        binding.loading.isVisible = show
+        val color = if (show) R.color.white else R.color.orange
+        changeStatusBar(color)
     }
 }

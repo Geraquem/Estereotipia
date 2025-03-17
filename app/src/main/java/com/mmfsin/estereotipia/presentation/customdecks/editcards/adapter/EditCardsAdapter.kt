@@ -9,6 +9,7 @@ import com.mmfsin.estereotipia.R
 import com.mmfsin.estereotipia.databinding.ItemNewDeckCardBinding
 import com.mmfsin.estereotipia.domain.models.CreateDeckCard
 import com.mmfsin.estereotipia.presentation.customdecks.editcards.interfaces.IEditCardsListener
+import com.mmfsin.estereotipia.utils.setGlideImage
 
 class EditCardsAdapter(
     private val cards: List<CreateDeckCard>,
@@ -17,9 +18,10 @@ class EditCardsAdapter(
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val binding = ItemNewDeckCardBinding.bind(view)
+        val c = binding.root.context
         fun bind(card: CreateDeckCard, position: Int, listener: IEditCardsListener) {
             binding.apply {
-                Glide.with(binding.root.context).load(card.card.image).into(ivImage)
+                c.setGlideImage(card.card.image, ivImage, loading.image)
                 tvName.text = card.card.name
 
                 val image = if (card.selected) R.drawable.ic_check_ok else R.drawable.ic_check_ko

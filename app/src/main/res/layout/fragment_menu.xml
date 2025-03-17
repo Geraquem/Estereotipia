@@ -180,12 +180,12 @@
                             <ImageView
                                 style="@style/BigTextView_Bold"
                                 android:layout_width="22dp"
-                                android:visibility="gone"
                                 android:layout_height="22dp"
                                 android:layout_marginStart="8dp"
                                 android:contentDescription="@string/content_description"
                                 android:gravity="center"
                                 android:src="@drawable/ic_card"
+                                android:visibility="gone"
                                 app:tint="@color/orange" />
 
                             <ImageView
@@ -193,10 +193,10 @@
                                 android:layout_width="22dp"
                                 android:layout_height="22dp"
                                 android:layout_marginStart="2dp"
-                                android:visibility="gone"
                                 android:contentDescription="@string/content_description"
                                 android:gravity="center"
                                 android:src="@drawable/ic_card"
+                                android:visibility="gone"
                                 app:tint="@color/orange" />
 
                         </LinearLayout>
@@ -249,7 +249,6 @@
                         android:id="@+id/ll_identities"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="32dp"
                         android:background="@drawable/bg_white_box"
                         android:orientation="vertical"
                         android:paddingHorizontal="16dp"
@@ -287,8 +286,8 @@
                                 android:layout_marginStart="8dp"
                                 android:background="@drawable/bg_identities_number"
                                 android:contentDescription="@string/content_description"
-                                android:visibility="gone"
-                                android:gravity="center" />
+                                android:gravity="center"
+                                android:visibility="gone" />
 
                             <ImageView
                                 android:layout_width="12dp"
@@ -296,16 +295,16 @@
                                 android:layout_marginHorizontal="4dp"
                                 android:background="@drawable/bg_identities_number"
                                 android:contentDescription="@string/content_description"
-                                android:visibility="gone"
-                                android:gravity="center" />
+                                android:gravity="center"
+                                android:visibility="gone" />
 
                             <ImageView
                                 android:layout_width="12dp"
                                 android:layout_height="12dp"
-                                android:visibility="gone"
                                 android:background="@drawable/bg_identities_number"
                                 android:contentDescription="@string/content_description"
-                                android:gravity="center" />
+                                android:gravity="center"
+                                android:visibility="gone" />
 
                         </LinearLayout>
 
@@ -352,6 +351,15 @@
                         </androidx.constraintlayout.widget.ConstraintLayout>
 
                     </LinearLayout>
+
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginVertical="16dp"
+                        android:backgroundTint="@color/black"
+                        android:alpha="0.25"
+                        android:layout_marginHorizontal="16dp"
+                        android:background="@drawable/bg_white_box"/>
 
                     <include
                         android:id="@+id/menu_decks"

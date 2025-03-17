@@ -4,11 +4,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 import com.mmfsin.estereotipia.R
 import com.mmfsin.estereotipia.databinding.ItemAllCardBinding
 import com.mmfsin.estereotipia.domain.models.Card
 import com.mmfsin.estereotipia.presentation.allcards.interfaces.IAllCardsListener
+import com.mmfsin.estereotipia.utils.setGlideImage
 
 class SeeCardsAdapter(
     private var columns: Int,
@@ -19,10 +19,9 @@ class SeeCardsAdapter(
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val binding = ItemAllCardBinding.bind(view)
         private val c = binding.root.context
-
         fun bind(card: Card, columns: Int) {
             binding.apply {
-                Glide.with(binding.root.context).load(card.image).into(ivImage)
+                c.setGlideImage(card.image, ivImage, loading.image)
                 tvName.text = card.name
 
                 /** change image dp */

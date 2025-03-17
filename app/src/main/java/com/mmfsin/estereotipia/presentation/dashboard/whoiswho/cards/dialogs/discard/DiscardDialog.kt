@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import androidx.core.content.ContextCompat.getColor
 import androidx.core.view.isVisible
-import com.bumptech.glide.Glide
 import com.mmfsin.estereotipia.R
 import com.mmfsin.estereotipia.base.BaseDialog
 import com.mmfsin.estereotipia.databinding.DialogCardDiscardBinding
@@ -14,6 +13,7 @@ import com.mmfsin.estereotipia.presentation.dashboard.whoiswho.cards.dialogs.dis
 import com.mmfsin.estereotipia.presentation.dashboard.whoiswho.cards.dialogs.discard.DiscardDialog.ActionType.SECOND_BUTTONS
 import com.mmfsin.estereotipia.presentation.dashboard.whoiswho.cards.interfaces.ICardsListener
 import com.mmfsin.estereotipia.utils.animateDialog
+import com.mmfsin.estereotipia.utils.setGlideImage
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -42,7 +42,7 @@ class DiscardDialog(
     override fun setUI() {
         isCancelable = true
         binding.apply {
-            Glide.with(requireContext()).load(card.image).into(ivImage)
+            requireContext().setGlideImage(card.image, ivImage, loading.image)
             tvName.text = card.name
             if (card.discarded) setDiscardedCard() else setNotDiscardedCard()
             if (card.suspicious) setSuspiciousCard() else setNotSuspiciousCard()

@@ -4,11 +4,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 import com.mmfsin.estereotipia.R
 import com.mmfsin.estereotipia.databinding.ItemNewDeckCardBinding
 import com.mmfsin.estereotipia.domain.models.CreateDeckCard
 import com.mmfsin.estereotipia.presentation.customdecks.create.interfaces.ICreateDeckCardListener
+import com.mmfsin.estereotipia.utils.setGlideImage
 
 class NewDeckCardsAdapter(
     private val cards: List<CreateDeckCard>,
@@ -17,9 +17,10 @@ class NewDeckCardsAdapter(
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val binding = ItemNewDeckCardBinding.bind(view)
+        val c = binding.root.context
         fun bind(card: CreateDeckCard, position: Int, listener: ICreateDeckCardListener) {
             binding.apply {
-                Glide.with(binding.root.context).load(card.card.image).into(ivImage)
+                c.setGlideImage(card.card.image, ivImage, loading.image)
                 tvName.text = card.card.name
 
                 val image = if (card.selected) R.drawable.ic_check_ok else R.drawable.ic_check_ko

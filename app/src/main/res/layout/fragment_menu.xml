@@ -371,8 +371,20 @@
                     <include
                         android:id="@+id/menu_cards"
                         layout="@layout/include_menu_cards"
+                        android:layout_marginBottom="24dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" />
+
+<!--                    <com.google.android.gms.ads.nativead.NativeAdView-->
+<!--                        android:id="@+id/native_ad"-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content">-->
+
+<!--                        <include-->
+<!--                            android:id="@+id/native_content"-->
+<!--                            layout="@layout/native_ad" />-->
+
+<!--                    </com.google.android.gms.ads.nativead.NativeAdView>-->
 
                 </LinearLayout>
 

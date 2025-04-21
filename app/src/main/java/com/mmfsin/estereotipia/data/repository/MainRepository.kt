@@ -2,10 +2,10 @@ package com.mmfsin.estereotipia.data.repository
 
 import android.content.Context
 import android.content.Context.MODE_PRIVATE
+import android.widget.Toast
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import com.mmfsin.estereotipia.data.models.CardDTO
-import com.mmfsin.estereotipia.data.models.DeckDTO
 import com.mmfsin.estereotipia.domain.interfaces.IMainRepository
 import com.mmfsin.estereotipia.domain.interfaces.IRealmDatabase
 import com.mmfsin.estereotipia.utils.CARDS
@@ -17,10 +17,11 @@ import com.mmfsin.estereotipia.utils.SERVER_QUESTIONS
 import com.mmfsin.estereotipia.utils.SHARED_MAIN
 import com.mmfsin.estereotipia.utils.VERSION
 import dagger.hilt.android.qualifiers.ApplicationContext
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.withContext
-import java.util.concurrent.CountDownLatch
+import kotlinx.coroutines.TimeoutCancellationException
+import kotlinx.coroutines.suspendCancellableCoroutine
+import kotlinx.coroutines.withTimeout
 import javax.inject.Inject
+import kotlin.coroutines.resume
 
 class MainRepository @Inject constructor(
     @ApplicationContext val context: Context,
@@ -33,33 +34,38 @@ class MainRepository @Inject constructor(
         getDataFromFirebase(getSavedVersion())
     }
 
-    private suspend fun getDataFromFirebase(savedVersion: Long): List<DeckDTO> {
-        val latch = CountDownLatch(1)
-        val decks = mutableListOf<DeckDTO>()
-        reference.get().addOnSuccessListener {
-            val version = it.child(VERSION).value as Long
-            if (version == savedVersion) {
-                latch.countDown()
-            } else {
-                saveVersion(newVersion = version)
-                restartSystemData()
+    private suspend fun getDataFromFirebase(savedVersion: Long) {
+        val fetchBlock: suspend () -> Unit = {
+            suspendCancellableCoroutine { coroutine ->
+                reference.get().addOnSuccessListener {
+                    val version = it.child(VERSION).value as Long
+                    if (version != savedVersion) {
+                        saveVersion(newVersion = version)
+                        restartSystemData()
 
-                val fbCards = it.child(CARDS)
-                for (child in fbCards.children) {
-                    child.getValue(CardDTO::class.java)?.let { card -> saveCardInRealm(card) }
+                        val fbCards = it.child(CARDS)
+                        for (child in fbCards.children) {
+                            child.getValue(CardDTO::class.java)
+                                ?.let { card -> saveCardInRealm(card) }
+                        }
+                    }
+                    coroutine.resume(Unit)
                 }
-
-                latch.countDown()
             }
-
-        }.addOnFailureListener {
-            latch.countDown()
         }
 
-        withContext(Dispatchers.IO) {
-            latch.await()
+        try {
+            if (savedVersion == -1L) fetchBlock()
+            else {
+                withTimeout(7000) {
+                    fetchBlock()
+                }
+            }
+        } catch (e: TimeoutCancellationException) {
+            println("**** FirebaseTimeout **** -> Se agotó el tiempo de espera")
+        } catch (e: Exception) {
+            println("FirebaseError -> Error al obtener datos: ${e.message}")
         }
-        return decks
     }
 
     private fun saveVersion(newVersion: Long) {
@@ -69,7 +75,7 @@ class MainRepository @Inject constructor(
     }
 
     private fun restartSystemData() {
-        val sharedPrefs = context.getSharedPreferences(SHARED_MAIN, Context.MODE_PRIVATE)
+        val sharedPrefs = context.getSharedPreferences(SHARED_MAIN, MODE_PRIVATE)
         sharedPrefs.edit().apply {
             putBoolean(SERVER_DECKS, true)
             putBoolean(SERVER_QUESTIONS, true)

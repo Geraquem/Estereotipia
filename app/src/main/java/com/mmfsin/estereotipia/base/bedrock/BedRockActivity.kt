@@ -83,7 +83,8 @@ class BedRockActivity : AppCompatActivity() {
     }
 
     fun showBanner(visible: Boolean = false) {
-        binding.adView.isVisible = visible
+//        binding.adView.isVisible = visible
+        binding.adView.isVisible = false
     }
 
     private fun error() = showErrorDialog(goBack = true)

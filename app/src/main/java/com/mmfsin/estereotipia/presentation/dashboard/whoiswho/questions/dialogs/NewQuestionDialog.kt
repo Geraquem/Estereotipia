@@ -43,11 +43,6 @@ class NewQuestionDialog(
         binding.apply {
             ivClose.setOnClickListener { dismiss() }
 
-            tvCards.setOnClickListener {
-                listener.viewCards()
-                dismiss()
-            }
-
             countDown(500) {
                 rlYes.setOnClickListener { answerQuestion(answer = true) }
                 rlNo.setOnClickListener { answerQuestion(answer = false) }
@@ -56,7 +51,7 @@ class NewQuestionDialog(
     }
 
     private fun answerQuestion(answer: Boolean) {
-        listener.answer(question, answer)
+        listener.answerQuestion(question, answer)
         dismiss()
     }
 

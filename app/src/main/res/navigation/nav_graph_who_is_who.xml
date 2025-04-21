@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph_who_is_who"
+    app:startDestination="@id/viewPagerFragment">
+
+    <fragment
+        android:id="@+id/viewPagerFragment"
+        android:name="com.mmfsin.estereotipia.presentation.dashboard.whoiswho.viewpager.ViewPagerWWFragment"
+        android:label="viewPagerFragment"
+        tools:layout="@layout/fragment_view_pager" />
+
+</navigation>

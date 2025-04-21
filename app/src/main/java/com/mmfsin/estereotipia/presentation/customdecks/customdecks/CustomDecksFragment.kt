@@ -110,7 +110,7 @@ class CustomDecksFragment : BaseFragment<FragmentCustomDecksBinding, CustomDecks
 
     override fun playWithCustomDeck(id: String) {
         (activity as BedRockActivity).openBedRockActivity(
-            navGraph = R.navigation.nav_graph_dashboard,
+            navGraph = R.navigation.nav_graph_who_is_who,
             strArgs = id
         )
     }

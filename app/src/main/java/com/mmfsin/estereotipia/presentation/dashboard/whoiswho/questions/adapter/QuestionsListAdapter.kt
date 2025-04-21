@@ -1,4 +1,4 @@
-package com.mmfsin.estereotipia.presentation.dashboard.whoiswho.questions.dialogs.adapter
+package com.mmfsin.estereotipia.presentation.dashboard.whoiswho.questions.adapter
 
 import android.content.Context
 import android.view.LayoutInflater

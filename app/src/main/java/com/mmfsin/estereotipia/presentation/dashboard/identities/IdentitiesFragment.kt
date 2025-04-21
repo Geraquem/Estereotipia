@@ -152,10 +152,14 @@ class IdentitiesFragment : BaseFragment<FragmentIdentitiesBinding, IdentitiesVie
     }
 
     private fun activateDragTexts() {
-        binding.apply {
-            touchOptions(tvOne)
-            touchOptions(tvTwo)
-            touchOptions(tvThree)
+        try {
+            binding.apply {
+                touchOptions(tvOne)
+                touchOptions(tvTwo)
+                touchOptions(tvThree)
+            }
+        } catch (e: Exception) {
+            println("error detected: ${e.message}")
         }
     }
 
@@ -187,11 +191,15 @@ class IdentitiesFragment : BaseFragment<FragmentIdentitiesBinding, IdentitiesVie
     }
 
     private fun openCardDialog() {
-        actualIdentity?.let {
-            cardDialog = IdentitiesCardSheet(it)
-            activity?.showFragmentDialog(IdentitiesCardSheet(it))
+        try {
+            actualIdentity?.let {
+                cardDialog = IdentitiesCardSheet(it)
+                activity?.showFragmentDialog(IdentitiesCardSheet(it))
+            }
+            binding.ivInstructions.isEnabled = true
+        } catch (e: Exception) {
+            println("error detected: ${e.message}")
         }
-        binding.ivInstructions.isEnabled = true
     }
 
     private fun setDragSettings(v: View) {

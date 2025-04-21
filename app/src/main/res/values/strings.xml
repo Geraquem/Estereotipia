@@ -5,9 +5,9 @@
 
     <!-- ADS -->
     <string name="banner">ca-app-pub-3940256099942544/6300978111</string>
-<!--        <string name="banner">ca-app-pub-4515698012373396/4573656208</string>-->
+    <!--        <string name="banner">ca-app-pub-4515698012373396/4573656208</string>-->
     <string name="interstitial">ca-app-pub-3940256099942544/1033173712</string>
-<!--        <string name="interstitial">ca-app-pub-4515698012373396/5631649980</string>-->
+    <!--        <string name="interstitial">ca-app-pub-4515698012373396/5631649980</string>-->
 
     <!-- ERROR -->
     <string name="error_title">Ha ocurrido un problema</string>
@@ -33,9 +33,11 @@
     <string name="menu_who_is_who">Quién es quién</string>
     <string name="menu_who_is_who_description">Clásico juego de <i>Quién es Quién</i>, pero con preguntas que te romperán los esquemas. Analiza la mente de tu rival y descubre su personaje.</string>
     <string name="menu_identities">Identidades</string>
+    <string name="menu_identities_description">Una persona asigna en secreto tres identidades a tres personajes distintos. El resto de jugadores tratará de adivinar cuál ha sido dicha asignación.</string>
+    <string name="menu_phrases">Responde como tu personaje</string>
+    <string name="menu_phrases_description">blablablablablablablablablablablablablabla</string>
     <string name="menu_how_to_play">Cómo jugar</string>
     <string name="menu_play">Jugar</string>
-    <string name="menu_identities_description">Una persona asigna en secreto tres identidades a tres personajes distintos. El resto de jugadores tratará de adivinar cuál ha sido dicha asignación.</string>
     <string name="menu_decks">Mis barajas</string>
     <string name="menu_custom_decks_description">Crea tus propias barajas con las cartas que más te gusten para jugar en el modo <i>Quién es Quién</i> y compártelas para jugar con tus amigos.</string>
     <string name="menu_custom_decks">Ver mis barajas</string>
@@ -50,6 +52,10 @@
     <string name="first_access_description_one">¿Quieres abrir las instrucciones para <b>aprender a jugar</b> o eres de esas personas que van a lo loco?</string>
     <string name="first_access_open_instructions">Aprender</string>
     <string name="first_access_close">¡Ciérrame esto ya!</string>
+
+    <!-- PHRASES -->
+    <string name="phrases_hint">Escribe aquí...</string>
+    <string name="phrases_hint_list">...</string>
 
     <!-- IDENTITIES -->
     <string name="identities_initial_dialog">A este modo se juega con el teléfono en <b>horizontal</b></string>

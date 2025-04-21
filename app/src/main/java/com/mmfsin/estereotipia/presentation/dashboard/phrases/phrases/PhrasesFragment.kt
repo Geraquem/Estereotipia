@@ -1,4 +1,4 @@
-package com.mmfsin.estereotipia.presentation.dashboard.whoiswho.questions
+package com.mmfsin.estereotipia.presentation.dashboard.phrases.phrases
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -10,12 +10,12 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.mmfsin.estereotipia.base.BaseFragment
 import com.mmfsin.estereotipia.base.bedrock.BedRockActivity
 import com.mmfsin.estereotipia.databinding.FragmentQuestionsBinding
-import com.mmfsin.estereotipia.domain.models.GameQuestion
+import com.mmfsin.estereotipia.domain.models.GamePhrase
+import com.mmfsin.estereotipia.presentation.dashboard.phrases.phrases.adapter.PhrasesListAdapter
+import com.mmfsin.estereotipia.presentation.dashboard.phrases.phrases.dialogs.NewPhraseDialog
+import com.mmfsin.estereotipia.presentation.dashboard.phrases.phrases.listeners.INewPhraseListener
 import com.mmfsin.estereotipia.presentation.dashboard.whoiswho.cards.dialogs.selected.SelectedCardDialog
-import com.mmfsin.estereotipia.presentation.dashboard.whoiswho.questions.adapter.QuestionsListAdapter
 import com.mmfsin.estereotipia.presentation.dashboard.whoiswho.questions.dialogs.MiniHelpSheet
-import com.mmfsin.estereotipia.presentation.dashboard.whoiswho.questions.dialogs.NewQuestionDialog
-import com.mmfsin.estereotipia.presentation.dashboard.whoiswho.questions.dialogs.interfaces.INewQuestionListener
 import com.mmfsin.estereotipia.utils.NUM_OF_QUESTIONS
 import com.mmfsin.estereotipia.utils.countDown
 import com.mmfsin.estereotipia.utils.showErrorDialog
@@ -23,16 +23,16 @@ import com.mmfsin.estereotipia.utils.showFragmentDialog
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class QuestionsFragment(private val selectedCardId: String) :
-    BaseFragment<FragmentQuestionsBinding, QuestionsViewModel>(), INewQuestionListener {
+class PhrasesFragment(private val selectedCardId: String) :
+    BaseFragment<FragmentQuestionsBinding, PhrasesViewModel>(), INewPhraseListener {
 
-    override val viewModel: QuestionsViewModel by viewModels()
+    override val viewModel: PhrasesViewModel by viewModels()
 
-    private var totalQuestions: List<GameQuestion>? = null
-    private val questionsDone = mutableListOf<GameQuestion>()
+    private var totalQuestions: List<GamePhrase>? = null
+    private val questionsDone = mutableListOf<GamePhrase>()
     private var cont = 0
 
-    private var questionsAdapter: QuestionsListAdapter? = null
+    private var phrasesAdapter: PhrasesListAdapter? = null
 
     private lateinit var mContext: Context
 
@@ -41,7 +41,7 @@ class QuestionsFragment(private val selectedCardId: String) :
     ) = FragmentQuestionsBinding.inflate(inflater, container, false)
 
     override fun onResume() {
-        viewModel.getQuestions()
+        viewModel.getPhrases()
         checkIfGameFinished()
         super.onResume()
     }
@@ -82,7 +82,7 @@ class QuestionsFragment(private val selectedCardId: String) :
                             val question = list[cont]
                             questionsDone.add(question)
                             activity?.showFragmentDialog(
-                                NewQuestionDialog.newInstance(question, this@QuestionsFragment)
+                                NewPhraseDialog.newInstance(question, this@PhrasesFragment)
                             )
                             cont++
                             countDown(500) {
@@ -91,7 +91,7 @@ class QuestionsFragment(private val selectedCardId: String) :
                                 setUpQuestionList()
                             }
                         }
-                    } else viewModel.getQuestions()
+                    } else viewModel.getPhrases()
                 }
             }
 
@@ -106,12 +106,12 @@ class QuestionsFragment(private val selectedCardId: String) :
     override fun observe() {
         viewModel.event.observe(this) { event ->
             when (event) {
-                is QuestionsEvent.GetQuestions -> {
-                    totalQuestions = event.questions
+                is PhrasesEvent.GetPhrases -> {
+                    totalQuestions = event.phrases
                     binding.loading.root.visibility = View.GONE
                 }
 
-                is QuestionsEvent.SomethingWentWrong -> error()
+                is PhrasesEvent.SomethingWentWrong -> error()
             }
         }
     }
@@ -119,20 +119,20 @@ class QuestionsFragment(private val selectedCardId: String) :
     private fun setUpQuestionList() {
         binding.apply {
             llQuestions.isVisible = true
-            if (questionsAdapter == null) {
+            if (phrasesAdapter == null) {
                 rvAllQuestions.apply {
                     layoutManager = LinearLayoutManager(activity?.applicationContext)
-                    questionsAdapter = QuestionsListAdapter(questionsDone)
-                    adapter = questionsAdapter
+                    phrasesAdapter = PhrasesListAdapter(questionsDone)
+                    adapter = phrasesAdapter
                 }
             } else {
-                questionsAdapter?.notifyItemInserted(questionsDone.size - 1)
+                phrasesAdapter?.notifyItemInserted(questionsDone.size - 1)
             }
         }
     }
 
-    override fun answerQuestion(question: GameQuestion, answer: Boolean) {
-        questionsAdapter?.updateQuestionAnswer(question.id, answer)
+    override fun answerPhrase(phrase: GamePhrase, answer: String) {
+        phrasesAdapter?.updateQuestionAnswer(phrase.id, answer)
     }
 
     private fun error() = activity?.showErrorDialog()

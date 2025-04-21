@@ -2,6 +2,7 @@ package com.mmfsin.estereotipia.domain.mappers
 
 import com.mmfsin.estereotipia.domain.models.Card
 import com.mmfsin.estereotipia.domain.models.CreateDeckCard
+import com.mmfsin.estereotipia.domain.models.GamePhrase
 import com.mmfsin.estereotipia.domain.models.GameQuestion
 import com.mmfsin.estereotipia.domain.models.Question
 import java.util.UUID
@@ -17,3 +18,11 @@ fun createGameQuestion(question: String) = GameQuestion(
 )
 
 fun List<Question>.toGameQuestionList() = this.map { createGameQuestion(it.question) }
+
+fun createGamePhrase(question: String) = GamePhrase(
+    id = UUID.randomUUID().toString(),
+    question = question,
+    answer = null
+)
+
+fun List<Question>.toGamePhraseList() = this.map { createGamePhrase(it.question) }

@@ -4,4 +4,5 @@ import com.mmfsin.estereotipia.domain.models.Question
 
 interface IQuestionsRepository {
     suspend fun getQuestions(): List<Question>?
+    suspend fun getPhrases(): List<Question>?
 }

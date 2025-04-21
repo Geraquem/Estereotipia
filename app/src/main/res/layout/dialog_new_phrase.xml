@@ -79,49 +79,57 @@
             tools:textColor="@color/black" />
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:clipChildren="false"
-            android:clipToPadding="false"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:weightSum="1">
 
-            <RelativeLayout
-                android:id="@+id/rl_yes"
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/click_effect"
-                android:elevation="6dp"
-                android:paddingHorizontal="48dp"
-                android:paddingVertical="12dp">
+                android:layout_weight="0.75"
+                android:background="@drawable/bg_white_box"
+                android:paddingHorizontal="16dp"
+                android:paddingVertical="18dp">
 
-                <TextView
-                    style="@style/BigTextView"
-                    android:layout_width="wrap_content"
+                <EditText
+                    android:id="@+id/et_answer"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="@string/new_question_yes"
-                    android:textAllCaps="true" />
+                    android:autofillHints="name"
+                    android:background="@null"
+                    android:hint="@string/phrases_hint"
+                    android:imeOptions="actionDone"
+                    android:inputType="textCapSentences"
+                    android:maxLines="1"
+                    android:paddingVertical="6dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-            </RelativeLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
             <Space
-                android:layout_width="16dp"
-                android:layout_height="match_parent" />
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.05" />
 
             <RelativeLayout
-                android:id="@+id/rl_no"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:id="@+id/btn_accept"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.2"
                 android:background="@drawable/click_effect"
-                android:elevation="6dp"
-                android:paddingHorizontal="48dp"
-                android:paddingVertical="12dp">
+                android:elevation="4dp">
 
-                <TextView
-                    style="@style/BigTextView"
+                <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/new_question_no"
-                    android:textAllCaps="true" />
+                    android:layout_centerInParent="true"
+                    android:contentDescription="@string/content_description"
+                    android:src="@drawable/ic_check"
+                    app:tint="@color/dark_green" />
 
             </RelativeLayout>
 

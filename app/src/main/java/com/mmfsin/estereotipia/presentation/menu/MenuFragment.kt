@@ -62,11 +62,17 @@ class MenuFragment : BaseFragment<FragmentMenuBinding, MenuViewModel>(), IMenuLi
 
     override fun setListeners() {
         binding.apply {
-            btnPlayWiw.setOnClickListener { activity?.showFragmentDialog(DecksSheet(this@MenuFragment)) }
+            btnPlayWiw.setOnClickListener {
+                activity?.showFragmentDialog(DecksSheet(true, this@MenuFragment))
+            }
             btnInstWiw.setOnClickListener { navigateTo(R.navigation.nav_graph_instructions_who_is_who) }
 
             btnPlayIdentities.setOnClickListener { (activity as MainActivity).openIdentitiesActivity() }
             btnInstIdentities.setOnClickListener { navigateTo(R.navigation.nav_graph_instructions_identities) }
+
+            btnPlayPhrases.setOnClickListener {
+                activity?.showFragmentDialog(DecksSheet(false, this@MenuFragment))
+            }
 
             menuDecks.tvCustomDecks.setOnClickListener { navigateTo(R.navigation.nav_graph_custom_decks) }
             menuDecks.tvCreateDeck.setOnClickListener {
@@ -150,7 +156,11 @@ class MenuFragment : BaseFragment<FragmentMenuBinding, MenuViewModel>(), IMenuLi
         }
     }
 
-    override fun startGame(deckId: String) = navigateTo(R.navigation.nav_graph_dashboard, deckId)
+    override fun startWhoIsWhoGame(deckId: String) =
+        navigateTo(R.navigation.nav_graph_who_is_who, deckId)
+
+    override fun startPhrasesGame(deckId: String) =
+        navigateTo(R.navigation.nav_graph_phrases, deckId)
 
     private fun navigateTo(navGraph: Int, strArgs: String? = null, booleanArgs: Boolean? = null) {
         (activity as MainActivity).openBedRockActivity(

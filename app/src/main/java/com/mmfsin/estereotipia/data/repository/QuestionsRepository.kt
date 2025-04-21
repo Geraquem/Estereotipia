@@ -58,5 +58,9 @@ class QuestionsRepository @Inject constructor(
         }
     }
 
+    override suspend fun getPhrases(): List<Question>? {
+        return emptyList()
+    }
+
     private fun saveQuestionInRealm(question: QuestionDTO) = realmDatabase.addObject { question }
 }

@@ -10,8 +10,7 @@ import com.mmfsin.estereotipia.R
 import com.mmfsin.estereotipia.base.BaseFragment
 import com.mmfsin.estereotipia.base.bedrock.BedRockActivity
 import com.mmfsin.estereotipia.databinding.FragmentViewPagerBinding
-import com.mmfsin.estereotipia.presentation.dashboard.whoiswho.viewpager.adapter.ViewPagerAdapter
-import com.mmfsin.estereotipia.presentation.dashboard.whoiswho.viewpager.interfaces.IViewPagerListener
+import com.mmfsin.estereotipia.presentation.dashboard.whoiswho.viewpager.adapter.ViewPagerWWAdapter
 import com.mmfsin.estereotipia.utils.BEDROCK_STR_ARGS
 import com.mmfsin.estereotipia.utils.DECK_ID
 import com.mmfsin.estereotipia.utils.checkNotNulls
@@ -19,10 +18,9 @@ import com.mmfsin.estereotipia.utils.showErrorDialog
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class ViewPagerFragment : BaseFragment<FragmentViewPagerBinding, ViewPagerViewModel>(),
-    IViewPagerListener {
+class ViewPagerWWFragment : BaseFragment<FragmentViewPagerBinding, ViewPagerWWViewModel>() {
 
-    override val viewModel: ViewPagerViewModel by viewModels()
+    override val viewModel: ViewPagerWWViewModel by viewModels()
 
     private var deckId: String? = null
     private var selectedCardId: String? = null
@@ -52,17 +50,17 @@ class ViewPagerFragment : BaseFragment<FragmentViewPagerBinding, ViewPagerViewMo
     override fun observe() {
         viewModel.event.observe(this) { event ->
             when (event) {
-                is ViewPagerEvent.GetDeck -> {
+                is ViewPagerWWEvent.GetDeck -> {
                     setUpToolbar(event.deck.name)
                     viewModel.getRandomSelectedCard(event.deck.cards)
                 }
 
-                is ViewPagerEvent.SelectedCard -> {
+                is ViewPagerWWEvent.SelectedCard -> {
                     selectedCardId = event.selectedCardId
                     setUpViewPager()
                 }
 
-                is ViewPagerEvent.SomethingWentWrong -> error()
+                is ViewPagerWWEvent.SomethingWentWrong -> error()
             }
         }
     }
@@ -82,11 +80,10 @@ class ViewPagerFragment : BaseFragment<FragmentViewPagerBinding, ViewPagerViewMo
             binding.apply {
                 activity?.let {
                     viewPager.adapter =
-                        ViewPagerAdapter(
+                        ViewPagerWWAdapter(
                             fragmentActivity = it,
                             deckId = deck,
                             selectedCardId = selectedCard,
-                            listener = this@ViewPagerFragment
                         )
                     TabLayoutMediator(tabLayout, viewPager) { tab, position ->
                         when (position) {
@@ -98,11 +95,6 @@ class ViewPagerFragment : BaseFragment<FragmentViewPagerBinding, ViewPagerViewMo
                 loading.root.visibility = View.GONE
             }
         } ?: run { error() }
-    }
-
-    override fun openCardsView() {
-        val tab = binding.tabLayout.getTabAt(0)
-        tab?.select()
     }
 
     private fun error() {

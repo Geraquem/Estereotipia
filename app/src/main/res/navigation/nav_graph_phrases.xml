@@ -2,12 +2,12 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/nav_graph_dashboard"
+    android:id="@+id/nav_graph_phrases"
     app:startDestination="@id/viewPagerFragment">
 
     <fragment
         android:id="@+id/viewPagerFragment"
-        android:name="com.mmfsin.estereotipia.presentation.dashboard.whoiswho.viewpager.ViewPagerFragment"
+        android:name="com.mmfsin.estereotipia.presentation.dashboard.phrases.viewpager.ViewPagerPhrasesFragment"
         android:label="viewPagerFragment"
         tools:layout="@layout/fragment_view_pager" />
 

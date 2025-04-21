@@ -9,7 +9,6 @@ import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.mmfsin.estereotipia.base.BaseBottomSheet
 import com.mmfsin.estereotipia.databinding.BsheetDecksBinding
 import com.mmfsin.estereotipia.domain.models.AllDecks
-import com.mmfsin.estereotipia.domain.models.Deck
 import com.mmfsin.estereotipia.presentation.menu.decks.adapter.DecksAdapter
 import com.mmfsin.estereotipia.presentation.menu.decks.interfaces.IDeckListener
 import com.mmfsin.estereotipia.presentation.menu.interfaces.IMenuListener
@@ -17,7 +16,11 @@ import com.mmfsin.estereotipia.utils.showErrorDialog
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class DecksSheet(val listener: IMenuListener) : BaseBottomSheet<BsheetDecksBinding>(), IDeckListener {
+class DecksSheet(
+    private val isWhoIsWho: Boolean,
+    val listener: IMenuListener
+) :
+    BaseBottomSheet<BsheetDecksBinding>(), IDeckListener {
 
     private val viewModel: DecksViewModel by viewModels()
 
@@ -25,7 +28,8 @@ class DecksSheet(val listener: IMenuListener) : BaseBottomSheet<BsheetDecksBindi
 
     override fun onStart() {
         super.onStart()
-        val bottomSheet = dialog?.findViewById<View>(com.google.android.material.R.id.design_bottom_sheet)
+        val bottomSheet =
+            dialog?.findViewById<View>(com.google.android.material.R.id.design_bottom_sheet)
         bottomSheet?.let {
             val behavior = BottomSheetBehavior.from(it)
             val layoutParams = it.layoutParams
@@ -58,7 +62,8 @@ class DecksSheet(val listener: IMenuListener) : BaseBottomSheet<BsheetDecksBindi
     }
 
     override fun onDeckClick(deckId: String) {
-        listener.startGame(deckId)
+        if (isWhoIsWho) listener.startWhoIsWhoGame(deckId)
+        else listener.startPhrasesGame(deckId)
         dismiss()
     }
 

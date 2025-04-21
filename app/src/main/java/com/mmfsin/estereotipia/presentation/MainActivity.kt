@@ -2,6 +2,8 @@ package com.mmfsin.estereotipia.presentation
 
 import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.view.WindowInsetsControllerCompat
@@ -23,7 +25,6 @@ class MainActivity : AppCompatActivity() {
     var checkVersion = true
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        Thread.sleep(100)
         setTheme(R.style.Theme_Estereotipia)
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)

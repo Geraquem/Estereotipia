@@ -25,4 +25,4 @@ fun createGamePhrase(question: String) = GamePhrase(
     answer = null
 )
 
-fun List<Question>.toGamePhraseList() = this.map { createGamePhrase(it.question) }
+fun List<String>.toGamePhraseList() = this.map { createGamePhrase(it) }

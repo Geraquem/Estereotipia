@@ -13,11 +13,12 @@ import com.mmfsin.estereotipia.base.BaseFragment
 import com.mmfsin.estereotipia.base.bedrock.BedRockActivity
 import com.mmfsin.estereotipia.databinding.FragmentInstructionsWhoIsWhoBinding
 import com.mmfsin.estereotipia.domain.models.Instruction
-import com.mmfsin.estereotipia.presentation.MainActivity
 import com.mmfsin.estereotipia.presentation.instructions.whoiswho.adapter.InstructionsAdapter
 import com.mmfsin.estereotipia.presentation.instructions.whoiswho.detail.DetailInstFragment
 import com.mmfsin.estereotipia.presentation.instructions.whoiswho.interfaces.IInstructionsListener
+import com.mmfsin.estereotipia.utils.BEDROCK_STR_ARGS
 import com.mmfsin.estereotipia.utils.INSTRUCTIONS_DETAIL
+import com.mmfsin.estereotipia.utils.PHRASES
 import com.mmfsin.estereotipia.utils.showErrorDialog
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -28,11 +29,16 @@ class WiWInstructionsFragment(private val openHTP: Boolean = false) :
 
     override val viewModel: WiWInstructionsViewModel by viewModels()
 
+    private var mode: String? = null
     private lateinit var mContext: Context
 
     override fun inflateView(
         inflater: LayoutInflater, container: ViewGroup?
     ) = FragmentInstructionsWhoIsWhoBinding.inflate(inflater, container, false)
+
+    override fun getBundleArgs() {
+        mode = activity?.intent?.getStringExtra(BEDROCK_STR_ARGS)
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -40,8 +46,11 @@ class WiWInstructionsFragment(private val openHTP: Boolean = false) :
     }
 
     override fun setUI() {
+        val title = if (mode == PHRASES) R.string.phrases_instructions_title
+        else R.string.who_is_who_instructions_title
+
         (activity as BedRockActivity).setUpToolbar(
-            title = getString(R.string.who_is_who_instructions_title),
+            title = getString(title),
             instructionsVisible = false
         )
     }

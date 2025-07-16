@@ -4,9 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background"
-    android:clipChildren="false"
-    android:clipToPadding="false">
+    android:background="@color/background">
 
     <androidx.core.widget.NestedScrollView
         style="@style/scroll_no_effects"
@@ -14,7 +12,6 @@
         android:layout_height="0dp"
         android:clipChildren="false"
         android:clipToPadding="false"
-        android:fitsSystemWindows="true"
         android:paddingBottom="24dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -63,7 +60,7 @@
                     android:id="@+id/tv_title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="42dp"
+                    android:layout_marginTop="32dp"
                     android:elevation="6dp"
                     android:fontFamily="@font/font_app_name"
                     android:gravity="center"
@@ -78,7 +75,7 @@
                     android:id="@+id/fl_main_image"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="24dp"
+                    android:layout_marginTop="16dp"
                     android:background="@drawable/bg_white_box"
                     android:elevation="6dp"
                     android:padding="8dp"
@@ -88,16 +85,16 @@
 
                     <ImageView
                         android:id="@+id/iv_top"
-                        android:layout_width="140dp"
-                        android:layout_height="140dp"
+                        android:layout_width="160dp"
+                        android:layout_height="160dp"
                         android:layout_gravity="center"
                         android:contentDescription="@string/content_description"
                         tools:src="@drawable/default_face" />
 
                     <com.airbnb.lottie.LottieAnimationView
                         android:id="@+id/loading"
-                        android:layout_width="100dp"
-                        android:layout_height="100dp"
+                        android:layout_width="120dp"
+                        android:layout_height="120dp"
                         android:layout_gravity="center"
                         app:lottie_autoPlay="true"
                         app:lottie_colorFilter="@color/orange"
@@ -403,6 +400,7 @@
                             android:layout_height="wrap_content">
 
                             <TextView
+                                android:id="@+id/btn_inst_phrases"
                                 style="@style/SmallTextView"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"

@@ -12,7 +12,9 @@ class GetInstructionsUseCase @Inject constructor(@ApplicationContext val context
 
     override suspend fun execute(): List<Instruction> {
         val instructions = listOf(
-            /** GROUP 1 **/
+
+            /*******************************************************************/
+            /**************************** GROUP 1 ******************************/
             Instruction(
                 order = 1,
                 group = 1,
@@ -20,14 +22,18 @@ class GetInstructionsUseCase @Inject constructor(@ApplicationContext val context
                 title = getString(R.string.instructions_whats_about),
                 text = R.string.instructions_whats_about_details,
                 background = R.drawable.bg_top_box
-            ), Instruction(
+            ),
+
+            Instruction(
                 order = 2,
                 group = 1,
                 icon = R.drawable.ic_players,
                 title = getString(R.string.instructions_how_many_players),
                 text = R.string.instructions_how_many_players_details,
                 background = R.drawable.bg_squared_box
-            ), Instruction(
+            ),
+
+            Instruction(
                 order = 3,
                 group = 1,
                 icon = R.drawable.ic_book,
@@ -36,7 +42,8 @@ class GetInstructionsUseCase @Inject constructor(@ApplicationContext val context
                 background = R.drawable.bg_bottom_box
             ),
 
-            /** GROUP 2 **/
+            /*******************************************************************/
+            /**************************** GROUP 2 ******************************/
             Instruction(
                 order = 4,
                 group = 2,
@@ -44,7 +51,9 @@ class GetInstructionsUseCase @Inject constructor(@ApplicationContext val context
                 title = getString(R.string.instructions_my_card),
                 text = R.string.instructions_my_card_details,
                 background = R.drawable.bg_top_box
-            ), Instruction(
+            ),
+
+            Instruction(
                 order = 5,
                 group = 2,
                 icon = R.drawable.ic_deck,
@@ -53,7 +62,8 @@ class GetInstructionsUseCase @Inject constructor(@ApplicationContext val context
                 background = R.drawable.bg_bottom_box
             ),
 
-            /** GROUP 3 **/
+            /*******************************************************************/
+            /**************************** GROUP 3 ******************************/
             Instruction(
                 order = 6,
                 group = 3,
@@ -61,15 +71,28 @@ class GetInstructionsUseCase @Inject constructor(@ApplicationContext val context
                 title = getString(R.string.instructions_how_many_questions),
                 text = R.string.instructions_how_many_questions_details,
                 background = R.drawable.bg_top_box
-            ), Instruction(
+            ),
+
+            Instruction(
                 order = 7,
+                group = 3,
+                icon = R.drawable.ic_questions_type,
+                title = getString(R.string.instructions_how_are_the_questions),
+                text = R.string.instructions_how_are_the_questions_details,
+                background = R.drawable.bg_squared_box
+            ),
+
+            Instruction(
+                order = 8,
                 group = 3,
                 icon = R.drawable.ic_dart,
                 title = getString(R.string.instructions_how_many_opportunities),
                 layout = R.layout.inst_how_many_opportunities,
                 background = R.drawable.bg_squared_box
-            ), Instruction(
-                order = 8,
+            ),
+
+            Instruction(
+                order = 9,
                 group = 3,
                 icon = R.drawable.ic_finish,
                 title = getString(R.string.instructions_when_ends),

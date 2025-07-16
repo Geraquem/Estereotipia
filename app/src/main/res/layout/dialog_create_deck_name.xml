@@ -50,7 +50,6 @@
             android:layout_height="wrap_content"
             android:hint="@string/custom_decks_create_new_hint"
             app:boxStrokeColor="@color/blue"
-            app:cursorColor="@color/blue"
             app:hintTextColor="@color/blue">
 
             <com.google.android.material.textfield.TextInputEditText

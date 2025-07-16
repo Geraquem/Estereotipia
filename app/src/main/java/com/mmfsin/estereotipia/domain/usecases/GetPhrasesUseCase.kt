@@ -4,7 +4,6 @@ import com.mmfsin.estereotipia.base.BaseUseCaseNoParams
 import com.mmfsin.estereotipia.domain.interfaces.IQuestionsRepository
 import com.mmfsin.estereotipia.domain.mappers.toGamePhraseList
 import com.mmfsin.estereotipia.domain.models.GamePhrase
-import com.mmfsin.estereotipia.domain.models.Question
 import com.mmfsin.estereotipia.utils.NUM_OF_QUESTIONS
 import javax.inject.Inject
 
@@ -12,7 +11,7 @@ class GetPhrasesUseCase @Inject constructor(private val repository: IQuestionsRe
     BaseUseCaseNoParams<List<GamePhrase>?>() {
 
     override suspend fun execute(): List<GamePhrase>? {
-        val questions = repository.getQuestions()
+        val questions = repository.getPhrases()
         if (!questions.isNullOrEmpty()) {
             return try {
                 val date = System.currentTimeMillis().toString()
@@ -20,7 +19,7 @@ class GetPhrasesUseCase @Inject constructor(private val repository: IQuestionsRe
                 var intNumber = number.toInt()
                 if (intNumber > 4) intNumber = 4
 
-                var shuffled = emptyList<Question>()
+                var shuffled = emptyList<String>()
                 for (i in 1..intNumber) {
                     shuffled = questions.shuffled()
                 }

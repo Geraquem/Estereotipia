@@ -41,8 +41,6 @@ class DeckNameDialog(val cards: List<String>, private val listener: ICreateDeckC
 
     override fun setUI() {
         isCancelable = true
-        binding.apply {
-        }
     }
 
     override fun setListeners() {

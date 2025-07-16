@@ -24,6 +24,8 @@ import com.mmfsin.estereotipia.presentation.menu.adapter.MenuCardsAdapter
 import com.mmfsin.estereotipia.presentation.menu.decks.DecksSheet
 import com.mmfsin.estereotipia.presentation.menu.interfaces.IMenuCardsListener
 import com.mmfsin.estereotipia.presentation.menu.interfaces.IMenuListener
+import com.mmfsin.estereotipia.utils.PHRASES
+import com.mmfsin.estereotipia.utils.QUESTIONS
 import com.mmfsin.estereotipia.utils.animateX
 import com.mmfsin.estereotipia.utils.animateY
 import com.mmfsin.estereotipia.utils.countDown
@@ -65,13 +67,24 @@ class MenuFragment : BaseFragment<FragmentMenuBinding, MenuViewModel>(), IMenuLi
             btnPlayWiw.setOnClickListener {
                 activity?.showFragmentDialog(DecksSheet(true, this@MenuFragment))
             }
-            btnInstWiw.setOnClickListener { navigateTo(R.navigation.nav_graph_instructions_who_is_who) }
+            btnInstWiw.setOnClickListener {
+                navigateTo(
+                    R.navigation.nav_graph_instructions_who_is_who,
+                    strArgs = QUESTIONS
+                )
+            }
 
             btnPlayIdentities.setOnClickListener { (activity as MainActivity).openIdentitiesActivity() }
             btnInstIdentities.setOnClickListener { navigateTo(R.navigation.nav_graph_instructions_identities) }
 
             btnPlayPhrases.setOnClickListener {
                 activity?.showFragmentDialog(DecksSheet(false, this@MenuFragment))
+            }
+            btnInstPhrases.setOnClickListener {
+                navigateTo(
+                    R.navigation.nav_graph_instructions_who_is_who,
+                    strArgs = PHRASES
+                )
             }
 
             menuDecks.tvCustomDecks.setOnClickListener { navigateTo(R.navigation.nav_graph_custom_decks) }

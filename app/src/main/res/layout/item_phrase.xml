@@ -21,11 +21,12 @@
     <TextView
         android:id="@+id/tv_question"
         style="@style/MediumTextView"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="6dp"
         android:alpha="0.75"
         app:layout_constraintLeft_toRightOf="@id/tv_number"
+        app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="¿En su vida pasada fue un pirata inglés que surcaba los mares y saqueaba ciudades?" />
 
@@ -48,9 +49,9 @@
             android:autofillHints="name"
             android:background="@null"
             android:hint="@string/phrases_hint_list"
+            android:maxLength="100"
             android:imeOptions="actionDone"
-            android:inputType="textCapSentences"
-            android:maxLines="1"
+            android:inputType="textCapSentences|textMultiLine"
             android:paddingVertical="6dp"
             android:textCursorDrawable="@drawable/cursor_edit_text" />
 

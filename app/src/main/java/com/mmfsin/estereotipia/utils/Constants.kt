@@ -18,6 +18,7 @@ const val CARDS = "cards"
 
 const val QUESTIONS = "questions"
 const val IDENTITIES = "identities"
+const val PHRASES = "phrases"
 const val DECK_TYPE = "deckType"
 
 const val MY_SHARED_PREFS = "mSharedPrefs"
@@ -29,4 +30,5 @@ const val NUM_OF_QUESTIONS = 10
 const val SHARED_MAIN = "sharedMain"
 const val SERVER_QUESTIONS = "sharedQuestions"
 const val SERVER_IDENTITIES = "sharedIdentities"
+const val SERVER_PHRASES = "sharedPhrases"
 const val SERVER_DECKS = "sharedDecks"

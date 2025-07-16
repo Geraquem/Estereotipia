@@ -34,8 +34,8 @@
     <string name="menu_who_is_who_description">Clásico juego de <i>Quién es Quién</i>, pero con preguntas que te romperán los esquemas. Analiza la mente de tu rival y descubre su personaje.</string>
     <string name="menu_identities">Identidades</string>
     <string name="menu_identities_description">Una persona asigna en secreto tres identidades a tres personajes distintos. El resto de jugadores tratará de adivinar cuál ha sido dicha asignación.</string>
-    <string name="menu_phrases">Responde como tu personaje</string>
-    <string name="menu_phrases_description">blablablablablablablablablablablablablabla</string>
+    <string name="menu_phrases">Respuestas cortas</string>
+    <string name="menu_phrases_description">Trata de encontrar el personaje de tu rival antes de que encuentren el tuyo. Responde a las preguntas como lo haría tu personaje para guiar a tu oponente.</string>
     <string name="menu_how_to_play">Cómo jugar</string>
     <string name="menu_play">Jugar</string>
     <string name="menu_decks">Mis barajas</string>
@@ -133,7 +133,10 @@
     <string name="choice_dialog_looser_zero_opportunities">Has acabado con todas tus oportunidades</string>
 
     <!-- WHO IS WHO-->
-    <string name="who_is_who_instructions_title">Modo Quién es quién</string>
+    <string name="who_is_who_instructions_title">Modo Quién es Quién</string>
+
+    <!-- PHRASES -->
+    <string name="phrases_instructions_title">Modo Respuestas Cortas</string>
 
     <!-- QUESTIONS -->
     <string name="questions_do_question">Nueva pregunta</string>
@@ -265,6 +268,9 @@
 
     <string name="instructions_how_many_questions">¿Cuántas preguntas se pueden hacer?</string>
     <string name="instructions_how_many_questions_details">Por partida puedes hacer hasta <b>10 preguntas diferentes.</b>\n\nTodas las preguntas son de carácter subjetivo, nunca irán referidas al físico de los personajes de las cartas.\n\nResponde siempre con total sinceridad.</string>
+
+    <string name="instructions_how_are_the_questions">¿Cómo son las preguntas?</string>
+    <string name="instructions_how_are_the_questions_details">En el modo <b>Quién es Quién</b> las preguntas sólo se puedes responder con <b>SÍ</b> o <b>NO</b>.\n\nEn el modo <b>Respuestas cortas</b> las preguntas se pueden responder con una frase corta, una palabra o algo que diría el personaje detrás de la carta que te ha tocado.</string>
 
     <string name="instructions_how_many_opportunities">¿Cuántas oportunidades para acertar tengo?</string>
     <string name="instructions_how_many_opportunities_number">2</string>

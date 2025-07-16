@@ -7,7 +7,6 @@ import com.mmfsin.estereotipia.data.mappers.createCustomDeckDTO
 import com.mmfsin.estereotipia.data.mappers.toDeck
 import com.mmfsin.estereotipia.data.mappers.toDeckList
 import com.mmfsin.estereotipia.data.models.DeckDTO
-import com.mmfsin.estereotipia.data.models.IdentityDTO
 import com.mmfsin.estereotipia.domain.interfaces.IDeckRepository
 import com.mmfsin.estereotipia.domain.interfaces.IRealmDatabase
 import com.mmfsin.estereotipia.domain.models.AllDecks
@@ -42,7 +41,7 @@ class DeckRepository @Inject constructor(
         val sharedPrefs = context.getSharedPreferences(SHARED_MAIN, Context.MODE_PRIVATE)
 
         if (sharedPrefs.getBoolean(SERVER_DECKS, true)) {
-            realmDatabase.deleteAllObjects(DeckDTO::class.java)
+//            realmDatabase.deleteAllObjects(DeckDTO::class.java)
             val decks = mutableListOf<DeckDTO>()
             Firebase.database.reference.child(DECKS).get().addOnSuccessListener {
                 for (child in it.children) {
@@ -79,7 +78,7 @@ class DeckRepository @Inject constructor(
     }
 
     override fun createDeck(name: String, cards: List<String>) {
-        realmDatabase.addObject { createCustomDeckDTO(name, cards) }
+        if (cards.size > 1) realmDatabase.addObject { createCustomDeckDTO(name, cards) }
     }
 
     override fun getCustomDecks(): List<Deck> {
@@ -98,10 +97,12 @@ class DeckRepository @Inject constructor(
     }
 
     override fun editCustomDeckCards(id: String, cards: List<String>) {
-        val deck = realmDatabase.getObjectFromRealm(DeckDTO::class.java, ID, id)
-        deck?.let {
-            it.cards = cards.toCardList()
-            realmDatabase.addObject { it }
+        if (cards.size > 1) {
+            val deck = realmDatabase.getObjectFromRealm(DeckDTO::class.java, ID, id)
+            deck?.let {
+                it.cards = cards.toCardList()
+                realmDatabase.addObject { it }
+            }
         }
     }
 

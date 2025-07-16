@@ -1,9 +1,9 @@
 package com.mmfsin.estereotipia.presentation
 
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
+import android.view.WindowInsets
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.view.WindowInsetsControllerCompat
@@ -30,13 +30,26 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        handleLoading(show = true)
     }
 
-    private fun changeStatusBar(color: Int) {
-        window.statusBarColor = ContextCompat.getColor(this, color)
-        val controller = WindowInsetsControllerCompat(window, window.decorView)
-        controller.isAppearanceLightStatusBars = true
+    private fun changeStatusBarColor(color: Int) {
+        // Android 15+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.VANILLA_ICE_CREAM) {
+            window.decorView.setOnApplyWindowInsetsListener { view, insets ->
+                val statusBarInsets = insets.getInsets(WindowInsets.Type.statusBars())
+                view.setBackgroundColor(ContextCompat.getColor(this, color))
+                view.setPadding(0, statusBarInsets.top, 0, 0)
+                insets
+            }
+
+        } else {
+            // For Android 14 and below
+            @Suppress("DEPRECATION")
+            window.statusBarColor = ContextCompat.getColor(this, color)
+        }
+
+        //true == dark
+        WindowInsetsControllerCompat(window, window.decorView).isAppearanceLightStatusBars = true
     }
 
     fun openBedRockActivity(
@@ -59,6 +72,6 @@ class MainActivity : AppCompatActivity() {
     fun handleLoading(show: Boolean) {
         binding.loading.isVisible = show
         val color = if (show) R.color.white else R.color.orange
-        changeStatusBar(color)
+        changeStatusBarColor(color)
     }
 }

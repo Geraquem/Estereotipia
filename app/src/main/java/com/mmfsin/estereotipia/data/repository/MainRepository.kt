@@ -13,6 +13,7 @@ import com.mmfsin.estereotipia.utils.MY_SHARED_PREFS
 import com.mmfsin.estereotipia.utils.SAVED_VERSION
 import com.mmfsin.estereotipia.utils.SERVER_DECKS
 import com.mmfsin.estereotipia.utils.SERVER_IDENTITIES
+import com.mmfsin.estereotipia.utils.SERVER_PHRASES
 import com.mmfsin.estereotipia.utils.SERVER_QUESTIONS
 import com.mmfsin.estereotipia.utils.SHARED_MAIN
 import com.mmfsin.estereotipia.utils.VERSION
@@ -80,6 +81,7 @@ class MainRepository @Inject constructor(
             putBoolean(SERVER_DECKS, true)
             putBoolean(SERVER_QUESTIONS, true)
             putBoolean(SERVER_IDENTITIES, true)
+            putBoolean(SERVER_PHRASES, true)
             apply()
         }
     }

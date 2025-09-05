@@ -1,5 +1,6 @@
 package com.mmfsin.estereotipia.presentation.customdecks.shared
 
+import android.app.ComponentCaller
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -50,9 +51,9 @@ class SharedDeckActivity : AppCompatActivity() {
         uri?.let { openSharedDeckDialog(it) }
     }
 
-    override fun onNewIntent(intent: Intent?) {
+    override fun onNewIntent(intent: Intent, caller: ComponentCaller) {
         super.onNewIntent(intent)
-        uri = intent?.data
+        uri = intent.data
         uri?.let { openSharedDeckDialog(it) }
     }
 

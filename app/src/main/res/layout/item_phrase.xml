@@ -49,9 +49,9 @@
             android:autofillHints="name"
             android:background="@null"
             android:hint="@string/phrases_hint_list"
-            android:maxLength="100"
             android:imeOptions="actionDone"
             android:inputType="textCapSentences|textMultiLine"
+            android:maxLength="100"
             android:paddingVertical="6dp"
             android:textCursorDrawable="@drawable/cursor_edit_text" />
 

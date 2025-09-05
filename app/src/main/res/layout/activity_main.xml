@@ -49,11 +49,14 @@
         android:elevation="20dp"
         android:visibility="gone">
 
-        <pl.droidsonroids.gif.GifImageView
-            android:layout_width="140dp"
-            android:layout_height="140dp"
+        <com.airbnb.lottie.LottieAnimationView
+            android:layout_width="160dp"
+            android:layout_height="160dp"
             android:layout_centerInParent="true"
-            android:src="@drawable/sixtyfour_gif" />
+            app:lottie_autoPlay="true"
+            app:lottie_colorFilter="@color/orange"
+            app:lottie_loop="true"
+            app:lottie_rawRes="@raw/lottie_waiting" />
 
     </RelativeLayout>
 

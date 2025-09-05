@@ -13,7 +13,7 @@ import com.mmfsin.estereotipia.utils.IDENTITIES
 import com.mmfsin.estereotipia.utils.SERVER_IDENTITIES
 import com.mmfsin.estereotipia.utils.SHARED_MAIN
 import dagger.hilt.android.qualifiers.ApplicationContext
-import io.realm.kotlin.where
+import io.realm.kotlin.ext.query
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import java.util.concurrent.CountDownLatch
@@ -29,7 +29,7 @@ class IdentitiesRepository @Inject constructor(
         val sharedPrefs = context.getSharedPreferences(SHARED_MAIN, MODE_PRIVATE)
 
         if (sharedPrefs.getBoolean(SERVER_IDENTITIES, true)) {
-            realmDatabase.deleteAllObjects(IdentityDTO::class.java)
+            realmDatabase.deleteAllObjects(IdentityDTO::class)
             val identities = mutableListOf<IdentityDTO>()
             Firebase.database.reference.child(IDENTITIES).get().addOnSuccessListener {
                 for (child in it.children) {
@@ -52,11 +52,16 @@ class IdentitiesRepository @Inject constructor(
             return identities.toIdentityList()
 
         } else {
-            val identities = realmDatabase.getObjectsFromRealm { where<IdentityDTO>().findAll() }
+            val identities = realmDatabase.getObjectsFromRealm { query<IdentityDTO>().find() }
+            if (identities.isEmpty()) {
+                sharedPrefs.edit().apply {
+                    putBoolean(SERVER_IDENTITIES, true)
+                    apply()
+                }
+            }
             return identities.toIdentityList()
         }
     }
 
     private fun saveIdentityInRealm(identity: IdentityDTO) = realmDatabase.addObject { identity }
-
 }

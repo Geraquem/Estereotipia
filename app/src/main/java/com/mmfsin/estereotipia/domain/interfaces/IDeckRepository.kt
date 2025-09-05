@@ -9,8 +9,8 @@ interface IDeckRepository {
     /** Custom decks */
     fun getCustomDecks(): List<Deck>
     fun createDeck(name: String, cards: List<String>)
-    fun editCustomDeckName(id: String, name: String)
-    fun editCustomDeckCards(id: String, cards: List<String>)
+    suspend fun editCustomDeckName(id: String, name: String)
+    suspend fun editCustomDeckCards(id: String, cards: List<String>)
     fun deleteCustomDeck(id: String)
 
     /** Common */

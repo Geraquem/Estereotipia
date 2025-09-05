@@ -31,10 +31,13 @@ class NewQuestionDialog(
     }
 
     override fun setUI() {
-        isCancelable = true
+        isCancelable = false
         binding.apply {
             val text = question.question
             tvQuestion.text = text
+        }
+        countDown(1000) {
+            isCancelable = true
         }
     }
 

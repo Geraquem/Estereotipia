@@ -29,7 +29,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
     }
 
     private fun changeStatusBarColor(color: Int) {
@@ -71,7 +70,12 @@ class MainActivity : AppCompatActivity() {
 
     fun handleLoading(show: Boolean) {
         binding.loading.isVisible = show
-        val color = if (show) R.color.white else R.color.orange
-        changeStatusBarColor(color)
+
+        /** Si cambio el status bar de color, me hace un popping raro y no me gusta >:( */
+//        val color = if (show) R.color.white else R.color.orange
+//        changeStatusBarColor(R.color.orange)
+
+        /** but set dark icons */
+        WindowInsetsControllerCompat(window, window.decorView).isAppearanceLightStatusBars = true
     }
 }

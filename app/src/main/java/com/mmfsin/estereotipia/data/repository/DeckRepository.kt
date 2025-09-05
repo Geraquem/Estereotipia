@@ -18,21 +18,19 @@ import com.mmfsin.estereotipia.utils.SERVER_DECKS
 import com.mmfsin.estereotipia.utils.SHARED_MAIN
 import com.mmfsin.estereotipia.utils.toCardList
 import dagger.hilt.android.qualifiers.ApplicationContext
-import io.realm.kotlin.where
+import io.realm.kotlin.ext.query
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import java.util.concurrent.CountDownLatch
 import javax.inject.Inject
 
 class DeckRepository @Inject constructor(
-    @ApplicationContext val context: Context,
-    private val realmDatabase: IRealmDatabase
+    @ApplicationContext val context: Context, private val realmDatabase: IRealmDatabase
 ) : IDeckRepository {
 
     override suspend fun getAllDecks(): AllDecks {
         return AllDecks(
-            systemDecks = getSystemDecks(),
-            customDecks = getCustomDecks()
+            systemDecks = getSystemDecks(), customDecks = getCustomDecks()
         )
     }
 
@@ -65,7 +63,7 @@ class DeckRepository @Inject constructor(
 
         } else {
             val decks = realmDatabase.getObjectsFromRealm {
-                where<DeckDTO>().equalTo(IS_CUSTOM_DECK, false).findAll()
+                query<DeckDTO>("$IS_CUSTOM_DECK == $0", false).find()
             }
             return decks.toDeckList()
         }
@@ -74,7 +72,7 @@ class DeckRepository @Inject constructor(
     private fun saveDeckInRealm(deck: DeckDTO) = realmDatabase.addObject { deck }
 
     override fun getDeckById(id: String): Deck? {
-        return realmDatabase.getObjectFromRealm(DeckDTO::class.java, ID, id)?.toDeck()
+        return realmDatabase.getObjectFromRealm(DeckDTO::class, ID, id)?.toDeck()
     }
 
     override fun createDeck(name: String, cards: List<String>) {
@@ -83,29 +81,26 @@ class DeckRepository @Inject constructor(
 
     override fun getCustomDecks(): List<Deck> {
         val decks = realmDatabase.getObjectsFromRealm {
-            where<DeckDTO>().equalTo(IS_CUSTOM_DECK, true).findAll()
+            query<DeckDTO>("$IS_CUSTOM_DECK == $0", true).find()
         }
         return decks.toDeckList()
     }
 
-    override fun editCustomDeckName(id: String, name: String) {
-        val deck = realmDatabase.getObjectFromRealm(DeckDTO::class.java, ID, id)
-        deck?.let {
-            it.name = name
-            realmDatabase.addObject { it }
+    override suspend fun editCustomDeckName(id: String, name: String) {
+        realmDatabase.write {
+            val deck = query<DeckDTO>("$ID == $0", id).first().find()
+            deck?.name = name
         }
     }
 
-    override fun editCustomDeckCards(id: String, cards: List<String>) {
+    override suspend fun editCustomDeckCards(id: String, cards: List<String>) {
         if (cards.size > 1) {
-            val deck = realmDatabase.getObjectFromRealm(DeckDTO::class.java, ID, id)
-            deck?.let {
-                it.cards = cards.toCardList()
-                realmDatabase.addObject { it }
+            realmDatabase.write {
+                val deck = query<DeckDTO>("$ID == $0", id).first().find()
+                deck?.cards = cards.toCardList()
             }
         }
     }
 
-    override fun deleteCustomDeck(id: String) =
-        realmDatabase.deleteObject(DeckDTO::class.java, ID, id)
+    override fun deleteCustomDeck(id: String) = realmDatabase.deleteObject(DeckDTO::class, ID, id)
 }

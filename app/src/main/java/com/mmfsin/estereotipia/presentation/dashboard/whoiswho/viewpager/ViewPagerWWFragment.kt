@@ -13,6 +13,7 @@ import com.mmfsin.estereotipia.databinding.FragmentViewPagerBinding
 import com.mmfsin.estereotipia.presentation.dashboard.whoiswho.viewpager.adapter.ViewPagerWWAdapter
 import com.mmfsin.estereotipia.utils.BEDROCK_STR_ARGS
 import com.mmfsin.estereotipia.utils.DECK_ID
+import com.mmfsin.estereotipia.utils.QUESTIONS
 import com.mmfsin.estereotipia.utils.checkNotNulls
 import com.mmfsin.estereotipia.utils.showErrorDialog
 import dagger.hilt.android.AndroidEntryPoint
@@ -70,7 +71,8 @@ class ViewPagerWWFragment : BaseFragment<FragmentViewPagerBinding, ViewPagerWWVi
             setUpToolbar(
                 title = deckName,
                 instructionsVisible = true,
-                instructionsNavGraph = R.navigation.nav_graph_instructions_who_is_who
+                instructionsNavGraph = R.navigation.nav_graph_instructions_who_is_who,
+                instructionsType = QUESTIONS
             )
             showBanner(visible = true)
         }

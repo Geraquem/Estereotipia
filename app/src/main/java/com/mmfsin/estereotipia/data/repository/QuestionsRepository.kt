@@ -15,7 +15,7 @@ import com.mmfsin.estereotipia.utils.SERVER_PHRASES
 import com.mmfsin.estereotipia.utils.SERVER_QUESTIONS
 import com.mmfsin.estereotipia.utils.SHARED_MAIN
 import dagger.hilt.android.qualifiers.ApplicationContext
-import io.realm.kotlin.where
+import io.realm.kotlin.ext.query
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import java.util.concurrent.CountDownLatch
@@ -31,14 +31,14 @@ class QuestionsRepository @Inject constructor(
         val sharedPrefs = context.getSharedPreferences(SHARED_MAIN, Context.MODE_PRIVATE)
 
         if (sharedPrefs.getBoolean(SERVER_QUESTIONS, true)) {
-            realmDatabase.deleteAllObjects(QuestionDTO::class.java)
+            realmDatabase.deleteAllObjects(QuestionDTO::class)
             val questions = mutableListOf<QuestionDTO>()
             Firebase.database.reference.child(QUESTIONS).get().addOnSuccessListener {
                 for (child in it.children) {
-                    val question = QuestionDTO(
-                        id = child.key.toString(),
+                    val question = QuestionDTO().apply {
+                        id = child.key.toString()
                         question = child.value.toString()
-                    )
+                    }
                     saveQuestionInRealm(question)
                     questions.add(question)
                 }
@@ -56,7 +56,7 @@ class QuestionsRepository @Inject constructor(
             return questions.toQuestionList()
 
         } else {
-            val questions = realmDatabase.getObjectsFromRealm { where<QuestionDTO>().findAll() }
+            val questions = realmDatabase.getObjectsFromRealm { query<QuestionDTO>().find() }
             if (questions.isEmpty()) {
                 sharedPrefs.edit().apply {
                     putBoolean(SERVER_QUESTIONS, true)
@@ -72,14 +72,14 @@ class QuestionsRepository @Inject constructor(
         val sharedPrefs = context.getSharedPreferences(SHARED_MAIN, Context.MODE_PRIVATE)
 
         if (sharedPrefs.getBoolean(SERVER_PHRASES, true)) {
-            realmDatabase.deleteAllObjects(PhraseDTO::class.java)
+            realmDatabase.deleteAllObjects(PhraseDTO::class)
             val phrases = mutableListOf<PhraseDTO>()
             Firebase.database.reference.child(PHRASES).get().addOnSuccessListener {
                 for (child in it.children) {
-                    val phrase = PhraseDTO(
-                        id = child.key.toString(),
+                    val phrase = PhraseDTO().apply {
+                        id = child.key.toString()
                         question = child.value.toString()
-                    )
+                    }
                     savePhraseInRealm(phrase)
                     phrases.add(phrase)
                 }
@@ -97,7 +97,7 @@ class QuestionsRepository @Inject constructor(
             return phrases.map { it.question }
 
         } else {
-            val phrases = realmDatabase.getObjectsFromRealm { where<PhraseDTO>().findAll() }
+            val phrases = realmDatabase.getObjectsFromRealm { query<PhraseDTO>().find() }
             if (phrases.isEmpty()) {
                 sharedPrefs.edit().apply {
                     putBoolean(SERVER_PHRASES, true)

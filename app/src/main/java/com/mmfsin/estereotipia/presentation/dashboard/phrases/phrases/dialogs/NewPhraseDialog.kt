@@ -31,11 +31,14 @@ class NewPhraseDialog(
     }
 
     override fun setUI() {
-        isCancelable = true
+        isCancelable = false
         binding.apply {
             val text = phrase.question
             tvQuestion.text = text
             etAnswer.isEnabled = false
+        }
+        countDown(1000) {
+            isCancelable = true
         }
     }
 

@@ -68,14 +68,21 @@ class BedRockActivity : AppCompatActivity() {
     fun setUpToolbar(
         title: String? = "",
         instructionsVisible: Boolean = true,
-        instructionsNavGraph: Int? = null
+        instructionsNavGraph: Int? = null,
+        instructionsType: String? = null
     ) {
         binding.toolbar.apply {
             ivBack.setOnClickListener { onBackPressed() }
             tvTitle.text = title
             ivInstructions.isVisible = instructionsVisible
+
             instructionsNavGraph?.let { navGraph ->
-                ivInstructions.setOnClickListener { openBedRockActivity(navGraph = navGraph) }
+                ivInstructions.setOnClickListener {
+                    openBedRockActivity(
+                        navGraph = navGraph,
+                        strArgs = instructionsType
+                    )
+                }
             }
         }
     }
@@ -99,8 +106,8 @@ class BedRockActivity : AppCompatActivity() {
     }
 
     fun showBanner(visible: Boolean = false) {
-//        binding.adView.isVisible = visible
-        binding.adView.isVisible = false
+        binding.adView.isVisible = visible
+//        binding.adView.isVisible = false
     }
 
     private fun error() = showErrorDialog(goBack = true)

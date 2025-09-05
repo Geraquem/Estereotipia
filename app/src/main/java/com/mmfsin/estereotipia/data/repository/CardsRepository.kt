@@ -9,7 +9,7 @@ import com.mmfsin.estereotipia.domain.interfaces.IRealmDatabase
 import com.mmfsin.estereotipia.domain.models.Card
 import com.mmfsin.estereotipia.utils.ID
 import com.mmfsin.estereotipia.utils.getCards
-import io.realm.kotlin.where
+import io.realm.kotlin.ext.query
 import javax.inject.Inject
 
 class CardsRepository @Inject constructor(
@@ -17,11 +17,8 @@ class CardsRepository @Inject constructor(
 ) : ICardsRepository {
 
     override fun getAllCards(): List<Card>? {
-        val cards = realmDatabase.getObjectsFromRealm {
-            where<CardDTO>().findAll()
-        }
-        return if (cards.isEmpty()) null else cards.toCardList()
-            .sortedBy { it.name }
+        val cards = realmDatabase.getObjectsFromRealm { query<CardDTO>().find() }
+        return if (cards.isEmpty()) null else cards.toCardList().sortedBy { it.name }
     }
 
     override fun getThreeRandomCards(): List<Card>? {
@@ -30,11 +27,11 @@ class CardsRepository @Inject constructor(
 
     override fun getCardsByDeckId(deckId: String): List<Card>? {
         /** check system decks */
-        val systemDeck = realmDatabase.getObjectFromRealm(DeckDTO::class.java, ID, deckId)
+        val systemDeck = realmDatabase.getObjectFromRealm(DeckDTO::class, ID, deckId)
         systemDeck?.let { d -> return getCardsByListId(d.cards.getCards()) }
 
         /** si no puede que sea creado por el user */
-        val customDeck = realmDatabase.getObjectFromRealm(DeckDTO::class.java, ID, deckId)
+        val customDeck = realmDatabase.getObjectFromRealm(DeckDTO::class, ID, deckId)
         customDeck?.let { d -> return getCardsByListId(d.cards.getCards()) }
 
         return null
@@ -50,9 +47,7 @@ class CardsRepository @Inject constructor(
     }
 
     private fun getCardDTO(id: String): CardDTO? {
-        val cards = realmDatabase.getObjectsFromRealm {
-            where<CardDTO>().equalTo("id", id).findAll()
-        }
+        val cards = realmDatabase.getObjectsFromRealm { query<CardDTO>("$ID == $0", id).find() }
         return if (cards.isEmpty()) null else cards.first()
     }
 

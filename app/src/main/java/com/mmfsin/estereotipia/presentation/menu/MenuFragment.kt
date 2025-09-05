@@ -161,7 +161,7 @@ class MenuFragment : BaseFragment<FragmentMenuBinding, MenuViewModel>(), IMenuLi
                         dataSource: DataSource?,
                         isFirstResource: Boolean
                     ): Boolean {
-                        loading.visibility = View.GONE
+                        loading.visibility = View.INVISIBLE
                         ivTop.animate().alpha(1f).duration = 1500
                         return false
                     }

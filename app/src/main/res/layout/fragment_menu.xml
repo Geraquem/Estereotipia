@@ -56,32 +56,43 @@
                     app:layout_constraintBottom_toBottomOf="@id/bg_guide"
                     app:layout_constraintTop_toTopOf="parent" />
 
-                <TextView
-                    android:id="@+id/tv_title"
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:id="@+id/ll_title"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="32dp"
                     android:elevation="6dp"
-                    android:fontFamily="@font/font_app_name"
-                    android:gravity="center"
-                    android:text="@string/app_name"
-                    android:textColor="@color/black"
-                    android:textSize="52sp"
+                    android:orientation="vertical"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent">
+
+
+                    <TextView
+                        android:id="@+id/tv_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="42dp"
+                        android:elevation="6dp"
+                        android:fontFamily="@font/font_app_name"
+                        android:gravity="center"
+                        android:text="@string/app_name"
+                        android:textColor="@color/black"
+                        android:textSize="52sp" />
+
+                </LinearLayout>
 
                 <FrameLayout
                     android:id="@+id/fl_main_image"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginTop="24dp"
                     android:background="@drawable/bg_white_box"
                     android:elevation="6dp"
                     android:padding="8dp"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/tv_title">
+                    app:layout_constraintTop_toBottomOf="@id/ll_title">
 
                     <ImageView
                         android:id="@+id/iv_top"
@@ -149,54 +160,74 @@
                         android:paddingTop="16dp"
                         android:paddingBottom="12dp">
 
-                        <LinearLayout
-                            android:layout_width="wrap_content"
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="8dp"
                             android:gravity="start|center"
                             android:orientation="horizontal">
 
                             <ImageView
+                                android:id="@+id/ic_dot_wiw"
                                 style="@style/BigTextView_Bold"
                                 android:layout_width="6dp"
                                 android:layout_height="6dp"
-                                android:layout_marginEnd="8dp"
                                 android:contentDescription="@string/content_description"
                                 android:gravity="center"
-                                android:src="@drawable/ic_circle" />
+                                android:src="@drawable/ic_circle"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintLeft_toLeftOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
 
                             <TextView
+                                android:id="@+id/tv_wiw_title"
                                 style="@style/BigTextView"
-                                android:layout_width="match_parent"
+                                android:layout_width="0dp"
                                 android:layout_height="wrap_content"
+                                android:layout_marginHorizontal="8dp"
                                 android:text="@string/menu_who_is_who"
                                 android:textAllCaps="true"
                                 android:textSize="20sp"
-                                android:textStyle="bold" />
+                                android:textStyle="bold"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintLeft_toRightOf="@id/ic_dot_wiw"
+                                app:layout_constraintRight_toLeftOf="@id/ll_wiw_icons"
+                                app:layout_constraintTop_toTopOf="parent" />
 
-                            <ImageView
-                                style="@style/BigTextView_Bold"
-                                android:layout_width="22dp"
-                                android:layout_height="22dp"
-                                android:layout_marginStart="8dp"
-                                android:contentDescription="@string/content_description"
+                            <LinearLayout
+                                android:id="@+id/ll_wiw_icons"
+                                android:layout_width="wrap_content"
+                                android:layout_height="0dp"
+                                android:alpha="0.4"
                                 android:gravity="center"
-                                android:src="@drawable/ic_card"
+                                android:orientation="horizontal"
                                 android:visibility="gone"
-                                app:tint="@color/orange" />
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintRight_toRightOf="parent"
+                                app:layout_constraintTop_toTopOf="parent">
 
-                            <ImageView
-                                style="@style/BigTextView_Bold"
-                                android:layout_width="22dp"
-                                android:layout_height="22dp"
-                                android:layout_marginStart="2dp"
-                                android:contentDescription="@string/content_description"
-                                android:gravity="center"
-                                android:src="@drawable/ic_card"
-                                android:visibility="gone"
-                                app:tint="@color/orange" />
+                                <ImageView
+                                    style="@style/BigTextView_Bold"
+                                    android:layout_width="22dp"
+                                    android:layout_height="22dp"
+                                    android:layout_marginEnd="2dp"
+                                    android:contentDescription="@string/content_description"
+                                    android:gravity="center"
+                                    android:src="@drawable/ic_card"
+                                    app:tint="@color/black" />
 
-                        </LinearLayout>
+                                <ImageView
+                                    style="@style/BigTextView_Bold"
+                                    android:layout_width="22dp"
+                                    android:layout_height="22dp"
+                                    android:contentDescription="@string/content_description"
+                                    android:gravity="center"
+                                    android:src="@drawable/ic_card"
+                                    app:tint="@color/black" />
+
+                            </LinearLayout>
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
 
                         <TextView
                             style="@style/SmallTextView"
@@ -253,58 +284,80 @@
                         android:paddingTop="16dp"
                         android:paddingBottom="12dp">
 
-                        <LinearLayout
-                            android:layout_width="wrap_content"
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="8dp"
                             android:gravity="start|center"
                             android:orientation="horizontal">
 
                             <ImageView
+                                android:id="@+id/ic_dot_ident"
                                 style="@style/BigTextView_Bold"
                                 android:layout_width="6dp"
                                 android:layout_height="6dp"
-                                android:layout_marginEnd="8dp"
                                 android:contentDescription="@string/content_description"
                                 android:gravity="center"
-                                android:src="@drawable/ic_circle" />
+                                android:src="@drawable/ic_circle"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintLeft_toLeftOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
 
                             <TextView
+                                android:id="@+id/tv_ident_title"
                                 style="@style/BigTextView"
-                                android:layout_width="match_parent"
+                                android:layout_width="0dp"
                                 android:layout_height="wrap_content"
+                                android:layout_marginHorizontal="8dp"
                                 android:text="@string/menu_identities"
                                 android:textAllCaps="true"
                                 android:textSize="20sp"
-                                android:textStyle="bold" />
+                                android:textStyle="bold"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintLeft_toRightOf="@id/ic_dot_ident"
+                                app:layout_constraintRight_toLeftOf="@id/ll_ident_icons"
+                                app:layout_constraintTop_toTopOf="parent" />
 
-                            <ImageView
-                                android:layout_width="12dp"
-                                android:layout_height="12dp"
-                                android:layout_marginStart="8dp"
-                                android:background="@drawable/bg_identities_number"
-                                android:contentDescription="@string/content_description"
+                            <LinearLayout
+                                android:id="@+id/ll_ident_icons"
+                                android:layout_width="wrap_content"
+                                android:layout_height="0dp"
+                                android:alpha="0.4"
                                 android:gravity="center"
-                                android:visibility="gone" />
+                                android:orientation="horizontal"
+                                android:visibility="gone"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintRight_toRightOf="parent"
+                                app:layout_constraintTop_toTopOf="parent">
 
-                            <ImageView
-                                android:layout_width="12dp"
-                                android:layout_height="12dp"
-                                android:layout_marginHorizontal="4dp"
-                                android:background="@drawable/bg_identities_number"
-                                android:contentDescription="@string/content_description"
-                                android:gravity="center"
-                                android:visibility="gone" />
+                                <com.google.android.material.imageview.ShapeableImageView
+                                    android:layout_width="10dp"
+                                    android:layout_height="10dp"
+                                    android:background="@color/black"
+                                    app:layout_constraintLeft_toLeftOf="parent"
+                                    app:layout_constraintTop_toTopOf="parent"
+                                    app:shapeAppearanceOverlay="@style/circular_image" />
 
-                            <ImageView
-                                android:layout_width="12dp"
-                                android:layout_height="12dp"
-                                android:background="@drawable/bg_identities_number"
-                                android:contentDescription="@string/content_description"
-                                android:gravity="center"
-                                android:visibility="gone" />
+                                <com.google.android.material.imageview.ShapeableImageView
+                                    android:layout_width="10dp"
+                                    android:layout_height="10dp"
+                                    android:layout_marginHorizontal="4dp"
+                                    android:background="@color/black"
+                                    app:layout_constraintLeft_toLeftOf="parent"
+                                    app:layout_constraintTop_toTopOf="parent"
+                                    app:shapeAppearanceOverlay="@style/circular_image" />
 
-                        </LinearLayout>
+                                <com.google.android.material.imageview.ShapeableImageView
+                                    android:layout_width="10dp"
+                                    android:layout_height="10dp"
+                                    android:background="@color/black"
+                                    app:layout_constraintLeft_toLeftOf="parent"
+                                    app:layout_constraintTop_toTopOf="parent"
+                                    app:shapeAppearanceOverlay="@style/circular_image" />
+
+                            </LinearLayout>
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
 
                         <TextView
                             style="@style/SmallTextView"
@@ -360,32 +413,56 @@
                         android:paddingTop="16dp"
                         android:paddingBottom="12dp">
 
-                        <LinearLayout
-                            android:layout_width="wrap_content"
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="8dp"
                             android:gravity="start|center"
                             android:orientation="horizontal">
 
                             <ImageView
+                                android:id="@+id/ic_dot_phrases"
                                 style="@style/BigTextView_Bold"
                                 android:layout_width="6dp"
                                 android:layout_height="6dp"
-                                android:layout_marginEnd="8dp"
                                 android:contentDescription="@string/content_description"
                                 android:gravity="center"
-                                android:src="@drawable/ic_circle" />
+                                android:src="@drawable/ic_circle"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintLeft_toLeftOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
 
                             <TextView
+                                android:id="@+id/tv_phrases_title"
                                 style="@style/BigTextView"
-                                android:layout_width="match_parent"
+                                android:layout_width="0dp"
                                 android:layout_height="wrap_content"
+                                android:layout_marginHorizontal="8dp"
                                 android:text="@string/menu_phrases"
                                 android:textAllCaps="true"
                                 android:textSize="20sp"
-                                android:textStyle="bold" />
+                                android:textStyle="bold"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintLeft_toRightOf="@id/ic_dot_phrases"
+                                app:layout_constraintRight_toLeftOf="@id/ic_phrases_icon"
+                                app:layout_constraintTop_toTopOf="parent" />
 
-                        </LinearLayout>
+                            <ImageView
+                                android:id="@+id/ic_phrases_icon"
+                                style="@style/BigTextView_Bold"
+                                android:layout_width="22dp"
+                                android:layout_height="22dp"
+                                android:layout_marginEnd="8dp"
+                                android:alpha="0.4"
+                                android:contentDescription="@string/content_description"
+                                android:src="@drawable/ic_write"
+                                android:visibility="gone"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintRight_toRightOf="parent"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:tint="@color/black" />
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
 
                         <TextView
                             style="@style/SmallTextView"

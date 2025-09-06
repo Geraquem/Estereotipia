@@ -1,16 +1,16 @@
 package com.mmfsin.estereotipia.presentation.customdecks.customdecks.interfaces
 
 interface ICustomDeckListener {
-    fun onCustomDeckClick(id: String)
+    fun onCustomDeckClick(deckId: String)
 
-    fun playWithCustomDeck(id: String)
-    fun seeCards(id: String)
+    fun playWithCustomDeck(deckId: String)
+    fun seeCards(deckId: String)
 
-    fun editName(id: String)
-    fun editCards(id: String)
+    fun editName(deckId: String)
+    fun editCards(deckId: String)
     fun editCompleted()
 
     fun shareDeck(name: String, cards: String)
-    fun confirmDeleteCustomDeck(id: String)
-    fun deleteCustomDeck(id: String)
+    fun confirmDeleteCustomDeck(deckId: String)
+    fun deleteCustomDeck(deckId: String)
 }

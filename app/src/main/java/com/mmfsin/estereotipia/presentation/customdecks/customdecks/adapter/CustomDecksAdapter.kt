@@ -5,7 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.mmfsin.estereotipia.R
-import com.mmfsin.estereotipia.databinding.ItemCustomDeckBinding
+import com.mmfsin.estereotipia.databinding.ItemCustomDeckOptionsBinding
 import com.mmfsin.estereotipia.domain.models.Deck
 import com.mmfsin.estereotipia.presentation.customdecks.customdecks.interfaces.ICustomDeckListener
 
@@ -15,7 +15,7 @@ class CustomDecksAdapter(
 ) : RecyclerView.Adapter<CustomDecksAdapter.ViewHolder>() {
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val binding = ItemCustomDeckBinding.bind(view)
+        val binding = ItemCustomDeckOptionsBinding.bind(view)
         val c = binding.root.context
         fun bind(deck: Deck) {
             binding.apply {
@@ -29,7 +29,8 @@ class CustomDecksAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(
-            LayoutInflater.from(parent.context).inflate(R.layout.item_custom_deck, parent, false)
+            LayoutInflater.from(parent.context)
+                .inflate(R.layout.item_custom_deck_options, parent, false)
         )
     }
 

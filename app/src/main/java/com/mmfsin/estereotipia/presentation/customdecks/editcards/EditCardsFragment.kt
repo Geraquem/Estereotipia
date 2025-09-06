@@ -19,6 +19,7 @@ import com.mmfsin.estereotipia.presentation.allcards.dialogs.AllCardDialog
 import com.mmfsin.estereotipia.presentation.customdecks.editcards.adapter.EditCardsAdapter
 import com.mmfsin.estereotipia.presentation.customdecks.editcards.interfaces.IEditCardsListener
 import com.mmfsin.estereotipia.presentation.customdecks.snackbar.CustomSnackbar
+import com.mmfsin.estereotipia.utils.BEDROCK_STR_ARGS
 import com.mmfsin.estereotipia.utils.DECK_ID
 import com.mmfsin.estereotipia.utils.getCards
 import com.mmfsin.estereotipia.utils.showErrorDialog
@@ -42,7 +43,7 @@ class EditCardsFragment : BaseFragment<FragmentCreateDeckBinding, EditCardsViewM
     ) = FragmentCreateDeckBinding.inflate(inflater, container, false)
 
     override fun getBundleArgs() {
-        arguments?.let { deckId = it.getString(DECK_ID) }
+        deckId = activity?.intent?.getStringExtra(BEDROCK_STR_ARGS)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

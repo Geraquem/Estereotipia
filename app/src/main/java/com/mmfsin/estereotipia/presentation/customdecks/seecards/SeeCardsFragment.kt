@@ -16,6 +16,7 @@ import com.mmfsin.estereotipia.domain.models.Card
 import com.mmfsin.estereotipia.presentation.allcards.dialogs.AllCardDialog
 import com.mmfsin.estereotipia.presentation.allcards.interfaces.IAllCardsListener
 import com.mmfsin.estereotipia.presentation.customdecks.seecards.adapter.SeeCardsAdapter
+import com.mmfsin.estereotipia.utils.BEDROCK_STR_ARGS
 import com.mmfsin.estereotipia.utils.DECK_ID
 import com.mmfsin.estereotipia.utils.showErrorDialog
 import com.mmfsin.estereotipia.utils.showFragmentDialog
@@ -37,7 +38,7 @@ class SeeCardsFragment : BaseFragment<FragmentCardsBinding, SeeCardsViewModel>()
     ) = FragmentCardsBinding.inflate(inflater, container, false)
 
     override fun getBundleArgs() {
-        arguments?.let { deckId = it.getString(DECK_ID) }
+        deckId = activity?.intent?.getStringExtra(BEDROCK_STR_ARGS)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -80,7 +81,7 @@ class SeeCardsFragment : BaseFragment<FragmentCardsBinding, SeeCardsViewModel>()
         }
     }
 
-    private fun setUpToolbar(deckName: String) =
+    private fun setUpToolbar(deckName: String) {
         (activity as BedRockActivity).apply {
             inDashboard = false
             setUpToolbar(
@@ -88,6 +89,7 @@ class SeeCardsFragment : BaseFragment<FragmentCardsBinding, SeeCardsViewModel>()
                 instructionsVisible = false
             )
         }
+    }
 
 
     private fun setUpCards(columns: Int, cards: List<Card>) {

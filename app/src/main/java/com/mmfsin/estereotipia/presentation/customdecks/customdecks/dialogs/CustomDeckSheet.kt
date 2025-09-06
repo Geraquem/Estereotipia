@@ -31,7 +31,9 @@ class CustomDeckSheet(
 
     override fun setListeners() {
         binding.apply {
-            tvPlay.setOnClickListener { actionAndDismiss { listener.playWithCustomDeck(customDeckId) } }
+            tvPlay.setOnClickListener {
+//                actionAndDismiss { listener.playWithCustomDeck(customDeckId) }
+            }
             tvSeeCards.setOnClickListener { actionAndDismiss { listener.seeCards(customDeckId) } }
 
             tvEditName.setOnClickListener { actionAndDismiss { listener.editName(customDeckId) } }

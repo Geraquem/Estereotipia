@@ -73,6 +73,7 @@
             android:textAllCaps="true"
             android:textSize="18sp"
             android:textStyle="bold"
+            android:visibility="gone"
             app:drawableStartCompat="@drawable/ic_play" />
 
         <TextView

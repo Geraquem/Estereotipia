@@ -8,24 +8,19 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.snackbar.Snackbar
 import com.mmfsin.estereotipia.R
 import com.mmfsin.estereotipia.base.BaseFragment
-import com.mmfsin.estereotipia.base.bedrock.BedRockActivity
 import com.mmfsin.estereotipia.databinding.FragmentCustomDecksBinding
 import com.mmfsin.estereotipia.domain.models.Deck
-import com.mmfsin.estereotipia.presentation.customdecks.customdecks.CustomDecksFragmentDirections.Companion.actionCustomDecksToCreateNewDeck
-import com.mmfsin.estereotipia.presentation.customdecks.customdecks.CustomDecksFragmentDirections.Companion.actionCustomDecksToEditCards
-import com.mmfsin.estereotipia.presentation.customdecks.customdecks.CustomDecksFragmentDirections.Companion.actionCustomDecksToSeeCards
+import com.mmfsin.estereotipia.presentation.MainActivity
 import com.mmfsin.estereotipia.presentation.customdecks.customdecks.adapter.CustomDecksAdapter
 import com.mmfsin.estereotipia.presentation.customdecks.customdecks.dialogs.CustomDeckSheet
 import com.mmfsin.estereotipia.presentation.customdecks.customdecks.dialogs.delete.DeleteCustomDeckDialog
 import com.mmfsin.estereotipia.presentation.customdecks.customdecks.dialogs.edit.EditCustomDeckDialog
 import com.mmfsin.estereotipia.presentation.customdecks.customdecks.interfaces.ICustomDeckListener
 import com.mmfsin.estereotipia.presentation.customdecks.snackbar.CustomSnackbar
-import com.mmfsin.estereotipia.utils.BEDROCK_BOOLEAN_ARGS
 import com.mmfsin.estereotipia.utils.encodeToBase64
 import com.mmfsin.estereotipia.utils.showErrorDialog
 import com.mmfsin.estereotipia.utils.showFragmentDialog
@@ -38,50 +33,27 @@ class CustomDecksFragment : BaseFragment<FragmentCustomDecksBinding, CustomDecks
     override val viewModel: CustomDecksViewModel by viewModels()
     private lateinit var mContext: Context
 
-    private var openCreateNewDeck = false
+    override fun inflateView(inflater: LayoutInflater, container: ViewGroup?) =
+        FragmentCustomDecksBinding.inflate(inflater, container, false)
 
-    override fun inflateView(
-        inflater: LayoutInflater, container: ViewGroup?
-    ) = FragmentCustomDecksBinding.inflate(inflater, container, false)
-
-    override fun getBundleArgs() {
-        openCreateNewDeck = activity?.intent?.getBooleanExtra(BEDROCK_BOOLEAN_ARGS, false) ?: false
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        if (openCreateNewDeck) {
-            openCreateNewDeck = false
-            createNewDeck()
-        }
+    override fun onResume() {
+        super.onResume()
         viewModel.getCustomDecks()
     }
 
     override fun setUI() {
         binding.apply {
             llEmpty.visibility = View.GONE
-//            (activity as BedRockActivity).apply {
-//                inDashboard = false
-//                setUpToolbar(
-//                    title = getString(R.string.custom_decks_toolbar),
-//                    instructionsVisible = false
-//                )
-//            }
+            tvTitle.text = getString(R.string.custom_decks_toolbar)
         }
     }
 
     override fun setListeners() {
         binding.apply {
-            clShareError.setOnClickListener {
-//                (activity as BedRockActivity).openBedRockActivity(
-//                    navGraph = R.navigation.nav_graph_share_deck_error,
-//                )
-            }
-            btnCreateDeck.setOnClickListener { createNewDeck() }
+            tvShareError.setOnClickListener { navigateTo(R.navigation.nav_graph_share_deck_error) }
+            btnCreateDeck.setOnClickListener { navigateTo(R.navigation.nav_graph_create_deck) }
         }
     }
-
-    private fun createNewDeck() = findNavController().navigate(actionCustomDecksToCreateNewDeck())
 
     override fun observe() {
         viewModel.event.observe(this) { event ->
@@ -109,22 +81,21 @@ class CustomDecksFragment : BaseFragment<FragmentCustomDecksBinding, CustomDecks
     }
 
     override fun playWithCustomDeck(id: String) {
-//        (activity as BedRockActivity).openBedRockActivity(
-//            navGraph = R.navigation.nav_graph_who_is_who,
-//            strArgs = id
-//        )
+        (activity as MainActivity).openBedRockActivity(
+            navGraph = R.navigation.nav_graph_who_is_who, strArgs = id
+        )
     }
 
-    override fun seeCards(id: String) {
-        findNavController().navigate(actionCustomDecksToSeeCards(id))
-    }
+    override fun seeCards(id: String) = navigateTo(R.navigation.nav_graph_see_deck_cards)
 
     override fun editName(id: String) {
         activity?.showFragmentDialog(EditCustomDeckDialog.newInstance(id, this@CustomDecksFragment))
     }
 
-    override fun editCards(id: String) =
-        findNavController().navigate(actionCustomDecksToEditCards(id))
+    override fun editCards(id: String) = navigateTo(R.navigation.nav_graph_edit_deck_cards)
+
+    private fun navigateTo(navGraph: Int) =
+        (activity as MainActivity).openBedRockActivity(navGraph = navGraph)
 
     override fun editCompleted() {
         CustomSnackbar.make(binding.clMain, Snackbar.LENGTH_SHORT).show()
@@ -155,8 +126,7 @@ class CustomDecksFragment : BaseFragment<FragmentCustomDecksBinding, CustomDecks
     override fun confirmDeleteCustomDeck(id: String) {
         activity?.showFragmentDialog(
             DeleteCustomDeckDialog.newInstance(
-                id,
-                this@CustomDecksFragment
+                id, this@CustomDecksFragment
             )
         )
     }

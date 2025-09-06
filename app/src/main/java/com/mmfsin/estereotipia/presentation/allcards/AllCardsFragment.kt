@@ -5,13 +5,11 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.mmfsin.estereotipia.R
 import com.mmfsin.estereotipia.base.BaseFragment
-import com.mmfsin.estereotipia.base.bedrock.BedRockActivity
-import com.mmfsin.estereotipia.databinding.FragmentCardsBinding
+import com.mmfsin.estereotipia.databinding.FragmentAllCardsBinding
 import com.mmfsin.estereotipia.domain.models.Card
 import com.mmfsin.estereotipia.presentation.allcards.adapter.AllCardsAdapter
 import com.mmfsin.estereotipia.presentation.allcards.dialogs.AllCardDialog
@@ -22,7 +20,7 @@ import com.mmfsin.estereotipia.utils.showFragmentDialog
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class AllCardsFragment : BaseFragment<FragmentCardsBinding, AllCardsViewModel>(),
+class AllCardsFragment : BaseFragment<FragmentAllCardsBinding, AllCardsViewModel>(),
     IAllCardsListener {
 
     override val viewModel: AllCardsViewModel by viewModels()
@@ -33,7 +31,7 @@ class AllCardsFragment : BaseFragment<FragmentCardsBinding, AllCardsViewModel>()
 
     override fun inflateView(
         inflater: LayoutInflater, container: ViewGroup?
-    ) = FragmentCardsBinding.inflate(inflater, container, false)
+    ) = FragmentAllCardsBinding.inflate(inflater, container, false)
 
     override fun getBundleArgs() {
         val cardId = activity?.intent?.getStringExtra(BEDROCK_STR_ARGS)
@@ -46,12 +44,8 @@ class AllCardsFragment : BaseFragment<FragmentCardsBinding, AllCardsViewModel>()
     }
 
     override fun setUI() {
-//        (activity as BedRockActivity).setUpToolbar(
-//            title = getString(R.string.menu_all_cards),
-//            instructionsVisible = false
-//        )
         binding.apply {
-            topSpace.isVisible = false
+            tvTitle.text = getString(R.string.menu_all_cards)
         }
     }
 

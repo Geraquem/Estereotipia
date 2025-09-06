@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph_see_deck_cards"
+    app:startDestination="@id/seeDeckCards">
+
+    <fragment
+        android:id="@+id/seeDeckCards"
+        android:name="com.mmfsin.estereotipia.presentation.customdecks.seecards.SeeCardsFragment"
+        android:label="seeDeckCards"
+        tools:layout="@layout/fragment_cards" />
+
+</navigation>

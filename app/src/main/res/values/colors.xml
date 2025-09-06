@@ -30,6 +30,9 @@
     <color name="dark_red">#C63C3C</color>
     <color name="red">#F39898</color>
 
+    <color name="light_yellow">#FFFCCD</color>
+    <color name="yellow">#FFFC19</color>
+
     <color name="answer_yes">#AFE3AD</color>
     <color name="answer_no">#FDB6B6</color>
 

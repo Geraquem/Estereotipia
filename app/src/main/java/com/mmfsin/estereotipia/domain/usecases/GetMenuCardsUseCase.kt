@@ -6,10 +6,10 @@ import com.mmfsin.estereotipia.domain.models.Card
 import javax.inject.Inject
 
 class GetMenuCardsUseCase @Inject constructor(private val repository: ICardsRepository) :
-    BaseUseCaseNoParams<List<Card>>() {
+    BaseUseCaseNoParams<Card?>() {
 
-    override suspend fun execute(): List<Card> {
+    override suspend fun execute(): Card? {
         val cards = repository.getAllCards()
-        return cards?.shuffled()?.take(7) ?: run { emptyList() }
+        return cards?.shuffled()?.first() ?: run { null }
     }
 }

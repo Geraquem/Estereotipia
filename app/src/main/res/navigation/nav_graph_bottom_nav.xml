@@ -18,6 +18,6 @@
     <fragment
         android:id="@+id/cardsFragment"
         android:name="com.mmfsin.estereotipia.presentation.allcards.AllCardsFragment"
-        tools:layout="@layout/fragment_cards" />
+        tools:layout="@layout/fragment_all_cards" />
 
 </navigation>

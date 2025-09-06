@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph_edit_deck_cards"
+    app:startDestination="@id/editDeckCardsFragment">
+
+    <fragment
+        android:id="@+id/editDeckCardsFragment"
+        android:name="com.mmfsin.estereotipia.presentation.customdecks.editcards.EditCardsFragment"
+        android:label="editDeckCardsFragment"
+        tools:layout="@layout/fragment_create_deck" />
+
+</navigation>

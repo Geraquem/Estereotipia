@@ -27,6 +27,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
 
     var checkVersion = true
+    var firstInitMenu = true
 
     private var navHostFragment: NavHostFragment? = null
     private var navController: NavController? = null
@@ -53,8 +54,7 @@ class MainActivity : AppCompatActivity() {
 
         } else {
             // For Android 14 and below
-            @Suppress("DEPRECATION")
-            window.statusBarColor = ContextCompat.getColor(this, color)
+            @Suppress("DEPRECATION") window.statusBarColor = ContextCompat.getColor(this, color)
         }
 
         //true == dark
@@ -76,9 +76,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun openBedRockActivity(
-        navGraph: Int,
-        strArgs: String? = null,
-        booleanArgs: Boolean? = null
+        navGraph: Int, strArgs: String? = null, booleanArgs: Boolean? = null
     ) {
         val intent = Intent(this, BedRockActivity::class.java)
         strArgs?.let { intent.putExtra(BEDROCK_STR_ARGS, strArgs) }

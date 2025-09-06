@@ -20,7 +20,7 @@ class MenuViewModel @Inject constructor(
         )
     }
 
-    fun getMenuCards() {
+    fun getMenuTopCard() {
         executeUseCase(
             { getMenuCardsUseCase.execute() },
             { result -> _event.value = MenuEvent.MenuCards(result) },

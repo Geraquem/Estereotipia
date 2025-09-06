@@ -6,11 +6,12 @@ import android.os.Bundle
 import android.view.WindowInsets
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowCompat
-import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.WindowInsetsControllerCompat
 import androidx.core.view.isVisible
+import androidx.navigation.NavController
+import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.fragment.findNavController
+import androidx.navigation.ui.setupWithNavController
 import com.mmfsin.estereotipia.R
 import com.mmfsin.estereotipia.base.bedrock.BedRockActivity
 import com.mmfsin.estereotipia.databinding.ActivityMainBinding
@@ -27,6 +28,9 @@ class MainActivity : AppCompatActivity() {
 
     var checkVersion = true
 
+    private var navHostFragment: NavHostFragment? = null
+    private var navController: NavController? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         setTheme(R.style.Theme_Estereotipia)
         super.onCreate(savedInstanceState)
@@ -34,6 +38,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         changeStatusBarColor(R.color.orange)
+        setBottomNav()
     }
 
     private fun changeStatusBarColor(color: Int) {
@@ -54,6 +59,20 @@ class MainActivity : AppCompatActivity() {
 
         //true == dark
         WindowInsetsControllerCompat(window, window.decorView).isAppearanceLightStatusBars = true
+    }
+
+    private fun setBottomNav() {
+        navHostFragment =
+            supportFragmentManager.findFragmentById(R.id.fragment_container) as NavHostFragment
+        navHostFragment?.let { nhf ->
+            navController = nhf.findNavController()
+            navController?.let { nC ->
+                binding.bottomNav.apply {
+                    setupWithNavController(nC)
+                    setOnItemReselectedListener { }
+                }
+            }
+        }
     }
 
     fun openBedRockActivity(

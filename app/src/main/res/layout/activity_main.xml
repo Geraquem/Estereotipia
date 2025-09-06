@@ -29,17 +29,32 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:navGraph="@navigation/nav_graph_main" />
+        app:navGraph="@navigation/nav_graph_bottom_nav" />
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/fc_instructions"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:elevation="10dp"
+        ads:layout_constraintBottom_toTopOf="@id/bottom_nav"
         ads:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent" />
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_nav"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:paddingBottom="4dp"
+        ads:itemTextColor="@color/dark_orange"
+        app:itemBackground="@drawable/bottom_nav_bar_selector"
+        app:itemIconTint="@drawable/bottom_nav_selector"
+        app:labelVisibilityMode="selected"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:menu="@menu/bottom_nav_menu" />
 
     <RelativeLayout
         android:id="@+id/loading"

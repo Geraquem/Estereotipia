@@ -69,7 +69,7 @@
         android:id="@+id/bg_initial"
         android:layout_width="54dp"
         android:layout_height="54dp"
-        android:background="@color/dark_orange"
+        android:background="@color/orange"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:shapeAppearanceOverlay="@style/circular_image" />

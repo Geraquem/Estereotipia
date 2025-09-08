@@ -4,10 +4,10 @@
     <string name="content_description">image</string>
 
     <!-- ADS -->
-    <string name="banner">ca-app-pub-3940256099942544/6300978111</string>
-    <!--            <string name="banner">ca-app-pub-4515698012373396/4573656208</string>-->
-    <string name="interstitial">ca-app-pub-3940256099942544/1033173712</string>
-    <!--            <string name="interstitial">ca-app-pub-4515698012373396/5631649980</string>-->
+<!--    <string name="banner">ca-app-pub-3940256099942544/6300978111</string>-->
+                <string name="banner">ca-app-pub-4515698012373396/4573656208</string>
+<!--    <string name="interstitial">ca-app-pub-3940256099942544/1033173712</string>-->
+                <string name="interstitial">ca-app-pub-4515698012373396/5631649980</string>
 
     <!-- ERROR -->
     <string name="error_title">Ha ocurrido un problema</string>
@@ -28,10 +28,9 @@
     <string name="vp_tab_questions">Preguntas</string>
 
     <!-- MENU -->
-
     <string name="menu_bottom_games">Jugar</string>
     <string name="menu_bottom_decks">Barajas</string>
-    <string name="menu_bottom_cards">Cartas</string>
+    <string name="menu_bottom_cards">Caras</string>
     <string name="menu_instructions">Instrucciones</string>
     <string name="menu_mode">Modo</string>
     <string name="menu_who_is_who">Quién es quién</string>
@@ -222,6 +221,8 @@
     <string name="shared_deck_error_options">Los ajustes tienen que estar así:</string>
     <string name="shared_deck_open_deep_links">Abrir enlaces compatibles</string>
     <string name="shared_deck_open_deep_links_to_open">Enlaces que abrir en esta aplicación</string>
+    <string name="shared_deck_open_deep_links_verified_links">Y hay que añadir un enlace verificado, (pulsando <i>Añadir enlace</i>)</string>
+    <string name="shared_deck_open_deep_links_add_link">Añadir enlace</string>
 
     <!--  SHARED DECK -->
     <string name="shared_deck_title">Añadir baraja</string>

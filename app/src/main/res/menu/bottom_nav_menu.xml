@@ -2,16 +2,16 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/menuFragment"
-        android:icon="@drawable/ic_settings"
+        android:icon="@drawable/ic_play"
         android:title="@string/menu_bottom_games" />
 
     <item
         android:id="@+id/decksFragment"
-        android:icon="@drawable/ic_settings"
+        android:icon="@drawable/ic_deck"
         android:title="@string/menu_bottom_decks" />
 
     <item
         android:id="@+id/cardsFragment"
-        android:icon="@drawable/ic_settings"
+        android:icon="@drawable/ic_face"
         android:title="@string/menu_bottom_cards" />
 </menu>

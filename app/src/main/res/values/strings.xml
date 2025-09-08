@@ -222,6 +222,7 @@
     <string name="shared_deck_open_deep_links">Abrir enlaces compatibles</string>
     <string name="shared_deck_open_deep_links_to_open">Enlaces que abrir en esta aplicación</string>
     <string name="shared_deck_open_deep_links_verified_links">Y hay que añadir un enlace verificado, (pulsando <i>Añadir enlace</i>)</string>
+    <string name="shared_deck_open_deep_links_like_that">Tiene que quedar algo así:</string>
     <string name="shared_deck_open_deep_links_add_link">Añadir enlace</string>
 
     <!--  SHARED DECK -->

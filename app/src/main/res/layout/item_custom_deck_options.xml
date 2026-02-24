@@ -34,7 +34,6 @@
                 style="@style/MediumTextView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="2dp"
                 android:ellipsize="end"
                 android:maxLines="1"
                 android:singleLine="true"
@@ -47,7 +46,7 @@
                 style="@style/MediumTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="16sp"
+                android:textSize="14sp"
                 tools:text="15 cartas" />
 
         </LinearLayout>
@@ -67,8 +66,8 @@
 
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/bg_initial"
-        android:layout_width="54dp"
-        android:layout_height="54dp"
+        android:layout_width="58dp"
+        android:layout_height="58dp"
         android:background="@color/orange"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -81,7 +80,7 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/mont_bold"
         android:textColor="@color/white"
-        android:textSize="28sp"
+        android:textSize="32sp"
         app:layout_constraintBottom_toBottomOf="@id/bg_initial"
         app:layout_constraintLeft_toLeftOf="@id/bg_initial"
         app:layout_constraintRight_toRightOf="@id/bg_initial"

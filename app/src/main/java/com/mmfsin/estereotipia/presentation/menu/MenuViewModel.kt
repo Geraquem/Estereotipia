@@ -2,6 +2,7 @@ package com.mmfsin.estereotipia.presentation.menu
 
 import com.mmfsin.estereotipia.base.BaseViewModel
 import com.mmfsin.estereotipia.domain.usecases.CheckVersionUseCase
+import com.mmfsin.estereotipia.domain.usecases.GetGameInfoUseCase
 import com.mmfsin.estereotipia.domain.usecases.GetMenuCardsUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
@@ -9,7 +10,8 @@ import javax.inject.Inject
 @HiltViewModel
 class MenuViewModel @Inject constructor(
     private val checkVersionUseCase: CheckVersionUseCase,
-    private val getMenuCardsUseCase: GetMenuCardsUseCase
+    private val getMenuCardsUseCase: GetMenuCardsUseCase,
+    private val getGameInfoUseCase: GetGameInfoUseCase
 ) : BaseViewModel<MenuEvent>() {
 
     fun checkVersion() {
@@ -24,6 +26,14 @@ class MenuViewModel @Inject constructor(
         executeUseCase(
             { getMenuCardsUseCase.execute() },
             { result -> _event.value = MenuEvent.MenuCards(result) },
+            { _event.value = MenuEvent.SomethingWentWrong }
+        )
+    }
+
+    fun getGameInfo() {
+        executeUseCase(
+            { getGameInfoUseCase.execute() },
+            { result -> _event.value = MenuEvent.GetGameInfo(result) },
             { _event.value = MenuEvent.SomethingWentWrong }
         )
     }

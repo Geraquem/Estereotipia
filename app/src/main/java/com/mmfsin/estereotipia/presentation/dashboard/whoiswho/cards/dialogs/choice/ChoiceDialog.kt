@@ -35,7 +35,7 @@ class ChoiceDialog(
 
     override fun inflateView(inflater: LayoutInflater) = DialogCardChoiceBinding.inflate(inflater)
 
-    override fun setCustomViewDialog(dialog: Dialog) = centerCustomViewDialog(dialog)
+    override fun setCustomViewDialog(dialog: Dialog) = centerViewDialog(dialog)
 
     override fun onResume() {
         super.onResume()

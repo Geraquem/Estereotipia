@@ -3,7 +3,9 @@ package com.mmfsin.estereotipia.presentation.customdecks.shared
 import android.app.ComponentCaller
 import android.content.Intent
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
+import android.view.WindowInsets
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.view.WindowInsetsControllerCompat
@@ -26,16 +28,29 @@ class SharedDeckActivity : AppCompatActivity() {
         binding = ActivitySharedDeckBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        changeStatusBar()
+        changeStatusBarColor(R.color.white)
         initialStatements()
 
         checkIfSharedDeck()
     }
 
-    private fun changeStatusBar() {
-        window.statusBarColor = ContextCompat.getColor(this, R.color.white)
-        val controller = WindowInsetsControllerCompat(window, window.decorView)
-        controller.isAppearanceLightStatusBars = true
+    private fun changeStatusBarColor(color: Int) {
+        // Android 15+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.VANILLA_ICE_CREAM) {
+            window.decorView.setOnApplyWindowInsetsListener { view, insets ->
+                val statusBarInsets = insets.getInsets(WindowInsets.Type.statusBars())
+                view.setBackgroundColor(ContextCompat.getColor(this, color))
+                view.setPadding(0, statusBarInsets.top, 0, 0)
+                insets
+            }
+
+        } else {
+            // For Android 14 and below
+            @Suppress("DEPRECATION") window.statusBarColor = ContextCompat.getColor(this, color)
+        }
+
+        //true == dark
+        WindowInsetsControllerCompat(window, window.decorView).isAppearanceLightStatusBars = true
     }
 
     private fun initialStatements() {

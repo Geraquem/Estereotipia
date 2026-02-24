@@ -2,10 +2,12 @@ package com.mmfsin.estereotipia.data.mappers
 
 import com.mmfsin.estereotipia.data.models.CardDTO
 import com.mmfsin.estereotipia.data.models.DeckDTO
+import com.mmfsin.estereotipia.data.models.GameInfoDTO
 import com.mmfsin.estereotipia.data.models.IdentityDTO
 import com.mmfsin.estereotipia.data.models.QuestionDTO
 import com.mmfsin.estereotipia.domain.models.Card
 import com.mmfsin.estereotipia.domain.models.Deck
+import com.mmfsin.estereotipia.domain.models.GameInfo
 import com.mmfsin.estereotipia.domain.models.Identity
 import com.mmfsin.estereotipia.domain.models.Question
 
@@ -46,3 +48,9 @@ fun IdentityDTO.toIdentity() = Identity(
 )
 
 fun List<IdentityDTO>.toIdentityList() = this.map { it.toIdentity() }
+
+fun GameInfoDTO.toGameInfo() = GameInfo(
+    instagramUser = this.instagramUser,
+    shopUrl = this.shopUrl,
+    physicalBox = this.physicalBox
+)

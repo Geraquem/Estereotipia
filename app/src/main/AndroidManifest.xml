@@ -50,9 +50,9 @@
                 <category android:name="android.intent.category.BROWSABLE" />
 
                 <data
-                    android:host="www.estereotipia.com"
-                    android:pathPrefix="/deck"
-                    android:scheme="https" />
+                    android:scheme="https"
+                    android:host="estereotipia.com"
+                    android:pathPrefix="/deck" />
             </intent-filter>
 
         </activity>

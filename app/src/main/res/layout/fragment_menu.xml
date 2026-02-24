@@ -399,6 +399,7 @@
                         android:id="@+id/ll_phrases"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginBottom="20dp"
                         android:background="@drawable/bg_white_box"
                         android:orientation="vertical"
                         android:paddingHorizontal="16dp"
@@ -460,7 +461,6 @@
                             style="@style/SmallTextView"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginBottom="8dp"
                             android:alpha="0.75"
                             android:text="@string/menu_phrases_description" />
 
@@ -490,6 +490,68 @@
                                 android:background="@drawable/click_effect"
                                 android:padding="4dp"
                                 android:text="@string/menu_play"
+                                android:textAllCaps="true"
+                                android:textColor="@color/dark_orange"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintRight_toRightOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/ll_physic_game"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="12dp"
+                        android:background="@drawable/bg_white_box"
+                        android:orientation="vertical"
+                        android:paddingHorizontal="16dp"
+                        android:paddingTop="16dp"
+                        android:paddingBottom="12dp">
+
+                        <TextView
+                            style="@style/MediumTextView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="4dp"
+                            android:text="@string/menu_buy_physical_game_title"
+                            android:textAllCaps="true"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            style="@style/SmallTextView"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="8dp"
+                            android:alpha="0.75"
+                            android:text="@string/menu_buy_physical_game_description" />
+
+                        <ImageView
+                            android:id="@+id/iv_physic_box"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginBottom="6dp"
+                            android:adjustViewBounds="true"
+                            android:contentDescription="@string/content_description"
+                            android:padding="16dp"
+                            android:scaleType="fitCenter"
+                            tools:src="@drawable/ic_info" />
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <TextView
+                                android:id="@+id/btn_url_to_buy"
+                                style="@style/SmallTextView_Bold"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:background="@drawable/click_effect"
+                                android:padding="4dp"
+                                android:text="@string/menu_url_buy"
                                 android:textAllCaps="true"
                                 android:textColor="@color/dark_orange"
                                 app:layout_constraintBottom_toBottomOf="parent"

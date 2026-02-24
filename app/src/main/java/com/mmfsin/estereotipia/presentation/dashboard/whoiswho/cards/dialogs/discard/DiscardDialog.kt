@@ -23,13 +23,12 @@ class DiscardDialog(
     val listener: ICardsListener
 ) : BaseDialog<DialogCardDiscardBinding>() {
 
-
     private var firstAccess = true
     private var actionType = FIRST_BUTTONS
 
     override fun inflateView(inflater: LayoutInflater) = DialogCardDiscardBinding.inflate(inflater)
 
-    override fun setCustomViewDialog(dialog: Dialog) = centerCustomViewDialog(dialog)
+    override fun setCustomViewDialog(dialog: Dialog) = centerViewDialog(dialog)
 
     override fun onResume() {
         super.onResume()

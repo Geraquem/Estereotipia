@@ -23,7 +23,7 @@ class SelectedCardDialog(private val cardId: String) : BaseDialog<DialogCardSele
 
     override fun inflateView(inflater: LayoutInflater) = DialogCardSelectBinding.inflate(inflater)
 
-    override fun setCustomViewDialog(dialog: Dialog) = centerCustomViewDialog(dialog)
+    override fun setCustomViewDialog(dialog: Dialog) = centerViewDialog(dialog)
 
     override fun onResume() {
         super.onResume()

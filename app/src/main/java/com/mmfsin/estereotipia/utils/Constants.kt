@@ -16,6 +16,11 @@ const val VERSION = "version"
 const val DECKS = "decks"
 const val CARDS = "cards"
 
+const val GAME_INFO = "game_info"
+const val SHOP_URL = "shop_url"
+const val INSTAGRAM_USER = "instagram_user"
+    const val PHYSICAL_BOX = "physical_box"
+
 const val QUESTIONS = "questions"
 const val IDENTITIES = "identities"
 const val PHRASES = "phrases"

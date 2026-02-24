@@ -3,6 +3,7 @@ package com.mmfsin.estereotipia.di
 import com.mmfsin.estereotipia.data.database.RealmDatabase
 import com.mmfsin.estereotipia.data.models.CardDTO
 import com.mmfsin.estereotipia.data.models.DeckDTO
+import com.mmfsin.estereotipia.data.models.GameInfoDTO
 import com.mmfsin.estereotipia.data.models.IdentityDTO
 import com.mmfsin.estereotipia.data.models.PhraseDTO
 import com.mmfsin.estereotipia.data.models.QuestionDTO
@@ -27,7 +28,8 @@ object RealmDatabaseModule {
                 DeckDTO::class,
                 IdentityDTO::class,
                 PhraseDTO::class,
-                QuestionDTO::class
+                QuestionDTO::class,
+                GameInfoDTO::class
             )
         )
 

@@ -1,11 +1,14 @@
 package com.mmfsin.estereotipia.presentation.menu
 
 import android.content.Context
+import android.content.Intent
 import android.graphics.drawable.Drawable
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.DataSource
@@ -15,6 +18,7 @@ import com.bumptech.glide.request.target.Target
 import com.mmfsin.estereotipia.R
 import com.mmfsin.estereotipia.base.BaseFragment
 import com.mmfsin.estereotipia.databinding.FragmentMenuBinding
+import com.mmfsin.estereotipia.domain.models.GameInfo
 import com.mmfsin.estereotipia.presentation.MainActivity
 import com.mmfsin.estereotipia.presentation.menu.decks.DecksSheet
 import com.mmfsin.estereotipia.presentation.menu.interfaces.IMenuCardsListener
@@ -24,6 +28,7 @@ import com.mmfsin.estereotipia.utils.QUESTIONS
 import com.mmfsin.estereotipia.utils.animateX
 import com.mmfsin.estereotipia.utils.animateY
 import com.mmfsin.estereotipia.utils.countDown
+import com.mmfsin.estereotipia.utils.setGlideImage
 import com.mmfsin.estereotipia.utils.showErrorDialog
 import com.mmfsin.estereotipia.utils.showFragmentDialog
 import dagger.hilt.android.AndroidEntryPoint
@@ -35,22 +40,34 @@ class MenuFragment : BaseFragment<FragmentMenuBinding, MenuViewModel>(), IMenuLi
     override val viewModel: MenuViewModel by viewModels()
     private lateinit var mContext: Context
 
+    var topImage: String? = null
+
     override fun inflateView(
         inflater: LayoutInflater, container: ViewGroup?
     ) = FragmentMenuBinding.inflate(inflater, container, false)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+    }
+
+    override fun onResume() {
+        super.onResume()
         val checkVersion = (activity as MainActivity).checkVersion
         if (checkVersion) {
             (activity as MainActivity).checkVersion = false
             viewModel.checkVersion()
+        } else {
+            if (topImage == null) viewModel.getMenuTopCard()
+            else menuFlowCompleted()
         }
     }
 
     override fun setUI() {
         binding.apply {
             loading.visibility = View.VISIBLE
+
+            topImage?.let { img -> setTopCardMenu(img) }
 
             if (shouldDoAnimations()) {
                 tvTitle.visibility = View.INVISIBLE
@@ -92,10 +109,12 @@ class MenuFragment : BaseFragment<FragmentMenuBinding, MenuViewModel>(), IMenuLi
             when (event) {
                 is MenuEvent.Completed -> viewModel.getMenuTopCard()
                 is MenuEvent.MenuCards -> {
-                    event.card?.image?.let { img -> setTopCardMenu(img) }
+                    topImage = event.card?.image
                     menuFlowCompleted()
+                    viewModel.getGameInfo()
                 }
 
+                is MenuEvent.GetGameInfo -> setGameInfo(event.info)
                 is MenuEvent.SomethingWentWrong -> error()
             }
         }
@@ -104,6 +123,8 @@ class MenuFragment : BaseFragment<FragmentMenuBinding, MenuViewModel>(), IMenuLi
     private fun menuFlowCompleted() {
         binding.apply {
             (activity as MainActivity).handleLoading(show = false)
+
+            topImage?.let { img -> setTopCardMenu(img) }
 
             if (shouldDoAnimations()) {
                 (activity as MainActivity).firstInitMenu = false
@@ -168,6 +189,49 @@ class MenuFragment : BaseFragment<FragmentMenuBinding, MenuViewModel>(), IMenuLi
     }
 
     private fun shouldDoAnimations(): Boolean = (activity as MainActivity).firstInitMenu
+
+    private fun setGameInfo(info: GameInfo?) {
+        binding.apply {
+            info?.let {
+                info.physicalBox?.let { imageUrl -> mContext.setGlideImage(imageUrl, ivPhysicBox) }
+                    ?: run { llPhysicGame.isVisible = false }
+
+                info.shopUrl?.let { url ->
+                    btnUrlToBuy.setOnClickListener { openShop(url) }
+                    ivPhysicBox.setOnClickListener { openShop(url) }
+                } ?: run { btnUrlToBuy.isVisible = false }
+
+                llPhysicGame.isVisible = true
+            } ?: run { llPhysicGame.isVisible = false }
+        }
+    }
+
+    private fun openInstagram(instagram: String?) {
+        val user = instagram ?: "estereotipia_"
+        val uri = Uri.parse("http://instagram.com/_u/$user")
+        val intent = Intent(Intent.ACTION_VIEW, uri)
+        intent.setPackage("com.instagram.android")
+        try {
+            startActivity(intent)
+        } catch (e: Exception) {
+            val browserIntent = Intent(
+                Intent.ACTION_VIEW,
+                Uri.parse("http://instagram.com/$user")
+            )
+            startActivity(browserIntent)
+        }
+    }
+
+    private fun openShop(shopUrl: String?) {
+        binding.apply {
+            shopUrl?.let { url ->
+                val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
+                startActivity(intent)
+            } ?: run {
+
+            }
+        }
+    }
 
     private fun error() = activity?.showErrorDialog()
 

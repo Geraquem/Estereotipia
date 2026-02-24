@@ -16,34 +16,22 @@
         android:clipChildren="false"
         android:clipToPadding="false"
         android:elevation="6dp"
-        android:paddingVertical="12dp"
+        android:paddingTop="8dp"
+        android:paddingBottom="6dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent">
-
-        <TextView
-            android:id="@+id/tv_name"
-            style="@style/MediumTextView_Card"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:textAllCaps="true"
-            android:textSize="20sp"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:text="Fulanito" />
 
         <include
             android:id="@+id/loading"
             layout="@layout/include_loading_card"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toBottomOf="@id/iv_image"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_name" />
+            app:layout_constraintTop_toTopOf="@id/iv_image" />
 
         <ImageView
             android:id="@+id/iv_image"
@@ -51,9 +39,10 @@
             android:layout_height="164dp"
             android:layout_margin="8dp"
             android:contentDescription="@string/content_description"
+            app:layout_constraintBottom_toTopOf="@id/tv_name"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_name"
+            app:layout_constraintTop_toTopOf="parent"
             tools:src="@drawable/default_face" />
 
         <ImageView
@@ -70,6 +59,19 @@
             app:layout_constraintTop_toTopOf="parent"
             tools:visibility="visible" />
 
+        <TextView
+            android:id="@+id/tv_name"
+            style="@style/MediumTextView_Card"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textAllCaps="true"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            tools:text="Fulanito" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <ImageView
@@ -77,14 +79,14 @@
         android:layout_width="36dp"
         android:layout_height="36sp"
         android:layout_marginHorizontal="8dp"
-        android:layout_marginBottom="2dp"
+        android:layout_marginVertical="2dp"
         android:alpha="0.75"
         android:contentDescription="@string/content_description"
         android:elevation="8dp"
         android:src="@drawable/ic_eye"
         android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         tools:visibility="visible" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
